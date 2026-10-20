@@ -105,10 +105,9 @@
   .totop { display:inline-block; margin-top:10px; color:var(--a); font-weight:700; text-decoration:none; }
   .sponsor { margin-top:30px; border-radius:24px; overflow:hidden; background:linear-gradient(135deg,#0b1633 0%,#14307a 60%,#1d4ed8 100%); color:#fff; box-shadow:0 14px 34px rgba(20,48,122,.28); position:relative; }
   .sponsor::before { content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle,rgba(255,211,107,.35),transparent 70%); }
-  .sp-top { position:relative; display:flex; align-items:center; justify-content:space-between; gap:18px 24px; flex-wrap:wrap; padding:28px 26px 20px; }
-  .sp-label { font-size:.75rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#ffd36b; margin:0 0 6px; }
-  .sp-title { margin:0; font-size:clamp(1.15rem,4.6vw,1.6rem); font-weight:800; letter-spacing:-.02em; line-height:1.2; }
-  .sp-logo { display:block; height:56px; width:auto; max-width:100%; }
+  .sp-top { position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:16px; padding:28px 26px 20px; }
+  .sp-label { font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#ffd36b; margin:0; }
+  .sp-logo { display:block; height:auto; width:min(340px,100%); }
   .sp-logo-fallback { display:none; font-weight:800; font-size:1.3rem; letter-spacing:-.02em; }
   .sp-body { position:relative; padding:0 26px 26px; }
   .sp-body p { margin:0 0 16px; color:#d6e2ff; max-width:720px; }
@@ -169,13 +168,10 @@
 
   <div class="sponsor">
     <div class="sp-top">
-      <div>
-        <p class="sp-label">Stolt sponsor av</p>
-        <h3 class="sp-title">Flekkerøy Elektro AS</h3>
-      </div>
+      <p class="sp-label">Reinertsengruppen er stolt sponsor av</p>
       <a href="https://www.flekkeroy-elektro.no/" target="_blank" rel="noopener" aria-label="Flekkerøy Elektro AS">
-        <img class="sp-logo" src="flekkeroy-logo.png" alt="Flekkerøy Elektro" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <span class="sp-logo-fallback">Flekkerøy Elektro</span>
+        <img class="sp-logo" src="flekkeroy-logo.png" alt="Flekkerøy Elektro AS" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="sp-logo-fallback">Flekkerøy Elektro AS</span>
       </a>
     </div>
     <div class="sp-body">
