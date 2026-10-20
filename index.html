@@ -1,90 +1,148 @@
 <!DOCTYPE html>
-<html lang="no" data-mode="day">
+<html lang="no">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reinertsengruppen</title>
 <meta name="description" content="Reinertsengruppen – under oppbygging.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
 <style>
-  html[data-mode="day"] {
-    --bg:#ffffff; --fg:#14171f; --muted:#6b7280; --a:#2563eb; --b:#7c3aed;
-    --bld:#1b1e25; --bld-stroke:#1b1e25; --win-off:#d7e8f7; --win-on:#d7e8f7; --glow:none;
+  :root {
+    --bg:#f6f9ff; --fg:#0f172a; --muted:#5b6b82; --line:#e3eaf5; --card:#ffffff;
+    --a:#2563eb; --b:#7c3aed; --c:#14b8a6;
+    --bld:#1b2440; --win-off:#cfe4f7; --win-on:#cfe4f7; --glow:none;
   }
-  html[data-mode="night"] {
-    --bg:#070b16; --fg:#f1f5f9; --muted:#8b97ad; --a:#38bdf8; --b:#818cf8;
-    --bld:#0f1529; --bld-stroke:#26304f; --win-off:#1a2340; --win-on:#ffd36b;
-    --glow:drop-shadow(0 0 3px rgba(255,200,87,.85));
-  }
+  body.night-icon { --win-off:#2a3558; --win-on:#ffd36b; --glow:drop-shadow(0 0 2px rgba(255,190,70,.9)); }
   * { box-sizing:border-box; }
-  body {
-    margin:0; min-height:100vh; background:var(--bg); color:var(--fg);
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:30px; padding:32px 20px; text-align:center; transition:background .9s,color .9s;
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; overflow-x:hidden; }
+  body::before, body::after { content:""; position:fixed; border-radius:50%; filter:blur(90px); opacity:.5; z-index:-1; }
+  body::before { width:55vmax; height:55vmax; background:#cfe0ff; top:-22vmax; right:-18vmax; }
+  body::after  { width:45vmax; height:45vmax; background:#c8f2ea; bottom:-20vmax; left:-15vmax; }
+
+  header { position:sticky; top:0; z-index:10; background:rgba(246,249,255,.82); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .left { display:flex; align-items:center; gap:14px 18px; flex-wrap:wrap; }
+  nav { display:flex; align-items:center; }
+  .ns { color:var(--muted); font-size:.95rem; font-weight:600; margin-left:18px; }
+  .ns:hover { color:var(--fg); }
+  nav .menu { left:auto; right:0; }
+  .menu a { margin:0; }
+  .dd { position:relative; }
+  .dd summary { list-style:none; cursor:pointer; user-select:none; }
+  .dd summary::-webkit-details-marker { display:none; }
+  .menu { position:absolute; top:calc(100% + 8px); left:0; min-width:200px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:6px; box-shadow:0 14px 34px rgba(15,23,42,.14); z-index:20; }
+  .menu a { display:block; padding:10px 12px; border-radius:9px; color:var(--fg); text-decoration:none; font-size:.9rem; font-weight:600; }
+  .menu a:hover { background:#eef3ff; color:var(--a); }
+  @media (max-width:560px) {
+    .bar { flex-wrap:wrap; row-gap:6px; }
+    .brand svg { height:36px; }
+    .wordmark { font-size:1.05rem; }
+    .left { flex-wrap:nowrap; gap:10px; }
+    nav { width:100%; }
+    nav a { margin:0 16px 0 0; }
+    .ns { margin:0 16px 0 0; }
+    nav .menu { right:auto; left:0; }
   }
-  .logo { width:min(78vw,340px); }
-  svg { width:100%; height:auto; display:block; overflow:visible; }
-  .bld { fill:var(--bld); stroke:var(--bld-stroke); stroke-width:1; transition:fill .9s,stroke .9s; }
-  .w { fill:var(--win-off); transition:fill .7s,filter .7s; }
+  .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
+  .brand svg { height:42px; width:auto; display:block; overflow:visible; }
+  .bld { fill:var(--bld); }
+  .w { fill:var(--win-off); transition:fill .7s, filter .7s; }
   .w.on { fill:var(--win-on); filter:var(--glow); }
-  .sun,.moon { transition:transform 1.6s cubic-bezier(.5,0,.3,1),opacity 1.2s; }
-  .sun { fill:#ffb703; } .moon { fill:#e8eefc; } .star { fill:#fff; transition:opacity 1.2s; }
-  html[data-mode="day"] .sun { transform:none; opacity:1; }
-  html[data-mode="day"] .moon { transform:translateY(300px); opacity:0; }
-  html[data-mode="day"] .star { opacity:0; }
-  html[data-mode="night"] .sun { transform:translateY(300px); opacity:0; }
-  html[data-mode="night"] .moon { transform:none; opacity:1; }
-  html[data-mode="night"] .star { opacity:.85; }
-
-  .wordmark {
-    font-family:'Manrope',system-ui,sans-serif; font-weight:200;
-    font-size:clamp(1.7rem,8.6vw,3.1rem); letter-spacing:-.03em; line-height:1;
-    display:inline-block; position:relative; padding-bottom:14px; white-space:nowrap;
-  }
+  .wordmark { font-weight:200; font-size:1.25rem; letter-spacing:-.03em; line-height:1; position:relative; padding-bottom:6px; white-space:nowrap; }
   .wordmark b { font-weight:800; }
-  .wordmark::after { content:""; position:absolute; left:0; bottom:0; height:3px; width:100%;
-    background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
-  .wordmark::before { content:""; position:absolute; left:0; bottom:-3px; width:34px; height:9px; border-radius:9px;
-    background:var(--a); box-shadow:0 0 16px var(--a); }
+  .wordmark::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:100%; background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
+  .wordmark::before { content:""; position:absolute; left:0; bottom:-2px; width:20px; height:6px; border-radius:6px; background:var(--a); box-shadow:0 0 10px rgba(37,99,235,.6); }
+  nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
+  nav a:hover { color:var(--fg); }
 
-  .sub { color:var(--muted); margin:0; font-size:1rem; }
-  .mail { color:var(--a); text-decoration:none; font-size:1.1rem; }
-  .mail:hover { text-decoration:underline; }
-  .toggle { font:inherit; font-size:.8rem; color:var(--muted); background:none; border:1px solid var(--muted);
-    border-radius:999px; padding:6px 14px; cursor:pointer; opacity:.7; }
-  .toggle:hover { opacity:1; }
+  .herobg { background:linear-gradient(90deg,rgba(246,249,255,.94) 0%,rgba(246,249,255,.78) 42%,rgba(246,249,255,.12) 100%),url('bakgrunn.jpg') center/cover no-repeat; }
+  @media (max-width:700px) { .herobg { background:linear-gradient(180deg,rgba(246,249,255,.92) 0%,rgba(246,249,255,.8) 55%,rgba(246,249,255,.35) 100%),url('bakgrunn.jpg') 62% center/cover no-repeat; } }
+  .hero { max-width:1040px; margin:0 auto; padding:12vh 20px 14vh; }
+  .badge { display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--muted); font-size:.85rem; font-weight:600; box-shadow:0 2px 10px rgba(15,23,42,.04); }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--c); box-shadow:0 0 0 4px rgba(20,184,166,.18); }
+  h1 { font-size:clamp(2.6rem,9vw,5.2rem); line-height:1.02; margin:22px 0 18px; letter-spacing:-.045em; font-weight:800; }
+  h1 span { font-weight:200; }
+  h1 em { font-style:normal; background:linear-gradient(90deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead { color:var(--muted); font-size:1.15rem; max-width:540px; margin:0 0 30px; }
+  .btn { display:inline-block; padding:14px 26px; border-radius:14px; background:linear-gradient(90deg,var(--a),var(--b)); color:#fff; font-weight:700; text-decoration:none; box-shadow:0 10px 26px rgba(37,99,235,.28); transition:transform .2s, box-shadow .2s; }
+  .btn:hover { transform:translateY(-2px); box-shadow:0 14px 32px rgba(37,99,235,.34); }
+
+  section { max-width:1040px; margin:0 auto; padding:7vh 20px; }
+  h2 { font-size:1.9rem; margin:0 0 22px; letter-spacing:-.03em; font-weight:800; }
+  .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:26px; box-shadow:0 6px 22px rgba(15,23,42,.05); }
+  .card .ic { width:40px; height:40px; border-radius:12px; display:grid; place-items:center; color:#fff; font-weight:800; margin-bottom:14px; background:linear-gradient(135deg,var(--a),var(--b)); }
+  .card:nth-child(2) .ic { background:linear-gradient(135deg,var(--c),var(--a)); }
+  .card:nth-child(3) .ic { background:linear-gradient(135deg,var(--b),#ec4899); }
+  .card h3 { margin:0 0 6px; font-size:1.1rem; }
+  .card p { margin:0; color:var(--muted); }
+
+  .contact .box { text-align:center; background:#fff; border:1px solid var(--line); border-radius:24px; padding:44px 20px; box-shadow:0 6px 22px rgba(15,23,42,.05); }
+  .contact p { color:var(--muted); margin:0 0 10px; }
+  .contact a.mail { color:var(--a); font-size:clamp(1.1rem,4.6vw,1.6rem); font-weight:700; text-decoration:none; }
+  .contact a.mail:hover { text-decoration:underline; }
+
+  footer { text-align:center; color:var(--muted); font-size:.85rem; padding:30px 20px 50px; }
 </style>
 </head>
 <body>
 
-<div class="logo">
-  <svg viewBox="0 0 400 350" role="img" aria-label="Reinertsengruppen">
-    <defs><clipPath id="sky"><rect x="0" y="0" width="400" height="340"/></clipPath></defs>
-    <g clip-path="url(#sky)">
-      <circle class="sun" cx="330" cy="62" r="20"/>
-      <circle class="moon" cx="70" cy="62" r="17"/>
-      <g id="stars"></g>
-    </g>
-    <g id="city"></g>
-    <rect class="bld" x="20" y="340" width="360" height="5" rx="2"/>
-  </svg>
-</div>
+<header>
+  <div class="bar">
+    <div class="left">
+      <a class="brand" href="#" aria-label="Reinertsengruppen">
+        <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
+        <span class="wordmark"><b>Reinertsen</b>gruppen</span>
+      </a>
+    </div>
+    <nav>
+      <details class="dd" id="dd">
+        <summary class="ns">Om oss ▾</summary>
+        <div class="menu">
+          <a href="#om">Om oss</a>
+          <a href="https://new.webmail.domene.shop/" target="_blank" rel="noopener">Logg inn med e-post</a>
+        </div>
+      </details>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
 
-<div class="wordmark"><b>Reinertsen</b>gruppen</div>
+<div class="herobg"><div class="hero">
+  <div class="badge"><span class="dot"></span> Under oppbygging</div>
+  <h1><span>Bygger</span> noe <em>nytt.</em></h1>
+  <p class="lead">Reinertsengruppen tar form. Her kommer mer informasjon etter hvert.</p>
+  <a class="btn" href="#kontakt">Ta kontakt</a>
+</div></div>
 
-<p class="sub">Siden er under oppbygging.</p>
-<a class="mail" href="mailto:Thomas@reinertsengruppen.no">Thomas@reinertsengruppen.no</a>
-<button class="toggle" id="toggle" type="button">Bytt dag/natt</button>
+<section id="om">
+  <h2>Om oss</h2>
+  <div class="grid">
+    <div class="card"><div class="ic">1</div><h3>Solid grunnmur</h3><p>Vi tar oss tid til å gjøre ting ordentlig, fra første dag.</p></div>
+    <div class="card"><div class="ic">2</div><h3>Langsiktig</h3><p>Fokus på varige verdier fremfor raske løsninger.</p></div>
+    <div class="card"><div class="ic">3</div><h3>Åpen dialog</h3><p>Spørsmål og ideer er alltid velkomne.</p></div>
+  </div>
+</section>
+
+<section id="kontakt" class="contact">
+  <div class="box">
+    <h2>Kontakt</h2>
+    <p>Send oss en e-post</p>
+    <a class="mail" href="mailto:Thomas@reinertsengruppen.no">Thomas@reinertsengruppen.no</a>
+  </div>
+</section>
+
+<footer>© <span id="y"></span> Reinertsengruppen</footer>
 
 <script>
 (function () {
   var NS='http://www.w3.org/2000/svg';
   function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
-  var rand=rng(7), city=document.getElementById('city'), wins=[];
+  var rand=rng(7), svg=document.getElementById('mark'), wins=[];
   var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
-  function el(n,at,p){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);(p||city).appendChild(e);return e;}
+  function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);svg.appendChild(e);return e;}
   el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
   blds.forEach(function(b){
     el('rect',{'class':'bld',x:b[0],y:b[1],width:b[2],height:b[3]});
@@ -101,25 +159,24 @@
       }
     }
   });
-  var stars=document.getElementById('stars'), sr=rng(21);
-  for(var i=0;i<22;i++) el('circle',{'class':'star',cx:(sr()*380+10).toFixed(1),cy:(sr()*110+8).toFixed(1),r:(sr()*1.2+.4).toFixed(1)},stars);
+  el('rect',{'class':'bld',x:30,y:340,width:340,height:6,rx:3});
 
-  var root=document.documentElement, manual=null;
-  function paint(){var n=root.getAttribute('data-mode')==='night';wins.forEach(function(w){w.classList.toggle('on',n&&w._on);});}
+  var night=false;
   function apply(){
-    var m=manual;
-    if(!m){var h=new Date().getHours();m=(h>=7&&h<19)?'day':'night';}
-    root.setAttribute('data-mode',m); paint();
+    var h=new Date().getHours(); night=!(h>=7&&h<19);
+    document.body.classList.toggle('night-icon',night);
+    wins.forEach(function(w){w.classList.toggle('on',night&&w._on);});
   }
-  document.getElementById('toggle').addEventListener('click',function(){
-    manual=root.getAttribute('data-mode')==='night'?'day':'night'; apply();
-  });
+  apply();
+  setInterval(apply,60000);
   setInterval(function(){
-    if(root.getAttribute('data-mode')!=='night')return;
+    if(!night)return;
     var w=wins[Math.floor(Math.random()*wins.length)];
     w._on=!w._on; w.style.transitionDelay='0s'; w.classList.toggle('on',w._on);
   },1400);
-  apply();
+  document.getElementById('y').textContent=new Date().getFullYear();
+  var dd=document.getElementById('dd');
+  document.addEventListener('click',function(e){if(dd.open&&!dd.contains(e.target))dd.open=false;});
 })();
 </script>
 </body>
