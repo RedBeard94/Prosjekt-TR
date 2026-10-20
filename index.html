@@ -84,6 +84,25 @@
   .contact a.mail { color:var(--a); font-size:clamp(1.1rem,4.6vw,1.6rem); font-weight:700; text-decoration:none; }
   .contact a.mail:hover { text-decoration:underline; }
 
+  #kontakt { display:none; }
+  .page-kontakt #kontakt { display:block; min-height:70vh; }
+  .page-kontakt .herobg, .page-kontakt #om { display:none; }
+  section { scroll-margin-top:90px; }
+  .since { display:inline-block; padding:5px 12px; border-radius:999px; background:#eaf1ff; color:var(--a); font-weight:700; font-size:.8rem; margin-bottom:14px; }
+  .story p { font-size:1.15rem; max-width:680px; margin:0 0 14px; }
+  .story { margin-bottom:30px; }
+  .proverb { margin-top:34px; padding:34px 22px; border-radius:24px; background:linear-gradient(135deg,#eaf1ff,#e3f7f2); border:1px solid var(--line); text-align:center; }
+  .proverb small { color:var(--muted); font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:.75rem; }
+  .proverb blockquote { margin:14px auto 18px; font-size:clamp(1.3rem,5vw,2rem); font-weight:800; letter-spacing:-.02em; max-width:640px; line-height:1.25; }
+  .proverb button { font:inherit; font-size:.85rem; font-weight:700; color:var(--a); background:#fff; border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer; }
+  form { text-align:left; max-width:520px; margin:0 auto 20px; display:grid; gap:12px; }
+  label { font-size:.85rem; font-weight:700; color:var(--muted); display:grid; gap:6px; }
+  input, textarea { font:inherit; color:var(--fg); padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#f9fbff; width:100%; }
+  input:focus, textarea:focus { outline:2px solid var(--a); outline-offset:1px; }
+  textarea { min-height:120px; resize:vertical; }
+  button.btn { border:0; cursor:pointer; font:inherit; font-weight:700; }
+  .note { font-size:.9rem; color:var(--muted); margin:0; }
+  .totop { display:inline-block; margin-top:10px; color:var(--a); font-weight:700; text-decoration:none; }
   footer { text-align:center; color:var(--muted); font-size:.85rem; padding:30px 20px 50px; }
 </style>
 </head>
@@ -119,22 +138,37 @@
 
 <section id="om">
   <h2>Om oss</h2>
+  <div class="story">
+    <span class="since">Startet i 2026</span>
+    <p>Reinertsengruppen ble startet av Thomas Reinertsen i 2026.</p>
+    <p>Thomas er oppvokst på Flekkerøya, en liten øy utenfor Kristiansand der havet alltid har vært nærmeste nabo. Der lærte han tidlig at man kommer lengst ved å stå på egne bein, hjelpe hverandre og gjøre ting skikkelig. Det tar han med seg inn i alt gruppen gjør.</p>
+  </div>
   <div class="grid">
     <div class="card"><div class="ic">1</div><h3>Solid grunnmur</h3><p>Vi tar oss tid til å gjøre ting ordentlig, fra første dag.</p></div>
     <div class="card"><div class="ic">2</div><h3>Langsiktig</h3><p>Fokus på varige verdier fremfor raske løsninger.</p></div>
     <div class="card"><div class="ic">3</div><h3>Åpen dialog</h3><p>Spørsmål og ideer er alltid velkomne.</p></div>
+  </div>
+  <div class="proverb">
+    <small>Ordtak fra kysten</small>
+    <blockquote id="sa"></blockquote>
+    <button type="button" id="nytt">Nytt ordtak</button>
   </div>
 </section>
 
 <section id="kontakt" class="contact">
   <div class="box">
     <h2>Kontakt</h2>
-    <p>Send oss en e-post</p>
-    <a class="mail" href="mailto:Thomas@reinertsengruppen.no">Thomas@reinertsengruppen.no</a>
+    <form id="cf">
+      <label>Navn<input name="navn" required autocomplete="name"></label>
+      <label>Din e-post<input name="epost" type="email" required autocomplete="email"></label>
+      <label>Melding<textarea name="melding" required></textarea></label>
+      <button class="btn" type="submit">Send melding</button>
+    </form>
+    <p class="note">Eller send e-post direkte: <a class="mail" id="mail" href="#"></a></p>
   </div>
 </section>
 
-<footer>© <span id="y"></span> Reinertsengruppen</footer>
+<footer>© <span id="y"></span> Reinertsengruppen<br><a class="totop" href="#">↑ Til toppen</a></footer>
 
 <script>
 (function () {
@@ -175,7 +209,29 @@
     w._on=!w._on; w.style.transitionDelay='0s'; w.classList.toggle('on',w._on);
   },1400);
   document.getElementById('y').textContent=new Date().getFullYear();
+  var addr=['Thomas','reinertsengruppen.no'].join('@');
+  var ml=document.getElementById('mail'); ml.href='mailto:'+addr; ml.textContent=addr;
+  document.getElementById('cf').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target;
+    var body='Navn: '+f.navn.value+'\nE-post: '+f.epost.value+'\n\n'+f.melding.value;
+    location.href='mailto:'+addr+'?subject='+encodeURIComponent('Henvendelse via nettsiden')+'&body='+encodeURIComponent(body);
+  });
+  var sayings=['Det finnes ikke dårlig vær, bare dårlige klær.','Ro med de årene du har.','Etter regn kommer sol.','Hastverk er lastverk.','Smått er godt.','Ingenting er så galt at det ikke er godt for noe.'];
+  var si=Math.floor(Math.random()*sayings.length), sa=document.getElementById('sa');
+  function showSaying(){sa.textContent='«'+sayings[si]+'»';}
+  document.getElementById('nytt').addEventListener('click',function(){si=(si+1)%sayings.length;showSaying();});
+  showSaying();
+  function route(){
+    var k=location.hash==='#kontakt';
+    document.body.classList.toggle('page-kontakt',k);
+    if(k||!location.hash){window.scrollTo(0,0);}
+    else if(location.hash==='#om'){var o=document.getElementById('om');if(o)o.scrollIntoView();}
+  }
+  window.addEventListener('hashchange',route);
+  route();
   var dd=document.getElementById('dd');
+  dd.addEventListener('click',function(e){if(e.target.tagName==='A')dd.open=false;});
   document.addEventListener('click',function(e){if(dd.open&&!dd.contains(e.target))dd.open=false;});
 })();
 </script>
