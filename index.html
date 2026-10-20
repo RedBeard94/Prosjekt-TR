@@ -1,22 +1,126 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" data-mode="day">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reinertsengruppen</title>
+<meta name="description" content="Reinertsengruppen – under oppbygging.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;800&display=swap" rel="stylesheet">
 <style>
-  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0f172a; color: #f1f5f9; font-family: system-ui, sans-serif; text-align: center; }
-  main { padding: 24px; }
-  h1 { font-size: 2.4rem; margin: 0 0 12px; }
-  p { color: #94a3b8; margin: 8px 0; }
-  a { color: #38bdf8; text-decoration: none; }
+  html[data-mode="day"] {
+    --bg:#ffffff; --fg:#14171f; --muted:#6b7280; --a:#2563eb; --b:#7c3aed;
+    --bld:#1b1e25; --bld-stroke:#1b1e25; --win-off:#d7e8f7; --win-on:#d7e8f7; --glow:none;
+  }
+  html[data-mode="night"] {
+    --bg:#070b16; --fg:#f1f5f9; --muted:#8b97ad; --a:#38bdf8; --b:#818cf8;
+    --bld:#0f1529; --bld-stroke:#26304f; --win-off:#1a2340; --win-on:#ffd36b;
+    --glow:drop-shadow(0 0 3px rgba(255,200,87,.85));
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; min-height:100vh; background:var(--bg); color:var(--fg);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:30px; padding:32px 20px; text-align:center; transition:background .9s,color .9s;
+  }
+  .logo { width:min(78vw,340px); }
+  svg { width:100%; height:auto; display:block; overflow:visible; }
+  .bld { fill:var(--bld); stroke:var(--bld-stroke); stroke-width:1; transition:fill .9s,stroke .9s; }
+  .w { fill:var(--win-off); transition:fill .7s,filter .7s; }
+  .w.on { fill:var(--win-on); filter:var(--glow); }
+  .sun,.moon { transition:transform 1.6s cubic-bezier(.5,0,.3,1),opacity 1.2s; }
+  .sun { fill:#ffb703; } .moon { fill:#e8eefc; } .star { fill:#fff; transition:opacity 1.2s; }
+  html[data-mode="day"] .sun { transform:none; opacity:1; }
+  html[data-mode="day"] .moon { transform:translateY(300px); opacity:0; }
+  html[data-mode="day"] .star { opacity:0; }
+  html[data-mode="night"] .sun { transform:translateY(300px); opacity:0; }
+  html[data-mode="night"] .moon { transform:none; opacity:1; }
+  html[data-mode="night"] .star { opacity:.85; }
+
+  .wordmark {
+    font-family:'Manrope',system-ui,sans-serif; font-weight:200;
+    font-size:clamp(1.7rem,8.6vw,3.1rem); letter-spacing:-.03em; line-height:1;
+    display:inline-block; position:relative; padding-bottom:14px; white-space:nowrap;
+  }
+  .wordmark b { font-weight:800; }
+  .wordmark::after { content:""; position:absolute; left:0; bottom:0; height:3px; width:100%;
+    background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
+  .wordmark::before { content:""; position:absolute; left:0; bottom:-3px; width:34px; height:9px; border-radius:9px;
+    background:var(--a); box-shadow:0 0 16px var(--a); }
+
+  .sub { color:var(--muted); margin:0; font-size:1rem; }
+  .mail { color:var(--a); text-decoration:none; font-size:1.1rem; }
+  .mail:hover { text-decoration:underline; }
+  .toggle { font:inherit; font-size:.8rem; color:var(--muted); background:none; border:1px solid var(--muted);
+    border-radius:999px; padding:6px 14px; cursor:pointer; opacity:.7; }
+  .toggle:hover { opacity:1; }
 </style>
 </head>
 <body>
-<main>
-  <h1>Reinertsengruppen</h1>
-  <p>Siden er under oppbygging.</p>
-  <p><a href="mailto:Thomas@reinertsengruppen.no">Thomas@reinertsengruppen.no</a></p>
-</main>
+
+<div class="logo">
+  <svg viewBox="0 0 400 350" role="img" aria-label="Reinertsengruppen">
+    <defs><clipPath id="sky"><rect x="0" y="0" width="400" height="340"/></clipPath></defs>
+    <g clip-path="url(#sky)">
+      <circle class="sun" cx="330" cy="62" r="20"/>
+      <circle class="moon" cx="70" cy="62" r="17"/>
+      <g id="stars"></g>
+    </g>
+    <g id="city"></g>
+    <rect class="bld" x="20" y="340" width="360" height="5" rx="2"/>
+  </svg>
+</div>
+
+<div class="wordmark"><b>Reinertsen</b>gruppen</div>
+
+<p class="sub">Siden er under oppbygging.</p>
+<a class="mail" href="mailto:Thomas@reinertsengruppen.no">Thomas@reinertsengruppen.no</a>
+<button class="toggle" id="toggle" type="button">Bytt dag/natt</button>
+
+<script>
+(function () {
+  var NS='http://www.w3.org/2000/svg';
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  var rand=rng(7), city=document.getElementById('city'), wins=[];
+  var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
+  function el(n,at,p){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);(p||city).appendChild(e);return e;}
+  el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
+  blds.forEach(function(b){
+    el('rect',{'class':'bld',x:b[0],y:b[1],width:b[2],height:b[3]});
+    var ww=8,wh=10,gx=7,gy=9,m=9;
+    var cols=Math.max(1,Math.floor((b[2]-2*m+gx)/(ww+gx)));
+    var total=cols*ww+(cols-1)*gx, sx=b[0]+(b[2]-total)/2;
+    for(var r=0;;r++){
+      var y=b[1]+m+r*(wh+gy);
+      if(y+wh>b[1]+b[3]-b[4])break;
+      for(var c=0;c<cols;c++){
+        var w=el('rect',{'class':'w',x:sx+c*(ww+gx),y:y,width:ww,height:wh,rx:1});
+        w.style.transitionDelay=(rand()*1.1).toFixed(2)+'s';
+        w._on=rand()<0.7; wins.push(w);
+      }
+    }
+  });
+  var stars=document.getElementById('stars'), sr=rng(21);
+  for(var i=0;i<22;i++) el('circle',{'class':'star',cx:(sr()*380+10).toFixed(1),cy:(sr()*110+8).toFixed(1),r:(sr()*1.2+.4).toFixed(1)},stars);
+
+  var root=document.documentElement, manual=null;
+  function paint(){var n=root.getAttribute('data-mode')==='night';wins.forEach(function(w){w.classList.toggle('on',n&&w._on);});}
+  function apply(){
+    var m=manual;
+    if(!m){var h=new Date().getHours();m=(h>=7&&h<19)?'day':'night';}
+    root.setAttribute('data-mode',m); paint();
+  }
+  document.getElementById('toggle').addEventListener('click',function(){
+    manual=root.getAttribute('data-mode')==='night'?'day':'night'; apply();
+  });
+  setInterval(function(){
+    if(root.getAttribute('data-mode')!=='night')return;
+    var w=wins[Math.floor(Math.random()*wins.length)];
+    w._on=!w._on; w.style.transitionDelay='0s'; w.classList.toggle('on',w._on);
+  },1400);
+  apply();
+})();
+</script>
 </body>
 </html>
