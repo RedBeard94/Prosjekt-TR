@@ -159,7 +159,7 @@
     <div class="card"><div class="ic">3</div><h3>Åpen dialog</h3><p>Spørsmål og ideer er alltid velkomne.</p></div>
   </div>
   <div class="proverb">
-    <small>Sitat om arbeidslivet</small>
+    <small>Dagens sitat</small>
     <blockquote id="sa"></blockquote>
     <p class="by" id="by"></p>
     <button type="button" id="nytt">Nytt sitat</button>
@@ -260,16 +260,24 @@
     }).then(function(){btn.disabled=false;});
   });
   var sayings=[
-    ['Den eneste måten å gjøre et stort arbeid på er å elske det du gjør.','Steve Jobs, 2005'],
-    ['Alene kan vi gjøre så lite. Sammen kan vi gjøre så mye.','Helen Keller'],
-    ['Seieren venter den som har alt i orden.','Roald Amundsen'],
-    ['Genialitet er én prosent inspirasjon og nittini prosent svette.','Thomas Edison'],
-    ['Mange hender gjør lett arbeid.','Norsk ordtak'],
-    ['Godt begynt er halvt fullendt.','Norsk ordtak'],
-    ['Hastverk er lastverk.','Norsk ordtak']
+    ['Når jobben er hyggelig, er livet gledelig. Hvis arbeid er en plikt, er livet slaveri.','Maksim Gorkij'],
+    ['Det viktige spørsmålet på jobben er ikke «Hva får jeg?», men «Hva blir jeg?»','Jim Rohn'],
+    ['Man må brenne for faget sitt for å bli god i det.','Denis Diderot'],
+    ['Torden er bra og imponerende, men det er lynet som gjør jobben.','Mark Twain'],
+    ['Når alle gjør sin oppgave, spiller du minst uavgjort.','Johan Cruyff'],
+    ['Bare en liten positiv tanke om morgenen kan endre hele dagen din.','Dalai Lama'],
+    ['Muligheter skjer ikke, du skaper dem.','Chris Grosser'],
+    ['Det daglige, ufullkomne liv har sin egen skjønnhet.','Kari Bremnes'],
+    ['Det er alltid starten som krever størst innsats.','James Cash Penney'],
+    ['Tro på deg selv, selv når det er vanskelig.',''],
+    ['Suksess begynner der hvor du slutter å gi opp.',''],
+    ['Tenk positive tanker, si positive ord, gjør positive handlinger og det positive gror.','Jon-Lasse Fjeld'],
+    ['Jeg ser ham som overkommer sitt begjær som mer modig enn han som erobrer sine fiender; for den vanskeligste seieren er over en selv.','Aristoteles'],
+    ['Alt lært om livet summert i: Det går videre.','Robert Frost'],
+    ['Hver dag er en ny sjanse til å oppnå noe fantastisk.','']
   ];
   var si=Math.floor(Math.random()*sayings.length), sa=document.getElementById('sa'), by=document.getElementById('by');
-  function showSaying(){sa.textContent='«'+sayings[si][0]+'»';by.textContent='– '+sayings[si][1];}
+  function showSaying(){sa.textContent='«'+sayings[si][0]+'»';by.textContent=sayings[si][1]?'– '+sayings[si][1]:'';}
   document.getElementById('nytt').addEventListener('click',function(){si=(si+1)%sayings.length;showSaying();});
   showSaying();
   function route(){
