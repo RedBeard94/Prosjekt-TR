@@ -42,7 +42,6 @@
     nav { width:100%; }
     nav a { margin:0 16px 0 0; }
     .ns { margin:0 16px 0 0; }
-    nav .menu { right:auto; left:0; }
   }
   .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
   .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
@@ -129,14 +128,9 @@
       </a>
     </div>
     <nav>
-      <details class="dd" id="dd">
-        <summary class="ns">Om oss ▾</summary>
-        <div class="menu">
-          <a href="#om">Om oss</a>
-          <a href="https://new.webmail.domene.shop/" target="_blank" rel="noopener">Logg inn med e-post</a>
-        </div>
-      </details>
+      <a href="#om">Om oss</a>
       <a href="#kontakt">Kontakt</a>
+      <a href="SETT_INN_PORTALADRESSE" target="_blank" rel="noopener">Logg inn</a>
     </nav>
   </div>
 </header>
@@ -194,9 +188,10 @@
       <label>Navn<input name="navn" required autocomplete="name"></label>
       <label>Din e-post<input name="epost" type="email" required autocomplete="email"></label>
       <label>Melding<textarea name="melding" required></textarea></label>
-      <button class="btn" type="submit">Send melding</button>
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+      <button class="btn" type="submit" id="send">Send melding</button>
+      <p class="note" id="status" role="status" aria-live="polite"></p>
     </form>
-    <p class="note">Eller send e-post direkte: <a class="mail" id="mail" href="#"></a></p>
   </div>
 </section>
 
@@ -241,13 +236,23 @@
     w._on=!w._on; w.style.transitionDelay='0s'; w.classList.toggle('on',w._on);
   },1400);
   document.getElementById('y').textContent=new Date().getFullYear();
-  var addr=['Thomas','reinertsengruppen.no'].join('@');
-  var ml=document.getElementById('mail'); ml.href='mailto:'+addr; ml.textContent=addr;
-  document.getElementById('cf').addEventListener('submit',function(e){
+  var KEY='SETT_INN_NOKKEL';
+  var cf=document.getElementById('cf'), btn=document.getElementById('send'), st=document.getElementById('status');
+  cf.addEventListener('submit',function(e){
     e.preventDefault();
     var f=e.target;
-    var body='Navn: '+f.navn.value+'\nE-post: '+f.epost.value+'\n\n'+f.melding.value;
-    location.href='mailto:'+addr+'?subject='+encodeURIComponent('Henvendelse via nettsiden')+'&body='+encodeURIComponent(body);
+    if(f.botcheck.checked)return;
+    btn.disabled=true; st.textContent='Sender …';
+    fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:KEY,subject:'Henvendelse via nettsiden',from_name:'Reinertsengruppen.no',name:f.navn.value,email:f.epost.value,message:f.melding.value,botcheck:''})
+    }).then(function(r){return r.json();}).then(function(j){
+      if(!j.success)throw new Error('feil');
+      f.reset(); st.textContent='Takk! Meldingen er sendt.';
+    }).catch(function(){
+      st.textContent='Klarte ikke å sende meldingen. Prøv igjen om litt.';
+    }).then(function(){btn.disabled=false;});
   });
   var sayings=['Det finnes ikke dårlig vær, bare dårlige klær.','Ro med de årene du har.','Etter regn kommer sol.','Hastverk er lastverk.','Smått er godt.','Ingenting er så galt at det ikke er godt for noe.'];
   var si=Math.floor(Math.random()*sayings.length), sa=document.getElementById('sa');
@@ -262,9 +267,6 @@
   }
   window.addEventListener('hashchange',route);
   route();
-  var dd=document.getElementById('dd');
-  dd.addEventListener('click',function(e){if(e.target.tagName==='A')dd.open=false;});
-  document.addEventListener('click',function(e){if(dd.open&&!dd.contains(e.target))dd.open=false;});
 })();
 </script>
 </body>
