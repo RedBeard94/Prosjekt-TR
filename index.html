@@ -130,7 +130,7 @@
     <nav>
       <a href="#om">Om oss</a>
       <a href="#kontakt">Kontakt</a>
-      <a href="SETT_INN_PORTALADRESSE" target="_blank" rel="noopener">Logg inn</a>
+      <a href="https://reinertsengruppen-portal.thomas-756.workers.dev" target="_blank" rel="noopener">Logg inn</a>
     </nav>
   </div>
 </header>
@@ -185,9 +185,9 @@
   <div class="box">
     <h2>Kontakt</h2>
     <form id="cf">
-      <label>Navn<input name="navn" required autocomplete="name"></label>
-      <label>Din e-post<input name="epost" type="email" required autocomplete="email"></label>
-      <label>Melding<textarea name="melding" required></textarea></label>
+      <label>Navn<input name="navn" required maxlength="100" autocomplete="name"></label>
+      <label>Din e-post<input name="epost" type="email" required maxlength="150" autocomplete="email"></label>
+      <label>Melding<textarea name="melding" required minlength="10" maxlength="2000"></textarea></label>
       <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
       <button class="btn" type="submit" id="send">Send melding</button>
       <p class="note" id="status" role="status" aria-live="polite"></p>
@@ -236,7 +236,7 @@
     w._on=!w._on; w.style.transitionDelay='0s'; w.classList.toggle('on',w._on);
   },1400);
   document.getElementById('y').textContent=new Date().getFullYear();
-  var KEY='SETT_INN_NOKKEL';
+  var KEY='d6619d9b-97f3-4521-8e77-37a56a1978e1';
   var cf=document.getElementById('cf'), btn=document.getElementById('send'), st=document.getElementById('status');
   cf.addEventListener('submit',function(e){
     e.preventDefault();
