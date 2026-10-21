@@ -94,6 +94,7 @@
   .proverb { margin-top:34px; padding:34px 22px; border-radius:24px; background:linear-gradient(135deg,#eaf1ff,#e3f7f2); border:1px solid var(--line); text-align:center; }
   .proverb small { color:var(--muted); font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:.75rem; }
   .proverb blockquote { margin:14px auto 18px; font-size:clamp(1.3rem,5vw,2rem); font-weight:800; letter-spacing:-.02em; max-width:640px; line-height:1.25; }
+  .proverb .by { margin:-6px 0 18px; color:var(--muted); font-weight:700; font-size:.95rem; }
   .proverb button { font:inherit; font-size:.85rem; font-weight:700; color:var(--a); background:#fff; border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer; }
   form { text-align:left; max-width:520px; margin:0 auto 20px; display:grid; gap:12px; }
   label { font-size:.85rem; font-weight:700; color:var(--muted); display:grid; gap:6px; }
@@ -156,9 +157,10 @@
     <div class="card"><div class="ic">3</div><h3>Åpen dialog</h3><p>Spørsmål og ideer er alltid velkomne.</p></div>
   </div>
   <div class="proverb">
-    <small>Ordtak fra kysten</small>
+    <small>Sitat om arbeidslivet</small>
     <blockquote id="sa"></blockquote>
-    <button type="button" id="nytt">Nytt ordtak</button>
+    <p class="by" id="by"></p>
+    <button type="button" id="nytt">Nytt sitat</button>
   </div>
 
   <div class="sponsor">
@@ -255,9 +257,17 @@
       st.textContent='Klarte ikke å sende meldingen. Prøv igjen om litt.';
     }).then(function(){btn.disabled=false;});
   });
-  var sayings=['Det finnes ikke dårlig vær, bare dårlige klær.','Ro med de årene du har.','Etter regn kommer sol.','Hastverk er lastverk.','Smått er godt.','Ingenting er så galt at det ikke er godt for noe.'];
-  var si=Math.floor(Math.random()*sayings.length), sa=document.getElementById('sa');
-  function showSaying(){sa.textContent='«'+sayings[si]+'»';}
+  var sayings=[
+    ['Den eneste måten å gjøre et stort arbeid på er å elske det du gjør.','Steve Jobs, 2005'],
+    ['Alene kan vi gjøre så lite. Sammen kan vi gjøre så mye.','Helen Keller'],
+    ['Seieren venter den som har alt i orden.','Roald Amundsen'],
+    ['Genialitet er én prosent inspirasjon og nittini prosent svette.','Thomas Edison'],
+    ['Mange hender gjør lett arbeid.','Norsk ordtak'],
+    ['Godt begynt er halvt fullendt.','Norsk ordtak'],
+    ['Hastverk er lastverk.','Norsk ordtak']
+  ];
+  var si=Math.floor(Math.random()*sayings.length), sa=document.getElementById('sa'), by=document.getElementById('by');
+  function showSaying(){sa.textContent='«'+sayings[si][0]+'»';by.textContent='– '+sayings[si][1];}
   document.getElementById('nytt').addEventListener('click',function(){si=(si+1)%sayings.length;showSaying();});
   showSaying();
   function route(){
