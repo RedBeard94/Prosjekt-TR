@@ -153,6 +153,11 @@
   .tile .go{margin-top:auto;color:var(--a);font-weight:800}
   @media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 </style>
+<link rel="manifest" href="/hjelpemidler/diabetes/manifest.webmanifest">
+<meta name="theme-color" content="#2563eb">
+<link rel="apple-touch-icon" href="/hjelpemidler/diabetes/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tallerkenen">
 </head>
 <body>
 <header>
@@ -264,6 +269,7 @@
     box.addEventListener('click',function(e){var b=e.target.closest('[data-pump]');if(!b)return;cur=b.getAttribute('data-pump');try{localStorage.setItem('mn_pump',cur);}catch(x){}var pp=PUMPS.filter(function(x){return x.id===cur;})[0];if(pp.sen&&pp.sen!=='none'){senCur=pp.sen;try{localStorage.setItem('mn_sen',senCur);}catch(x){}senDraw();}draw();var a=box.querySelector('[aria-pressed="true"]');if(a)a.focus();});
     draw();
   })();
+
 })();
 </script>
 <script>
@@ -274,5 +280,6 @@ document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
 })();
 </script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/hjelpemidler/diabetes/sw.js",{scope:"/hjelpemidler/diabetes/"}).catch(function(){});});}</script>
 </body>
 </html>

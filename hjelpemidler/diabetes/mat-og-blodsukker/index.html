@@ -177,7 +177,12 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
 .srcs a { color:var(--a); }
 
 @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } }
-</style></head><body>
+</style><link rel="manifest" href="/hjelpemidler/diabetes/manifest.webmanifest">
+<meta name="theme-color" content="#2563eb">
+<link rel="apple-touch-icon" href="/hjelpemidler/diabetes/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tallerkenen">
+</head><body>
 
 <header>
   <div class="bar">
@@ -535,4 +540,5 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
 })();
 </script>
 
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/hjelpemidler/diabetes/sw.js",{scope:"/hjelpemidler/diabetes/"}).catch(function(){});});}</script>
 </body></html>

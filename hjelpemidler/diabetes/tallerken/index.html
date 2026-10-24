@@ -153,6 +153,11 @@
   .tile .go{margin-top:auto;color:var(--a);font-weight:800}
   @media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 </style>
+<link rel="manifest" href="/hjelpemidler/diabetes/manifest.webmanifest">
+<meta name="theme-color" content="#2563eb">
+<link rel="apple-touch-icon" href="/hjelpemidler/diabetes/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tallerkenen">
 </head>
 <body>
 <header>
@@ -207,6 +212,8 @@
     </section>
   </div>
 
+
+  <div class="actions" id="instWrap" hidden><button class="btn ghost" id="install" type="button">Legg på hjemskjermen</button></div>
 
   <p class="fine">
     Tallene kommer fra <a href="https://www.matvaretabellen.no/" target="_blank" rel="noopener">Matvaretabellen</a> (Mattilsynet) og er gjennomsnitt. Dataene brukes under <a href="https://data.norge.no/nlod/no/2.0" target="_blank" rel="noopener">NLOD 2.0</a>. Mattilsynet står ikke bak denne siden. For mat fra pakke er tallet på pakken mer riktig, og det er best å veie maten. Tallerkenen er et enkelt hjelpemiddel for å summere karbohydrat. Den er ikke medisinsk utstyr, gir ingen medisinske råd og regner ikke ut insulin. Følg rådene du har fått av diabetesteamet. Alt du legger inn blir bare på denne telefonen.
@@ -274,7 +281,7 @@
       if(!p.list.length){var e=new Error('Fant ingen matvarer i svaret (nøkler: '+p.keys.slice(0,6).join(', ')+')');e.parse=true;throw e;}
       var slim=p.list.map(function(f){return {id:f.id,name:f.name,carbs:f.carbs,ports:f.ports.slice(0,6),s:f.s};});
       ls('tk_foods_v1',{t:Date.now(),d:slim}); return slim;
-    });
+    }).catch(function(e){if(c&&c.d&&c.d.length)return c.d;throw e;});
   }
 
   /* ====== Tilstand ====== */
@@ -432,6 +439,19 @@
   $('ownGram').addEventListener('click',function(){openOwn('gram');});
 
   rebuild(); renderPlate();
+  /* ====== Legg på hjemskjermen ====== */
+  (function(){
+    var wrap=$('instWrap'), btn=$('install'); if(!wrap||!btn)return;
+    var standalone=false; try{standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;}catch(e){}
+    if(standalone)return;
+    wrap.hidden=false; var deferred=null;
+    window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;});
+    btn.addEventListener('click',function(){
+      if(deferred){deferred.prompt();deferred=null;return;}
+      sheet.innerHTML='<h3>Legg på hjemskjermen</h3><p class="per">Da åpner du Tallerkenen som en vanlig app, også uten nett.</p><p><b>iPhone (Safari):</b> trykk på Del-knappen, velg «Legg til på Hjem-skjerm».</p><p><b>Android (Chrome):</b> trykk på menyen med tre prikker, velg «Installer app» eller «Legg til på startskjermen».</p><p class="per">Åpne siden på nettet minst én gang først, så lagres den på telefonen.</p><button class="btn ghost" id="cn" type="button" style="width:100%">Lukk</button>';
+      sbg.classList.add('on'); $('cn').addEventListener('click',closeSheet);
+    });
+  })();
   loadFoods().then(function(list){
     base=list; rebuild();
     $('load').hidden=true; renderResults();
@@ -450,5 +470,6 @@ document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
 })();
 </script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/hjelpemidler/diabetes/sw.js",{scope:"/hjelpemidler/diabetes/"}).catch(function(){});});}</script>
 </body>
 </html>
