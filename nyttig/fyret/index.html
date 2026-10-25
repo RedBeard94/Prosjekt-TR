@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fyret – Reinertsengruppen</title>
+<meta name="description" content="Fyret viser været og sjøen ved Flekkerøya akkurat nå: vind, bølger, sjøtemperatur og sol opp og ned.">
+<style>
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(../../fonts/manrope-latin-200-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(../../fonts/manrope-latin-400-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(../../fonts/manrope-latin-600-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(../../fonts/manrope-latin-800-normal.woff2) format("woff2");}
+  :root {
+    --bg:#f6f9ff; --fg:#0f172a; --muted:#5b6b82; --line:#e3eaf5; --card:#ffffff;
+    --a:#2563eb; --b:#7c3aed; --c:#14b8a6;
+    --bld:#1b2440; --win-off:#cfe4f7; --win-on:#cfe4f7; --glow:none;
+    --ok:#1fa971; --warn:#e3a008; --bad:#d64545; --idle:#8b9ab0;
+    --verdict:var(--idle);
+  }
+  body.night-icon { --win-off:#2a3558; --win-on:#ffd36b; --glow:drop-shadow(0 0 2px rgba(255,190,70,.9)); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; overflow-x:hidden; }
+  body::before, body::after { content:""; position:fixed; border-radius:50%; filter:blur(90px); opacity:.5; z-index:-1; }
+  body::before { width:55vmax; height:55vmax; background:#cfe0ff; top:-22vmax; right:-18vmax; }
+  body::after  { width:45vmax; height:45vmax; background:#c8f2ea; bottom:-20vmax; left:-15vmax; }
+
+  header { position:sticky; top:0; z-index:10; background:rgba(246,249,255,.82); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
+  .left { display:flex; align-items:center; gap:14px 18px; }
+  nav { display:flex; align-items:center; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
+  nav a:hover, nav a[aria-current] { color:var(--fg); }
+  .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
+  .brand svg { height:42px; width:auto; display:block; overflow:visible; }
+  .bld { fill:var(--bld); }
+  .w { fill:var(--win-off); transition:fill .7s, filter .7s; }
+  .w.on { fill:var(--win-on); filter:var(--glow); }
+  .wordmark { font-weight:200; font-size:1.25rem; letter-spacing:-.03em; line-height:1; position:relative; padding-bottom:6px; white-space:nowrap; }
+  .wordmark b { font-weight:800; }
+  .wordmark::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:100%; background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
+  .wordmark::before { content:""; position:absolute; left:0; bottom:-2px; width:20px; height:6px; border-radius:6px; background:var(--a); box-shadow:0 0 10px rgba(37,99,235,.6); }
+  @media (max-width:560px) {
+    .bar { flex-wrap:wrap; row-gap:6px; }
+    .brand svg { height:36px; }
+    .wordmark { font-size:1.05rem; }
+    nav { width:100%; }
+    nav a { margin:0 16px 0 0; }
+  }
+
+  main { max-width:1040px; margin:0 auto; padding:34px 20px 20px; }
+  .hero { display:grid; grid-template-columns:1.15fr .85fr; gap:22px; align-items:center; margin-bottom:26px; }
+  .tag { display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--muted); font-size:.85rem; font-weight:600; box-shadow:0 2px 10px rgba(15,23,42,.04); }
+  .dot { width:8px; height:8px; border-radius:50%; background:var(--verdict); box-shadow:0 0 0 4px color-mix(in srgb,var(--verdict) 22%,transparent); transition:background .6s; }
+  h1 { font-size:clamp(2.6rem,9vw,4.6rem); line-height:1.02; margin:20px 0 12px; letter-spacing:-.045em; font-weight:800; }
+  h1 em { font-style:normal; background:linear-gradient(90deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead { color:var(--muted); font-size:1.1rem; max-width:520px; margin:0 0 22px; }
+  .verdict { background:#fff; border:1px solid var(--line); border-left:6px solid var(--verdict); border-radius:18px; padding:18px 20px; box-shadow:0 6px 22px rgba(15,23,42,.05); transition:border-color .6s; max-width:560px; }
+  .verdict h2 { margin:0 0 4px; font-size:1.25rem; letter-spacing:-.02em; }
+  .verdict p { margin:0; color:var(--muted); font-size:.98rem; }
+  .verdict .fine { margin-top:8px; font-size:.78rem; }
+
+  .lh { width:100%; height:auto; display:block; max-height:360px; }
+  .lh .beam { fill:var(--verdict); opacity:.34; transform-origin:150px 74px; animation:sweep 7s ease-in-out infinite; transition:fill .6s; }
+  .lh .beam2 { fill:var(--verdict); opacity:.16; transform-origin:150px 74px; animation:sweep 7s ease-in-out infinite; transition:fill .6s; }
+  .lh .lamp { fill:var(--verdict); transition:fill .6s; }
+  .lh .wave { animation:drift 6s ease-in-out infinite alternate; }
+  .lh .wave.w2 { animation-duration:8s; animation-direction:alternate-reverse; }
+  @keyframes sweep { 0%,100%{transform:rotate(-4deg)} 50%{transform:rotate(3deg)} }
+  @keyframes drift { from{transform:translateX(-14px)} to{transform:translateX(14px)} }
+
+  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:20px 22px; box-shadow:0 6px 22px rgba(15,23,42,.05); min-height:152px; }
+  .card h3 { margin:0 0 10px; font-size:.78rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .big { font-size:2.5rem; font-weight:800; letter-spacing:-.04em; line-height:1.05; }
+  .big small { font-size:1.05rem; font-weight:600; color:var(--muted); letter-spacing:0; margin-left:4px; }
+  .sub { color:var(--muted); font-size:.92rem; margin-top:6px; }
+  .row { display:flex; align-items:center; gap:12px; }
+  .ico { width:46px; height:46px; flex:none; }
+  .arrow { width:44px; height:44px; flex:none; }
+  .na { color:var(--muted); font-size:.95rem; }
+
+  h2.sec { font-size:1.3rem; letter-spacing:-.03em; margin:30px 0 12px; font-weight:800; }
+  .hours { display:flex; gap:10px; overflow-x:auto; padding:2px 2px 12px; scroll-snap-type:x proximity; }
+  .hour { flex:0 0 112px; scroll-snap-align:start; background:#fff; border:1px solid var(--line); border-radius:16px; padding:12px 12px 10px; text-align:center; box-shadow:0 4px 14px rgba(15,23,42,.04); }
+  .hour .t { font-weight:800; font-size:.9rem; }
+  .hour .ico { width:36px; height:36px; margin:4px auto; display:block; }
+  .hour .tp { font-weight:800; font-size:1.15rem; }
+  .hour .ln { font-size:.8rem; color:var(--muted); display:flex; align-items:center; justify-content:center; gap:4px; margin-top:3px; }
+  .hour svg.mini { width:14px; height:14px; }
+  .hour .bar2 { height:5px; border-radius:3px; margin:8px 0 2px; background:var(--lvl,#cbd5e1); }
+
+  .err { display:none; margin:0 0 18px; padding:14px 18px; border-radius:14px; background:#fff4f4; border:1px solid #f3c7c7; color:#8a2b2b; font-size:.95rem; }
+  .err.on { display:block; }
+  .foot { margin:26px 0 0; padding:0 0 40px; color:var(--muted); font-size:.82rem; line-height:1.6; }
+  .foot a { color:var(--a); }
+  .updated { color:var(--muted); font-size:.85rem; margin:0 0 14px; }
+  .updated button { font:inherit; font-size:.85rem; font-weight:700; color:var(--a); background:none; border:0; cursor:pointer; padding:0 0 0 8px; }
+  .sk { color:transparent !important; background:linear-gradient(90deg,#edf1f8,#f7f9fd,#edf1f8); background-size:200% 100%; border-radius:8px; animation:shim 1.4s linear infinite; user-select:none; }
+  @keyframes shim { to { background-position:-200% 0 } }
+  @media (max-width:760px) { .hero { grid-template-columns:1fr; } .lh { max-height:250px; } }
+  @media (prefers-reduced-motion:reduce) { .lh .beam,.lh .beam2,.lh .wave,.sk { animation:none; } }
+
+  .dd{position:relative;display:inline-block;margin-left:18px}
+  nav .dd>.ddb{font:inherit;font-size:.95rem;font-weight:600;color:var(--muted);background:none;border:0;padding:4px 0;cursor:pointer}
+  nav .dd>.ddb:hover,nav .dd>.ddb[aria-expanded="true"],nav .dd>.ddb.cur{color:var(--fg)}
+  .ddb::after{content:"";display:inline-block;margin-left:6px;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .2s}
+  .ddb[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}
+  .ddm{position:absolute;top:calc(100% + 8px);left:-12px;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);z-index:30}
+  .ddm[hidden]{display:none}
+  nav .ddm a{display:block;margin:0;padding:10px 12px;border-radius:10px;color:var(--fg);font-weight:700}
+  nav .ddm a small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
+  nav .ddm a:hover,nav .ddm a:focus-visible{background:#eef4ff;outline:none}
+  nav .ddm a[aria-current]{background:#eef4ff}
+  .dd,.ddb{white-space:nowrap}
+  .pfoot{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.9rem}
+  .pfoot a{color:var(--muted)}
+  @media (max-width:560px){.dd{margin:0 16px 0 0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="left">
+      <a class="brand" href="../../index.html" aria-label="Reinertsengruppen">
+        <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
+        <span class="wordmark"><b>Reinertsen</b>gruppen</span>
+      </a>
+    </div>
+    <nav>
+      <a href="../../index.html#om">Om oss</a>
+      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="../apper/index.html" aria-current="page">Apper<small>Fyret og flere</small></a><a href="../hjelpemidler/index.html">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
+      <a href="../../index.html#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <span class="tag"><span class="dot"></span> <span id="tagTxt">Henter forholdene …</span></span>
+      <h1>Fyret <em>på Flekkerøya.</em></h1>
+      <p class="lead">Været og sjøen akkurat nå, slik at du vet hva som venter før du setter deg i båten, tar turen eller bare skal ut døra.</p>
+      <div class="verdict" role="status" aria-live="polite">
+        <h2 id="vTitle">Et øyeblikk …</h2>
+        <p id="vText">Fyret leser været og sjøen ved Flekkerøya.</p>
+        <p class="fine">En enkel indikasjon for småbåt og tur, ikke et sikkerhetsvarsel. Sjekk alltid offisielt farevarsel på <a href="https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/1-2377374/Norge/Agder/Kristiansand/Flekker%C3%B8y" target="_blank" rel="noopener">yr.no</a> før du drar ut.</p>
+      </div>
+    </div>
+    <svg class="lh" viewBox="0 0 300 330" aria-hidden="true">
+      <defs>
+        <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb2ee"/><stop offset="1" stop-color="#2a63c4"/></linearGradient>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dbe9ff" stop-opacity="0"/><stop offset="1" stop-color="#dbe9ff" stop-opacity=".7"/></linearGradient>
+      </defs>
+      <path class="beam" d="M150 74 L300 22 L300 112Z"/>
+      <path class="beam2" d="M150 74 L300 -10 L300 150Z"/>
+      <path class="beam" d="M150 74 L0 22 L0 112Z" style="opacity:.14"/>
+      <rect x="0" y="262" width="300" height="68" fill="url(#sea)"/>
+      <g class="wave"><path d="M-20 270 Q0 262 20 270 T60 270 T100 270 T140 270 T180 270 T220 270 T260 270 T300 270 T340 270 V290 H-20Z" fill="#fff" opacity=".28"/></g>
+      <g class="wave w2"><path d="M-20 292 Q0 284 20 292 T60 292 T100 292 T140 292 T180 292 T220 292 T260 292 T300 292 T340 292 V330 H-20Z" fill="#fff" opacity=".18"/></g>
+      <path d="M96 268 Q104 244 150 240 Q196 244 206 268Z" fill="#5d6b80"/>
+      <path d="M110 268 Q120 250 150 248 Q180 250 192 268Z" fill="#6f7e94"/>
+      <path d="M127 244 L134 116 H166 L173 244Z" fill="#fff"/>
+      <path d="M130 200 L132.6 168 H167.4 L170 200Z" fill="#c8102e"/>
+      <path d="M133.4 148 L134.6 130 H165.4 L166.6 148Z" fill="#c8102e"/>
+      <rect x="124" y="110" width="52" height="8" rx="2" fill="#2f3b52"/>
+      <rect x="134" y="82" width="32" height="28" rx="3" fill="#dbe9ff" stroke="#2f3b52" stroke-width="3"/>
+      <circle class="lamp" cx="150" cy="96" r="9"/>
+      <path d="M130 82 L150 62 L170 82Z" fill="#2f3b52"/>
+      <rect x="148" y="52" width="4" height="12" fill="#2f3b52"/>
+      <rect x="143" y="212" width="14" height="32" rx="2" fill="#2f3b52"/>
+    </svg>
+  </section>
+
+  <p class="err" id="err"></p>
+  <p class="updated" id="updated"></p>
+
+  <section class="grid" aria-label="Forholdene nå">
+    <div class="card"><h3>Luft</h3><div id="cAir"><div class="big sk">00 °C</div><div class="sub sk">Henter</div></div></div>
+    <div class="card"><h3>Vind</h3><div id="cWind"><div class="big sk">0 m/s</div><div class="sub sk">Henter</div></div></div>
+    <div class="card"><h3>Bølger</h3><div id="cWave"><div class="big sk">0,0 m</div><div class="sub sk">Henter</div></div></div>
+    <div class="card"><h3>Sjøen</h3><div id="cSea"><div class="big sk">00 °C</div><div class="sub sk">Henter</div></div></div>
+    <div class="card"><h3>Nedbør</h3><div id="cRain"><div class="big sk">0 mm</div><div class="sub sk">Henter</div></div></div>
+    <div class="card"><h3>Sol</h3><div id="cSun"><div class="big sk">00:00</div><div class="sub sk">Henter</div></div></div>
+  </section>
+
+  <h2 class="sec" id="hh">Neste 24 timer</h2>
+  <div class="hours" id="hours" aria-label="Time for time"></div>
+
+  <p class="foot">
+    Værdata og havdata fra <a href="https://www.met.no/" target="_blank" rel="noopener">Meteorologisk institutt (MET Norway)</a>, lisens <a href="https://creativecommons.org/licenses/by/4.0/deed.no" target="_blank" rel="noopener">CC BY 4.0</a>. Prognosene oppdateres omtrent hver time. Sjøtall gjelder åpent vann sør for øya og kan avvike inne i havner og viker. Sol opp og ned er regnet ut for Flekkerøya.<br>Fyret er ikke en varslingstjeneste. Vurderingen på siden er en enkel pekepinn av tallene og kan ta feil. For sikkerhet til sjøs, følg <a href="https://www.yr.no/" target="_blank" rel="noopener">yr.no</a> og offisielle varsler, og bruk eget skjønn.
+  </p>
+</main>
+<footer class="pfoot"><a href="../../index.html">Reinertsengruppen</a> · <a href="../../personvern/index.html">Personvern</a></footer>
+
+<script>(function(){var of=window.fetch;window.fetch=function(u){u=String(u);if(u.indexOf('api.met.no')<0)return of.apply(this,arguments);
+var sea=u.indexOf('ocean')>-1,now=new Date();now.setUTCMinutes(0,0,0);var out=[];
+for(var i=-2;i<60;i++){var t=new Date(now.getTime()+i*36e5).toISOString().replace('.000Z','Z');
+ if(sea)out.push({time:t,data:{instant:{details:{sea_surface_wave_height:.8+.02*i,sea_surface_wave_from_direction:200,sea_water_temperature:11.4,sea_water_speed:.2}}}});
+ else out.push({time:t,data:{instant:{details:{air_temperature:9.5,wind_speed:7.2,wind_speed_of_gust:11.5,wind_from_direction:230,air_pressure_at_sea_level:1008}},next_1_hours:{summary:{symbol_code:'lightrain'},details:{precipitation_amount:.4}},next_6_hours:{summary:{symbol_code:'rain'},details:{precipitation_amount:2.1}}}});}
+return Promise.resolve(new Response(JSON.stringify({properties:{timeseries:out}}),{status:200,headers:{'Content-Type':'application/json'}}));};})();</script>
+<script>
+(function () {
+  /* ====== Logo (samme skyline som forsiden) ====== */
+  var NS='http://www.w3.org/2000/svg';
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  var rand=rng(7), msvg=document.getElementById('mark'), wins=[];
+  var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
+  function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);msvg.appendChild(e);return e;}
+  el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
+  blds.forEach(function(b){
+    el('rect',{'class':'bld',x:b[0],y:b[1],width:b[2],height:b[3]});
+    var ww=8,wh=10,gx=7,gy=9,m=9;
+    var cols=Math.max(1,Math.floor((b[2]-2*m+gx)/(ww+gx)));
+    var total=cols*ww+(cols-1)*gx, sx=b[0]+(b[2]-total)/2;
+    for(var r=0;;r++){
+      var y=b[1]+m+r*(wh+gy);
+      if(y+wh>b[1]+b[3]-b[4])break;
+      for(var c=0;c<cols;c++){
+        var w=el('rect',{'class':'w',x:sx+c*(ww+gx),y:y,width:ww,height:wh,rx:1});
+        w.style.transitionDelay=(rand()*1.1).toFixed(2)+'s';
+        w._on=rand()<0.7; wins.push(w);
+      }
+    }
+  });
+  el('rect',{'class':'bld',x:30,y:340,width:340,height:6,rx:3});
+  (function(){var h=new Date().getHours(),night=!(h>=7&&h<19);document.body.classList.toggle('night-icon',night);wins.forEach(function(w){w.classList.toggle('on',night&&w._on);});})();
+
+  /* ====== Innstillinger ====== */
+  var LAT=58.07, LON=8.05;                         /* Flekkerøya */
+  var SEA=[[58.03,8.05],[58.01,8.03],[58.00,8.00],[57.98,8.00]];  /* åpent vann sør for øya, prøves i rekkefølge */
+  var TTL=10*60*1000;                              /* ikke hent oftere enn hvert 10. minutt */
+  var BASE='https://api.met.no/weatherapi/';
+
+  function $(id){return document.getElementById(id);}
+  function nb(v,d){return Number(v).toLocaleString('nb-NO',{maximumFractionDigits:d==null?1:d,minimumFractionDigits:d==null?0:d});}
+  function hasNum(v){return typeof v==='number'&&isFinite(v);}
+
+  /* ====== Hjelpere: tekst og ikoner ====== */
+  var WIND=[[0.3,'Stille'],[1.6,'Flau vind'],[3.4,'Svak vind'],[5.5,'Lett bris'],[8,'Laber bris'],[10.8,'Frisk bris'],[13.9,'Liten kuling'],[17.2,'Stiv kuling'],[20.8,'Sterk kuling'],[24.5,'Liten storm'],[28.5,'Full storm'],[32.7,'Sterk storm'],[1e9,'Orkan']];
+  function windName(v){for(var i=0;i<WIND.length;i++)if(v<WIND[i][0])return WIND[i][1];return 'Orkan';}
+  var DIRS=['nord','nordøst','øst','sørøst','sør','sørvest','vest','nordvest'];
+  function fromDir(deg){return DIRS[Math.round(((deg%360)+360)%360/45)%8];}
+  var SYM={clearsky:'Klarvær',fair:'Lettskyet',partlycloudy:'Delvis skyet',cloudy:'Skyet',fog:'Tåke',lightrain:'Lett regn',rain:'Regn',heavyrain:'Kraftig regn',lightrainshowers:'Lette regnbyger',rainshowers:'Regnbyger',heavyrainshowers:'Kraftige regnbyger',lightsleet:'Lett sludd',sleet:'Sludd',heavysleet:'Kraftig sludd',lightsleetshowers:'Lette sluddbyger',sleetshowers:'Sluddbyger',heavysleetshowers:'Kraftige sluddbyger',lightsnow:'Lett snø',snow:'Snø',heavysnow:'Kraftig snø',lightsnowshowers:'Lette snøbyger',snowshowers:'Snøbyger',heavysnowshowers:'Kraftige snøbyger'};
+  function parseSym(code){
+    code=String(code||''); var night=/_night$/.test(code), base=code.replace(/_(day|night|polartwilight)$/,''), th=/andthunder/.test(base);
+    base=base.replace('andthunder','').replace(/^(light|heavy)?(rain|sleet|snow)showers$/,function(m){return m;});
+    return {base:base,night:night,thunder:th,txt:(SYM[base]||'Vær')+(th?' med torden':'')};
+  }
+  function icon(code,cls){
+    var s=parseSym(code), b=s.base, g='';
+    var sun='<circle cx="17" cy="17" r="7" fill="#ffb81c"/><g stroke="#ffb81c" stroke-width="2.4" stroke-linecap="round"><path d="M17 4v3M17 27v3M4 17h3M27 17h3M7.8 7.8l2.1 2.1M24.1 24.1l2.1 2.1M7.8 26.2l2.1-2.1M24.1 9.9l2.1-2.1"/></g>';
+    var moon='<path d="M26 22A11 11 0 1 1 14 5a9 9 0 0 0 12 17z" fill="#f2e4a2"/>';
+    var cloud='<path d="M14 40h22a8 8 0 0 0 .9-15.9A11 11 0 0 0 15.6 26 7 7 0 0 0 14 40z" fill="#c4cfde"/>';
+    var dark='<path d="M14 40h22a8 8 0 0 0 .9-15.9A11 11 0 0 0 15.6 26 7 7 0 0 0 14 40z" fill="#8c9bb0"/>';
+    var rain='<g stroke="#2563eb" stroke-width="2.6" stroke-linecap="round"><path d="M18 43l-2 5M26 43l-2 5M34 43l-2 5"/></g>';
+    var snow='<g fill="#6aa5e8"><circle cx="18" cy="46" r="2.2"/><circle cx="27" cy="44" r="2.2"/><circle cx="35" cy="47" r="2.2"/></g>';
+    var sleet='<g stroke="#2563eb" stroke-width="2.6" stroke-linecap="round"><path d="M18 43l-2 5M34 43l-2 5"/></g><circle cx="27" cy="46" r="2.2" fill="#6aa5e8"/>';
+    var fog='<g stroke="#9fb0c6" stroke-width="3" stroke-linecap="round"><path d="M10 20h28M6 28h30M12 36h28"/></g>';
+    var bolt='<path d="M26 34l-6 9h5l-2 7 8-11h-5z" fill="#f5b400"/>';
+    var lite=(b==='clearsky'||b==='fair'||b==='partlycloudy');
+    var body=s.night?moon:sun;
+    if(b==='clearsky') g=body;
+    else if(b==='fair') g=body+'<g transform="translate(6 4) scale(.55)">'+cloud+'</g>';
+    else if(b==='partlycloudy') g=body+'<g transform="translate(4 2) scale(.8)">'+cloud+'</g>';
+    else if(b==='cloudy') g=cloud;
+    else if(b==='fog') g=fog;
+    else if(/rain/.test(b)) g=dark+rain;
+    else if(/sleet/.test(b)) g=dark+sleet;
+    else if(/snow/.test(b)) g=dark+snow;
+    else g=cloud;
+    if(s.thunder) g+=bolt;
+    return '<svg class="'+(cls||'ico')+'" viewBox="0 0 48 52" role="img" aria-label="'+s.txt+'">'+g+'</svg>';
+  }
+  function arrow(deg,color){
+    /* pil som peker dit vinden blåser */
+    return '<svg class="arrow" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="20" fill="#f1f5fb" stroke="#dbe4f2"/><g transform="rotate('+((deg+180)%360)+' 22 22)"><path d="M22 7L30 27L22 22L14 27Z" fill="'+(color||'#2563eb')+'"/></g></svg>';
+  }
+  function windColor(v){return v>=10.8?'#d64545':v>=6?'#e3a008':'#1fa971';}
+
+  /* ====== Sol opp og ned (SunCalc-metoden), regnet ut lokalt ====== */
+  var PI=Math.PI, rad=PI/180, dayMs=864e5, J1970=2440588, J2000=2451545, E=rad*23.4397, J0=0.0009;
+  function toJ(d){return d.valueOf()/dayMs-0.5+J1970;}
+  function fromJ(j){return new Date((j+0.5-J1970)*dayMs);}
+  function sunTimes(date,lat,lng){
+    var lw=rad*-lng, phi=rad*lat, d=toJ(date)-J2000, n=Math.round(d-J0-lw/(2*PI)), ds=J0+(0+lw)/(2*PI)+n,
+        M=rad*(357.5291+0.98560028*ds), C=rad*(1.9148*Math.sin(M)+0.02*Math.sin(2*M)+0.0003*Math.sin(3*M)), L=M+C+rad*102.9372+PI,
+        dec=Math.asin(Math.sin(L)*Math.sin(E)), noon=J2000+ds+0.0053*Math.sin(M)-0.0069*Math.sin(2*L),
+        h=-0.833*rad, w=Math.acos((Math.sin(h)-Math.sin(phi)*Math.sin(dec))/(Math.cos(phi)*Math.cos(dec))),
+        a=J0+(w+lw)/(2*PI)+n, set=J2000+a+0.0053*Math.sin(M)-0.0069*Math.sin(2*L), rise=noon-(set-noon);
+    return {rise:fromJ(rise),set:fromJ(set)};
+  }
+  function hhmm(d){return d.toLocaleTimeString('nb-NO',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Oslo'});}
+
+  /* ====== Henting med enkel mellomlagring ====== */
+  function cget(k){try{var o=JSON.parse(sessionStorage.getItem(k)||'null');if(o&&Date.now()-o.t<TTL)return o;}catch(e){}return null;}
+  function cset(k,d){try{sessionStorage.setItem(k,JSON.stringify({t:Date.now(),d:d}));}catch(e){}}
+  function getJSON(url){return fetch(url).then(function(r){if(!r.ok){var e=new Error('HTTP '+r.status);e.status=r.status;throw e;}return r.json();});}
+  function loadWeather(force){
+    var c=!force&&cget('fyret_w'); if(c)return Promise.resolve(c);
+    return getJSON(BASE+'locationforecast/2.0/complete?lat='+LAT+'&lon='+LON).then(function(d){cset('fyret_w',d);return {t:Date.now(),d:d};});
+  }
+  function loadSea(force){
+    var c=!force&&cget('fyret_s'); if(c)return Promise.resolve(c);
+    var i=0;
+    function next(){
+      if(i>=SEA.length){cset('fyret_s',null);return Promise.resolve({t:Date.now(),d:null});}
+      var p=SEA[i++];
+      return getJSON(BASE+'oceanforecast/2.0/complete?lat='+p[0]+'&lon='+p[1]).then(function(d){
+        if(!d||!d.properties||!d.properties.timeseries||!d.properties.timeseries.length)return next();
+        cset('fyret_s',d);return {t:Date.now(),d:d};
+      },function(){return next();});
+    }
+    return next();
+  }
+
+  /* ====== Plukke ut tall ====== */
+  function pickNow(ts){
+    var now=Date.now(), idx=0;
+    for(var i=0;i<ts.length;i++){if(new Date(ts[i].time).getTime()<=now+30*60000)idx=i;else break;}
+    return idx;
+  }
+  function det(e){return (e&&e.data&&e.data.instant&&e.data.instant.details)||{};}
+
+  /* ====== Vurdering ====== */
+  function verdict(wind,gust,wave){
+    var eff=wind; if(hasNum(gust))eff=Math.max(wind,gust*0.7);
+    var lvl='ok', t='Rolige forhold', why;
+    if(eff>=10.8||(hasNum(wave)&&wave>=1.5)){lvl='bad';t='Ikke dagen for småbåt';}
+    else if(eff>=6||(hasNum(wave)&&wave>=0.7)){lvl='warn';t='Litt friskt ute';}
+    why=windName(wind)+' ('+nb(wind)+' m/s)';
+    if(hasNum(gust)&&gust>wind+2)why+=' med kast opp mot '+nb(gust,0)+' m/s';
+    if(hasNum(wave))why+=' og bølger på rundt '+nb(wave)+' m';
+    else why+=' (bølgetall er ikke tilgjengelig akkurat nå)';
+    return {lvl:lvl,title:t,text:why+'.'};
+  }
+
+  /* ====== Tegning ====== */
+  function setVerdict(v){
+    var col={ok:'var(--ok)',warn:'var(--warn)',bad:'var(--bad)',idle:'var(--idle)'}[v.lvl];
+    document.documentElement.style.setProperty('--verdict',col);
+    $('vTitle').textContent=v.title; $('vText').textContent=v.text;
+    $('tagTxt').textContent={ok:'Rolig nå',warn:'Frisk bris',bad:'Røft ute',idle:'Ingen kontakt'}[v.lvl];
+  }
+  function showErr(msg){var e=$('err');e.textContent=msg;e.classList.add('on');}
+  function clearErr(){$('err').classList.remove('on');}
+
+  function render(w,s){
+    var ts=w.d.properties.timeseries, i0=pickNow(ts), cur=ts[i0], d=det(cur);
+    var n1=(cur.data.next_1_hours)||{}, sym=(n1.summary&&n1.summary.symbol_code)||(cur.data.next_6_hours&&cur.data.next_6_hours.summary&&cur.data.next_6_hours.summary.symbol_code)||'cloudy';
+    var ps=parseSym(sym);
+    /* luft */
+    $('cAir').innerHTML='<div class="row">'+icon(sym)+'<div><div class="big">'+(hasNum(d.air_temperature)?nb(d.air_temperature,0)+'<small>°C</small>':'–')+'</div></div></div><div class="sub">'+ps.txt+(hasNum(d.air_pressure_at_sea_level)?' · '+nb(d.air_pressure_at_sea_level,0)+' hPa':'')+'</div>';
+    /* vind */
+    var wv=d.wind_speed, gust=d.wind_speed_of_gust;
+    if(hasNum(wv)){
+      $('cWind').innerHTML='<div class="row">'+arrow(d.wind_from_direction||0,windColor(wv))+'<div><div class="big">'+nb(wv)+'<small>m/s</small></div></div></div><div class="sub">'+windName(wv)+(hasNum(d.wind_from_direction)?', fra '+fromDir(d.wind_from_direction):'')+(hasNum(gust)&&gust>wv+1?' · kast '+nb(gust,0)+' m/s':'')+'</div>';
+    } else $('cWind').innerHTML='<div class="na">Vinddata er ikke tilgjengelig.</div>';
+    /* sjø og bølger */
+    var sd={}, si=-1, sts=null;
+    if(s&&s.d&&s.d.properties&&s.d.properties.timeseries){sts=s.d.properties.timeseries;si=pickNow(sts);sd=det(sts[si]);}
+    var wave=sd.sea_surface_wave_height;
+    $('cWave').innerHTML=hasNum(wave)?'<div class="big">'+nb(wave)+'<small>m</small></div><div class="sub">'+(hasNum(sd.sea_surface_wave_from_direction)?'Bølger fra '+fromDir(sd.sea_surface_wave_from_direction):'Signifikant bølgehøyde')+'</div>':'<div class="na">Bølgetall er ikke tilgjengelig akkurat nå.</div>';
+    var st=sd.sea_water_temperature;
+    function seaWord(t){return t<8?'Iskaldt':t<12?'Kaldt':t<16?'Friskt':t<20?'Behagelig':'Deilig';}
+    $('cSea').innerHTML=hasNum(st)?'<div class="big">'+nb(st,0)+'<small>°C</small></div><div class="sub">'+seaWord(st)+(hasNum(sd.sea_water_speed)?' · strøm '+nb(sd.sea_water_speed,1)+' m/s':'')+'</div>':'<div class="na">Sjøtemperatur er ikke tilgjengelig akkurat nå.</div>';
+    /* nedbør neste 6 timer */
+    var r6=cur.data.next_6_hours&&cur.data.next_6_hours.details&&cur.data.next_6_hours.details.precipitation_amount;
+    $('cRain').innerHTML=hasNum(r6)?(r6<0.1?'<div class="big">Tørt</div><div class="sub">Ingen nedbør ventet de neste 6 timene</div>':'<div class="big">'+nb(r6)+'<small>mm</small></div><div class="sub">i løpet av de neste 6 timene</div>'):'<div class="na">Nedbørstall er ikke tilgjengelig.</div>';
+    /* sol */
+    var st2=sunTimes(new Date(),LAT,LON), len=(st2.set-st2.rise)/36e5;
+    $('cSun').innerHTML='<div class="big" style="font-size:1.9rem">'+hhmm(st2.rise)+' <small>opp</small></div><div class="big" style="font-size:1.9rem">'+hhmm(st2.set)+' <small>ned</small></div><div class="sub">Dagen er '+Math.floor(len)+' t '+Math.round((len%1)*60)+' min</div>';
+    /* vurdering */
+    if(hasNum(wv))setVerdict(verdict(wv,gust,hasNum(wave)?wave:null));
+    /* neste 24 timer, hver tredje time */
+    var html='', sIdx={};
+    if(sts)for(var k=0;k<sts.length;k++)sIdx[sts[k].time]=sts[k];
+    for(var j=i0+1;j<ts.length&&j<=i0+24;j+=3){
+      var e=ts[j], dd=det(e), h1=(e.data.next_1_hours||e.data.next_6_hours||{}), sc=(h1.summary&&h1.summary.symbol_code)||'cloudy',
+          pr=(e.data.next_1_hours&&e.data.next_1_hours.details&&e.data.next_1_hours.details.precipitation_amount), ow=sIdx[e.time]?det(sIdx[e.time]).sea_surface_wave_height:null,
+          tm=new Date(e.time).toLocaleTimeString('nb-NO',{hour:'2-digit',minute:'2-digit',timeZone:'Europe/Oslo'});
+      html+='<div class="hour"><div class="t">'+tm+'</div>'+icon(sc,'ico')+'<div class="tp">'+(hasNum(dd.air_temperature)?nb(dd.air_temperature,0)+'°':'–')+'</div>'+
+        '<div class="ln">'+(hasNum(dd.wind_speed)?arrow(dd.wind_from_direction||0,windColor(dd.wind_speed)).replace('class="arrow"','class="mini"')+nb(dd.wind_speed,0)+' m/s':'–')+'</div>'+
+        '<div class="ln">'+(hasNum(ow)?'Bølger '+nb(ow)+' m':(hasNum(pr)?(pr<0.1?'Tørt':nb(pr)+' mm'):''))+'</div>'+
+        '<div class="bar2" style="--lvl:'+(hasNum(dd.wind_speed)?windColor(dd.wind_speed):'#cbd5e1')+'"></div></div>';
+    }
+    $('hours').innerHTML=html; $('hh').style.display=html?'':'none';
+    var upd=new Date(Math.max(w.t||0,(s&&s.t)||0));
+    $('updated').innerHTML='Hentet kl. '+hhmm(upd)+'. <button type="button" id="rf">Oppdater</button>';
+    $('rf').addEventListener('click',function(){start(true);});
+    clearErr();
+  }
+
+  function start(force){
+    Promise.all([loadWeather(force),loadSea(force)]).then(function(r){
+      render(r[0],r[1]);
+    }).catch(function(e){
+      setVerdict({lvl:'idle',title:'Fyret får ikke kontakt',text:'Vi klarte ikke å hente været akkurat nå.'});
+      showErr('Klarte ikke å hente værdata fra Meteorologisk institutt. Prøv igjen om litt, eller se været på yr.no.');
+      ['cAir','cWind','cWave','cSea','cRain'].forEach(function(id){$(id).innerHTML='<div class="na">Ingen data</div>';});
+      var st2=sunTimes(new Date(),LAT,LON);
+      $('cSun').innerHTML='<div class="big" style="font-size:1.9rem">'+hhmm(st2.rise)+' <small>opp</small></div><div class="big" style="font-size:1.9rem">'+hhmm(st2.set)+' <small>ned</small></div>';
+      $('hours').innerHTML=''; $('hh').style.display='none';
+      $('updated').innerHTML='<button type="button" id="rf" style="padding:0">Prøv igjen</button>';
+      $('rf').addEventListener('click',function(){start(true);});
+    });
+  }
+  start(false);
+})();
+</script>
+<script>
+(function(){var b=document.querySelector('.ddb'),m=document.querySelector('.ddm');if(!b||!m)return;
+function set(o){b.setAttribute('aria-expanded',o);m.hidden=!o;}
+b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
+})();
+</script>
+</body>
+</html>
