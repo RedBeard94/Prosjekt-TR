@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manualer – Reinertsengruppen</title>
+<meta name="description" content="Brukerveiledninger for insulinpumpe og sensor.">
+<style>
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(/fonts/manrope-latin-200-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/manrope-latin-400-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/manrope-latin-600-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/manrope-latin-800-normal.woff2) format("woff2");}
+  :root {
+    --bg:#f6f9ff; --fg:#0f172a; --muted:#5b6b82; --line:#e3eaf5; --card:#ffffff;
+    --a:#2563eb; --b:#7c3aed; --c:#14b8a6; --ok:#1fa971; --bad:#d64545;
+    --bld:#1b2440; --win-off:#cfe4f7; --win-on:#cfe4f7; --glow:none;
+  }
+  body.night-icon { --win-off:#2a3558; --win-on:#ffd36b; --glow:drop-shadow(0 0 2px rgba(255,190,70,.9)); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; overflow-x:hidden; }
+  body::before, body::after { content:""; position:fixed; border-radius:50%; filter:blur(90px); opacity:.5; z-index:-1; }
+  body::before { width:55vmax; height:55vmax; background:#cfe0ff; top:-22vmax; right:-18vmax; }
+  body::after  { width:45vmax; height:45vmax; background:#c8f2ea; bottom:-20vmax; left:-15vmax; }
+  button { font:inherit; color:inherit; cursor:pointer; }
+  header { position:sticky; top:0; z-index:10; background:rgba(246,249,255,.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
+  nav a:hover, nav a[aria-current] { color:var(--fg); }
+  .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
+  .brand svg { height:42px; width:auto; display:block; overflow:visible; }
+  .bld { fill:var(--bld); } .w { fill:var(--win-off); } .w.on { fill:var(--win-on); filter:var(--glow); }
+  .wordmark { font-weight:200; font-size:1.25rem; letter-spacing:-.03em; line-height:1; position:relative; padding-bottom:6px; white-space:nowrap; }
+  .wordmark b { font-weight:800; }
+  .wordmark::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:100%; background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
+  .wordmark::before { content:""; position:absolute; left:0; bottom:-2px; width:20px; height:6px; border-radius:6px; background:var(--a); box-shadow:0 0 10px rgba(37,99,235,.6); }
+  @media (max-width:560px) { .bar { flex-wrap:wrap; row-gap:6px; } .brand svg { height:36px; } .wordmark { font-size:1.05rem; } nav { width:100%; } nav a { margin:0 16px 0 0; } }
+
+  main { max-width:1040px; margin:0 auto; padding:26px 20px 40px; }
+  h1 { font-size:clamp(2.2rem,8vw,3.6rem); line-height:1.04; margin:0 0 6px; letter-spacing:-.045em; font-weight:800; }
+  h1 em { font-style:normal; background:linear-gradient(90deg,#f97316,#ec4899 50%,#7c3aed); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead { color:var(--muted); font-size:1.08rem; margin:0 0 20px; max-width:560px; }
+  .layout { display:grid; grid-template-columns:1.1fr .9fr; gap:20px; align-items:start; }
+  @media (max-width:820px) { .layout { grid-template-columns:1fr; } }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:20px; box-shadow:0 6px 22px rgba(15,23,42,.05); }
+  .panel h2 { margin:0 0 12px; font-size:1.15rem; letter-spacing:-.02em; font-weight:800; }
+
+  .search { position:relative; }
+  .search input { width:100%; font:inherit; font-size:1.15rem; padding:16px 18px 16px 50px; border:2px solid var(--line); border-radius:18px; background:#f9fbff; color:var(--fg); }
+  .search input:focus { outline:none; border-color:var(--a); box-shadow:0 0 0 4px rgba(37,99,235,.15); }
+  .search svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); width:22px; height:22px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px; }
+  .per100 { background:#eef4ff; border:2px solid #c9dafc; border-radius:14px; padding:10px 14px; margin:6px 0 4px; font-size:.95rem; }
+  .sen { background:#eef4ff; border:1px solid #c9dafc; border-radius:12px; padding:8px 12px; margin:8px 0 0; font-size:.92rem; }
+  .chk { display:flex; gap:10px; align-items:center; font-weight:700; margin:6px 0 2px; min-height:44px; }
+  .chk input { width:24px; height:24px; }
+  .chip { border:2px solid var(--line); background:#fff; border-radius:999px; padding:9px 16px; font-weight:700; font-size:.95rem; min-height:44px; }
+  .chip[aria-pressed="true"] { background:var(--a); border-color:var(--a); color:#fff; }
+  .results { list-style:none; margin:10px 0 0; padding:0; display:grid; gap:8px; max-height:52vh; overflow:auto; }
+  .food { width:100%; display:flex; align-items:center; gap:12px; text-align:left; background:#fff; border:2px solid var(--line); border-radius:16px; padding:10px 12px; min-height:60px; }
+  .food:hover, .food:focus-visible { border-color:var(--a); outline:none; }
+  .dotf { width:38px; height:38px; border-radius:50%; flex:none; display:grid; place-items:center; color:#fff; font-weight:800; font-size:1.05rem; }
+  .food .nm { font-weight:700; flex:1; line-height:1.25; }
+  .food .kb { font-size:.85rem; color:var(--muted); white-space:nowrap; }
+  .star { background:none; border:0; font-size:1.5rem; line-height:1; padding:6px; min-width:44px; min-height:44px; color:#c3cddd; }
+  .star[aria-pressed="true"] { color:#f5b400; }
+  .hint, .na { color:var(--muted); font-size:.95rem; margin:10px 0 0; }
+  .own { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .btn { border:0; border-radius:14px; padding:12px 18px; font-weight:800; background:linear-gradient(90deg,var(--a),var(--b)); color:#fff; min-height:48px; box-shadow:0 8px 20px rgba(37,99,235,.25); }
+  .btn.ghost { background:#fff; color:var(--a); border:2px solid var(--line); box-shadow:none; }
+  .btn.danger { background:#fff; color:var(--bad); border:2px solid #f3c7c7; box-shadow:none; }
+
+  .plate { display:grid; place-items:center; margin:2px 0 8px; }
+  .plate svg { width:min(280px,70vw); height:auto; }
+  .total { text-align:center; margin:0 0 4px; }
+  .total .n { font-size:3.2rem; font-weight:800; letter-spacing:-.05em; line-height:1; }
+  .total .n small { font-size:1.2rem; font-weight:700; color:var(--muted); letter-spacing:0; margin-left:4px; }
+  .total .t { color:var(--muted); font-weight:600; }
+  .warn { margin:10px 0 0; padding:12px 14px; border-radius:16px; background:#fff4d6; border:2px solid #f0b429; font-size:1rem; font-weight:600; }
+  .warn[hidden] { display:none; }
+  .pump { margin:10px 0 14px; padding:12px 14px; border-radius:16px; background:#eef4ff; border:1px solid #d6e3fb; font-size:.95rem; }
+  .items { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .item { display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#fff; border:2px solid var(--line); border-radius:14px; padding:8px 12px; min-height:56px; }
+  .item .sw { width:14px; height:34px; border-radius:7px; flex:none; }
+  .item .nm { flex:1; font-weight:700; line-height:1.2; }
+  .item .nm small { display:block; font-weight:400; color:var(--muted); font-size:.82rem; }
+  .item .kb { font-weight:800; font-size:1.05rem; white-space:nowrap; }
+  .actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+  .fine { margin-top:18px; color:var(--muted); font-size:.82rem; line-height:1.6; }
+  .fine a { color:var(--a); }
+  .load { padding:10px 14px; border-radius:14px; background:#fff8e6; border:1px solid #f1dfa6; color:#6b5200; font-size:.92rem; margin:0 0 14px; }
+  .load.err { background:#fff4f4; border-color:#f3c7c7; color:#8a2b2b; }
+  .load[hidden] { display:none; }
+
+  .sheetbg { position:fixed; inset:0; background:rgba(15,23,42,.45); display:none; align-items:flex-end; justify-content:center; z-index:50; }
+  .sheetbg.on { display:flex; }
+  .sheet { width:min(520px,100%); background:#fff; border-radius:26px 26px 0 0; padding:22px 20px 26px; max-height:92vh; overflow:auto; box-shadow:0 -10px 40px rgba(0,0,0,.25); }
+  @media (min-width:700px) { .sheetbg { align-items:center; } .sheet { border-radius:26px; } }
+  .sheet h3 { margin:0 0 2px; font-size:1.3rem; letter-spacing:-.02em; }
+  .sheet .per { color:var(--muted); margin:0 0 14px; }
+  .field { display:grid; gap:6px; margin:0 0 12px; font-weight:700; font-size:.9rem; color:var(--muted); }
+  .field input { font:inherit; font-size:1.2rem; padding:12px 14px; border:2px solid var(--line); border-radius:14px; background:#f9fbff; color:var(--fg); width:100%; }
+  .field input:focus { outline:none; border-color:var(--a); }
+  .stepper { display:grid; grid-template-columns:56px 1fr 56px; gap:10px; align-items:center; margin-bottom:12px; }
+  .stepper button { height:56px; border-radius:16px; border:2px solid var(--line); background:#fff; font-size:1.8rem; font-weight:800; color:var(--a); }
+  .stepper input { font:inherit; text-align:center; font-size:1.6rem; font-weight:800; padding:10px; border:2px solid var(--line); border-radius:14px; background:#f9fbff; color:var(--fg); width:100%; min-width:0; }
+  .stepper input:focus { outline:none; border-color:var(--a); }
+  .port { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; }
+  .res { text-align:center; margin:6px 0 16px; padding:14px; border-radius:18px; background:linear-gradient(135deg,#eef4ff,#f0e9ff); }
+  .res .n { font-size:2.6rem; font-weight:800; letter-spacing:-.04em; line-height:1.05; }
+  .res .n small { font-size:1.1rem; color:var(--muted); font-weight:700; margin-left:4px; letter-spacing:0; }
+  .row2 { display:flex; gap:10px; flex-wrap:wrap; }
+  .row2 .btn { flex:1; }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } }
+
+  .dd{position:relative;display:inline-block;margin-left:18px}
+  nav .dd>.ddb{font:inherit;font-size:.95rem;font-weight:600;color:var(--muted);background:none;border:0;padding:4px 0;cursor:pointer}
+  nav .dd>.ddb:hover,nav .dd>.ddb[aria-expanded="true"],nav .dd>.ddb.cur{color:var(--fg)}
+  .ddb::after{content:"";display:inline-block;margin-left:6px;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .2s}
+  .ddb[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}
+  .ddm{position:absolute;top:calc(100% + 8px);left:-12px;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);z-index:30}
+  .ddm[hidden]{display:none}
+  nav .ddm a{display:block;margin:0;padding:10px 12px;border-radius:10px;color:var(--fg);font-weight:700}
+  nav .ddm a small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
+  nav .ddm a:hover,nav .ddm a:focus-visible{background:#eef4ff;outline:none}
+  nav .ddm a[aria-current]{background:#eef4ff}
+  @media (max-width:560px){.dd{margin:0 16px 0 0}}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media (max-width:820px){.grid{grid-template-columns:1fr}}
+  .lnk{display:flex;flex-direction:column;gap:2px;padding:14px 16px;margin:10px 0 0;border:2px solid var(--line);border-radius:16px;background:#f9fbff;color:var(--fg);text-decoration:none;min-height:56px}
+  .lnk:hover,.lnk:focus-visible{border-color:var(--a);outline:none}
+  .lnk b{font-weight:800}.lnk span{color:var(--muted);font-size:.92rem}
+  .note{background:#fff8e6;border:1px solid #f3dca0;border-radius:16px;padding:14px 16px;margin:16px 0 0;font-size:.95rem}
+  .kontakt label{display:block;font-weight:700;margin:10px 0 0}
+  .kontakt input,.kontakt textarea{width:100%;font:inherit;font-size:1.05rem;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;margin-top:4px}
+  .small{color:var(--muted);font-size:.9rem}
+  .foot{margin-top:22px;color:var(--muted);font-size:.88rem}
+
+  h1{font-size:clamp(2rem,7.4vw,3.4rem)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+  .pfoot{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.9rem}
+  .pfoot a{color:var(--muted)}
+  .dd,.ddb{white-space:nowrap}
+  nav a{white-space:nowrap}
+  @media (max-width:560px){nav{flex-wrap:wrap;row-gap:4px} nav a{margin:0 12px 0 0} .dd{margin:0 12px 0 0}}
+  .back{display:inline-block;margin:0 0 10px;color:var(--a);font-weight:700;text-decoration:none;padding:8px 0;min-height:44px}
+  .back:hover{text-decoration:underline}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:22px}
+  @media (max-width:820px){.tiles{grid-template-columns:1fr}}
+  .tile{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:24px;text-decoration:none;color:var(--fg);box-shadow:0 6px 22px rgba(15,23,42,.05);transition:transform .15s,box-shadow .15s,border-color .15s;min-height:190px}
+  .tile:hover,.tile:focus-visible{transform:translateY(-3px);box-shadow:0 14px 34px rgba(37,99,235,.16);border-color:var(--a);outline:none}
+  .tile .ic{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;margin-bottom:6px}
+  .tile .ic svg{width:34px;height:34px}
+  .tile b{font-size:1.35rem;letter-spacing:-.02em;font-weight:800}
+  .tile span.d{color:var(--muted);font-size:1rem}
+  .tile .go{margin-top:auto;color:var(--a);font-weight:800}
+  @media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+</style>
+<link rel="manifest" href="/hjelpemidler/diabetes/manifest.webmanifest">
+<meta name="theme-color" content="#2563eb">
+<link rel="apple-touch-icon" href="/hjelpemidler/diabetes/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tallerkenen">
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="brand" href="/" aria-label="Reinertsengruppen">
+      <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
+      <span class="wordmark"><b>Reinertsen</b>gruppen</span>
+    </a>
+    <nav>
+      <a href="/#om">Om oss</a>
+      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Hjelpemidler</button><div class="ddm" hidden><a href="/hjelpemidler/diabetes/" aria-current="page">Diabetes<small>Karbotelling og manualer</small></a></div></div>
+      <a href="/#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <a class="back" href="/hjelpemidler/diabetes/">← Diabetes</a>
+  <h1>Manualer <em>og veiledninger.</em></h1>
+  <p class="lead">Offisielle brukerveiledninger for pumpa og sensoren. Lenkene går til produsentenes egne sider, så du alltid får siste versjon.</p>
+  <div class="grid">
+    <section class="panel" aria-label="Pumpe">
+      <h2>Insulinpumpe</h2>
+      <p class="small" style="margin:0 0 4px">Velg pumpen hun bruker.</p>
+      <div class="chips" id="pumpChips" role="group" aria-label="Velg insulinpumpe"></div>
+      <div id="pumpCard" aria-live="polite"></div>
+    </section>
+    <section class="panel" aria-label="Sensor">
+      <h2>Sensor</h2>
+      <p class="small" style="margin:0 0 4px">Velg sensoren hun bruker. Når du velger pumpe, foreslår siden sensoren som vanligvis brukes sammen med den.</p>
+      <div class="chips" id="senChips" role="group" aria-label="Velg sensor"></div>
+      <div id="senCard" aria-live="polite"></div>
+    </section>
+  </div>
+  <p class="foot">Siden eier ingen av veiledningene. Merkenavn tilhører produsentene. Siden er ikke tilknyttet eller godkjent av produsentene. Ved akutt sykdom, ring legevakt 116 117, eller 113 i nødsituasjon. Denne siden erstatter ikke opplæring og råd fra diabetesteamet.</p>
+</main>
+
+<footer class="pfoot"><a href="/">Reinertsengruppen</a> · <a href="/personvern/">Personvern</a></footer>
+<script>
+(function(){
+  /* ====== Logo ====== */
+  var NS='http://www.w3.org/2000/svg';
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  var rand=rng(7), msvg=document.getElementById('mark'), wins=[];
+  var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
+  function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);msvg.appendChild(e);return e;}
+  el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
+  blds.forEach(function(b){el('rect',{'class':'bld',x:b[0],y:b[1],width:b[2],height:b[3]});var ww=8,wh=10,gx=7,gy=9,m=9,cols=Math.max(1,Math.floor((b[2]-2*m+gx)/(ww+gx))),total=cols*ww+(cols-1)*gx,sx=b[0]+(b[2]-total)/2;
+    for(var r=0;;r++){var y=b[1]+m+r*(wh+gy);if(y+wh>b[1]+b[3]-b[4])break;for(var c=0;c<cols;c++){var w=el('rect',{'class':'w',x:sx+c*(ww+gx),y:y,width:ww,height:wh,rx:1});w._on=rand()<0.7;wins.push(w);}}});
+  el('rect',{'class':'bld',x:30,y:340,width:340,height:6,rx:3});
+  (function(){var h=new Date().getHours(),night=!(h>=7&&h<19);document.body.classList.toggle('night-icon',night);wins.forEach(function(w){w.classList.toggle('on',night&&w._on);});})();
+
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  /* ====== Sensorvelger ====== */
+  var SENS=[
+    {id:'g7',n:'Dexcom G7',l:[['Dexcom G7: brukerveiledning (norsk, PDF)','mmol/L','https://s3.us-west-2.amazonaws.com/dexcompdf/G7/AW-00046-67_UG_G7_OUS_no_MMOL.pdf'],['Alle Dexcom-veiledninger','Dexcoms nedlastingsside','https://www.dexcom.com/nb-NO/downloadsandguides/search'],['Sikkerhetsinformasjon','Fra Dexcom','https://www.dexcom.com/nb-no/safety-information']]},
+    {id:'g6',n:'Dexcom G6',l:[['Dexcom G6: brukerveiledning (norsk, PDF)','mmol/L','https://s3-us-west-2.amazonaws.com/dexcompdf/Downloads+and+Guides+Updates/LBL016312+G6+Using+Your+G6+OUS+NO+mmolL.pdf'],['Alle Dexcom-veiledninger','Dexcoms nedlastingsside','https://www.dexcom.com/nb-NO/downloadsandguides/search'],['Sikkerhetsinformasjon','Fra Dexcom','https://www.dexcom.com/nb-no/safety-information']]},
+    {id:'libre',n:'FreeStyle Libre 3 Plus',l:[['FreeStyle Libre (Abbott)','Abbotts hovedside. Velg Norge der.','https://www.freestyle.abbott/']],note:'Jeg fant ingen verifisert lenke til norsk brukerveiledning. Spør diabetesteamet eller Abbott.'},
+    {id:'simplera',n:'Simplera Sync',l:[['Medtronic','Medtronics hovedside','https://www.medtronic.com/']],note:'Jeg fant ingen verifisert lenke til norsk brukerveiledning. Spør diabetesteamet eller Medtronic.'}
+  ];
+  var senCur='g7', senDraw=function(){};
+  (function(){
+    var box=$('senChips'), card=$('senCard'); if(!box||!card)return;
+    try{var c=localStorage.getItem('mn_sen');if(SENS.some(function(x){return x.id===c;}))senCur=c;}catch(x){}
+    senDraw=function(){
+      box.innerHTML=SENS.map(function(p){return '<button class="chip" type="button" data-sen="'+p.id+'" aria-pressed="'+(p.id===senCur)+'">'+esc(p.n)+'</button>';}).join('');
+      var p=SENS.filter(function(x){return x.id===senCur;})[0];
+      card.innerHTML='<p class="small" style="margin:8px 0 0"><b>'+esc(p.n)+'</b></p>'+p.l.map(function(k){return '<a class="lnk" href="'+esc(k[2])+'" target="_blank" rel="noopener"><b>'+esc(k[0])+'</b><span>'+esc(k[1])+'</span></a>';}).join('')+(p.note?'<p class="note">'+esc(p.note)+'</p>':'');
+    };
+    box.addEventListener('click',function(e){var b=e.target.closest('[data-sen]');if(!b)return;senCur=b.getAttribute('data-sen');try{localStorage.setItem('mn_sen',senCur);}catch(x){}senDraw();var a=box.querySelector('[aria-pressed="true"]');if(a)a.focus();});
+    senDraw();
+  })();
+
+  /* ====== Pumpevelger (manualer) ====== */
+  var PUMPS=[
+    {id:'tslim',sen:'g7',n:'Tandem t:slim X2',t:'Slangepumpe, automatisk regulering',l:[
+      ['Tandem støttesenter: t:slim X2','Artikler og opplæring fra Tandem (kan være på engelsk)','https://www.tandemdiabetes.com/support-center/pumps-and-supplies/tslimx2-insulin-pump/article/4'],
+      ['Dokumenter og brukerveiledninger','Tandems dokumentside for Europa (språk varierer)','https://www.tandemdiabetes.com/en-gb/support/resources/documents']],
+     note:'Jeg har ikke klart å bekrefte at det finnes en norsk brukerveiledning for t:slim X2. Spør diabetessykepleieren hvor dere får den norske utgaven.'},
+    {id:'dash',sen:'none',n:'Omnipod DASH',t:'Slangeløs pumpe',l:[
+      ['Teknisk brukerhåndbok (norsk, PDF)','Omnipod DASH, revisjon fra april 2025','https://www.omnipod.com/sites/default/files/Omnipod_Tech-User-Guide_Norwegian.pdf'],
+      ['Omnipod sine sider','Her legger Insulet ut veiledninger','https://www.omnipod.com/']],
+     note:'Dette er den tekniske håndboken. Den vanlige brukerveiledningen får dere av Insulet eller diabetesteamet.'},
+    {id:'o5',n:'Omnipod 5',t:'Slangeløs pumpe, automatisk regulering',l:[
+      ['Veiledning for omsorgsperson (norsk, PDF)','Omnipod 5, for foreldre og andre som hjelper','https://www.omnipod.com/sites/default/files/omnipod-5_caregiver-guide_no-no.pdf'],
+      ['Omnipod sine sider','Her legger Insulet ut veiledninger','https://www.omnipod.com/']],
+     note:'Brukerveiledningen til selve pumpen har jeg ikke klart å bekrefte på norsk. Spør diabetesteamet eller Insulet.'},
+    {id:'ypso',sen:'libre',n:'mylife YpsoPump',t:'Slangepumpe, kan brukes med automatisk system',l:[
+      ['Videoer om bruk (norsk)','Fra mylife Diabetescare','https://www.mylife-diabetescare.com/no-NO/kom-i-gang/videoer-om-handtering'],
+      ['Brukerveiledning (engelsk, PDF)','Fra mylife Diabetescare','https://a.storyblok.com/f/287658439214273/x/b3585f27af/ypu_eifu_ref_700012342_in-en_v02.pdf'],
+      ['Alle nedlastinger','Mylife sin nedlastingsside','https://www.mylife-diabetescare.com/en/services/downloads.html?category[]=122&category[]=32']],
+     note:'Jeg fant ingen norsk brukerveiledning som PDF. Spør diabetesteamet om den norske utgaven.'},
+    {id:'mm',sen:'simplera',n:'Medtronic MiniMed 780G',t:'Slangepumpe, automatisk regulering',l:[
+      ['Medtronic','Medtronics hovedside','https://www.medtronic.com/']],
+     note:'Jeg fant ingen verifisert lenke til brukerveiledningen på norsk. Spør diabetesteamet eller Medtronic.'},
+    {id:'solo',n:'Accu-Chek Solo',t:'Slangeløs mikropumpe',l:[],
+     note:'Jeg fant ingen verifisert lenke til brukerveiledningen på norsk. Spør diabetesteamet eller Roche (Accu-Chek).'}
+  ];
+  (function(){
+    var box=$('pumpChips'), card=$('pumpCard'); if(!box||!card)return;
+    var cur=''; try{cur=localStorage.getItem('mn_pump')||'';}catch(x){}
+    if(!PUMPS.some(function(p){return p.id===cur;}))cur='tslim';
+    function draw(){
+      box.innerHTML=PUMPS.map(function(p){return '<button class="chip" type="button" data-pump="'+p.id+'" aria-pressed="'+(p.id===cur)+'">'+esc(p.n)+'</button>';}).join('');
+      var p=PUMPS.filter(function(x){return x.id===cur;})[0];
+      card.innerHTML='<p class="small" style="margin:8px 0 0"><b>'+esc(p.n)+'</b> · '+esc(p.t)+'</p>'+(p.sen?'<p class="sen"><b>Sensor i offentlig avtale (kan endre seg):</b> '+(p.sen==='none'?'Har ikke automatisk sensorstyring i seg selv':esc(SENS.filter(function(x){return x.id===p.sen;})[0].n))+'</p>':'')+p.l.map(function(k){return '<a class="lnk" href="'+esc(k[2])+'" target="_blank" rel="noopener"><b>'+esc(k[0])+'</b><span>'+esc(k[1])+'</span></a>';}).join('')+'<p class="note">'+esc(p.note)+'</p>';
+    }
+    box.addEventListener('click',function(e){var b=e.target.closest('[data-pump]');if(!b)return;cur=b.getAttribute('data-pump');try{localStorage.setItem('mn_pump',cur);}catch(x){}var pp=PUMPS.filter(function(x){return x.id===cur;})[0];if(pp.sen&&pp.sen!=='none'){senCur=pp.sen;try{localStorage.setItem('mn_sen',senCur);}catch(x){}senDraw();}draw();var a=box.querySelector('[aria-pressed="true"]');if(a)a.focus();});
+    draw();
+  })();
+
+})();
+</script>
+<script>
+(function(){var b=document.querySelector('.ddb'),m=document.querySelector('.ddm');if(!b||!m)return;
+function set(o){b.setAttribute('aria-expanded',o);m.hidden=!o;}
+b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
+})();
+</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/hjelpemidler/diabetes/sw.js",{scope:"/hjelpemidler/diabetes/"}).catch(function(){});});}</script>
+</body>
+</html>
