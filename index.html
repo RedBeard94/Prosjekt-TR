@@ -66,13 +66,6 @@
 
   section { max-width:1040px; margin:0 auto; padding:7vh 20px; }
   h2 { font-size:1.9rem; margin:0 0 22px; letter-spacing:-.03em; font-weight:800; }
-  .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:26px; box-shadow:0 6px 22px rgba(15,23,42,.05); }
-  .card .ic { width:40px; height:40px; border-radius:12px; display:grid; place-items:center; color:#fff; font-weight:800; margin-bottom:14px; background:linear-gradient(135deg,var(--a),var(--b)); }
-  .card:nth-child(2) .ic { background:linear-gradient(135deg,var(--c),var(--a)); }
-  .card:nth-child(3) .ic { background:linear-gradient(135deg,var(--b),#ec4899); }
-  .card h3 { margin:0 0 6px; font-size:1.1rem; }
-  .card p { margin:0; color:var(--muted); }
 
   .contact .box { text-align:center; background:#fff; border:1px solid var(--line); border-radius:24px; padding:44px 20px; box-shadow:0 6px 22px rgba(15,23,42,.05); }
   .contact p { color:var(--muted); margin:0 0 10px; }
@@ -86,11 +79,23 @@
   .since { display:inline-block; padding:5px 12px; border-radius:999px; background:#eaf1ff; color:var(--a); font-weight:700; font-size:.8rem; margin-bottom:14px; }
   .story p { font-size:1.15rem; max-width:680px; margin:0 0 14px; }
   .story { margin-bottom:30px; }
-  .proverb { margin-top:34px; padding:34px 22px; border-radius:24px; background:linear-gradient(135deg,#eaf1ff,#e3f7f2); border:1px solid var(--line); text-align:center; }
-  .proverb small { color:var(--muted); font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:.75rem; }
-  .proverb blockquote { margin:14px auto 18px; font-size:clamp(1.3rem,5vw,2rem); font-weight:800; letter-spacing:-.02em; max-width:640px; line-height:1.25; }
-  .proverb .by { margin:-6px 0 18px; color:var(--muted); font-weight:700; font-size:.95rem; }
-  .proverb button { font:inherit; font-size:.85rem; font-weight:700; color:var(--a); background:#fff; border:1px solid var(--line); border-radius:999px; padding:8px 16px; cursor:pointer; }
+  .lab { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700; margin:34px 0 12px; }
+  .tools { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-bottom:34px; }
+  .tool { display:block; text-decoration:none; color:var(--fg); background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px 20px; min-width:0; }
+  .tool:hover, .tool:focus-visible { border-color:var(--a); outline:none; }
+  .tool b { display:block; font-size:1.05rem; font-weight:800; }
+  .tool span { color:var(--muted); font-size:.95rem; }
+  .tool i { display:block; font-style:normal; color:var(--a); font-weight:700; font-size:.9rem; margin-top:8px; }
+  .hero-q { display:grid; grid-template-columns:auto minmax(0,1fr); gap:clamp(14px,4vw,44px); align-items:center; margin:30px 0 40px; }
+  .hero-q .photo { margin:0; width:150px; aspect-ratio:4/5; max-width:100%; }
+  .hero-q .photo img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 12%; -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%); mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%); }
+  .hero-q .q { margin:0; min-width:0; }
+  .hero-q blockquote { margin:0; font-size:clamp(1.12rem,4.6vw,2.2rem); line-height:1.3; letter-spacing:-.02em; font-weight:200; text-wrap:balance; }
+  .hero-q blockquote b { font-weight:800; }
+  .hero-q .mark { display:block; font-size:4rem; line-height:.6; font-weight:800; background:linear-gradient(90deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:10px; }
+  .hero-q .by { margin:18px 0 0; color:var(--muted); font-weight:600; }
+  .hero-q .by::before { content:""; display:inline-block; width:28px; height:2px; background:linear-gradient(90deg,var(--a),var(--b)); vertical-align:middle; margin-right:10px; }
+  @media (max-width:640px){ .hero-q .photo{width:96px} .hero-q .mark{font-size:2.6rem;margin-bottom:6px} .hero-q .by{font-size:.88rem;margin-top:12px} .hero-q .by::before{width:18px;margin-right:8px} }
   form { text-align:left; max-width:520px; margin:0 auto 20px; display:grid; gap:12px; }
   label { font-size:.85rem; font-weight:700; color:var(--muted); display:grid; gap:6px; }
   input, textarea { font:inherit; color:var(--fg); padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#f9fbff; width:100%; }
@@ -149,9 +154,9 @@
 </header>
 
 <div class="herobg"><div class="hero">
-  <div class="badge"><span class="dot"></span> Under oppbygging</div>
+  <div class="badge"><span class="dot"></span> Nettsiden er under oppbygging</div>
   <h1><span>Bygger</span> noe <em>nytt.</em></h1>
-  <p class="lead">Reinertsengruppen tar form. Her kommer mer informasjon etter hvert.</p>
+  <p class="lead">Vi bygger Reinertsengruppen steg for steg, og deler det vi lager underveis.</p>
   <a class="btn" href="#kontakt">Ta kontakt</a>
 </div></div>
 
@@ -160,19 +165,17 @@
   <div class="story">
     <span class="since">Startet i 2026</span>
     <p>Reinertsengruppen ble startet av Thomas Reinertsen i 2026.</p>
-    <p>Thomas er oppvokst på Flekkerøya, en liten øy utenfor Kristiansand der havet alltid har vært nærmeste nabo. Der lærte han tidlig at man kommer lengst ved å stå på egne bein, hjelpe hverandre og gjøre ting skikkelig. Det tar han med seg inn i alt gruppen gjør.</p>
-    <p>Planen med denne nettsiden er å hjelpe andre til en bedre hverdag. Under <a href="nyttig/index.html">Nyttig</a> samler vi enkle verktøy og nyttige lenker, og vi legger til flere etter hvert.</p>
+    <p>Thomas vokste opp på Flekkerøya, en liten øy utenfor Kristiansand, der havet alltid har vært nærmeste nabo. Der lærte han tidlig verdien av å stå på egne bein, hjelpe hverandre og gjøre ting skikkelig. Det tar han med seg i alt gruppen gjør.</p>
+    <p>Vi har ingen ferdig plan for nettsiden, bare et ønske om å gjøre hverdagen litt enklere for andre. Derfor lager vi små verktøy du kan ha nytte av. Du finner dem under <a href="nyttig/index.html">Nyttig</a>, og det kommer flere etter hvert. Velkommen innom!</p>
   </div>
-  <div class="grid">
-    <div class="card"><div class="ic">1</div><h3>Solid grunnmur</h3><p>Vi tar oss tid til å gjøre ting ordentlig, fra første dag.</p></div>
-    <div class="card"><div class="ic">2</div><h3>Langsiktig</h3><p>Fokus på varige verdier fremfor raske løsninger.</p></div>
-    <div class="card"><div class="ic">3</div><h3>Åpen dialog</h3><p>Spørsmål og ideer er alltid velkomne.</p></div>
+  <div class="hero-q">
+    <figure class="photo"><img src="portrett.jpg" width="360" height="450" alt="Thomas Reinertsen" loading="lazy" decoding="async"></figure>
+    <div class="q"><span class="mark" aria-hidden="true">&ldquo;</span><blockquote>Det beste du kan gjøre for andre, er å gjøre <b>hverdagen</b> litt enklere.</blockquote><p class="by">Thomas Reinertsen</p></div>
   </div>
-  <div class="proverb">
-    <small>Dagens sitat</small>
-    <blockquote id="sa"></blockquote>
-    <p class="by" id="by"></p>
-    <button type="button" id="nytt">Nytt sitat</button>
+  <p class="lab">Dette har vi laget</p>
+  <div class="tools">
+    <a class="tool" href="nyttig/apper/index.html"><b>Apper</b><span>Små apper du kan bruke i hverdagen.</span><i>Åpne →</i></a>
+    <a class="tool" href="nyttig/hjelpemidler/index.html"><b>Hjelpemidler</b><span>Enkle hjelpemidler, blant annet Dagsplan og Hvem ringer jeg?</span><i>Åpne →</i></a>
   </div>
 
   <div class="sponsor">
@@ -270,27 +273,6 @@
       st.textContent='Klarte ikke å sende meldingen. Prøv igjen om litt.';
     }).then(function(){btn.disabled=false;});
   });
-  var sayings=[
-    ['Når jobben er hyggelig, er livet gledelig. Hvis arbeid er en plikt, er livet slaveri.','Maksim Gorkij'],
-    ['Det viktige spørsmålet på jobben er ikke «Hva får jeg?», men «Hva blir jeg?»','Jim Rohn'],
-    ['Man må brenne for faget sitt for å bli god i det.','Denis Diderot'],
-    ['Torden er bra og imponerende, men det er lynet som gjør jobben.','Mark Twain'],
-    ['Når alle gjør sin oppgave, spiller du minst uavgjort.','Johan Cruyff'],
-    ['Bare en liten positiv tanke om morgenen kan endre hele dagen din.','Dalai Lama'],
-    ['Muligheter skjer ikke, du skaper dem.','Chris Grosser'],
-    ['Det daglige, ufullkomne liv har sin egen skjønnhet.','Kari Bremnes'],
-    ['Det er alltid starten som krever størst innsats.','James Cash Penney'],
-    ['Tro på deg selv, selv når det er vanskelig.',''],
-    ['Suksess begynner der hvor du slutter å gi opp.',''],
-    ['Tenk positive tanker, si positive ord, gjør positive handlinger og det positive gror.','Jon-Lasse Fjeld'],
-    ['Jeg ser ham som overkommer sitt begjær som mer modig enn han som erobrer sine fiender; for den vanskeligste seieren er over en selv.','Aristoteles'],
-    ['Alt lært om livet summert i: Det går videre.','Robert Frost'],
-    ['Hver dag er en ny sjanse til å oppnå noe fantastisk.','']
-  ];
-  var si=Math.floor(Math.random()*sayings.length), sa=document.getElementById('sa'), by=document.getElementById('by');
-  function showSaying(){sa.textContent='«'+sayings[si][0]+'»';by.textContent=sayings[si][1]?'– '+sayings[si][1]:'';}
-  document.getElementById('nytt').addEventListener('click',function(){si=(si+1)%sayings.length;showSaying();});
-  showSaying();
   function route(){
     var k=location.hash==='#kontakt';
     document.body.classList.toggle('page-kontakt',k);
