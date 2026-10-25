@@ -79,6 +79,7 @@
   .since { display:inline-block; padding:5px 12px; border-radius:999px; background:#eaf1ff; color:var(--a); font-weight:700; font-size:.8rem; margin-bottom:14px; }
   .story p { font-size:1.15rem; max-width:680px; margin:0 0 14px; }
   .story { margin-bottom:30px; }
+  footer .frow { display:inline-flex; gap:22px; }
   .lab { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700; margin:34px 0 12px; }
   .tools { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-bottom:34px; }
   .tool { display:block; text-decoration:none; color:var(--fg); background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px 20px; min-width:0; }
@@ -129,6 +130,8 @@
   .ddb::after{content:"";display:inline-block;margin-left:6px;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .2s}
   .ddb[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}
   .ddm{position:absolute;top:calc(100% + 8px);left:-12px;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);z-index:30}
+  @media (min-width:561px){ .ddm{left:auto;right:-4px} }
+  @media (max-width:560px){ .ddm{min-width:170px} }
   .ddm[hidden]{display:none}
   nav .ddm a{display:block;margin:0;padding:10px 12px;border-radius:10px;color:var(--fg);font-weight:700}
   nav .ddm a small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
@@ -146,9 +149,8 @@
     </div>
     <nav>
       <a href="#om">Om oss</a>
-      <div class="dd"><button class="ddb" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="nyttig/apper/index.html">Apper<small>Fyret og flere</small></a><a href="nyttig/hjelpemidler/index.html">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
       <a href="#kontakt">Kontakt</a>
-      <a href="https://reinertsengruppen-portal.thomas-756.workers.dev" target="_blank" rel="noopener">Logg inn</a>
+      <div class="dd"><button class="ddb" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="nyttig/apper/index.html">Apper<small>Fyret og flere</small></a><a href="nyttig/hjelpemidler/index.html">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
     </nav>
   </div>
 </header>
@@ -214,7 +216,7 @@
   </div>
 </section>
 
-<footer>© <span id="y"></span> Reinertsengruppen<br><a class="totop" href="#">↑ Til toppen</a><br><a class="mailink" href="personvern/index.html">Personvern</a><br><a class="mailink" href="https://webmail.domeneshop.no/" target="_blank" rel="noopener">E-post</a></footer>
+<footer>© <span id="y"></span> Reinertsengruppen<br><a class="totop" href="#">↑ Til toppen</a><br><a class="mailink" href="personvern/index.html">Personvern</a><br><span class="frow"><a class="mailink" href="https://webmail.domeneshop.no/" target="_blank" rel="noopener">E-post</a><a class="mailink" href="https://reinertsengruppen-portal.thomas-756.workers.dev" target="_blank" rel="noopener">Logg inn</a></span></footer>
 
 <script>
 (function () {
