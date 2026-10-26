@@ -166,6 +166,11 @@
   .vipf label{display:block;font-weight:700;font-size:.9rem;color:var(--muted);margin:10px 0 4px}
   .vipf .r{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
   .vipf .btn.g{background:#fff;color:var(--a);border:2px solid var(--line);box-shadow:none}
+  .snar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}
+  @media(max-width:700px){.snar{grid-template-columns:1fr;gap:8px}}
+  .snar .sos,.snar .vip{margin:0;min-width:0;min-height:56px}
+  main .sokbox{max-width:none;margin:0}
+  main .sokbox input{min-height:58px;background:var(--card)}
   [hidden]{display:none!important}
   .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
   .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
@@ -222,10 +227,11 @@
 <meta name="apple-mobile-web-app-title" content="Tallerkenen">
 <meta name="theme-color" content="#f6f9ff">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Diabetes">
+<link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <header>
@@ -245,8 +251,10 @@
 <main data-rg="rg-2026-10-nyttig-diabetes-b63a">
   <h1>Hjelpemidler for <em>diabetikere.</em></h1>
   <p class="lead">Enkle verktøy og nyttige lenker for deg med diabetes, og for familien rundt. Velg hva du trenger.</p>
-  <a class="sos" href="info/index.html"><b>Akutt?</b><span>Nødnumre og legevakt, ett trykk unna</span><span class="ch" aria-hidden="true">›</span></a>
-  <a class="vip" id="vip" href="info/index.html#viktig"><b>Viktig person</b><span id="viptx">Legg inn et nummer du kan ringe raskt</span><span class="ch" id="vipch" aria-hidden="true">›</span></a>
+  <div class="snar">
+  <a class="sos" href="info/index.html"><b>Akutt?</b><span>Nødnumre og legevakt</span><span class="ch" aria-hidden="true">›</span></a>
+  <a class="vip" id="vip" href="info/index.html#viktig"><b>Viktig person</b><span id="viptx">Legg inn et nummer</span><span class="ch" id="vipch" aria-hidden="true">›</span></a>
+  </div>
   <div class="sokbox" role="search">
     <svg class="lupe" viewBox="0 0 24 24" fill="none" stroke="#5b6b82" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
     <input id="sok" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" placeholder="Søk i alt om diabetes" aria-label="Søk i alle diabetessidene" aria-controls="sokres">
