@@ -160,6 +160,13 @@
   .tile span.d{color:var(--muted);font-size:1rem}
   .tile .go{margin-top:auto;color:var(--a);font-weight:800}
   @media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+  .vip{display:flex;align-items:center;gap:12px;background:#e6efff;border:2px solid var(--a);border-radius:16px;padding:10px 14px;margin:0 0 6px;text-decoration:none;color:#0f172a;min-height:48px}
+  .vip b{color:#1d4ed8;font-weight:800;flex:none}.vip span{font-size:.92rem;flex:1;min-width:0;line-height:1.3;color:#334155}.vip .nr{font-weight:800;color:#0f172a}.vip .ch{flex:none;margin-left:auto;color:#1d4ed8;font-weight:800;font-size:1.6rem;line-height:1}
+  .vipf input{font:inherit;font-size:1.1rem;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;color:var(--fg);width:100%;min-height:52px}
+  .vipf label{display:block;font-weight:700;font-size:.9rem;color:var(--muted);margin:10px 0 4px}
+  .vipf .r{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .vipf .btn.g{background:#fff;color:var(--a);border:2px solid var(--line);box-shadow:none}
+  [hidden]{display:none!important}
   .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
   .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
   .rgstrip div{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.88rem;color:var(--muted)}
@@ -191,6 +198,14 @@
   <a class="back" href="../index.html">← Diabetes</a>
   <h1>Nyttig <em>informasjon.</em></h1>
   <p class="lead">Gode sider å starte med, og plass til dine egne telefonnumre.</p>
+  <section class="panel vipf" id="viktig" aria-labelledby="hv" style="margin-bottom:20px">
+    <h2 id="hv">Viktig person</h2>
+    <p class="small" style="margin:0 0 8px">Legg inn en du kan ringe raskt, for eksempel mamma, pappa eller diabetessykepleier. Nummeret lagres bare på denne enheten og sendes ikke noe sted. Det vises i den blå stripen på diabetes-forsiden.</p>
+    <label for="vnm">Navn</label><input id="vnm" maxlength="40" autocomplete="off" placeholder="For eksempel Mamma">
+    <label for="vtl">Telefonnummer</label><input id="vtl" type="tel" inputmode="tel" maxlength="20" autocomplete="off" placeholder="000 00 000">
+    <div class="r"><button class="btn" id="vlag" type="button">Lagre</button><button class="btn g" id="vslett" type="button">Fjern</button></div>
+    <p class="small" id="vstat" role="status" style="margin:10px 0 0"></p>
+  </section>
   <div class="grid">
     <section class="panel" aria-label="Nyttige sider">
       <h2>Gode sider</h2>
@@ -242,6 +257,21 @@ function set(o){b.setAttribute('aria-expanded',o);m.hidden=!o;}
 b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
 document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
+})();
+</script>
+<script>
+(function(){
+  var K='rg-vip',nm=document.getElementById('vnm'),tl=document.getElementById('vtl'),st=document.getElementById('vstat');
+  if(!nm)return;
+  function get(){try{return JSON.parse(localStorage.getItem(K)||'null');}catch(e){return null;}}
+  function put(v){try{if(v)localStorage.setItem(K,JSON.stringify(v));else localStorage.removeItem(K);return true;}catch(e){return false;}}
+  var v=get();if(v){nm.value=v.n||'';tl.value=v.t||'';}
+  document.getElementById('vlag').addEventListener('click',function(){
+    var t=tl.value.replace(/[^\d+ ]/g,'').trim();
+    if(t.replace(/\D/g,'').length<8){st.textContent='Nummeret ser for kort ut. Sjekk det og prøv igjen.';return;}
+    st.textContent=put({n:nm.value.trim(),t:t})?'Lagret på denne enheten.':'Kunne ikke lagre. Sjekk at nettleseren tillater lagring.';
+  });
+  document.getElementById('vslett').addEventListener('click',function(){nm.value='';tl.value='';put(null);st.textContent='Fjernet.';});
 })();
 </script>
 </body>

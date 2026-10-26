@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<!--
+  © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no
+  Alle rettigheter forbeholdt. Kopiering uten skriftlig tillatelse er ikke tillatt.
+  Opprinnelsesmerke: rg-2026-10-nyttig-diabetes-nyttig-info-6ded
+-->
+<meta name="author" content="Thomas Reinertsen, Reinertsengruppen">
+<meta name="copyright" content="© 2026 Reinertsengruppen">
+<meta name="rg-origin" content="rg-2026-10-nyttig-diabetes-nyttig-info-6ded">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sykdom, reise og fest – Reinertsengruppen</title>
+<meta name="description" content="Sykdom, reise, fest og små barn: det som er greit å vite i tillegg til mat og pumpe. Fra norske kilder, med lenker.">
+<style>
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(../../../fonts/manrope-latin-200-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(../../../fonts/manrope-latin-400-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(../../../fonts/manrope-latin-600-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(../../../fonts/manrope-latin-800-normal.woff2) format("woff2");}
+  :root {
+    --bg:#f6f9ff; --fg:#0f172a; --muted:#5b6b82; --line:#e3eaf5; --card:#ffffff;
+    --a:#2563eb; --b:#7c3aed; --c:#14b8a6; --ok:#1fa971; --bad:#d64545;
+    --bld:#1b2440; --win-off:#cfe4f7; --win-on:#cfe4f7; --glow:none;
+  }
+  body.night-icon { --win-off:#2a3558; --win-on:#ffd36b; --glow:drop-shadow(0 0 2px rgba(255,190,70,.9)); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; overflow-x:hidden; }
+  body::before, body::after { content:""; position:fixed; border-radius:50%; filter:blur(90px); opacity:.5; z-index:-1; }
+  body::before { width:55vmax; height:55vmax; background:#cfe0ff; top:-22vmax; right:-18vmax; }
+  body::after  { width:45vmax; height:45vmax; background:#c8f2ea; bottom:-20vmax; left:-15vmax; }
+  button { font:inherit; color:inherit; cursor:pointer; }
+  header { position:sticky; top:env(safe-area-inset-top,0px); z-index:10; background:rgba(246,249,255,.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
+  nav a:hover, nav a[aria-current] { color:var(--fg); }
+  .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
+  .brand svg { height:42px; width:auto; display:block; overflow:visible; }
+  .bld { fill:var(--bld); } .w { fill:var(--win-off); } .w.on { fill:var(--win-on); filter:var(--glow); }
+  .wordmark { font-weight:200; font-size:1.25rem; letter-spacing:-.03em; line-height:1; position:relative; padding-bottom:6px; white-space:nowrap; }
+  .wordmark b { font-weight:800; }
+  .wordmark::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:100%; background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
+  .wordmark::before { content:""; position:absolute; left:0; bottom:-2px; width:20px; height:6px; border-radius:6px; background:var(--a); box-shadow:0 0 10px rgba(37,99,235,.6); }
+  @media (max-width:560px) { .bar { flex-wrap:wrap; row-gap:6px; } .brand svg { height:36px; } .wordmark { font-size:1.05rem; } nav { width:100%; } nav a { margin:0 16px 0 0; } }
+
+  main { max-width:1040px; margin:0 auto; padding:26px 20px 40px; }
+  h1 { font-size:clamp(2rem,7.4vw,3.4rem); line-height:1.04; margin:0 0 6px; letter-spacing:-.045em; font-weight:800; }
+  h1 em { font-style:normal; background:linear-gradient(90deg,#f97316,#ec4899 50%,#7c3aed); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead { color:var(--muted); font-size:1.08rem; margin:0 0 20px; max-width:560px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:20px; box-shadow:0 6px 22px rgba(15,23,42,.05); }
+  .panel h2 { margin:0 0 12px; font-size:1.15rem; letter-spacing:-.02em; font-weight:800; }
+  .btn { border:0; border-radius:14px; padding:12px 18px; font-weight:800; background:linear-gradient(90deg,var(--a),var(--b)); color:#fff; min-height:48px; box-shadow:0 8px 20px rgba(37,99,235,.25); display:inline-flex;align-items:center;justify-content:center;text-decoration:none; }
+  .fine { margin-top:18px; color:var(--muted); font-size:.82rem; line-height:1.6; }
+  .fine a { color:var(--a); }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } }
+
+  .dd{position:relative;display:inline-block;margin-left:18px}
+  nav .dd>.ddb{font:inherit;font-size:.95rem;font-weight:600;color:var(--muted);background:none;border:0;padding:4px 0;cursor:pointer}
+  nav .dd>.ddb:hover,nav .dd>.ddb[aria-expanded="true"],nav .dd>.ddb.cur{color:var(--fg)}
+  .ddb::after{content:"";display:inline-block;margin-left:6px;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .2s}
+  .ddb[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}
+  .ddm{position:absolute;top:calc(100% + 8px);left:-12px;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);z-index:30}
+  .ddm[hidden]{display:none}
+  nav .ddm a{display:block;margin:0;padding:10px 12px;border-radius:10px;color:var(--fg);font-weight:700}
+  nav .ddm a small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
+  nav .ddm a:hover,nav .ddm a:focus-visible{background:#eef4ff;outline:none}
+  nav .ddm a[aria-current]{background:#eef4ff}
+  .pfoot{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.9rem}
+  .pfoot a{color:var(--muted)}
+  .dd,.ddb{white-space:nowrap}
+  nav a{white-space:nowrap}
+  @media (max-width:560px){nav{flex-wrap:wrap;row-gap:4px} nav a{margin:0 12px 0 0} .dd{margin:0 12px 0 0}}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:12px}
+  @media (max-width:820px){.tiles{grid-template-columns:1fr}}
+  .tile{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:24px;text-decoration:none;color:var(--fg);box-shadow:0 6px 22px rgba(15,23,42,.05);transition:transform .15s,box-shadow .15s,border-color .15s;min-height:190px}
+  .tile:hover,.tile:focus-visible{transform:translateY(-3px);box-shadow:0 14px 34px rgba(37,99,235,.16);border-color:var(--a);outline:none}
+  .tile .ic{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;margin-bottom:6px}
+  .tile .ic svg{width:34px;height:34px}
+  .tile b{font-size:1.35rem;letter-spacing:-.02em;font-weight:800}
+  .tile span.d{color:var(--muted);font-size:1rem}
+  .tile .go{margin-top:auto;color:var(--a);font-weight:800}
+  @media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+
+  .grp{margin:30px 0 0;font-size:.82rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .grp:first-of-type{margin-top:22px}
+  .new{display:inline-block;vertical-align:middle;margin-left:8px;font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,var(--a),var(--b));padding:2px 9px;border-radius:999px;position:relative;top:-2px}
+
+  .back{display:inline-block;margin:0 0 10px;color:var(--a);font-weight:700;text-decoration:none;padding:8px 0;min-height:44px}
+  .back:hover{text-decoration:underline}
+  .col{max-width:760px}
+  .stack{display:grid;gap:20px;margin-top:18px}
+  .panel{scroll-margin-top:90px}
+  .panel h2{font-size:1.35rem}
+  .small{color:var(--muted);font-size:.95rem}
+  .foot{margin-top:22px;color:var(--muted);font-size:.88rem}
+  .foot a{color:var(--a)}
+  .nav2{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+  .nav2 a{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:2px solid var(--line);border-radius:999px;background:#fff;color:var(--fg);font-weight:700;font-size:.95rem;text-decoration:none}
+  .nav2 a:hover,.nav2 a:focus-visible{border-color:var(--a);color:var(--a);outline:none}
+  .dot-list,.ok-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
+  .dot-list li,.ok-list li{display:flex;gap:12px;align-items:flex-start;font-size:1.05rem;line-height:1.5}
+  .dot-list li::before{content:"";flex:none;width:10px;height:10px;margin:9px 6px 0 6px;border-radius:50%;background:var(--a)}
+  .ok-list li::before{content:"";flex:none;width:22px;height:22px;margin-top:3px;border-radius:50%;background:#dff5e8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a8a5a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/16px no-repeat}
+  .alert{margin:14px 0 0;padding:16px;border-radius:18px;background:#fdeaea;border:2px solid #f0b8b8;color:#6e1d1d}
+  .alert b{display:block;font-size:1.1rem;margin-bottom:6px}
+  .alert ul{margin:6px 0 0;padding-left:20px;display:grid;gap:6px}
+  .alert a{color:#6e1d1d;font-weight:800}
+  .warn{margin:16px 0 0;padding:14px 16px;border-radius:16px;background:#fff4d6;border:2px solid #f0b429;font-size:1rem;font-weight:600}
+  .note{background:#eef4ff;border:1px solid #c9dafc;border-radius:16px;padding:12px 14px;margin:14px 0 0;font-size:.97rem}
+  .kilde{margin:14px 0 0;color:var(--muted);font-size:.85rem}
+  .kilde a{color:var(--a)}
+  details.det{border:1px solid var(--line);border-radius:16px;background:#fff;margin-top:10px;overflow:hidden}
+  details.det summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:800;font-size:1.05rem;min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  details.det summary::-webkit-details-marker{display:none}
+  details.det summary::after{content:"";flex:none;width:9px;height:9px;border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+  details.det[open] summary::after{transform:rotate(-135deg)}
+  details.det summary:focus-visible{outline:3px solid var(--a);outline-offset:-3px}
+  details.det .in{padding:0 16px 16px}
+  details.det .in .dot-list{margin-top:0}
+  .conv{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:12px}
+  .conv label{display:grid;gap:6px;font-weight:700;font-size:.9rem;color:var(--muted)}
+  .conv input{font:inherit;font-size:1.2rem;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;color:var(--fg);width:100%;min-height:52px}
+  .conv input:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+  dl.ord{margin:12px 0 0;display:grid;gap:0}
+  dl.ord dt{font-weight:800;margin-top:14px;font-size:1.05rem}
+  dl.ord dt:first-child{margin-top:0}
+  dl.ord dd{margin:2px 0 0;color:#2c3a52;font-size:1rem;line-height:1.5}
+  .src{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+  .src a{color:var(--a);font-weight:700;overflow-wrap:anywhere}
+  .src span{display:block;color:var(--muted);font-size:.88rem}
+  .tag{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#7a4b00;background:#fff4d6;border:1px solid #f0d58a;padding:3px 10px;border-radius:999px;margin:0 0 10px}
+  [hidden]{display:none!important}
+  .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
+  .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
+  .rgstrip div{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.88rem;color:var(--muted)}
+  .rgstrip i{flex:none;width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:.8rem}
+  .rgstrip a{color:var(--a)}
+  @media (min-width:561px){.ddm{left:auto;right:-4px}}
+  @media (max-width:560px){.ddm{min-width:170px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="brand" href="../../../index.html" aria-label="Reinertsengruppen">
+      <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
+      <span class="wordmark"><b>Reinertsen</b>gruppen</span>
+    </a>
+    <nav>
+      <a href="../../../index.html#om">Om oss</a>
+      <a href="../../../index.html#kontakt">Kontakt</a>
+      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="../../apper/index.html">Apper<small>Fyret og flere</small></a><a href="../../hjelpemidler/index.html" aria-current="page">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
+    </nav>
+  </div>
+</header>
+
+<main data-rg="rg-2026-10-nyttig-diabetes-nyttig-info-6ded">
+  <a class="back" href="../index.html">← Diabetes</a>
+  <div class="col">
+  <h1>Sykdom, reise <em>og fest.</em></h1>
+  <p class="lead">Det som er greit å vite i tillegg til mat og pumpe: sykdom, reise, fest og små barn. Fra norske kilder, med lenker.</p>
+  <ul class="nav2" aria-label="Hopp til"><li><a href="#haster">Det haster</a></li><li><a href="#sykdom">Sykdom</a></li><li><a href="#reise">Reise</a></li><li><a href="#ungdom">Ungdom og alkohol</a></li><li><a href="#barnehage">Små barn</a></li><li><a href="#fakta">Fakta</a></li><li><a href="#ord">Ord og uttrykk</a></li><li><a href="#sporsmal">Spør teamet</a></li></ul>
+  <div class="stack">
+    <section class="panel" id="haster" aria-labelledby="h-haster">
+      <h2 id="h-haster">Det haster</h2>
+      <div class="alert" role="note">
+        <b>Ring 113 med en gang hvis barnet</b>
+        <ul>
+          <li>er slapt, ikke svarer eller ikke er helt våkent</li>
+        </ul>
+        <p style="margin:10px 0 0">Ring også foreldrene. Gi aldri mat eller drikke til et barn som ikke er helt våkent, og gi aldri insulin ved føling.</p>
+      </div>
+      <ul class="dot-list"><li><span>Sykdom som ikke kan vente til dagtid: legevakt <b>116 117</b>.</span></li><li><span>Alvorlig akutt sykdom: <b>113</b>.</span></li><li><span>Spør diabetesteamet etter en skriftlig plan for føling og sykdom, og ha nummeret til teamet lett tilgjengelig.</span></li></ul><p class="kilde">Kilde: <a href="https://www.diabetes.no/globalassets/om-diabetes/barn/skole-og-barnehage/hefte_min-barnehagehverdag-med-diabetes.pdf" target="_blank" rel="noopener">Diabetesforbundet: Min barnehagehverdag med diabetes</a></p></section>
+    <section class="panel" id="sykdom" aria-labelledby="h-sykdom">
+      <h2 id="h-sykdom">Når barnet er syk</h2>
+      <p class="small" style="margin:0">Barn med diabetes blir ikke oftere akutt syke enn andre barn. Men når de blir syke, trenger dere å følge ekstra med.</p>
+      <ul class="dot-list"><li><span><b>Aldri stopp insulinet</b>, selv om barnet ikke spiser. Dosen kan måtte endres opp eller ned, men det avgjør dere sammen med diabetesteamet.</span></li><li><span><b>Mål oftere enn vanlig.</b> Sykehusenes råd er minst hver 2. til 3. time, også om natten.</span></li><li><span><b>Mål ketoner</b> i urinen når barnet er syk, særlig ved oppkast eller diaré.</span></li><li><span><b>Sørg for nok å drikke.</b> Ved oppkast kan små mengder sukkerholdig drikke, som saft eller sportsdrikk, erstatte måltidene.</span></li><li><span><b>Ring sykehuset tidlig.</b> Terskelen for å ta kontakt skal være lav, særlig ved oppkast og diaré.</span></li><li><span><b>Etter sykdom</b> kan insulinbehovet være lavere i en til to uker. Fortsett å måle ofte.</span></li></ul><div class="warn">Doser og prosenter står ikke her. Be diabetesteamet om en skriftlig plan for sykdom, med hvem dere ringer og når.</div>
+      <p class="kilde">Kilde: <a href="https://kvalitet.sshf.no/docs/pub/dok34549.htm" target="_blank" rel="noopener">Sørlandet sykehus: Akutt sykdom og diabetes</a> · <a href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/insulinbehandling-ved-infeksjoner" target="_blank" rel="noopener">NHI: Insulinbehandling ved infeksjoner</a></p></section>
+    <section class="panel" id="reise" aria-labelledby="h-reise">
+      <h2 id="h-reise">På reise</h2>
+      <p class="small" style="margin:0">Velg en del for å åpne den.</p>
+      <details class="det" open><summary>Før avreise</summary><div class="in"><ul class="dot-list"><li><span>Skaff internasjonalt ID-kort for diabetes fra Diabetesforbundet.</span></li><li><span>Sjekk at reiseforsikringen dekker diabetes. Hvis ikke, kan dere trenge en egen forsikring.</span></li><li><span>Reiser dere i Europa: bestill europeisk helsetrygdkort fra Helfo.</span></li><li><span>Lær de dere reiser med å kjenne igjen lavt blodsukker, og hvordan nødmedisin (glukagon) brukes.</span></li><li><span>Snakk med legen om hva dere gjør ved oppkast, diaré og feber, og om dere bør ha med noe mot diaré.</span></li></ul></div></details><details class="det"><summary>Dette tar dere med</summary><div class="in"><ul class="dot-list"><li><span>Nok insulin og utstyr til hele turen, og i tillegg reserve.</span></li><li><span>Blodsukkermåler og teststrimler. Ekstra batteri til pumpen.</span></li><li><span>Insulinpenn som reserve, selv om barnet bruker pumpe.</span></li><li><span>Druesukker og annen sukkerholdig mat for føling.</span></li><li><span>Kjøleveske eller termos til insulin. Termometer hvis insulinet skal i kjøleskap.</span></li></ul></div></details><details class="det"><summary>Flyplass og fly</summary><div class="in"><ul class="dot-list"><li><span>Ha insulin og alt utstyr i <b>håndbagasjen</b>. Lasterommet kan bli iskaldt, og bagasje kan bli forsinket.</span></li><li><span>Ha medisinen i originalemballasjen med apotekets etikett og navn. Glukagon også.</span></li><li><span>Ha med legeerklæring på engelsk. Noen land krever stempel fra sykehus.</span></li><li><span>Pakk diabetesutstyret i egen veske, så det er lett å ta frem i sikkerhetskontrollen.</span></li><li><span><b>Ikke send pumpe eller sensor gjennom røntgen.</b> Produsentene har ulike råd om kroppsskanner og metalldetektor. Sjekk manualen, og be om manuell kontroll hvis dere er usikre.</span></li><li><span>Kontakt flyselskapet på forhånd om pumpe og sensor, siden de er trådløse.</span></li><li><span>Ta hurtigvirkende insulin først når maten står foran dere. Ha med matpakke og lettsukret mat.</span></li><li><span>Bruk gjerne to klokker, en for hjemmetid og en for tiden på reisemålet.</span></li></ul></div></details><details class="det"><summary>Tidssoner</summary><div class="in"><ul class="dot-list"><li><span>Nord eller sør: dosene justeres vanligvis ikke.</span></li><li><span>Øst eller vest: kryss flere tidssoner, og dosene må kanskje justeres. Avtal en plan med diabetesteamet før dere reiser.</span></li><li><span>Med pumpe: endre klokken når dere kommer fram. Det er tryggere med litt høyere blodsukker de første dagene enn for lavt.</span></li></ul></div></details><details class="det"><summary>Varme, kulde og oppbevaring av insulin</summary><div class="in"><ul class="dot-list"><li><span>Insulin tåler ikke frost, direkte sol eller høy temperatur. Ikke la det ligge i bilen.</span></li><li><span>Ved romtemperatur, opp til 30 grader, holder insulin vanligvis 4 til 6 uker. Sjekk pakningsvedlegget.</span></li><li><span>Kjøleskap på hotell kan fryse insulinet. Bruk termometer.</span></li><li><span>I kulde kan insulinpennen bæres tett inntil kroppen.</span></li><li><span>Blodsukkermåleren virker best mellom 15 og 35 grader. Kulde gir for lave verdier, og varme for høye.</span></li><li><span>Varme og sol øker opptaket av insulin og gir større fare for lavt blodsukker. Snakk med teamet om hva dere gjør i varmt vær. Drikk nok vann.</span></li></ul></div></details><details class="det"><summary>Andre land og andre enheter</summary><div class="in"><ul class="dot-list"><li><span>Norge bruker insulin med styrke 100 IE/ml. Noen land bruker 80 eller 40. Sprøyten må passe til styrken, ellers blir dosen feil.</span></li><li><span>Noen land oppgir blodsukker i mg/dl. Del tallet på 18 for å få mmol/L.</span></li></ul><div class="conv" role="group" aria-label="Regn om blodsukker">
+        <label for="mgdl">mg/dl<input id="mgdl" type="text" inputmode="decimal" placeholder="126" autocomplete="off"></label>
+        <label for="mmol">mmol/L<input id="mmol" type="text" inputmode="decimal" placeholder="7,0" autocomplete="off"></label>
+      </div><p class="small" id="convut" style="margin:8px 0 0" role="status"></p></div></details><p class="kilde">Kilde: <a href="https://nhi.no/livsstil/reise/type-1-diabetes-og-reise" target="_blank" rel="noopener">NHI: Type 1-diabetes og reise</a> · <a href="https://nhi.no/livsstil/reise/flyreiser-og-type-1-diabetes" target="_blank" rel="noopener">NHI: Flyreiser og type 1-diabetes</a></p></section>
+    <section class="panel" id="ungdom" aria-labelledby="h-ungdom">
+      <h2 id="h-ungdom">Ungdom, fest og alkohol</h2>
+      <p class="small" style="margin:0">For ungdom og foreldre. Her er fakta, så det er lettere å ta gode valg.</p>
+      <ul class="dot-list"><li><span>Alkohol <b>senker blodsukkeret</b>, fordi leveren ikke lager sukker mens den bryter ned alkohol. Risikoen er der så lenge det er alkohol i blodet.</span></li><li><span>Lavt blodsukker er <b>vanskeligere å merke</b> når man har drukket.</span></li><li><span>Føling kan ligne på å være full. Da kan hjelpen komme for sent. Derfor må de rundt deg vite hva de skal se etter.</span></li><li><span>Nødmedisin (glukagon) virker dårligere etter alkohol.</span></li></ul><h3 style="margin:18px 0 6px;font-size:1.05rem;font-weight:800">Dette hjelper</h3><ul class="ok-list"><li><span>Mål blodsukkeret mens du drikker.</span></li><li><span>Spis mat med karbohydrater før du legger deg, og mens du drikker.</span></li><li><span>Si fra til dem du er sammen med hva de skal se etter.</span></li><li><span>Unngå hjemmebrent og ren sprit. Det gir høy promille på kort tid.</span></li><li><span>Si fra til foreldre eller andre hjemme at du har drukket når du skal sove.</span></li><li><span>Snakk med diabetesteamet om hva som gjelder for deg, for eksempel om insulin om kvelden.</span></li></ul><p class="kilde">Kilde: <a href="https://kvalitet.sshf.no/docs/pub/dok34523.htm" target="_blank" rel="noopener">Sørlandet sykehus: Alkohol og diabetes</a></p></section>
+    <section class="panel" id="barnehage" aria-labelledby="h-bhg">
+      <h2 id="h-bhg">Små barn og barnehage</h2>
+      <p class="small" style="margin:0">Små barn kan ikke alltid si hvordan de har det. Da må de voksne se på hvordan barnet oppfører seg.</p>
+      <ul class="dot-list"><li><span>Tegn på lavt blodsukker kan være blekhet, sult eller tørste, vansker med å konsentrere seg og endret oppførsel. Tegnene er ulike fra barn til barn.</span></li><li><span>Barnet skal alltid få spise når blodsukkeret er lavt. Ha følingsmat i barnehagen, for eksempel juice, honning, rosiner og druesukker.</span></li><li><span>Barn med pumpe bør ha en insulinpenn tilgjengelig som reserve.</span></li><li><span>Barnet bør ha én fast voksen med ansvar. Avklar hvem som tar med utstyr og følingsmat på tur.</span></li><li><span>Vask hendene før måling. Urene hender kan gi feil verdi.</span></li><li><span>Foreldrene lærer opp de voksne og lager en plan for føling. Barnehagen setter av tid og informerer alle ansatte.</span></li><li><span>Gi beskjed på forhånd om annerledes dager, som turdager, karneval og avslutninger.</span></li></ul><p class="kilde">Kilde: <a href="https://www.diabetes.no/globalassets/om-diabetes/barn/skole-og-barnehage/hefte_min-barnehagehverdag-med-diabetes.pdf" target="_blank" rel="noopener">Diabetesforbundet: Min barnehagehverdag med diabetes</a></p></section>
+    <section class="panel" id="fakta" aria-labelledby="h-fakta">
+      <h2 id="h-fakta">Om type 1-diabetes</h2>
+      <ul class="dot-list"><li><span>Immunforsvaret angriper cellene som lager insulin. Sykdommen er livslang, og man trenger insulin hver dag.</span></li><li><span>Rundt 30 000 mennesker i Norge har type 1-diabetes. Over halvparten får diagnosen før de er 18 år.</span></li><li><span>Sykdommen starter ofte over få dager, med tørste, mye tissing, vekttap og dårlig allmenntilstand.</span></li><li><span>En sensor måler sukker i vevet omtrent hvert femte minutt.</span></li><li><span>Vanlig oppfølging er legekontroll hver tredje til fjerde måned, og en årskontroll.</span></li></ul><p class="kilde">Kilde: <a href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/type-1-diabetes" target="_blank" rel="noopener">NHI: Type 1-diabetes</a></p></section>
+    <section class="panel" id="ord" aria-labelledby="h-ord">
+      <h2 id="h-ord">Ord og uttrykk</h2>
+      <dl class="ord">
+        <dt>Føling, lavt blodsukker</dt><dd>Blodsukker under 4 mmol/L.</dd>
+        <dt>Høyt blodsukker</dt><dd>Over det som er ønsket. Diabetesforbundet sier at 4 til 10 mmol/L er et godt område.</dd>
+        <dt>mmol/L og mg/dl</dt><dd>To måter å oppgi blodsukker på. Norge bruker mmol/L. Del mg/dl på 18.</dd>
+        <dt>Sensor, CGM</dt><dd>Måler sukker i vevet hele døgnet.</dd>
+        <dt>Bolus</dt><dd>Insulin til et måltid, eller en ekstra dose for å korrigere.</dd>
+        <dt>Basal</dt><dd>Det jevne insulinet pumpen gir hele døgnet.</dd>
+        <dt>Karbohydratforhold og korreksjonsfaktor</dt><dd>Tall fra diabetesteamet som pumpen bruker. Se <a href="../tallene/index.html">Slik henger tallene sammen</a>.</dd>
+        <dt>HbA1c</dt><dd>Langtidssukker. En blodprøve som viser hvordan blodsukkeret har vært over de siste ukene.</dd>
+        <dt>Ketoner</dt><dd>Stoffer kroppen lager når den mangler insulin. Kan måles i urin. Mange ketoner sammen med syke tegn er farlig.</dd>
+        <dt>Glukagon</dt><dd>Nødmedisin som får kroppen til å frigjøre sukker ved alvorlig føling.</dd>
+        <dt>IE</dt><dd>Internasjonale enheter. Måleenheten for insulin.</dd>
+      </dl>
+    </section>
+    <section class="panel" id="sporsmal" aria-labelledby="h-spm">
+      <span class="tag">Forslag</span>
+      <h2 id="h-spm">Spør diabetesteamet</h2>
+      <p class="small" style="margin:0">Spørsmål det kan være lurt å ta med til neste time. Listen er laget av meg, ikke av en offentlig kilde.</p>
+      <ul class="ok-list"><li><span>Hva gjør vi hvis barnet har oppkast eller diaré? Kan vi få en skriftlig plan?</span></li><li><span>Hvem ringer vi om natten og i helgene?</span></li><li><span>Skal vi ha nødmedisin (glukagon), og hvor skal den ligge?</span></li><li><span>Hva gjør vi hvis pumpen eller sensoren svikter?</span></li><li><span>Hva gjør vi på reise, og med tidssoner?</span></li><li><span>Kan dere hjelpe oss å lage en tiltaksplan til skolen eller barnehagen?</span></li><li><span>Hva slags oppfølging og kontroller skal vi regne med fremover?</span></li></ul></section>
+    <section class="panel" id="kilder" aria-labelledby="h-kilder">
+      <h2 id="h-kilder">Kilder</h2>
+      <ul class="src"><li><a href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/type-1-diabetes" target="_blank" rel="noopener">NHI: Type 1-diabetes</a></li><li><a href="https://nhi.no/livsstil/reise/type-1-diabetes-og-reise" target="_blank" rel="noopener">NHI: Type 1-diabetes og reise</a></li><li><a href="https://nhi.no/livsstil/reise/flyreiser-og-type-1-diabetes" target="_blank" rel="noopener">NHI: Flyreiser og type 1-diabetes</a></li><li><a href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/insulinbehandling-ved-infeksjoner" target="_blank" rel="noopener">NHI: Insulinbehandling ved infeksjoner</a></li><li><a href="https://kvalitet.sshf.no/docs/pub/dok34549.htm" target="_blank" rel="noopener">Sørlandet sykehus: Akutt sykdom og diabetes</a></li><li><a href="https://kvalitet.sshf.no/docs/pub/dok34523.htm" target="_blank" rel="noopener">Sørlandet sykehus: Alkohol og diabetes</a></li><li><a href="https://kvalitet.sshf.no/docs/pub/dok34527.htm" target="_blank" rel="noopener">Sørlandet sykehus: Reise og diabetes</a></li><li><a href="https://www.diabetes.no/globalassets/om-diabetes/barn/skole-og-barnehage/hefte_min-barnehagehverdag-med-diabetes.pdf" target="_blank" rel="noopener">Diabetesforbundet: Min barnehagehverdag med diabetes</a></li><li><a href="https://www.diabetes.no/globalassets/om-diabetes/barn/skole-og-barnehage/hefte_min-skolehverdag-med-diabetes---brosjyre.pdf" target="_blank" rel="noopener">Diabetesforbundet: Min skolehverdag med diabetes</a></li></ul></section>
+  </div>
+  <p class="foot">Siden samler informasjon fra norske kilder og er ikke medisinsk utstyr. Den erstatter ikke råd fra diabetesteamet, og den inneholder ingen doser. Ved akutt sykdom, ring legevakt 116 117, eller 113 i nødsituasjon. Se <a href="../../../personvern/index.html">personvern</a>.</p>
+  </div>
+</main>
+
+<div class="rgstrip"><div><i>R</i><span>Laget av Reinertsengruppen. Innholdet er opphavsrettsbeskyttet. Spørsmål eller innspill? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Nyttig">post@reinertsengruppen.no</a></span></div></div>
+<footer class="pfoot"><a href="../../../index.html">Reinertsengruppen</a> · <a href="../../../personvern/index.html">Personvern</a><span class="rgsig">Laget av Thomas Reinertsen. Tekster, bilder og kode tilhører Reinertsengruppen og kan ikke kopieres eller brukes på andre nettsider uten skriftlig tillatelse.</span></footer>
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  var rand=rng(7), msvg=document.getElementById('mark'), wins=[];
+  var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
+  function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);msvg.appendChild(e);return e;}
+  el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
+  blds.forEach(function(b){el('rect',{'class':'bld',x:b[0],y:b[1],width:b[2],height:b[3]});var ww=8,wh=10,gx=7,gy=9,m=9,cols=Math.max(1,Math.floor((b[2]-2*m+gx)/(ww+gx))),total=cols*ww+(cols-1)*gx,sx=b[0]+(b[2]-total)/2;
+    for(var r=0;;r++){var y=b[1]+m+r*(wh+gy);if(y+wh>b[1]+b[3]-b[4])break;for(var c=0;c<cols;c++){var w=el('rect',{'class':'w',x:sx+c*(ww+gx),y:y,width:ww,height:wh,rx:1});w._on=rand()<0.7;wins.push(w);}}});
+  el('rect',{'class':'bld',x:30,y:340,width:340,height:6,rx:3});
+  (function(){var h=new Date().getHours(),night=!(h>=7&&h<19);document.body.classList.toggle('night-icon',night);wins.forEach(function(w){w.classList.toggle('on',night&&w._on);});})();
+})();
+(function(){var b=document.querySelector('.ddb'),m=document.querySelector('.ddm');if(!b||!m)return;
+function set(o){b.setAttribute('aria-expanded',o);m.hidden=!o;}
+b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
+})();
+</script>
+
+<script>
+(function(){
+  var a=document.getElementById('mgdl'), b=document.getElementById('mmol'), u=document.getElementById('convut');
+  function num(v){v=String(v).replace(',','.').trim();if(!v||!/^\d+(\.\d+)?$/.test(v))return null;return parseFloat(v);}
+  function fmt(n,d){return n.toFixed(d).replace('.',',');}
+  a.addEventListener('input',function(){var n=num(a.value);if(n===null){b.value='';u.textContent=a.value?'Skriv et tall.':'';return;}b.value=fmt(n/18,1);u.textContent=fmt(n,0)+' mg/dl er '+fmt(n/18,1)+' mmol/L.';});
+  b.addEventListener('input',function(){var n=num(b.value);if(n===null){a.value='';u.textContent=b.value?'Skriv et tall.':'';return;}a.value=fmt(n*18,0);u.textContent=fmt(n,1)+' mmol/L er '+fmt(n*18,0)+' mg/dl.';});
+})();
+</script>
+</body>
+</html>
