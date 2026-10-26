@@ -2,6 +2,14 @@
 <html lang="no">
 <head>
 <meta charset="utf-8">
+<!--
+  © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no
+  Alle rettigheter forbeholdt. Kopiering uten skriftlig tillatelse er ikke tillatt.
+  Opprinnelsesmerke: rg-2026-10-nyttig-dagsplan-3c6d
+-->
+<meta name="author" content="Thomas Reinertsen, Reinertsengruppen">
+<meta name="copyright" content="© 2026 Reinertsengruppen">
+<meta name="rg-origin" content="rg-2026-10-nyttig-dagsplan-3c6d">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dagsplan – Reinertsengruppen</title>
 <meta name="description" content="Dagsplan med bilder for morgen, etter skole og kveld. Trykk på rutene når de er gjort. Kan legges på hjemskjermen.">
@@ -191,6 +199,13 @@
   .dp-inst h2{margin:0 0 6px;font-size:1.15rem;letter-spacing:-.02em;font-weight:800}
   .dp-inst ol{margin:8px 0 12px;padding-left:1.3em}.dp-inst ol li{margin:4px 0}
   .dp-lab{display:block}
+  .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
+  .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
+  .rgstrip div{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.88rem;color:var(--muted)}
+  .rgstrip i{flex:none;width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:.8rem}
+  .rgstrip a{color:var(--a)}
+  @media (min-width:561px){.ddm{left:auto;right:-4px}}
+  @media (max-width:560px){.ddm{min-width:170px}}
 </style>
 <meta name="theme-color" content="#f6f9ff">
 <link rel="manifest" href="manifest.webmanifest">
@@ -208,13 +223,13 @@
     </a>
     <nav>
       <a href="../../index.html#om">Om oss</a>
-      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="../apper/index.html">Apper<small>Fyret og flere</small></a><a href="../hjelpemidler/index.html" aria-current="page">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
       <a href="../../index.html#kontakt">Kontakt</a>
+      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="../apper/index.html">Apper<small>Fyret og flere</small></a><a href="../hjelpemidler/index.html" aria-current="page">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
     </nav>
   </div>
 </header>
 
-<main>
+<main data-rg="rg-2026-10-nyttig-dagsplan-3c6d">
   <a class="back" href="../hjelpemidler/index.html">← Hjelpemidler</a>
   <h1>Dags<em>plan.</em></h1>
   <p class="lead">Trykk på en rute når den er gjort. Planen nullstilles av seg selv hver dag, og alt blir bare lagret på denne enheten.</p>
@@ -235,7 +250,7 @@
   <p class="fine">Planen er et hverdagsverktøy og ikke et behandlings- eller pedagogisk opplegg. Den lagres bare i nettleseren din og sendes ingen steder. Se <a href="../../personvern/index.html">personvern</a>.</p>
 </main>
 
-<footer class="pfoot"><a href="../../index.html">Reinertsengruppen</a> · <a href="../../personvern/index.html">Personvern</a></footer>
+<footer class="pfoot"><a href="../../index.html">Reinertsengruppen</a> · <a href="../../personvern/index.html">Personvern</a><span class="rgsig">Laget av Thomas Reinertsen. Tekster, bilder og kode tilhører Reinertsengruppen og kan ikke kopieres eller brukes på andre nettsider uten skriftlig tillatelse.</span></footer>
 <script>
 (function(){
   function $(i){return document.getElementById(i);}

@@ -2,6 +2,14 @@
 <html lang="no">
 <head>
 <meta charset="utf-8">
+<!--
+  © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no
+  Alle rettigheter forbeholdt. Kopiering uten skriftlig tillatelse er ikke tillatt.
+  Opprinnelsesmerke: rg-2026-10-nyttig-fyret-8c1b
+-->
+<meta name="author" content="Thomas Reinertsen, Reinertsengruppen">
+<meta name="copyright" content="© 2026 Reinertsengruppen">
+<meta name="rg-origin" content="rg-2026-10-nyttig-fyret-8c1b">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fyret – Reinertsengruppen</title>
 <meta name="description" content="Fyret viser været og sjøen ved Flekkerøya akkurat nå: vind, bølger, sjøtemperatur og sol opp og ned.">
@@ -113,6 +121,13 @@
   .pfoot{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.9rem}
   .pfoot a{color:var(--muted)}
   @media (max-width:560px){.dd{margin:0 16px 0 0}}
+  .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
+  .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
+  .rgstrip div{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.88rem;color:var(--muted)}
+  .rgstrip i{flex:none;width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:.8rem}
+  .rgstrip a{color:var(--a)}
+  @media (min-width:561px){.ddm{left:auto;right:-4px}}
+  @media (max-width:560px){.ddm{min-width:170px}}
 </style>
 </head>
 <body>
@@ -126,13 +141,13 @@
     </div>
     <nav>
       <a href="../../index.html#om">Om oss</a>
-      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="../apper/index.html" aria-current="page">Apper<small>Fyret og flere</small></a><a href="../hjelpemidler/index.html">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
       <a href="../../index.html#kontakt">Kontakt</a>
+      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="../apper/index.html" aria-current="page">Apper<small>Fyret og flere</small></a><a href="../hjelpemidler/index.html">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
     </nav>
   </div>
 </header>
 
-<main>
+<main data-rg="rg-2026-10-nyttig-fyret-8c1b">
   <section class="hero">
     <div>
       <span class="tag"><span class="dot"></span> <span id="tagTxt">Henter forholdene …</span></span>
@@ -188,7 +203,7 @@
     Værdata og havdata fra <a href="https://www.met.no/" target="_blank" rel="noopener">Meteorologisk institutt (MET Norway)</a>, lisens <a href="https://creativecommons.org/licenses/by/4.0/deed.no" target="_blank" rel="noopener">CC BY 4.0</a>. Prognosene oppdateres omtrent hver time. Sjøtall gjelder åpent vann sør for øya og kan avvike inne i havner og viker. Sol opp og ned er regnet ut for Flekkerøya.<br>Fyret er ikke en varslingstjeneste. Vurderingen på siden er en enkel pekepinn av tallene og kan ta feil. For sikkerhet til sjøs, følg <a href="https://www.yr.no/" target="_blank" rel="noopener">yr.no</a> og offisielle varsler, og bruk eget skjønn.
   </p>
 </main>
-<footer class="pfoot"><a href="../../index.html">Reinertsengruppen</a> · <a href="../../personvern/index.html">Personvern</a></footer>
+<footer class="pfoot"><a href="../../index.html">Reinertsengruppen</a> · <a href="../../personvern/index.html">Personvern</a><span class="rgsig">Laget av Thomas Reinertsen. Tekster, bilder og kode tilhører Reinertsengruppen og kan ikke kopieres eller brukes på andre nettsider uten skriftlig tillatelse.</span></footer>
 
 <script>(function(){var of=window.fetch;window.fetch=function(u){u=String(u);if(u.indexOf('api.met.no')<0)return of.apply(this,arguments);
 var sea=u.indexOf('ocean')>-1,now=new Date();now.setUTCMinutes(0,0,0);var out=[];
