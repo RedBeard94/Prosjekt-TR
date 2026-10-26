@@ -1,0 +1,32 @@
+{
+  "name": "Diabetes",
+  "short_name": "Diabetes",
+  "description": "Hjelpemidler for diabetikere: Tallerkenen, trendpiler, innstillinger, manualer og mer.",
+  "lang": "nb",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#f6f9ff",
+  "background_color": "#f6f9ff",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

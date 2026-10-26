@@ -167,10 +167,34 @@
   .rgstrip a{color:var(--a)}
   @media (min-width:561px){.ddm{left:auto;right:-4px}}
   @media (max-width:560px){.ddm{min-width:170px}}
+  .sos{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;background:#fde8e8;border:2px solid #b91c1c;border-radius:16px;padding:10px 14px;margin:0 0 6px;text-decoration:none;color:var(--fg);min-height:48px}
+  .sos b{color:#b91c1c;font-weight:800;flex:none}.sos span{color:var(--muted);font-size:.92rem;flex:1;min-width:0;line-height:1.3}.sos .ch{flex:none;margin-left:auto;color:#b91c1c;font-weight:800;font-size:1.6rem;line-height:1}
+  .grp{margin:26px 0 10px;font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+  @media (max-width:360px){.rows{grid-template-columns:1fr}}
+  .row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px;text-decoration:none;color:var(--fg);min-height:68px;min-width:0}
+  .row:hover,.row:focus-visible{border-color:var(--a);outline:none}
+  .row .ic{flex:none;width:44px;height:44px;border-radius:13px;display:grid;place-items:center}
+  .row .ic svg{width:26px;height:26px}
+  .tx{flex:1;min-width:0}.tx b{display:block;font-weight:800;line-height:1.25}.tx span{display:block;color:var(--muted);font-size:.9rem;line-height:1.35}
+  .row .ch{flex:none;color:var(--a);font-size:1.6rem;font-weight:800;line-height:1}
+  .foot{margin-top:30px;color:var(--muted);font-size:.85rem;line-height:1.6}.foot a{color:var(--a)}
+  .dp-inst{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-top:30px}
+  @media(max-width:560px){.dp-inst{grid-template-columns:1fr}}
+  .dp-wall{display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(160deg,#1e3a8a,#6d28d9 60%,#be185d);border-radius:26px;padding:22px 34px;color:#fff;font-size:.8rem;font-weight:600}
+  .dp-wall svg{width:72px;height:72px;border-radius:17px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+  .dp-inst h2{margin:0 0 6px;font-size:1.15rem;letter-spacing:-.02em;font-weight:800}
+  .dp-inst ol{margin:8px 0 12px;padding-left:1.3em}.dp-inst ol li{margin:4px 0}
 </style>
 <meta name="theme-color" content="#2563eb">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Tallerkenen">
+<meta name="theme-color" content="#f6f9ff">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Diabetes">
 </head>
 <body>
 <header>
@@ -189,23 +213,37 @@
 
 <main data-rg="rg-2026-10-nyttig-diabetes-b63a">
   <h1>Hjelpemidler for <em>diabetikere.</em></h1>
-  <p class="lead">Hos oss i Reinertsengruppen ønsker vi å hjelpe alle med diabetes til en lettere hverdag, både barn, voksne og familiene rundt.</p>
-  <p class="lead" style="margin-top:-8px">Her samler vi enkle verktøy og nyttige lenker på ett sted, så du slipper å lete. Velg hva du trenger.</p>
-  <div class="tiles">
-    <a class="tile" href="tallerken/index.html"><span class="ic" style="background:#e6efff"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg></span><b>Tallerkenen</b><span class="d">Finn ut hvor mange gram karbohydrat det er i maten.</span><span class="go">Åpne →</span></a>
-    <a class="tile" href="mat-og-blodsukker/index.html"><span class="ic" style="background:#fff1e6"><svg viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M4 16c3 0 3-9 6-9s2 9 5 9 3-6 5-6"/></svg></span><b>Mat og blodsukker</b><span class="d">Hvorfor samme mat kan gi ulik kurve. For voksne og barn.</span><span class="go">Åpne →</span></a>
-    <a class="tile" href="manualer/index.html"><span class="ic" style="background:#ece6ff"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 18.5V5.5M8 7h8"/></svg></span><b>Manualer</b><span class="d">Brukerveiledninger for insulinpumpe og sensor.</span><span class="go">Åpne →</span></a>
-    <a class="tile" href="rettigheter/index.html"><span class="ic" style="background:#fdeaf3"><svg viewBox="0 0 24 24" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></span><b>Rettigheter og støtte</b><span class="d">Støtte fra NAV og Helfo som ofte er aktuell for familier.</span><span class="go">Åpne →</span></a>
-    <a class="tile" href="trendpiler/index.html"><span class="ic" style="background:#fdeaf3"><svg viewBox="0 0 24 24" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16l5-5 4 3 7-8M15 6h5v5"/></svg></span><b>Trendpiler og automatikk</b><span class="d">Hva pilene på sensoren betyr, og hvordan pumpen justerer insulinet.</span><span class="go">Åpne →</span></a>
-    <a class="tile" href="innstillinger/index.html"><span class="ic" style="background:#e6efff"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg></span><b>Innstillinger og sjekkliste</b><span class="d">Dine egne tall samlet, og fire spørsmål før du bekrefter en bolus.</span><span class="go">Åpne →</span></a>
-    <a class="tile" href="info/index.html"><span class="ic" style="background:#dcf7f1"><svg viewBox="0 0 24 24" fill="none" stroke="#0f9e8a" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></span><b>Nyttig informasjon</b><span class="d">Gode sider, kontakter og nødnummer.</span><span class="go">Åpne →</span></a>
-  </div>
-  <section class="panel feedback" style="margin-top:22px" aria-label="Innspill">
-    <h2>Savner du noe?</h2>
-    <p style="margin:0 0 14px">Har du et godt innspill, eller savner du et hjelpemiddel her? Send meg gjerne en e-post, så ser jeg hva jeg kan få til. Ikke skriv helseopplysninger. Se <a href="../../personvern/index.html">personvern</a> for hvordan e-posten behandles.</p>
-    <a class="btn" href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Hjelpemidler%20for%20diabetikere">Send innspill på e-post</a>
+  <p class="lead">Enkle verktøy og nyttige lenker for deg med diabetes, og for familien rundt. Velg hva du trenger.</p>
+  <a class="sos" href="info/index.html"><b>Akutt?</b><span>Nødnumre og legevakt, ett trykk unna</span><span class="ch" aria-hidden="true">›</span></a>
+    <h2 class="grp">Hver dag</h2>
+    <div class="rows">
+      <a class="row" href="tallerken/index.html"><span class="ic" style="background:#e6efff"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg></span><span class="tx"><b>Tallerkenen</b><span>Tell karbohydrater i maten.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="innstillinger/index.html"><span class="ic" style="background:#e6efff"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg></span><span class="tx"><b>Innstillinger og sjekkliste</b><span>Dine tall og sjekkliste før bolus.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="trendpiler/index.html"><span class="ic" style="background:#fdeaf3"><svg viewBox="0 0 24 24" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16l5-5 4 3 7-8M15 6h5v5"/></svg></span><span class="tx"><b>Trendpiler og automatikk</b><span>Hva pilene og automatikken betyr.</span></span><span class="ch" aria-hidden="true">›</span></a>
+    </div>
+    <h2 class="grp">Lær mer</h2>
+    <div class="rows">
+      <a class="row" href="mat-og-blodsukker/index.html"><span class="ic" style="background:#fff1e6"><svg viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M4 16c3 0 3-9 6-9s2 9 5 9 3-6 5-6"/></svg></span><span class="tx"><b>Mat og blodsukker</b><span>Hvorfor samme mat gir ulik kurve.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="manualer/index.html"><span class="ic" style="background:#ece6ff"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 18.5V5.5M8 7h8"/></svg></span><span class="tx"><b>Manualer</b><span>Pumpe og sensor.</span></span><span class="ch" aria-hidden="true">›</span></a>
+    </div>
+    <h2 class="grp">Hjelp og støtte</h2>
+    <div class="rows">
+      <a class="row" href="rettigheter/index.html"><span class="ic" style="background:#fdeaf3"><svg viewBox="0 0 24 24" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></span><span class="tx"><b>Rettigheter og støtte</b><span>Støtte fra NAV og Helfo.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="info/index.html"><span class="ic" style="background:#dcf7f1"><svg viewBox="0 0 24 24" fill="none" stroke="#0f9e8a" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></span><span class="tx"><b>Nyttig informasjon</b><span>Kontakter og nødnummer.</span></span><span class="ch" aria-hidden="true">›</span></a>
+    </div>
+  <section class="panel dp-inst" id="instWrap" hidden>
+    <div class="dp-wall" aria-label="Slik ser ikonet ut på hjemskjermen"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><rect width="192" height="192" fill="url(#dg)"/><path d="M96 26C96 26 52 74 52 108a44 44 0 0 0 88 0C140 74 96 26 96 26z" fill="#fff"/><g fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M72 122l16-14 12 8 24-26"/><path d="M116 90h12v12"/></g></svg><span>Diabetes</span></div>
+    <div>
+      <h2>Legg Diabetes på hjemskjermen</h2>
+      <p>Da åpner du siden som en vanlig app, uten å skrive adresse. Sidene virker også uten nett etter at du har åpnet dem én gang.</p>
+      <ol>
+        <li><b>iPhone:</b> trykk på Del-knappen i Safari, og velg «Legg til på Hjem-skjerm».</li>
+        <li><b>Android:</b> åpne menyen i Chrome, og velg «Installer app» eller «Legg til på startskjermen».</li>
+      </ol>
+      <button class="btn" type="button" id="install">Legg på hjemskjermen</button>
+    </div>
   </section>
-  <p class="fine" style="margin-top:22px">Siden er ikke medisinsk utstyr og erstatter ikke råd fra diabetesteamet. Alt du legger inn i verktøyene blir bare på denne telefonen. Se <a href="../../personvern/index.html">personvern</a>.</p>
+  <p class="foot">Savner du noe? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Hjelpemidler%20for%20diabetikere">Send innspill på e-post</a> (ikke skriv helseopplysninger). Siden er ikke medisinsk utstyr og erstatter ikke råd fra diabetesteamet. Alt du legger inn blir bare på denne enheten. Se <a href="../../personvern/index.html">personvern</a>.</p>
 </main>
 
 <div class="rgstrip"><div><i>R</i><span>Laget av Reinertsengruppen. Innholdet er opphavsrettsbeskyttet. Spørsmål eller innspill? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Nyttig">post@reinertsengruppen.no</a></span></div></div>
@@ -232,6 +270,23 @@ function set(o){b.setAttribute('aria-expanded',o);m.hidden=!o;}
 b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
 document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
+})();
+</script>
+<script>
+(function(){
+  var wrap=document.getElementById('instWrap'),btn=document.getElementById('install');
+  if(wrap&&btn){
+    var standalone=false;try{standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;}catch(e){}
+    if(!standalone){
+      wrap.hidden=false;
+      var deferred=null;
+      window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;});
+      btn.addEventListener('click',function(){if(deferred){deferred.prompt();deferred=null;}});
+    }
+  }
+  if('serviceWorker' in navigator&&location.protocol==='https:'){
+    window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+  }
 })();
 </script>
 </body>
