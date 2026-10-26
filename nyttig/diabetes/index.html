@@ -168,6 +168,10 @@
   .vipf .btn.g{background:#fff;color:var(--a);border:2px solid var(--line);box-shadow:none}
   .snar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}
   @media(max-width:700px){.snar{grid-template-columns:1fr;gap:8px}}
+  @media(max-width:700px){.snar.tre{grid-template-columns:1fr 1fr}.snar.tre .sos{grid-column:1/-1}.snar.tre .vip{flex-direction:column;align-items:flex-start;gap:0;position:relative;padding-right:38px;justify-content:center}.snar.tre .vip .ch{position:absolute;right:10px;top:50%;transform:translateY(-50%);margin:0;font-size:1.3rem}}
+  #vips{display:contents}
+  @media(min-width:701px){.snar.tre{grid-template-columns:repeat(3,1fr)}}
+  .vip .nr{font-weight:800}
   .snar .sos,.snar .vip{margin:0;min-width:0;min-height:56px}
   main .sokbox{max-width:none;margin:0}
   main .sokbox input{min-height:58px;background:var(--card)}
@@ -251,9 +255,9 @@
 <main data-rg="rg-2026-10-nyttig-diabetes-b63a">
   <h1>Hjelpemidler for <em>diabetikere.</em></h1>
   <p class="lead">Enkle verktøy og nyttige lenker for deg med diabetes, og for familien rundt. Velg hva du trenger.</p>
-  <div class="snar">
+  <div class="snar" id="snar">
   <a class="sos" href="info/index.html"><b>Akutt?</b><span>Nødnumre og legevakt</span><span class="ch" aria-hidden="true">›</span></a>
-  <a class="vip" id="vip" href="info/index.html#viktig"><b>Viktig person</b><span id="viptx">Legg inn et nummer</span><span class="ch" id="vipch" aria-hidden="true">›</span></a>
+  <span id="vips"><a class="vip" href="info/index.html#viktig"><b>Viktig person</b><span>Legg inn et nummer</span><span class="ch" aria-hidden="true">›</span></a></span>
   </div>
   <div class="sokbox" role="search">
     <svg class="lupe" viewBox="0 0 24 24" fill="none" stroke="#5b6b82" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
@@ -414,9 +418,21 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 </script>
 <script>
 (function(){
-  var a=document.getElementById('vip');if(!a)return;
-  try{var v=JSON.parse(localStorage.getItem('rg-vip')||'null');
-    if(v&&v.t){a.href='tel:'+v.t.replace(/[^\d+]/g,'');a.querySelector('b').textContent=v.n||'Viktig person';var s=document.getElementById('viptx');s.textContent=v.t;s.className='nr';document.getElementById('vipch').textContent='\u260E';}
+  function fmt(t){var d=t.replace(/\D/g,'');return (d.length===8&&t.indexOf('+')<0)?d.replace(/(\d{3})(\d{2})(\d{3})/,'$1 $2 $3'):t;}
+  var box=document.getElementById('vips'),snar=document.getElementById('snar');if(!box)return;
+  try{
+    var l=JSON.parse(localStorage.getItem('rg-vip-liste')||'null');
+    if(!Array.isArray(l)){var o=JSON.parse(localStorage.getItem('rg-vip')||'null');l=[o&&o.t?o:null,null];}
+    l=l.filter(function(v){return v&&v.t;}).slice(0,2);
+    if(!l.length)return;
+    box.innerHTML='';
+    l.forEach(function(v){
+      var a=document.createElement('a');a.className='vip';a.href='tel:'+v.t.replace(/[^\d+]/g,'');
+      var b=document.createElement('b');b.textContent=v.n||'Viktig person';
+      var s=document.createElement('span');s.className='nr';s.textContent=fmt(v.t);
+      var c=document.createElement('span');c.className='ch';c.setAttribute('aria-hidden','true');c.textContent='\u260E';
+      a.appendChild(b);a.appendChild(s);a.appendChild(c);box.appendChild(a);});
+    if(l.length>1)snar.classList.add('tre');
   }catch(e){}
 })();
 </script>

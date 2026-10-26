@@ -166,6 +166,10 @@
   .vipf label{display:block;font-weight:700;font-size:.9rem;color:var(--muted);margin:10px 0 4px}
   .vipf .r{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
   .vipf .btn.g{background:#fff;color:var(--a);border:2px solid var(--line);box-shadow:none}
+  .vipf h3{margin:14px 0 0;font-size:1rem}
+  .vipf .slot+.slot{border-top:1px solid var(--line);margin-top:14px}
+  .vipf .kompakt{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:14px}.vipf .kompakt .tx{flex:1;min-width:90px}.vipf .kompakt b{display:block;font-size:1.1rem}.vipf .kompakt span{color:var(--muted)}
+  .vipf .kompakt{gap:8px}.vipf .kompakt .btn{min-height:44px;padding:8px 14px}
   [hidden]{display:none!important}
   .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
   .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
@@ -202,12 +206,28 @@
   <h1>Nyttig <em>informasjon.</em></h1>
   <p class="lead">Gode sider å starte med, og plass til dine egne telefonnumre.</p>
   <section class="panel vipf" id="viktig" aria-labelledby="hv" style="margin-bottom:20px">
-    <h2 id="hv">Viktig person</h2>
-    <p class="small" style="margin:0 0 8px">Legg inn en du kan ringe raskt, for eksempel mamma, pappa eller diabetessykepleier. Nummeret lagres bare på denne enheten og sendes ikke noe sted. Det vises i den blå stripen på diabetes-forsiden.</p>
-    <label for="vnm">Navn</label><input id="vnm" maxlength="40" autocomplete="off" placeholder="For eksempel Mamma">
-    <label for="vtl">Telefonnummer</label><input id="vtl" type="tel" inputmode="tel" maxlength="20" autocomplete="off" placeholder="000 00 000">
-    <div class="r"><button class="btn" id="vlag" type="button">Lagre</button><button class="btn g" id="vslett" type="button">Fjern</button></div>
-    <p class="small" id="vstat" role="status" style="margin:10px 0 0"></p>
+    <h2 id="hv">Viktige personer</h2>
+    <p class="small" style="margin:0 0 8px">Legg inn opptil to du kan ringe raskt, for eksempel mamma og pappa eller diabetessykepleier. Nummerne lagres bare på denne enheten og sendes ikke noe sted. De vises i de blå stripene på diabetes-forsiden.</p>
+    <div class="slot" data-i="0">
+      <div class="vis" hidden><div class="kompakt"><div class="tx"><b class="vn"></b><span class="vt"></span></div><button class="btn g endre" type="button">Endre</button><button class="btn g fjern" type="button">Fjern</button></div></div>
+      <div class="skjema">
+        <h3>Person 1</h3>
+        <label for="vnm0">Navn</label><input id="vnm0" class="inm" maxlength="40" autocomplete="off" placeholder="Mamma">
+        <label for="vtl0">Telefonnummer</label><input id="vtl0" class="itl" type="tel" inputmode="tel" maxlength="20" autocomplete="off" placeholder="000 00 000">
+        <div class="r"><button class="btn lag" type="button">Lagre</button></div>
+        <p class="small stat" role="status" style="margin:10px 0 0"></p>
+      </div>
+    </div>
+    <div class="slot" data-i="1">
+      <div class="vis" hidden><div class="kompakt"><div class="tx"><b class="vn"></b><span class="vt"></span></div><button class="btn g endre" type="button">Endre</button><button class="btn g fjern" type="button">Fjern</button></div></div>
+      <div class="skjema">
+        <h3>Person 2</h3>
+        <label for="vnm1">Navn</label><input id="vnm1" class="inm" maxlength="40" autocomplete="off" placeholder="Pappa">
+        <label for="vtl1">Telefonnummer</label><input id="vtl1" class="itl" type="tel" inputmode="tel" maxlength="20" autocomplete="off" placeholder="000 00 000">
+        <div class="r"><button class="btn lag" type="button">Lagre</button></div>
+        <p class="small stat" role="status" style="margin:10px 0 0"></p>
+      </div>
+    </div>
   </section>
   <div class="grid">
     <section class="panel" aria-label="Nyttige sider">
@@ -264,17 +284,24 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 </script>
 <script>
 (function(){
-  var K='rg-vip',nm=document.getElementById('vnm'),tl=document.getElementById('vtl'),st=document.getElementById('vstat');
-  if(!nm)return;
-  function get(){try{return JSON.parse(localStorage.getItem(K)||'null');}catch(e){return null;}}
-  function put(v){try{if(v)localStorage.setItem(K,JSON.stringify(v));else localStorage.removeItem(K);return true;}catch(e){return false;}}
-  var v=get();if(v){nm.value=v.n||'';tl.value=v.t||'';}
-  document.getElementById('vlag').addEventListener('click',function(){
-    var t=tl.value.replace(/[^\d+ ]/g,'').trim();
-    if(t.replace(/\D/g,'').length<8){st.textContent='Nummeret ser for kort ut. Sjekk det og prøv igjen.';return;}
-    st.textContent=put({n:nm.value.trim(),t:t})?'Lagret på denne enheten.':'Kunne ikke lagre. Sjekk at nettleseren tillater lagring.';
+  var K='rg-vip-liste',slots=document.querySelectorAll('.vipf .slot');if(!slots.length)return;
+  function load(){try{var l=JSON.parse(localStorage.getItem(K)||'null');if(Array.isArray(l))return [l[0]||null,l[1]||null];var o=JSON.parse(localStorage.getItem('rg-vip')||'null');return [o&&o.t?o:null,null];}catch(e){return [null,null];}}
+  function fmt(t){var d=t.replace(/\D/g,'');return (d.length===8&&t.indexOf('+')<0)?d.replace(/(\d{3})(\d{2})(\d{3})/,'$1 $2 $3'):t;}
+  function save(l){try{localStorage.setItem(K,JSON.stringify(l));return true;}catch(e){return false;}}
+  var data=load();
+  function draw(i){var sl=slots[i],v=data[i];sl.querySelector('.vis').hidden=!v;sl.querySelector('.skjema').hidden=!!v;
+    if(v){sl.querySelector('.vn').textContent=v.n||'Viktig person';sl.querySelector('.vt').textContent=fmt(v.t);}
+    else{sl.querySelector('.inm').value='';sl.querySelector('.itl').value='';}}
+  slots.forEach(function(sl,i){
+    draw(i);
+    sl.querySelector('.lag').addEventListener('click',function(){
+      var st=sl.querySelector('.stat'),t=sl.querySelector('.itl').value.replace(/[^\d+ ]/g,'').trim();
+      if(t.replace(/\D/g,'').length<8){st.textContent='Nummeret ser for kort ut. Sjekk det og prøv igjen.';return;}
+      data[i]={n:sl.querySelector('.inm').value.trim(),t:fmt(t)};
+      if(save(data)){st.textContent='';draw(i);}else{st.textContent='Kunne ikke lagre. Sjekk at nettleseren tillater lagring.';}});
+    sl.querySelector('.endre').addEventListener('click',function(){var v=data[i]||{};sl.querySelector('.vis').hidden=true;sl.querySelector('.skjema').hidden=false;sl.querySelector('.inm').value=v.n||'';sl.querySelector('.itl').value=v.t||'';sl.querySelector('.itl').focus();});
+    sl.querySelector('.fjern').addEventListener('click',function(){data[i]=null;save(data);draw(i);});
   });
-  document.getElementById('vslett').addEventListener('click',function(){nm.value='';tl.value='';put(null);st.textContent='Fjernet.';});
 })();
 </script>
 </body>
