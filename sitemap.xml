@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>https://reinertsengruppen.no/</loc></url>
   <url><loc>https://reinertsengruppen.no/nyttig/apper/</loc></url>
   <url><loc>https://reinertsengruppen.no/nyttig/dagsplan/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/info/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/innstillinger/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/manualer/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/mat-og-blodsukker/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/nyttig-info/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/rettigheter/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/tallene/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/tallerken/</loc></url>
-  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/trendpiler/</loc></url>
   <url><loc>https://reinertsengruppen.no/nyttig/fyret/</loc></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/fyret/flekkeroya/</loc></url>
   <url><loc>https://reinertsengruppen.no/nyttig/hjelpemidler/</loc></url>
   <url><loc>https://reinertsengruppen.no/nyttig/hvem-ringer-jeg/</loc></url>
   <url><loc>https://reinertsengruppen.no/nyttig/</loc></url>
   <url><loc>https://reinertsengruppen.no/personvern/</loc></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/info/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/info/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/info/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/info/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/info/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/info/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/innstillinger/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/innstillinger/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/innstillinger/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/innstillinger/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/innstillinger/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/innstillinger/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/manualer/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/manualer/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/manualer/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/manualer/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/manualer/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/manualer/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/mat-og-blodsukker/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/mat-og-blodsukker/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/mat-og-blodsukker/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/mat-og-blodsukker/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/mat-og-blodsukker/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/mat-og-blodsukker/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/nyttig-info/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/nyttig-info/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/nyttig-info/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/nyttig-info/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/nyttig-info/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/nyttig-info/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/rettigheter/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/rettigheter/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/rettigheter/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/rettigheter/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/rettigheter/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/rettigheter/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/tallene/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/tallene/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/tallene/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/tallene/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/tallene/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/tallene/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/tallerken/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/tallerken/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/tallerken/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/tallerken/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/tallerken/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/tallerken/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/trendpiler/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/trendpiler/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/trendpiler/"/></url>
+  <url><loc>https://reinertsengruppen.no/nyttig/diabetes/en/trendpiler/</loc><xhtml:link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/trendpiler/"/><xhtml:link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/trendpiler/"/></url>
 </urlset>

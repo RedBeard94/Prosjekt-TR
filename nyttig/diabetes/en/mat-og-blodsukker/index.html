@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<!--
+  © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no
+  All rights reserved. Copying without written permission is not permitted.
+  Opprinnelsesmerke: rg-2026-10-nyttig-diabetes-mat-og-blodsukker-en-8c1e
+-->
+<meta name="author" content="Thomas Reinertsen, Reinertsengruppen">
+<meta name="copyright" content="© 2026 Reinertsengruppen">
+<meta name="rg-origin" content="rg-2026-10-nyttig-diabetes-mat-og-blodsukker-en-8c1e"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Food and blood sugar – Reinertsengruppen</title>
+<meta name="description" content="Why the same amount of carbohydrate can give different blood sugar curves. General information for adults and children.">
+<style>@font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(/fonts/manrope-latin-200-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/manrope-latin-400-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/manrope-latin-600-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/manrope-latin-800-normal.woff2) format("woff2");}
+
+/* Layout: samme lyse Reinertsengruppen-stil som resten av nettsiden: Manrope, blå/lilla/turkis, hvite kort med myke skygger og skyline-logoen i toppen. Én smal lesekolonne. */
+:root {
+  --bg:#f6f9ff; --fg:#0f172a; --muted:#5b6b82; --line:#e3eaf5; --card:#ffffff;
+  --a:#2563eb; --b:#7c3aed; --c:#14b8a6; --warm:#c2410c; --teal:#0f766e; --soft:#eef4ff;
+  --bld:#1b2440; --win-off:#cfe4f7; --win-on:#cfe4f7; --glow:none;
+}
+body.night-icon { --win-off:#2a3558; --win-on:#ffd36b; --glow:drop-shadow(0 0 2px rgba(255,190,70,.9)); }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+#top-btn { position:fixed; right:16px; bottom:max(16px,env(safe-area-inset-bottom)); width:48px; height:48px; border-radius:50%; border:1px solid var(--line); background:rgba(255,255,255,.92); backdrop-filter:blur(8px); color:var(--a); font:800 1.3rem/1 inherit; cursor:pointer; box-shadow:0 6px 18px rgba(15,23,42,.14); opacity:0; pointer-events:none; transform:translateY(8px); transition:opacity .2s, transform .2s; z-index:9; }
+#top-btn.show { opacity:1; pointer-events:auto; transform:none; }
+#top-btn:hover, #top-btn:focus-visible { border-color:var(--a); outline:none; }
+[id^="h-"] { scroll-margin-top:108px; }
+@media (min-width:700px){ [id^="h-"] { scroll-margin-top:88px; } }
+body { margin:0; background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,-apple-system,"Segoe UI",sans-serif; font-size:1.0625rem; line-height:1.65; overflow-x:hidden; }
+body::before, body::after { content:""; position:fixed; border-radius:50%; filter:blur(90px); opacity:.5; z-index:-1; }
+body::before { width:55vmax; height:55vmax; background:#cfe0ff; top:-22vmax; right:-18vmax; }
+body::after  { width:45vmax; height:45vmax; background:#c8f2ea; bottom:-20vmax; left:-15vmax; }
+button { font:inherit; color:inherit; cursor:pointer; }
+a:focus-visible, button:focus-visible, textarea:focus-visible, .scroll:focus-visible { outline:3px solid var(--a); outline-offset:3px; border-radius:6px; }
+
+header { position:sticky; top:env(safe-area-inset-top,0px); z-index:10; background:rgba(246,249,255,.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+.bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
+nav { display:flex; align-items:center; }
+nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
+nav a:hover, nav a[aria-current] { color:var(--fg); }
+.brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
+.brand svg { height:42px; width:auto; display:block; overflow:visible; }
+.bld { fill:var(--bld); }
+.w { fill:var(--win-off); transition:fill .7s, filter .7s; }
+.w.on { fill:var(--win-on); filter:var(--glow); }
+.wordmark { font-weight:200; font-size:1.25rem; letter-spacing:-.03em; line-height:1; position:relative; padding-bottom:6px; white-space:nowrap; }
+.wordmark b { font-weight:800; }
+.wordmark::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:100%; background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
+.wordmark::before { content:""; position:absolute; left:0; bottom:-2px; width:20px; height:6px; border-radius:6px; background:var(--a); box-shadow:0 0 10px rgba(37,99,235,.6); }
+.dd { position:relative; display:inline-block; margin-left:18px; }
+.ddb { font:inherit; font-size:.95rem; font-weight:600; color:var(--muted); background:none; border:0; padding:0; }
+.ddb::after { content:"▾"; margin-left:5px; font-size:.8em; }
+.ddb:hover, .ddb.cur { color:var(--fg); }
+.ddm { position:absolute; top:calc(100% + 8px); left:-12px; min-width:230px; background:#fff; border:1px solid var(--line); border-radius:16px; padding:8px; box-shadow:0 12px 32px rgba(15,23,42,.14); z-index:30; }
+.ddm[hidden] { display:none; }
+nav .ddm a { display:block; margin:0; padding:10px 12px; border-radius:10px; color:var(--fg); font-weight:700; }
+nav .ddm a small { display:block; color:var(--muted); font-weight:400; font-size:.85rem; }
+nav .ddm a:hover, nav .ddm a:focus-visible { background:var(--soft); outline:none; }
+nav .ddm a[aria-current] { background:var(--soft); }
+@media (max-width:560px) {
+  .bar { flex-wrap:wrap; row-gap:6px; }
+  .brand svg { height:36px; }
+  .wordmark { font-size:1.05rem; }
+  nav { width:100%; }
+  nav a { margin:0 16px 0 0; }
+  .dd { margin:0 16px 0 0; }
+}
+
+main { max-width:1040px; margin:0 auto; padding:26px 20px 40px; }
+.col { max-width:760px; display:flex; flex-direction:column; gap:20px; }
+.back { display:inline-block; color:var(--a); font-weight:700; text-decoration:none; padding:8px 0; min-height:44px; align-self:flex-start; }
+.back:hover { text-decoration:underline; }
+h1 { font-size:clamp(2.2rem,8vw,3.6rem); line-height:1.04; margin:0; letter-spacing:-.045em; font-weight:800; text-wrap:balance; }
+h1 em { font-style:normal; background:linear-gradient(90deg,var(--a),var(--c)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.lead { color:var(--muted); font-size:1.1rem; margin:0; max-width:560px; }
+h2, h3 { margin:0; text-wrap:balance; }
+h2 { font-size:1.35rem; letter-spacing:-.02em; font-weight:800; }
+h3 { font-size:1.1rem; letter-spacing:-.01em; font-weight:800; }
+p, ul, ol, dl, figure { margin:0; }
+p, li, dd { max-width:62ch; }
+
+.panel { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:22px; box-shadow:0 6px 22px rgba(15,23,42,.05); display:flex; flex-direction:column; gap:14px; }
+.panel > * { min-width:0; }
+.note { background:#fff8e6; border:1px solid #f3dca0; border-radius:20px; padding:20px 22px; display:flex; flex-direction:column; gap:12px; color:#4a3500; }
+.note ul { padding-left:1.2em; display:flex; flex-direction:column; gap:8px; }
+.fine { color:var(--muted); font-size:.9rem; }
+.jump { display:flex; flex-wrap:wrap; gap:8px; }
+.jump a { padding:9px 14px; border:2px solid var(--line); border-radius:999px; background:#fff; color:var(--fg); text-decoration:none; font-weight:600; font-size:.92rem; min-height:44px; display:inline-flex; align-items:center; }
+.jump a:hover, .jump a:focus-visible { border-color:var(--a); outline:none; }
+.brief h2 { font-size:1.15rem; }
+.brief ul { padding-left:1.2em; display:flex; flex-direction:column; gap:8px; }
+details.fold > summary { cursor:pointer; font-weight:800; font-size:1.25rem; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; min-height:44px; }
+details.fold > summary::-webkit-details-marker { display:none; }
+details.fold > summary::after { content:"+"; font-size:1.5rem; color:var(--a); }
+details.fold[open] > summary::after { content:"–"; }
+details.fold > .fold-body { display:flex; flex-direction:column; gap:14px; margin-top:14px; }
+
+.lnk { display:flex; flex-direction:column; gap:2px; padding:14px 16px; border:2px solid var(--line); border-radius:16px; background:#f9fbff; color:var(--fg); text-decoration:none; min-height:56px; }
+.lnk:hover, .lnk:focus-visible { border-color:var(--a); outline:none; }
+.lnk b { font-weight:800; }
+.lnk span { color:var(--muted); font-size:.92rem; }
+.lnk .pub { font-size:.85rem; font-weight:600; }
+.urgent { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+@media (max-width:560px) { .urgent { grid-template-columns:1fr; } }
+
+.factors { display:grid; grid-template-columns:max-content 1fr; border-top:1px solid var(--line); }
+.factors dt, .factors dd { margin:0; padding:12px 0; border-bottom:1px solid var(--line); }
+.factors dt { font-weight:800; padding-right:26px; }
+@media (max-width:520px) {
+  .factors { grid-template-columns:1fr; }
+  .factors dt { padding-bottom:0; border-bottom:0; }
+  .factors dd { padding-top:2px; }
+}
+
+.fig { display:flex; flex-direction:column; gap:10px; }
+.fig svg { display:block; width:100%; max-width:30rem; height:auto; }
+.fig figcaption { color:var(--muted); font-size:.92rem; max-width:62ch; }
+.svg-ax { stroke:var(--muted); stroke-width:1.5; fill:none; }
+.svg-grid { stroke:var(--line); stroke-width:1; fill:none; }
+.svg-base { stroke:var(--muted); stroke-width:1.5; stroke-dasharray:4 4; fill:none; }
+.svg-tick, .svg-title { fill:var(--muted); font-family:'Manrope',system-ui,sans-serif; }
+.svg-tick { font-size:12px; }
+.svg-title { font-size:13px; }
+.curve { fill:none; stroke-width:3.5; stroke-linecap:round; stroke-linejoin:round; }
+.curve-fast { stroke:var(--a); } .curve-slow { stroke:var(--warm); }
+.dot-fast { fill:var(--a); } .dot-slow { fill:var(--warm); }
+.lbl { font-family:'Manrope',system-ui,sans-serif; font-weight:800; font-size:14px; }
+.lbl-fast { fill:var(--a); } .lbl-slow { fill:var(--warm); }
+
+.scroll { overflow-x:auto; border:1px solid var(--line); border-radius:16px; }
+table { border-collapse:collapse; width:100%; }
+th, td { text-align:left; vertical-align:top; padding:12px 14px; border-bottom:1px solid var(--line); }
+thead th { font-weight:800; font-size:.92rem; background:var(--soft); }
+tbody th { font-weight:800; }
+td { font-variant-numeric:tabular-nums; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
+.sr { position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+.steps { list-style:none; padding:0; display:flex; flex-direction:column; gap:14px; counter-reset:step; }
+.steps li { counter-increment:step; display:grid; grid-template-columns:2.25rem 1fr; gap:12px; align-items:start; }
+.steps li::before { content:counter(step); font-weight:800; width:2.25rem; height:2.25rem; border-radius:50%; background:linear-gradient(135deg,var(--a),var(--b)); color:#fff; display:grid; place-items:center; }
+.fields { padding-left:1.2em; display:flex; flex-direction:column; gap:4px; }
+.copy { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+.btn { font:inherit; font-weight:800; color:#fff; background:linear-gradient(90deg,var(--a),var(--b)); border:0; border-radius:999px; padding:13px 24px; min-height:48px; box-shadow:0 10px 26px rgba(37,99,235,.3); }
+#tpl { width:100%; font:inherit; font-family:ui-monospace,Consolas,monospace; font-size:.88rem; padding:12px 14px; border:2px solid var(--line); border-radius:14px; background:#f9fbff; color:var(--fg); resize:vertical; }
+
+.sources { display:flex; flex-direction:column; gap:10px; }
+.foot { margin:26px 0 0; padding:0 0 40px; color:var(--muted); font-size:.85rem; line-height:1.6; max-width:760px; }
+.foot a { color:var(--a); }
+.totop { display:inline-block; margin-top:10px; font-weight:700; text-decoration:none; }
+
+[hidden] { display:none !important; }
+.mode { position:relative; display:inline-grid; grid-template-columns:1fr 1fr; align-self:flex-start; min-width:240px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:4px; box-shadow:0 2px 10px rgba(15,23,42,.04); }
+.mode .thumb { position:absolute; top:4px; bottom:4px; left:4px; width:calc(50% - 4px); border-radius:999px; background:linear-gradient(90deg,var(--a),var(--b)); box-shadow:0 6px 16px rgba(37,99,235,.28); transition:transform .25s ease; }
+.mode[data-mode="kid"] .thumb { transform:translateX(100%); }
+.mode button { position:relative; z-index:1; background:none; border:0; padding:10px 18px; border-radius:999px; font-weight:800; color:var(--muted); min-height:44px; transition:color .25s; }
+.mode button[aria-pressed="true"] { color:#fff; }
+
+.kids p, .kids li { font-size:1.15rem; }
+.kids .fine { font-size:.92rem; }
+.pick { display:flex; flex-wrap:wrap; gap:10px; }
+.pick button { font:inherit; font-weight:800; padding:10px 22px; min-height:48px; border-radius:999px; border:2px solid var(--line); background:#fff; color:var(--fg); }
+.pick button[aria-pressed="true"] { border-color:var(--a); background:var(--soft); color:var(--a); }
+.kidfig { display:block; width:100%; max-width:30rem; height:auto; }
+.kg.off { display:none; }
+.kc { fill:none; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+.kc-druesukker { stroke:var(--teal); } .kc-banan { stroke:var(--a); } .kc-snickers { stroke:var(--b); } .kc-pizza { stroke:var(--warm); }
+.kd-druesukker { fill:var(--teal); } .kd-banan { fill:var(--a); } .kd-snickers { fill:var(--b); } .kd-pizza { fill:var(--warm); }
+.kl { font-family:'Manrope',system-ui,sans-serif; font-weight:800; font-size:15px; }
+.kl-druesukker { fill:var(--teal); } .kl-banan { fill:var(--a); } .kl-snickers { fill:var(--b); } .kl-pizza { fill:var(--warm); }
+#kid-text { background:var(--soft); border-radius:16px; padding:14px 16px; }
+.kidsafe { background:#fff8e6; border:1px solid #f3dca0; border-radius:16px; padding:14px 16px; color:#4a3500; }
+
+.cols { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media (max-width:640px) { .cols { grid-template-columns:1fr; } }
+.colbox { background:var(--soft); border-radius:16px; padding:14px 16px; display:flex; flex-direction:column; gap:8px; }
+.colbox h4 { margin:0; font-size:1rem; font-weight:800; }
+.colbox ul { margin:0; padding-left:1.1em; display:flex; flex-direction:column; gap:6px; }
+.colbox li { font-size:1rem; }
+.colbox .sm { font-size:.9rem; color:var(--muted); }
+
+.srcs { color:var(--muted); font-size:.92rem; max-width:760px; }
+.srcs summary { cursor:pointer; font-weight:700; color:var(--a); min-height:44px; display:flex; align-items:center; }
+.srcs ul { padding-left:1.2em; display:flex; flex-direction:column; gap:6px; margin:2px 0 0; }
+.srcs a { color:var(--a); }
+
+@media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } }
+  .pfoot{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.9rem}
+  .pfoot a{color:var(--muted)}
+  [hidden]{display:none!important}
+  .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
+  .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
+  .rgstrip div{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.88rem;color:var(--muted)}
+  .rgstrip i{flex:none;width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:.8rem}
+  .rgstrip a{color:var(--a)}
+  @media (min-width:561px){.ddm{left:auto;right:-4px}}
+  @media (max-width:560px){.ddm{min-width:170px}}
+
+
+
+
+/*lang*/
+  nav .lang{display:inline-flex;margin-left:18px;border:2px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.75);vertical-align:middle}
+  nav .lang a{margin:0;padding:4px 12px;min-height:38px;display:inline-flex;align-items:center;font-size:.8rem;font-weight:800;letter-spacing:.04em;color:var(--muted);text-decoration:none}
+  nav .lang a.on{background:var(--a);color:#fff}
+  @media (max-width:560px){nav{display:flex;align-items:center;flex-wrap:wrap}nav .lang{margin-left:auto}}
+/*/lang*/
+</style><meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tallerkenen">
+<link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/bilder/ikon/apple-touch-icon.png">
+
+
+
+
+<!--hl--><link rel="canonical" href="https://reinertsengruppen.no/nyttig/diabetes/en/mat-og-blodsukker/"><link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/mat-og-blodsukker/"><link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/mat-og-blodsukker/"><link rel="alternate" hreflang="x-default" href="https://reinertsengruppen.no/nyttig/diabetes/mat-og-blodsukker/"><!--/hl-->
+</head><body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="/index.html" aria-label="Reinertsengruppen">
+      <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
+      <span class="wordmark"><b>Reinertsen</b>gruppen</span>
+    </a>
+    <nav>
+      <a href="/index.html#om">About us</a>
+      <a href="/index.html#kontakt">Contact</a>
+      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Useful</button><div class="ddm" hidden><a href="/nyttig/apper/index.html">Apps<small>Fyret (the lighthouse) and more</small></a><a href="/nyttig/hjelpemidler/index.html" aria-current="page">Aids<small>Diabetes and more</small></a></div></div>
+    <!--lang--><div class="lang" role="group" aria-label="Language / Språk"><a href="/nyttig/diabetes/mat-og-blodsukker/" hreflang="no" lang="no">NO</a><a href="/nyttig/diabetes/en/mat-og-blodsukker/" hreflang="en" lang="en" class="on" aria-current="true">EN</a></div><!--/lang--></nav>
+  </div>
+</header>
+
+<main data-rg="rg-2026-10-nyttig-diabetes-mat-og-blodsukker-en-8c1e">
+  <div class="col">
+    <a class="back" href="/nyttig/diabetes/en/">← Diabetes</a>
+    <h1>Food and <em>blood sugar.</em></h1>
+    <p class="lead adult">The same amount of carbohydrate can give different blood sugar curves. Here is why, and how you can find out what applies to you.</p>
+    <p class="lead kid" hidden>The food you eat can make your blood sugar rise in different ways. Here is a simple explanation.</p>
+    <div class="mode" data-mode="adult" role="group" aria-label="Choose version">
+      <span class="thumb" aria-hidden="true"></span>
+      <button type="button" id="m-adult" aria-pressed="true">Adult</button>
+      <button type="button" id="m-kid" aria-pressed="false">Child</button>
+    </div>
+
+    <aside class="note adult" aria-labelledby="notice-h">
+      <h2 id="notice-h">Read this first</h2>
+      <ul>
+        <li>This is general information and not medical advice.</li>
+        <li>Do not use the times on this page to work out extra insulin on your own. With type 1 diabetes, both a delayed rise in blood sugar and active insulin can create a risk of high or low blood sugar. Follow the treatment plan from your diabetes team.</li>
+        <li>The CGM sensor can lag behind your blood sugar. If it does not match how you feel, the manufacturer (Dexcom) recommends that you check with a fingerstick.</li>
+      </ul>
+      <div class="urgent">
+        <a class="lnk" href="tel:116117"><b>Out-of-hours clinic (legevakt): 116 117</b><span>For illness that cannot wait until daytime</span></a>
+        <a class="lnk" href="tel:113"><b>Emergency number: 113</b><span>For serious, acute illness</span></a>
+      </div>
+    </aside>
+
+    <section class="panel brief adult" aria-labelledby="h-kort">
+      <h2 id="h-kort">In short</h2>
+      <ul>
+        <li>Carbohydrate affects blood sugar the most. Fat, protein and fibre can make the rise later and longer.</li>
+        <li>How long and when blood sugar rises differs from person to person. There is no fixed “tail” for each food.</li>
+        <li>No food is forbidden. Some foods just need more planning, see the Watch-out list.</li>
+        <li>Your own sensor data says more about you than a general table.</li>
+      </ul>
+    </section>
+
+    <nav class="jump adult" aria-label="Jump to">
+      <a href="#h-hvorfor">Why</a>
+      <a href="#h-hale">Tail</a>
+      <a href="#h-obs">Watch-out list</a>
+      <a href="#h-timing">Examples</a>
+      <a href="#h-logg" onclick="document.getElementById('d-logg').open=true">Your own log</a>
+    </nav>
+
+    <section class="panel adult" aria-labelledby="h-hvorfor">
+      <h2 id="h-hvorfor">Why the same food gives a different curve</h2>
+      <p>Carbohydrate matters most for blood sugar, but it is not everything.</p>
+      <dl class="factors">
+        <dt>Carbohydrate</dt>
+        <dd>Gives the fastest and clearest rise. The amount matters most.</dd>
+        <dt>Fat</dt>
+        <dd>Slows down stomach emptying. The rise can come later and last longer.</dd>
+        <dt>Protein</dt>
+        <dd>Slows the absorption of carbohydrate. In some people with type 1 diabetes, large amounts can also cause a later rise.</dd>
+        <dt>Fibre</dt>
+        <dd>Slows absorption, especially in wholegrain products.</dd>
+      </dl>
+      <p>The glycaemic index (GI) tells you how fast a food raises blood sugar. Chocolate and crisps have a lower GI than you might expect, because the fat slows the absorption of the carbohydrates. A low GI still does not mean that the food gives a small effect. GI does not take portion size into account.</p>
+      <p>Other things can also change the curve: insulin and when it was taken, physical activity, stress, illness, sleep and what the food was eaten together with.</p>
+
+      <h3 id="h-hale">What is a “tail”?</h3>
+      <p>A tail is when blood sugar keeps rising or stays high for several hours after you have eaten. This often happens when the food contains a lot of fat and protein together with carbohydrates.</p>
+      <h3 id="h-obs">Watch out! Foods that need extra planning</h3>
+      <p><b>No food is forbidden with diabetes.</b> Some foods just behave more unpredictably than others. It is wise to know which ones, and to talk to your diabetes team about how to handle them.</p>
+      <div class="cols">
+        <div class="colbox">
+          <h4>Watch out: can give a long tail</h4>
+          <ul>
+            <li><b>Snickers and chocolate:</b> sugar gives an early rise, fat can give a later one.</li>
+            <li><b>Pizza:</b> dough, cheese and meat can keep blood sugar up for several hours.</li>
+            <li><b>Burger and chips:</b> carbohydrates and a lot of fat can give a delayed rise.</li>
+            <li><b>Cakes and biscuits:</b> sugar and fat can give both an early and a late rise.</li>
+          </ul>
+        </div>
+        <div class="colbox">
+          <h4>Watch out: often gives a fast rise</h4>
+          <ul>
+            <li>Glucose (dextrose) tablets</li>
+            <li>Sugary fizzy drinks and juice</li>
+            <li>Sweets with little fat</li>
+            <li>White bread and white rice</li>
+          </ul>
+          <p class="sm">A faster rise, but not necessarily a long tail.</p>
+        </div>
+      </div>
+      <p>With a CGM sensor you can follow your blood sugar for several hours after the meal and see your own tail.</p>
+      <aside class="note" style="margin-top:14px">
+        <h3 style="margin-top:0">The sensor does not always show real time</h3>
+        <p>A CGM sensor measures sugar in the fluid just under the skin, not directly in the blood. That is why the sensor value can lag a little behind, especially when blood sugar changes quickly, for example after a meal. The sensor and a fingerstick can also show different numbers for a while. If in doubt, do a fingerstick, and follow your diabetes team's advice on what to do with the result.</p>
+      </aside>
+    </section>
+
+    <section class="panel adult" aria-labelledby="h-timing">
+      <h2 id="h-timing">Examples of timing</h2>
+      <p>The examples below only show that the timing can differ. There is no fixed curve for each food.</p>
+
+      <figure class="fig">
+        <svg viewBox="0 0 360 236" role="img" aria-labelledby="fig-t fig-d">
+          <title id="fig-t">Schematic sketch of blood sugar after two types of meal</title>
+          <desc id="fig-d">The banana curve rises early and is back at its starting level after about three hours. The pizza curve rises later, peaks several hours after the meal and takes a long time to come back.</desc>
+          <line class="svg-grid" x1="117" y1="30" x2="117" y2="190"/>
+          <line class="svg-grid" x1="194" y1="30" x2="194" y2="190"/>
+          <line class="svg-grid" x1="271" y1="30" x2="271" y2="190"/>
+          <line class="svg-grid" x1="348" y1="30" x2="348" y2="190"/>
+          <line class="svg-ax" x1="40" y1="30" x2="40" y2="190"/>
+          <line class="svg-ax" x1="40" y1="190" x2="348" y2="190"/>
+          <line class="svg-base" x1="40" y1="170" x2="348" y2="170"/>
+          <text class="svg-tick" x="40" y="207" text-anchor="middle">0</text>
+          <text class="svg-tick" x="117" y="207" text-anchor="middle">2</text>
+          <text class="svg-tick" x="194" y="207" text-anchor="middle">4</text>
+          <text class="svg-tick" x="271" y="207" text-anchor="middle">6</text>
+          <text class="svg-tick" x="348" y="207" text-anchor="middle">8</text>
+          <text class="svg-title" x="194" y="227" text-anchor="middle">Hours after the meal</text>
+          <text class="svg-title" x="12" y="110" text-anchor="middle" transform="rotate(-90 12 110)">Blood sugar, relative</text>
+          <path class="curve curve-fast" d="M40,170 C53,170 63,104 78,100 C96,96 118,160 156,170 H348"/>
+          <path class="curve curve-slow" d="M40,170 C60,169 82,154 106,152 C146,149 180,108 232,102 C276,98 312,152 348,166"/>
+          <circle class="dot-fast" cx="78" cy="100" r="4.5"/>
+          <circle class="dot-slow" cx="232" cy="102" r="4.5"/>
+          <text class="lbl lbl-fast" x="46" y="80">Banana: early peak</text>
+          <text class="lbl lbl-slow" x="348" y="88" text-anchor="end">Pizza: late peak</text>
+        </svg>
+        <figcaption>Schematic sketch, not measured data. Height and shape are drawn to show the timing, not how high blood sugar goes. The dashed line is blood sugar before the meal. Your own curves will look different.</figcaption>
+      </figure>
+
+      <div class="scroll" role="region" aria-label="Table of examples of timing" tabindex="0">
+        <table>
+          <caption class="sr">Qualitative examples of when blood sugar can rise and how long the tail can be</caption>
+          <thead>
+            <tr><th scope="col">Food</th><th scope="col">Rise</th><th scope="col">Tail</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Glucose (dextrose) tablets</th><td>Fast</td><td>Short-lived</td></tr>
+            <tr><th scope="row">Banana</th><td>Often fairly early</td><td>Often shorter</td></tr>
+            <tr><th scope="row">Snickers or a chocolate bar</th><td>Can come early, sometimes later</td><td>Can be long</td></tr>
+            <tr><th scope="row">Pizza</th><td>Often later than expected</td><td>Can be long, possibly a later peak</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fine">Indicative descriptions, not measurements.</p>
+
+      <h3>Why Snickers often stands out</h3>
+      <p>Snickers has both sugar (early rise) and a lot of fat (later and longer rise). Studies in children and teenagers with type 1 diabetes have shown that fat can affect blood sugar for several hours. These are studies under controlled conditions, not a measurement of what Snickers does. In some people fat can also affect the insulin need. Talk to your diabetes team about how this is handled.</p>
+      <h3>Glucose (dextrose) tablets</h3>
+      <p>Glucose (druesukker) is pure sugar with no fat, protein or fibre to slow absorption. It is absorbed quickly into the blood, and blood sugar rises fast. How and when to use glucose, for example for low blood sugar, you agree with your diabetes team.</p>
+    </section>
+
+    <details class="panel adult fold" id="d-logg">
+      <summary id="h-logg">Make your own log</summary>
+      <div class="fold-body">
+      <p>This is how you can find out how a specific food affects you:</p>
+      <ol class="steps">
+        <li><span>Write down what you ate and follow the curve for the next 4–6 hours. The list below shows what you can note.</span></li>
+        <li><span>Compare several similar situations before drawing a conclusion. One measurement says little.</span></li>
+      </ol>
+      <h3>What you can write down</h3>
+      <ul class="fields">
+        <li>Date and time</li>
+        <li>Food and portion</li>
+        <li>Blood sugar before</li>
+        <li>Insulin and timing, as in the treatment plan</li>
+        <li>Activity before and after</li>
+        <li>Blood sugar after 2, 4 and 6 hours</li>
+        <li>Notes: stress, illness, sleep and anything else unusual</li>
+      </ul>
+      <div class="copy">
+        <button type="button" class="btn" id="copy-btn">Copy log template</button>
+        <span class="fine" id="copy-status" role="status"></span>
+      </div>
+      <textarea id="tpl" readonly hidden rows="3" aria-label="Log template that can be copied">Date and time&#9;Food and portion&#9;Blood sugar before&#9;Insulin and timing&#9;Activity&#9;Blood sugar after 2 h&#9;Blood sugar after 4 h&#9;Blood sugar after 6 h&#9;Notes</textarea>
+      <p>The template can be pasted into a spreadsheet or a notes app. Use the log to look for patterns, and bring it to your diabetes team. The site does not store anything you write.</p>
+      </div>
+    </details>
+
+    <section class="panel kids kid" aria-labelledby="h-barn" hidden>
+      <h2 id="h-barn">Why does blood sugar go up differently?</h2>
+      <p>When you eat, the food goes down into your stomach. Sugar from the food gets into your blood. We call that blood sugar.</p>
+      <p>But not all food does it in the same way.</p>
+      <h3>Imagine a bonfire</h3>
+      <p>Sugar is like paper on the fire. It catches fire fast and burns out fast.</p>
+      <p>Fat is like a thick log. It takes longer to light, but it burns for a long time.</p>
+      <p>Sometimes blood sugar stays up for a long time after the food. That is called a tail. Food with a lot of fat, like pizza and Snickers, can give a tail.</p>
+      <h3>Choose a food</h3>
+      <div class="pick" role="group" aria-label="Choose a food">
+        <button type="button" data-k="druesukker" aria-pressed="true">Glucose (dextrose) tablets</button>
+        <button type="button" data-k="banan" aria-pressed="false">Banana</button>
+        <button type="button" data-k="snickers" aria-pressed="false">Snickers</button>
+        <button type="button" data-k="pizza" aria-pressed="false">Pizza</button>
+      </div>
+      <svg class="kidfig" viewBox="0 0 360 236" aria-hidden="true">
+        <line class="svg-ax" x1="40" y1="30" x2="40" y2="190"/>
+        <line class="svg-ax" x1="40" y1="190" x2="348" y2="190"/>
+        <line class="svg-base" x1="40" y1="170" x2="348" y2="170"/>
+        <text class="svg-title" x="194" y="216" text-anchor="middle">Time after the food →</text>
+        <text class="svg-title" x="12" y="110" text-anchor="middle" transform="rotate(-90 12 110)">Blood sugar</text>
+        <g class="kg" data-k="druesukker">
+          <path class="kc kc-druesukker" d="M40,170 C48,170 54,102 66,98 C80,94 100,150 128,170 H348"/>
+          <circle class="kd-druesukker" cx="66" cy="98" r="5"/>
+          <text class="kl kl-druesukker" x="46" y="80">Up very fast</text>
+        </g>
+        <g class="kg off" data-k="banan">
+          <path class="kc kc-banan" d="M40,170 C53,170 63,104 78,100 C96,96 118,160 156,170 H348"/>
+          <circle class="kd-banan" cx="78" cy="100" r="5"/>
+          <text class="kl kl-banan" x="46" y="80">Up fast and down again</text>
+        </g>
+        <g class="kg off" data-k="snickers">
+          <path class="kc kc-snickers" d="M40,170 C52,170 62,114 82,108 C110,100 140,112 200,114 C270,116 320,150 348,168"/>
+          <circle class="kd-snickers" cx="82" cy="108" r="5"/>
+          <text class="kl kl-snickers" x="46" y="86">Up fast and stays up</text>
+        </g>
+        <g class="kg off" data-k="pizza">
+          <path class="kc kc-pizza" d="M40,170 C60,169 82,154 106,152 C146,149 180,108 232,102 C276,98 312,152 348,166"/>
+          <circle class="kd-pizza" cx="232" cy="102" r="5"/>
+          <text class="kl kl-pizza" x="348" y="88" text-anchor="end">Up later and stays up</text>
+        </g>
+      </svg>
+      <p id="kid-text" role="status" aria-live="polite">Glucose (druesukker) is pure sugar. It goes almost straight into the blood, and nothing slows it down the way fat does. That is why blood sugar goes up very fast. When you should take glucose is decided by an adult or the diabetes team.</p>
+      <p class="fine">The drawing is only a sketch to show the idea. Your own curve looks different.</p>
+      <h3>Remember this</h3>
+      <ul class="fields">
+        <li>No food is forbidden. Some foods just need a little more planning by an adult or the diabetes team.</li>
+        <li>Different food gives a different curve.</li>
+        <li>Your curve is your own. It is not the same as other people's.</li>
+        <li>Always ask an adult or the diabetes team what to do.</li>
+        <li>The sensor is sometimes a little slow. If it does not feel right, tell an adult, and you can check with a fingerstick.</li>
+      </ul>
+      <div class="kidsafe">
+        <p>This page does not tell you what to take or do. If you feel unwell or strange, tell an adult right away. If it is very serious, you can call 113.</p>
+      </div>
+    </section>
+
+    <details class="srcs adult">
+      <summary>Sources and tools</summary>
+      <ul>
+        <li><a href="https://www.dexcom.com/nb-no/faqs/hva-er-forskjellen-mellom-en-dexcom-cgm-sensorglukoseverdi-og-blodsukkerverdi-bgv" target="_blank" rel="noopener">Sensor value and blood sugar value</a> (Dexcom)</li>
+        <li><a href="https://www.diabetes.org.uk/living-with-diabetes/eating/carbohydrates-and-diabetes/glycaemic-index-and-diabetes" target="_blank" rel="noopener">Glycaemic index and diabetes</a> (Diabetes UK)</li>
+        <li><a href="https://www.helsedirektoratet.no/retningslinjer/diabetes/levevaner-ved-diabetes-og-behandling-av-overvekt-og-fedme/kostveiledning-ved-bruk-av-maltidsinsulin" target="_blank" rel="noopener">Dietary guidance when using mealtime insulin</a> (Norwegian Directorate of Health)</li>
+        <li><a href="https://doi.org/10.1111/pedi.13429" target="_blank" rel="noopener">Nutritional management in children and adolescents with diabetes</a> (ISPAD 2022)</li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/19183308/" target="_blank" rel="noopener">Effects of fat supplementation on glycaemic response and gastric emptying in adolescents with Type 1 diabetes</a> (PubMed, research article)</li>
+        <li><a href="https://mattilsynet.no/mat-og-drikke/matvaretabellen" target="_blank" rel="noopener">Matvaretabellen</a> (Norwegian Food Safety Authority)</li>
+        <li><a href="https://apps.apple.com/gb/app/carbs-cals-diet-diabetes/id388459613" target="_blank" rel="noopener">Carbs &amp; Cals</a> (app, a tool and not a source)</li>
+        <li><a href="https://www.diabetes.no/" target="_blank" rel="noopener">Diabetesforbundet (the Norwegian Diabetes Association)</a></li>
+      </ul>
+    </details>
+
+    <p class="foot">
+      General information, not medical advice. The site does not replace guidance from your diabetes team, GP or other healthcare professionals, and is not a medical device. We are not affiliated with the tools or organisations mentioned. See the <a href="/personvern/index.html">privacy policy</a>. Last updated 24 October 2026.<br>
+      <a class="totop" href="#">↑ Back to top</a>
+    </p>
+  </div>
+</main>
+
+<div class="rgstrip"><div><i>R</i><span>Made by Reinertsengruppen. The content is protected by copyright. Questions or feedback? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Nyttig">post@reinertsengruppen.no</a></span></div></div>
+<footer class="pfoot"><a href="/index.html">Reinertsengruppen</a> · <a href="/personvern/index.html">Privacy</a><span class="rgsig">Made by Thomas Reinertsen. Text, images and code belong to Reinertsengruppen and may not be copied or used on other websites without written permission.</span></footer>
+<button type="button" id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  /* ====== Logo (samme skyline som resten av siden) ====== */
+  var NS='http://www.w3.org/2000/svg';
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  var rand=rng(7), msvg=document.getElementById('mark'), wins=[];
+  var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
+  function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);msvg.appendChild(e);return e;}
+  el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
+  blds.forEach(function(b){
+    el('rect',{'class':'bld',x:b[0],y:b[1],width:b[2],height:b[3]});
+    var ww=8,wh=10,gx=7,gy=9,m=9;
+    var cols=Math.max(1,Math.floor((b[2]-2*m+gx)/(ww+gx)));
+    var total=cols*ww+(cols-1)*gx, sx=b[0]+(b[2]-total)/2;
+    for(var r=0;;r++){
+      var y=b[1]+m+r*(wh+gy);
+      if(y+wh>b[1]+b[3]-b[4])break;
+      for(var c=0;c<cols;c++){
+        var w=el('rect',{'class':'w',x:sx+c*(ww+gx),y:y,width:ww,height:wh,rx:1});
+        w.style.transitionDelay=(rand()*1.1).toFixed(2)+'s';
+        w._on=rand()<0.7; wins.push(w);
+      }
+    }
+  });
+  el('rect',{'class':'bld',x:30,y:340,width:340,height:6,rx:3});
+  (function(){var h=new Date().getHours(),night=!(h>=7&&h<19);document.body.classList.toggle('night-icon',night);wins.forEach(function(w){w.classList.toggle('on',night&&w._on);});})();
+
+  /* ====== Meny ====== */
+  var b=document.querySelector('.ddb'),m=document.querySelector('.ddm');
+  if(b&&m){
+    var set=function(o){b.setAttribute('aria-expanded',o);m.hidden=!o;};
+    b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+    document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
+  }
+
+  /* ====== Voksen / Barn ====== */
+  var mode=document.querySelector('.mode'),mA=document.getElementById('m-adult'),mK=document.getElementById('m-kid');
+  function setMode(kid){
+    mode.setAttribute('data-mode',kid?'kid':'adult');
+    mA.setAttribute('aria-pressed',kid?'false':'true');
+    mK.setAttribute('aria-pressed',kid?'true':'false');
+    Array.prototype.forEach.call(document.querySelectorAll('.adult'),function(e){e.hidden=kid;});
+    Array.prototype.forEach.call(document.querySelectorAll('.kid'),function(e){e.hidden=!kid;});
+    try{history.replaceState(null,'',kid?'#barn':location.pathname+location.search);}catch(e){}
+  }
+  if(mode&&mA&&mK){
+    mA.addEventListener('click',function(){setMode(false);});
+    mK.addEventListener('click',function(){setMode(true);});
+    if(location.hash==='#barn')setMode(true);
+  }
+
+  /* ====== Barn: velg en mat ====== */
+  var kidTexts={
+    druesukker:'Glucose (druesukker) is pure sugar. It goes almost straight into the blood, and nothing slows it down the way fat does. That is why blood sugar goes up very fast. When you should take glucose is decided by an adult or the diabetes team.',
+    banan:'A banana is mostly sugar. Sugar goes quickly from the stomach into the blood. Blood sugar goes up fast, and then down again after a while.',
+    snickers:'Snickers has both sugar and a lot of fat. The sugar goes up fast. The fat makes the food stay in the stomach for a long time, so blood sugar can stay up longer.',
+    pizza:'Pizza has a lot of fat. Fat makes the food stay longer in the stomach. Then the sugar comes out slowly, and blood sugar can go up later and stay up for a long time.'
+  };
+  var pickBtns=document.querySelectorAll('.pick button'),kgs=document.querySelectorAll('.kg'),kt=document.getElementById('kid-text');
+  Array.prototype.forEach.call(pickBtns,function(bt){
+    bt.addEventListener('click',function(){
+      var k=bt.getAttribute('data-k');
+      Array.prototype.forEach.call(pickBtns,function(x){x.setAttribute('aria-pressed',x===bt?'true':'false');});
+      Array.prototype.forEach.call(kgs,function(g){g.classList.toggle('off',g.getAttribute('data-k')!==k);});
+      if(kt)kt.textContent=kidTexts[k];
+    });
+  });
+
+  /* ====== Kopier loggmal ====== */
+  var btn=document.getElementById('copy-btn'),st=document.getElementById('copy-status'),ta=document.getElementById('tpl');
+  if(btn&&st&&ta){
+    var text=ta.value;
+    var fallback=function(){ta.hidden=false;ta.focus();ta.select();st.textContent='Could not copy automatically. The text is selected, please copy it yourself.';};
+    btn.addEventListener('click',function(){
+      try{
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(function(){ta.hidden=true;st.textContent='Copied. Paste it into a spreadsheet or a notes app.';},fallback);
+        }else{fallback();}
+      }catch(e){fallback();}
+    });
+  }
+})();
+(function(){
+  var b=document.getElementById('top-btn');
+  function upd(){ b.classList.toggle('show', window.scrollY>600); }
+  window.addEventListener('scroll', upd, {passive:true}); upd();
+  b.addEventListener('click', function(){ window.scrollTo({top:0}); });
+})();
+</script>
+
+</body></html>

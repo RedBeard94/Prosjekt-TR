@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no
+  All rights reserved. Copying without written permission is not permitted.
+  Opprinnelsesmerke: rg-2026-10-nyttig-diabetes-en-d2ea
+-->
+<meta name="author" content="Thomas Reinertsen, Reinertsengruppen">
+<meta name="copyright" content="© 2026 Reinertsengruppen">
+<meta name="rg-origin" content="rg-2026-10-nyttig-diabetes-en-d2ea">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tools for people with diabetes – Reinertsengruppen</title>
+<meta name="description" content="Reinertsengruppen wants to help everyone with diabetes have an easier everyday life. Simple tools and useful links.">
+<style>
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(/fonts/manrope-latin-200-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/manrope-latin-400-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/manrope-latin-600-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/manrope-latin-800-normal.woff2) format("woff2");}
+  :root {
+    --bg:#f6f9ff; --fg:#0f172a; --muted:#5b6b82; --line:#e3eaf5; --card:#ffffff;
+    --a:#2563eb; --b:#7c3aed; --c:#14b8a6; --ok:#1fa971; --bad:#d64545;
+    --bld:#1b2440; --win-off:#cfe4f7; --win-on:#cfe4f7; --glow:none;
+  }
+  body.night-icon { --win-off:#2a3558; --win-on:#ffd36b; --glow:drop-shadow(0 0 2px rgba(255,190,70,.9)); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; overflow-x:hidden; }
+  body::before, body::after { content:""; position:fixed; border-radius:50%; filter:blur(90px); opacity:.5; z-index:-1; }
+  body::before { width:55vmax; height:55vmax; background:#cfe0ff; top:-22vmax; right:-18vmax; }
+  body::after  { width:45vmax; height:45vmax; background:#c8f2ea; bottom:-20vmax; left:-15vmax; }
+  button { font:inherit; color:inherit; cursor:pointer; }
+  header { position:sticky; top:0; z-index:10; background:rgba(246,249,255,.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
+  nav a:hover, nav a[aria-current] { color:var(--fg); }
+  .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
+  .brand svg { height:42px; width:auto; display:block; overflow:visible; }
+  .bld { fill:var(--bld); } .w { fill:var(--win-off); } .w.on { fill:var(--win-on); filter:var(--glow); }
+  .wordmark { font-weight:200; font-size:1.25rem; letter-spacing:-.03em; line-height:1; position:relative; padding-bottom:6px; white-space:nowrap; }
+  .wordmark b { font-weight:800; }
+  .wordmark::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:100%; background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
+  .wordmark::before { content:""; position:absolute; left:0; bottom:-2px; width:20px; height:6px; border-radius:6px; background:var(--a); box-shadow:0 0 10px rgba(37,99,235,.6); }
+  @media (max-width:560px) { .bar { flex-wrap:wrap; row-gap:6px; } .brand svg { height:36px; } .wordmark { font-size:1.05rem; } nav { width:100%; } nav a { margin:0 16px 0 0; } }
+
+  main { max-width:1040px; margin:0 auto; padding:26px 20px 40px; }
+  h1 { font-size:clamp(2.2rem,8vw,3.6rem); line-height:1.04; margin:0 0 6px; letter-spacing:-.045em; font-weight:800; }
+  h1 em { font-style:normal; background:linear-gradient(90deg,#f97316,#ec4899 50%,#7c3aed); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead { color:var(--muted); font-size:1.08rem; margin:0 0 20px; max-width:560px; }
+  .layout { display:grid; grid-template-columns:1.1fr .9fr; gap:20px; align-items:start; }
+  @media (max-width:820px) { .layout { grid-template-columns:1fr; } }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:20px; box-shadow:0 6px 22px rgba(15,23,42,.05); }
+  .panel h2 { margin:0 0 12px; font-size:1.15rem; letter-spacing:-.02em; font-weight:800; }
+
+  .search { position:relative; }
+  .search input { width:100%; font:inherit; font-size:1.15rem; padding:16px 18px 16px 50px; border:2px solid var(--line); border-radius:18px; background:#f9fbff; color:var(--fg); }
+  .search input:focus { outline:none; border-color:var(--a); box-shadow:0 0 0 4px rgba(37,99,235,.15); }
+  .search svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); width:22px; height:22px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 4px; }
+  .per100 { background:#eef4ff; border:2px solid #c9dafc; border-radius:14px; padding:10px 14px; margin:6px 0 4px; font-size:.95rem; }
+  .sen { background:#eef4ff; border:1px solid #c9dafc; border-radius:12px; padding:8px 12px; margin:8px 0 0; font-size:.92rem; }
+  .chk { display:flex; gap:10px; align-items:center; font-weight:700; margin:6px 0 2px; min-height:44px; }
+  .chk input { width:24px; height:24px; }
+  .chip { border:2px solid var(--line); background:#fff; border-radius:999px; padding:9px 16px; font-weight:700; font-size:.95rem; min-height:44px; }
+  .chip[aria-pressed="true"] { background:var(--a); border-color:var(--a); color:#fff; }
+  .results { list-style:none; margin:10px 0 0; padding:0; display:grid; gap:8px; max-height:52vh; overflow:auto; }
+  .food { width:100%; display:flex; align-items:center; gap:12px; text-align:left; background:#fff; border:2px solid var(--line); border-radius:16px; padding:10px 12px; min-height:60px; }
+  .food:hover, .food:focus-visible { border-color:var(--a); outline:none; }
+  .dotf { width:38px; height:38px; border-radius:50%; flex:none; display:grid; place-items:center; color:#fff; font-weight:800; font-size:1.05rem; }
+  .food .nm { font-weight:700; flex:1; line-height:1.25; }
+  .food .kb { font-size:.85rem; color:var(--muted); white-space:nowrap; }
+  .star { background:none; border:0; font-size:1.5rem; line-height:1; padding:6px; min-width:44px; min-height:44px; color:#c3cddd; }
+  .star[aria-pressed="true"] { color:#f5b400; }
+  .hint, .na { color:var(--muted); font-size:.95rem; margin:10px 0 0; }
+  .own { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .btn { border:0; border-radius:14px; padding:12px 18px; font-weight:800; background:linear-gradient(90deg,var(--a),var(--b)); color:#fff; min-height:48px; box-shadow:0 8px 20px rgba(37,99,235,.25); }
+  .btn.ghost { background:#fff; color:var(--a); border:2px solid var(--line); box-shadow:none; }
+  .btn.danger { background:#fff; color:var(--bad); border:2px solid #f3c7c7; box-shadow:none; }
+
+  .plate { display:grid; place-items:center; margin:2px 0 8px; }
+  .plate svg { width:min(280px,70vw); height:auto; }
+  .total { text-align:center; margin:0 0 4px; }
+  .total .n { font-size:3.2rem; font-weight:800; letter-spacing:-.05em; line-height:1; }
+  .total .n small { font-size:1.2rem; font-weight:700; color:var(--muted); letter-spacing:0; margin-left:4px; }
+  .total .t { color:var(--muted); font-weight:600; }
+  .warn { margin:10px 0 0; padding:12px 14px; border-radius:16px; background:#fff4d6; border:2px solid #f0b429; font-size:1rem; font-weight:600; }
+  .warn[hidden] { display:none; }
+  .pump { margin:10px 0 14px; padding:12px 14px; border-radius:16px; background:#eef4ff; border:1px solid #d6e3fb; font-size:.95rem; }
+  .items { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .item { display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#fff; border:2px solid var(--line); border-radius:14px; padding:8px 12px; min-height:56px; }
+  .item .sw { width:14px; height:34px; border-radius:7px; flex:none; }
+  .item .nm { flex:1; font-weight:700; line-height:1.2; }
+  .item .nm small { display:block; font-weight:400; color:var(--muted); font-size:.82rem; }
+  .item .kb { font-weight:800; font-size:1.05rem; white-space:nowrap; }
+  .actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+  .fine { margin-top:18px; color:var(--muted); font-size:.82rem; line-height:1.6; }
+  .fine a { color:var(--a); }
+  .load { padding:10px 14px; border-radius:14px; background:#fff8e6; border:1px solid #f1dfa6; color:#6b5200; font-size:.92rem; margin:0 0 14px; }
+  .load.err { background:#fff4f4; border-color:#f3c7c7; color:#8a2b2b; }
+  .load[hidden] { display:none; }
+
+  .sheetbg { position:fixed; inset:0; background:rgba(15,23,42,.45); display:none; align-items:flex-end; justify-content:center; z-index:50; }
+  .sheetbg.on { display:flex; }
+  .sheet { width:min(520px,100%); background:#fff; border-radius:26px 26px 0 0; padding:22px 20px 26px; max-height:92vh; overflow:auto; box-shadow:0 -10px 40px rgba(0,0,0,.25); }
+  @media (min-width:700px) { .sheetbg { align-items:center; } .sheet { border-radius:26px; } }
+  .sheet h3 { margin:0 0 2px; font-size:1.3rem; letter-spacing:-.02em; }
+  .sheet .per { color:var(--muted); margin:0 0 14px; }
+  .field { display:grid; gap:6px; margin:0 0 12px; font-weight:700; font-size:.9rem; color:var(--muted); }
+  .field input { font:inherit; font-size:1.2rem; padding:12px 14px; border:2px solid var(--line); border-radius:14px; background:#f9fbff; color:var(--fg); width:100%; }
+  .field input:focus { outline:none; border-color:var(--a); }
+  .stepper { display:grid; grid-template-columns:56px 1fr 56px; gap:10px; align-items:center; margin-bottom:12px; }
+  .stepper button { height:56px; border-radius:16px; border:2px solid var(--line); background:#fff; font-size:1.8rem; font-weight:800; color:var(--a); }
+  .stepper input { font:inherit; text-align:center; font-size:1.6rem; font-weight:800; padding:10px; border:2px solid var(--line); border-radius:14px; background:#f9fbff; color:var(--fg); width:100%; min-width:0; }
+  .stepper input:focus { outline:none; border-color:var(--a); }
+  .port { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; }
+  .res { text-align:center; margin:6px 0 16px; padding:14px; border-radius:18px; background:linear-gradient(135deg,#eef4ff,#f0e9ff); }
+  .res .n { font-size:2.6rem; font-weight:800; letter-spacing:-.04em; line-height:1.05; }
+  .res .n small { font-size:1.1rem; color:var(--muted); font-weight:700; margin-left:4px; letter-spacing:0; }
+  .row2 { display:flex; gap:10px; flex-wrap:wrap; }
+  .row2 .btn { flex:1; }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } }
+
+  .dd{position:relative;display:inline-block;margin-left:18px}
+  nav .dd>.ddb{font:inherit;font-size:.95rem;font-weight:600;color:var(--muted);background:none;border:0;padding:4px 0;cursor:pointer}
+  nav .dd>.ddb:hover,nav .dd>.ddb[aria-expanded="true"],nav .dd>.ddb.cur{color:var(--fg)}
+  .ddb::after{content:"";display:inline-block;margin-left:6px;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .2s}
+  .ddb[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}
+  .ddm{position:absolute;top:calc(100% + 8px);left:-12px;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);z-index:30}
+  .ddm[hidden]{display:none}
+  nav .ddm a{display:block;margin:0;padding:10px 12px;border-radius:10px;color:var(--fg);font-weight:700}
+  nav .ddm a small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
+  nav .ddm a:hover,nav .ddm a:focus-visible{background:#eef4ff;outline:none}
+  nav .ddm a[aria-current]{background:#eef4ff}
+  @media (max-width:560px){.dd{margin:0 16px 0 0}}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media (max-width:820px){.grid{grid-template-columns:1fr}}
+  .lnk{display:flex;flex-direction:column;gap:2px;padding:14px 16px;margin:10px 0 0;border:2px solid var(--line);border-radius:16px;background:#f9fbff;color:var(--fg);text-decoration:none;min-height:56px}
+  .lnk:hover,.lnk:focus-visible{border-color:var(--a);outline:none}
+  .lnk b{font-weight:800}.lnk span{color:var(--muted);font-size:.92rem}
+  .note{background:#fff8e6;border:1px solid #f3dca0;border-radius:16px;padding:14px 16px;margin:16px 0 0;font-size:.95rem}
+  .kontakt label{display:block;font-weight:700;margin:10px 0 0}
+  .kontakt input,.kontakt textarea{width:100%;font:inherit;font-size:1.05rem;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;margin-top:4px}
+  .small{color:var(--muted);font-size:.9rem}
+  .foot{margin-top:22px;color:var(--muted);font-size:.88rem}
+
+  h1{font-size:clamp(2rem,7.4vw,3.4rem)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+  .pfoot{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.9rem}
+  .pfoot a{color:var(--muted)}
+  .dd,.ddb{white-space:nowrap}
+  nav a{white-space:nowrap}
+  @media (max-width:560px){nav{flex-wrap:wrap;row-gap:4px} nav a{margin:0 12px 0 0} .dd{margin:0 12px 0 0}}
+  .back{display:inline-block;margin:0 0 10px;color:var(--a);font-weight:700;text-decoration:none;padding:8px 0;min-height:44px}
+  .back:hover{text-decoration:underline}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:22px}
+  @media (max-width:820px){.tiles{grid-template-columns:1fr}}
+  .tile{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:24px;text-decoration:none;color:var(--fg);box-shadow:0 6px 22px rgba(15,23,42,.05);transition:transform .15s,box-shadow .15s,border-color .15s;min-height:190px}
+  .tile:hover,.tile:focus-visible{transform:translateY(-3px);box-shadow:0 14px 34px rgba(37,99,235,.16);border-color:var(--a);outline:none}
+  .tile .ic{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;margin-bottom:6px}
+  .tile .ic svg{width:34px;height:34px}
+  .tile b{font-size:1.35rem;letter-spacing:-.02em;font-weight:800}
+  .tile span.d{color:var(--muted);font-size:1rem}
+  .tile .go{margin-top:auto;color:var(--a);font-weight:800}
+  @media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+  .vip{display:flex;align-items:center;gap:12px;background:#e6efff;border:2px solid var(--a);border-radius:16px;padding:10px 14px;margin:0 0 6px;text-decoration:none;color:#0f172a;min-height:48px}
+  .vip b{color:#1d4ed8;font-weight:800;flex:none}.vip span{font-size:.92rem;flex:1;min-width:0;line-height:1.3;color:#334155}.vip .nr{font-weight:800;color:#0f172a}.vip .ch{flex:none;margin-left:auto;color:#1d4ed8;font-weight:800;font-size:1.6rem;line-height:1}
+  .vipf input{font:inherit;font-size:1.1rem;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;color:var(--fg);width:100%;min-height:52px}
+  .vipf label{display:block;font-weight:700;font-size:.9rem;color:var(--muted);margin:10px 0 4px}
+  .vipf .r{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .vipf .btn.g{background:#fff;color:var(--a);border:2px solid var(--line);box-shadow:none}
+  .snar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}
+  @media(max-width:700px){.snar{grid-template-columns:1fr;gap:8px}}
+  @media(max-width:700px){.snar.tre{grid-template-columns:1fr 1fr}.snar.tre .sos{grid-column:1/-1}.snar.tre .vip{flex-direction:column;align-items:flex-start;gap:0;position:relative;padding-right:38px;justify-content:center}.snar.tre .vip .ch{position:absolute;right:10px;top:50%;transform:translateY(-50%);margin:0;font-size:1.3rem}}
+  #vips{display:contents}
+  @media(min-width:701px){.snar.tre{grid-template-columns:repeat(3,1fr)}}
+  .vip .nr{font-weight:800}
+  .snar .sos,.snar .vip{margin:0;min-width:0;min-height:56px}
+  main .sokbox{max-width:none;margin:0}
+  main .sokbox input{min-height:58px;background:var(--card)}
+  [hidden]{display:none!important}
+  .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
+  .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
+  .rgstrip div{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.88rem;color:var(--muted)}
+  .rgstrip i{flex:none;width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:.8rem}
+  .rgstrip a{color:var(--a)}
+  @media (min-width:561px){.ddm{left:auto;right:-4px}}
+  @media (max-width:560px){.ddm{min-width:170px}}
+  .sos{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;background:#fde8e8;border:2px solid #b91c1c;border-radius:16px;padding:10px 14px;margin:0 0 6px;text-decoration:none;color:var(--fg);min-height:48px}
+  .sos b{color:#b91c1c;font-weight:800;flex:none}.sos span{color:var(--muted);font-size:.92rem;flex:1;min-width:0;line-height:1.3}.sos .ch{flex:none;margin-left:auto;color:#b91c1c;font-weight:800;font-size:1.6rem;line-height:1}
+  .grp{margin:26px 0 10px;font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
+  @media (max-width:360px){.rows{grid-template-columns:1fr}}
+  .row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px;text-decoration:none;color:var(--fg);min-height:68px;min-width:0}
+  .row:hover,.row:focus-visible{border-color:var(--a);outline:none}
+  .row .ic{flex:none;width:44px;height:44px;border-radius:13px;display:grid;place-items:center}
+  .row .ic svg{width:26px;height:26px}
+  .tx{flex:1;min-width:0}.tx b{display:block;font-weight:800;line-height:1.25}.tx span{display:block;color:var(--muted);font-size:.9rem;line-height:1.35}
+  .row .ch{flex:none;color:var(--a);font-size:1.6rem;font-weight:800;line-height:1}
+  .foot{margin-top:30px;color:var(--muted);font-size:.85rem;line-height:1.6}.foot a{color:var(--a)}
+  /* søk */
+  .sokbox{position:relative;margin:6px 0 0;max-width:640px}
+  .sokbox input{width:100%;font:inherit;font-size:1.15rem;padding:16px 52px 16px 52px;border:2px solid var(--line);border-radius:18px;background:#fff;color:var(--fg);min-height:56px}
+  .sokbox input::-webkit-search-cancel-button,.sokbox input::-webkit-search-decoration{-webkit-appearance:none;appearance:none;display:none}
+  .sokbox input:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+  .sokbox .lupe{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:22px;height:22px;pointer-events:none}
+  .sokbox .x{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;background:none;border-radius:12px;color:var(--muted);font-size:1.4rem;line-height:1}
+  .sokbox .x[hidden]{display:none}
+  .sokbox .x:hover{background:#eef4ff}
+  .sokstat{color:var(--muted);font-size:.92rem;margin:10px 0 0;min-height:1.4em}
+  .sres{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:10px;max-width:760px}
+  .sres a{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;text-decoration:none;color:var(--fg);box-shadow:0 4px 14px rgba(15,23,42,.04)}
+  .sres a:hover,.sres a:focus-visible{border-color:var(--a);outline:none;box-shadow:0 8px 22px rgba(37,99,235,.14)}
+  .sres .pg{font-size:.78rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--a)}
+  .sres .st{display:block;font-weight:800;font-size:1.1rem;letter-spacing:-.01em;margin:2px 0}
+  .sres .sn{display:block;color:var(--muted);font-size:.95rem;line-height:1.45}
+  .sres mark{background:#fff0b3;color:inherit;border-radius:4px;padding:0 2px}
+  .ingen{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;max-width:760px;margin-top:8px}
+  .ingen b{display:block;font-size:1.1rem}
+  .forslag{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .forslag button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;font-weight:700;font-size:.95rem;min-height:44px}
+  .forslag button:hover{border-color:var(--a);color:var(--a)}
+  
+  .sres a{transition:none}
+  .dp-inst{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-top:30px}
+  @media(max-width:560px){.dp-inst{grid-template-columns:1fr}}
+  .dp-wall{display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(160deg,#1e3a8a,#6d28d9 60%,#be185d);border-radius:26px;padding:22px 34px;color:#fff;font-size:.8rem;font-weight:600}
+  .dp-wall svg{width:72px;height:72px;border-radius:17px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+  .dp-inst h2{margin:0 0 6px;font-size:1.15rem;letter-spacing:-.02em;font-weight:800}
+  .dp-inst ol{margin:8px 0 12px;padding-left:1.3em}.dp-inst ol li{margin:4px 0}
+
+
+
+
+/*lang*/
+  nav .lang{display:inline-flex;margin-left:18px;border:2px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.75);vertical-align:middle}
+  nav .lang a{margin:0;padding:4px 12px;min-height:38px;display:inline-flex;align-items:center;font-size:.8rem;font-weight:800;letter-spacing:.04em;color:var(--muted);text-decoration:none}
+  nav .lang a.on{background:var(--a);color:#fff}
+  @media (max-width:560px){nav{display:flex;align-items:center;flex-wrap:wrap}nav .lang{margin-left:auto}}
+/*/lang*/
+</style>
+<meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tallerkenen">
+<meta name="theme-color" content="#f6f9ff">
+<link rel="manifest" href="/nyttig/diabetes/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/nyttig/diabetes/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Diabetes">
+<link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
+
+
+
+
+<!--hl--><link rel="canonical" href="https://reinertsengruppen.no/nyttig/diabetes/en/"><link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/"><link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/"><link rel="alternate" hreflang="x-default" href="https://reinertsengruppen.no/nyttig/diabetes/"><!--/hl-->
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="brand" href="/index.html" aria-label="Reinertsengruppen">
+      <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
+      <span class="wordmark"><b>Reinertsen</b>gruppen</span>
+    </a>
+    <nav>
+      <a href="/index.html#om">About us</a>
+      <a href="/index.html#kontakt">Contact</a>
+      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Useful</button><div class="ddm" hidden><a href="/nyttig/apper/index.html">Apps<small>Fyret (the lighthouse) and more</small></a><a href="/nyttig/hjelpemidler/index.html" aria-current="page">Aids<small>Diabetes and more</small></a></div></div>
+    <!--lang--><div class="lang" role="group" aria-label="Language / Språk"><a href="/nyttig/diabetes/" hreflang="no" lang="no">NO</a><a href="/nyttig/diabetes/en/" hreflang="en" lang="en" class="on" aria-current="true">EN</a></div><!--/lang--></nav>
+  </div>
+</header>
+
+<main data-rg="rg-2026-10-nyttig-diabetes-en-d2ea">
+  <h1>Tools for people with <em>diabetes.</em></h1>
+  <p class="lead">Simple tools and useful links for you with diabetes, and for the family around you. Choose what you need.</p>
+  <div class="snar" id="snar">
+  <a class="sos" href="/nyttig/diabetes/en/info/"><b>Emergency?</b><span>Emergency numbers and out-of-hours clinic</span><span class="ch" aria-hidden="true">›</span></a>
+  <span id="vips"><a class="vip" href="/nyttig/diabetes/en/info/#viktig"><b>Important person</b><span>Add a number</span><span class="ch" aria-hidden="true">›</span></a></span>
+  </div>
+  <div class="sokbox" role="search">
+    <svg class="lupe" viewBox="0 0 24 24" fill="none" stroke="#5b6b82" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+    <input id="sok" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" placeholder="Search diabetes" aria-label="Search all the diabetes pages" aria-controls="sokres">
+    <button class="x" id="sokx" type="button" aria-label="Clear search" hidden>×</button>
+  </div>
+  <p class="sokstat" id="sokstat" role="status"></p>
+  <div id="sokres"></div>
+  <div id="flis">
+    <h2 class="grp">Every day</h2>
+    <div class="rows">
+      <a class="row" href="/nyttig/diabetes/en/tallerken/"><span class="ic" style="background:#e6efff"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg></span><span class="tx"><b>The Plate</b><span>Count the carbohydrates in your food.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="/nyttig/diabetes/en/innstillinger/"><span class="ic" style="background:#e6efff"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg></span><span class="tx"><b>Settings and checklist</b><span>Your numbers and a checklist before a bolus.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="/nyttig/diabetes/en/trendpiler/"><span class="ic" style="background:#fdeaf3"><svg viewBox="0 0 24 24" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16l5-5 4 3 7-8M15 6h5v5"/></svg></span><span class="tx"><b>Trend arrows and automation</b><span>What the arrows and the automation mean.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="/nyttig/diabetes/en/tallene/"><span class="ic" style="background:#e3f6e9"><svg viewBox="0 0 24 24" fill="none" stroke="#1a8a5a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14M9 4v16"/></svg></span><span class="tx"><b>How the numbers fit together</b><span>What the numbers your pump uses mean.</span></span><span class="ch" aria-hidden="true">›</span></a>
+    </div>
+    <h2 class="grp">Learn more</h2>
+    <div class="rows">
+      <a class="row" href="/nyttig/diabetes/en/mat-og-blodsukker/"><span class="ic" style="background:#fff1e6"><svg viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M4 16c3 0 3-9 6-9s2 9 5 9 3-6 5-6"/></svg></span><span class="tx"><b>Food and blood sugar</b><span>Why the same food gives different curves.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="/nyttig/diabetes/en/nyttig-info/"><span class="ic" style="background:#fff3d6"><svg viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.01"/></svg></span><span class="tx"><b>Illness, travel and parties</b><span>When your child is ill, travelling, and more.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="/nyttig/diabetes/en/manualer/"><span class="ic" style="background:#ece6ff"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 18.5V5.5M8 7h8"/></svg></span><span class="tx"><b>Manuals</b><span>Pump and sensor.</span></span><span class="ch" aria-hidden="true">›</span></a>
+    </div>
+    <h2 class="grp">Help and support</h2>
+    <div class="rows">
+      <a class="row" href="/nyttig/diabetes/en/rettigheter/"><span class="ic" style="background:#fdeaf3"><svg viewBox="0 0 24 24" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></span><span class="tx"><b>Rights and support</b><span>Support from NAV and Helfo in Norway.</span></span><span class="ch" aria-hidden="true">›</span></a>
+      <a class="row" href="/nyttig/diabetes/en/info/"><span class="ic" style="background:#dcf7f1"><svg viewBox="0 0 24 24" fill="none" stroke="#0f9e8a" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></span><span class="tx"><b>Useful information</b><span>Contacts and emergency numbers.</span></span><span class="ch" aria-hidden="true">›</span></a>
+    </div>
+  </div>
+  <section class="panel dp-inst" id="instWrap" hidden>
+    <div class="dp-wall" aria-label="This is how the icon looks on the home screen"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><rect width="192" height="192" fill="url(#dg)"/><path d="M96 26C96 26 52 74 52 108a44 44 0 0 0 88 0C140 74 96 26 96 26z" fill="#fff"/><g fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M72 122l16-14 12 8 24-26"/><path d="M116 90h12v12"/></g></svg><span>Diabetes</span></div>
+    <div>
+      <h2>Add Diabetes to your home screen</h2>
+      <p>Then you open the site like a normal app, without typing an address. The pages also work without internet after you have opened them once.</p>
+      <ol>
+        <li><b>iPhone:</b> tap the Share button in Safari and choose “Add to Home Screen”.</li>
+        <li><b>Android:</b> open the menu in Chrome and choose “Install app” or “Add to Home screen”.</li>
+      </ol>
+      <button class="btn" type="button" id="install">Add to home screen</button>
+    </div>
+  </section>
+  <p class="foot">Missing something? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Hjelpemidler%20for%20diabetikere">Send feedback by email</a> (do not write any health information). The site is not a medical device and does not replace advice from your diabetes team. Everything you enter stays on this device only. See the <a href="/personvern/index.html">privacy policy</a>.</p>
+</main>
+
+<div class="rgstrip"><div><i>R</i><span>Made by Reinertsengruppen. The content is protected by copyright. Questions or feedback? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Nyttig">post@reinertsengruppen.no</a></span></div></div>
+<footer class="pfoot"><a href="/index.html">Reinertsengruppen</a> · <a href="/personvern/index.html">Privacy</a><span class="rgsig">Made by Thomas Reinertsen. Text, images and code belong to Reinertsengruppen and may not be copied or used on other websites without written permission.</span></footer>
+<script>
+(function(){
+  /* ====== Logo ====== */
+  var NS='http://www.w3.org/2000/svg';
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  var rand=rng(7), msvg=document.getElementById('mark'), wins=[];
+  var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
+  function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);msvg.appendChild(e);return e;}
+  el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
+  blds.forEach(function(b){el('rect',{'class':'bld',x:b[0],y:b[1],width:b[2],height:b[3]});var ww=8,wh=10,gx=7,gy=9,m=9,cols=Math.max(1,Math.floor((b[2]-2*m+gx)/(ww+gx))),total=cols*ww+(cols-1)*gx,sx=b[0]+(b[2]-total)/2;
+    for(var r=0;;r++){var y=b[1]+m+r*(wh+gy);if(y+wh>b[1]+b[3]-b[4])break;for(var c=0;c<cols;c++){var w=el('rect',{'class':'w',x:sx+c*(ww+gx),y:y,width:ww,height:wh,rx:1});w._on=rand()<0.7;wins.push(w);}}});
+  el('rect',{'class':'bld',x:30,y:340,width:340,height:6,rx:3});
+  (function(){var h=new Date().getHours(),night=!(h>=7&&h<19);document.body.classList.toggle('night-icon',night);wins.forEach(function(w){w.classList.toggle('on',night&&w._on);});})();
+
+})();
+</script>
+<script>
+(function(){var b=document.querySelector('.ddb'),m=document.querySelector('.ddm');if(!b||!m)return;
+function set(o){b.setAttribute('aria-expanded',o);m.hidden=!o;}
+b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
+})();
+</script>
+<script>
+(function(){
+  var wrap=document.getElementById('instWrap'),btn=document.getElementById('install');
+  if(wrap&&btn){
+    var standalone=false;try{standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;}catch(e){}
+    if(!standalone){
+      wrap.hidden=false;
+      var deferred=null;
+      window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;});
+      btn.addEventListener('click',function(){if(deferred){deferred.prompt();deferred=null;}});
+    }
+  }
+  if('serviceWorker' in navigator&&location.protocol==='https:'){
+    window.addEventListener('load',function(){navigator.serviceWorker.register('/nyttig/diabetes/sw.js').catch(function(){});});
+  }
+})();
+</script>
+<script>
+(function(){
+  var DATA=[{"p": "Useful information", "s": "", "t": "← Diabetes Useful information. Good websites to start with, and space for your own phone numbers."}, {"p": "Useful information", "s": "Important people", "t": "Add up to two people you can call quickly, for example mum and dad or your diabetes nurse. The numbers are stored on this device only and are not sent anywhere. They are shown in the blue strips on the diabetes front page. Edit Remove"}, {"p": "Useful information", "s": "Person 1", "t": "Name Phone number Save Edit Remove"}, {"p": "Useful information", "s": "Person 2", "t": "Name Phone number Save"}, {"p": "Useful information", "s": "Good websites", "t": "Diabetesforbundet (the Norwegian Diabetes Association) Information and support for you with diabetes and your family My school day with diabetes Booklet (PDF) from Diabetesforbundet, in Norwegian Type 1 diabetes (NHI) Norsk helseinformatikk, about the condition (in Norwegian) I have not written any medical advice myself. Follow the advice you have been given by your diabetes team."}, {"p": "Useful information", "s": "When it is urgent", "t": "Out-of-hours clinic (legevakt): 116 117 For illness that cannot wait until daytime Emergency number: 113 For serious, acute illness Talk to your diabetes team about what to do when blood sugar is low or high, and write it down in the field below."}, {"p": "Useful information", "s": "My contacts", "t": "Write what you want easy access to, for example your diabetes nurse and who you call with questions. It is stored on this phone only. Diabetes nurse / outpatient clinic Other notes This site does not own any of the guides. Brand names belong to the manufacturers. The site is not affiliated with or approved by the manufacturers. For acute illness, call the out-of-hours clinic (legevakt) on 116 117, or 113 in an emergency. This site does not replace training and advice from your diabetes team."}, {"p": "Useful information", "s": "My contacts", "t": ""}, {"p": "Settings and checklist", "s": "", "t": "← Diabetes Settings and checklist. Your numbers in one place, and four questions to go through before you confirm a bolus. The site does not calculate doses."}, {"p": "Settings and checklist", "s": "My settings", "t": "Enter the numbers you have been given by your diabetes team. Carbohydrate ratio grams per unit Correction factor mmol/L per unit Target value mmol/L Insulin duration hours The site does not calculate doses. Only enter numbers you have been given by the team, and check them against the pump. Clear the fields Stored on this device only."}, {"p": "Settings and checklist", "s": "Checklist before a bolus", "t": "Four quick questions before you confirm on the pump. Is the sensor value stable? An arrow up or down means the number is moving. Is there active insulin? The pump subtracts it. Check that it matches what has been given. What will be eaten, and when? Is the food ready, or should it wait a little? Are the carbohydrates correct? Use the Plate if you are unsure about the amount. 0 of 4 checked Reset Everything you enter stays on this device only. The site is not a medical device and does not replace advice from your diabetes team. See the privacy policy ."}, {"p": "Settings and checklist", "s": "Checklist before a bolus", "t": ""}, {"p": "Manuals", "s": "", "t": "← Diabetes Manuals and guides. Official user guides for the pump and the sensor. The links go to the manufacturers' own pages, so you always get the latest version."}, {"p": "Manuals", "s": "Insulin pump", "t": "Choose the pump that is used."}, {"p": "Manuals", "s": "Sensor", "t": "Choose the sensor that is used. When you choose a pump, the site suggests the sensor that is usually used with it. This site does not own any of the guides. Brand names belong to the manufacturers. The site is not affiliated with or approved by the manufacturers. For acute illness, call the out-of-hours clinic (legevakt) on 116 117, or 113 in an emergency. This site does not replace training and advice from your diabetes team."}, {"p": "Manuals", "s": "Sensor", "t": ""}, {"p": "Food and blood sugar", "s": "", "t": "← Diabetes Food and blood sugar. The same amount of carbohydrate can give different blood sugar curves. Here is why, and how you can find out what applies to you. The food you eat can make your blood sugar rise in different ways. Here is a simple explanation. Adult Child"}, {"p": "Food and blood sugar", "s": "Read this first", "t": "This is general information and not medical advice. Do not use the times on this page to work out extra insulin on your own. With type 1 diabetes, both a delayed rise in blood sugar and active insulin can create a risk of high or low blood sugar. Follow the treatment plan from your diabetes team. The CGM sensor can lag behind your blood sugar. If it does not match how you feel, the manufacturer (Dexcom) recommends that you check with a fingerstick. Out-of-hours clinic (legevakt): 116 117 For illness that cannot wait until daytime Emergency number: 113 For serious, acute illness"}, {"p": "Food and blood sugar", "s": "In short", "t": "Carbohydrate affects blood sugar the most. Fat, protein and fibre can make the rise later and longer. How long and when blood sugar rises differs from person to person. There is no fixed “tail” for each food. No food is forbidden. Some foods just need more planning, see the Watch-out list. Your own sensor data says more about you than a general table. Why Tail Watch-out list Examples Your own log"}, {"p": "Food and blood sugar", "s": "Why the same food gives a different curve", "t": "Carbohydrate matters most for blood sugar, but it is not everything. Carbohydrate Gives the fastest and clearest rise. The amount matters most. Fat Slows down stomach emptying. The rise can come later and last longer. Protein Slows the absorption of carbohydrate. In some people with type 1 diabetes, large amounts can also cause a later rise. Fibre Slows absorption, especially in wholegrain products. The glycaemic index (GI) tells you how fast a food raises blood sugar. Chocolate and crisps have a lower GI than you might expect, because the fat slows the absorption of the carbohydrates. A low GI still does not mean that the food gives a small effect. GI does not take portion size into account. Other things can also change the curve: insulin and when it was taken, physical activity, stress, illness, sleep and what the food was eaten together with."}, {"p": "Food and blood sugar", "s": "What is a “tail”?", "t": "A tail is when blood sugar keeps rising or stays high for several hours after you have eaten. This often happens when the food contains a lot of fat and protein together with carbohydrates."}, {"p": "Food and blood sugar", "s": "Watch out! Foods that need extra planning", "t": "No food is forbidden with diabetes. Some foods just behave more unpredictably than others. It is wise to know which ones, and to talk to your diabetes team about how to handle them. Watch out: can give a long tail Snickers and chocolate: sugar gives an early rise, fat can give a later one. Pizza: dough, cheese and meat can keep blood sugar up for several hours. Burger and chips: carbohydrates and a lot of fat can give a delayed rise. Cakes and biscuits: sugar and fat can give both an early and a late rise. Watch out: often gives a fast rise Glucose (dextrose) tablets Sugary fizzy drinks and juice Sweets with little fat White bread and white rice A faster rise, but not necessarily a long tail. With a CGM sensor you can follow your blood sugar for several hours after the meal and see your own tail."}, {"p": "Food and blood sugar", "s": "The sensor does not always show real time", "t": "A CGM sensor measures sugar in the fluid just under the skin, not directly in the blood. That is why the sensor value can lag a little behind, especially when blood sugar changes quickly, for example after a meal. The sensor and a fingerstick can also show different numbers for a while. If in doubt, do a fingerstick, and follow your diabetes team's advice on what to do with the result."}, {"p": "Food and blood sugar", "s": "Examples of timing", "t": "The examples below only show that the timing can differ. There is no fixed curve for each food. Schematic sketch, not measured data. Height and shape are drawn to show the timing, not how high blood sugar goes. The dashed line is blood sugar before the meal. Your own curves will look different. Qualitative examples of when blood sugar can rise and how long the tail can be Food Rise Tail Glucose (dextrose) tablets Fast Short-lived Banana Often fairly early Often shorter Snickers or a chocolate bar Can come early, sometimes later Can be long Pizza Often later than expected Can be long, possibly a later peak Indicative descriptions, not measurements."}, {"p": "Food and blood sugar", "s": "Why Snickers often stands out", "t": "Snickers has both sugar (early rise) and a lot of fat (later and longer rise). Studies in children and teenagers with type 1 diabetes have shown that fat can affect blood sugar for several hours. These are studies under controlled conditions, not a measurement of what Snickers does. In some people fat can also affect the insulin need. Talk to your diabetes team about how this is handled."}, {"p": "Food and blood sugar", "s": "Glucose (dextrose) tablets", "t": "Glucose (druesukker) is pure sugar with no fat, protein or fibre to slow absorption. It is absorbed quickly into the blood, and blood sugar rises fast. How and when to use glucose, for example for low blood sugar, you agree with your diabetes team."}, {"p": "Food and blood sugar", "s": "Make your own log", "t": "This is how you can find out how a specific food affects you: Write down what you ate and follow the curve for the next 4–6 hours. The list below shows what you can note. Compare several similar situations before drawing a conclusion. One measurement says little."}, {"p": "Food and blood sugar", "s": "What you can write down", "t": "Date and time Food and portion Blood sugar before Insulin and timing, as in the treatment plan Activity before and after Blood sugar after 2, 4 and 6 hours Notes: stress, illness, sleep and anything else unusual Copy log template Date and time Food and portion Blood sugar before Insulin and timing Activity Blood sugar after 2 h Blood sugar after 4 h Blood sugar after 6 h Notes The template can be pasted into a spreadsheet or a notes app. Use the log to look for patterns, and bring it to your diabetes team. The site does not store anything you write."}, {"p": "Food and blood sugar", "s": "Why does blood sugar go up differently?", "t": "When you eat, the food goes down into your stomach. Sugar from the food gets into your blood. We call that blood sugar. But not all food does it in the same way."}, {"p": "Food and blood sugar", "s": "Imagine a bonfire", "t": "Sugar is like paper on the fire. It catches fire fast and burns out fast. Fat is like a thick log. It takes longer to light, but it burns for a long time. Sometimes blood sugar stays up for a long time after the food. That is called a tail. Food with a lot of fat, like pizza and Snickers, can give a tail."}, {"p": "Food and blood sugar", "s": "Choose a food", "t": "Glucose (dextrose) tablets Banana Snickers Pizza Glucose (druesukker) is pure sugar. It goes almost straight into the blood, and nothing slows it down the way fat does. That is why blood sugar goes up very fast. When you should take glucose is decided by an adult or the diabetes team. The drawing is only a sketch to show the idea. Your own curve looks different."}, {"p": "Food and blood sugar", "s": "Remember this", "t": "No food is forbidden. Some foods just need a little more planning by an adult or the diabetes team. Different food gives a different curve. Your curve is your own. It is not the same as other people's. Always ask an adult or the diabetes team what to do. The sensor is sometimes a little slow. If it does not feel right, tell an adult, and you can check with a fingerstick. This page does not tell you what to take or do. If you feel unwell or strange, tell an adult right away. If it is very serious, you can call 113."}, {"p": "Food and blood sugar", "s": "Sources and tools", "t": "Sensor value and blood sugar value (Dexcom) Glycaemic index and diabetes (Diabetes UK) Dietary guidance when using mealtime insulin (Norwegian Directorate of Health) Nutritional management in children and adolescents with diabetes (ISPAD 2022) Effects of fat supplementation on glycaemic response and gastric emptying in adolescents with Type 1 diabetes (PubMed, research article) Matvaretabellen (Norwegian Food Safety Authority) Carbs & Cals (app, a tool and not a source) Diabetesforbundet (the Norwegian Diabetes Association) General information, not medical advice. The site does not replace guidance from your diabetes team, GP or other healthcare professionals, and is not a medical device. We are not affiliated with the tools or organisations mentioned. See the privacy policy . Last updated 24 October 2026. ↑ Back to top"}, {"p": "Food and blood sugar", "s": "Sources and tools", "t": ""}, {"p": "Illness, travel and parties", "s": "", "t": "← Diabetes Illness, travel and parties. What is good to know besides food and the pump: illness, travel, parties and small children. From Norwegian sources, with links. It is urgent Illness Travel Teenagers and alcohol Small children Facts Words and terms Ask the team"}, {"p": "Illness, travel and parties", "s": "It is urgent", "t": "Call 113 right away if the child is limp, does not respond or is not fully awake Also call the parents. Never give food or drink to a child who is not fully awake, and never give insulin during a hypo (low blood sugar). Illness that cannot wait until daytime: the out-of-hours clinic (legevakt) 116 117 . Serious acute illness: 113 . Ask your diabetes team for a written plan for hypos and illness, and keep the team's number easy to find. Source: Diabetesforbundet: My kindergarten day with diabetes (in Norwegian)"}, {"p": "Illness, travel and parties", "s": "When the child is ill", "t": "Children with diabetes do not get acutely ill more often than other children. But when they do get ill, you need to keep a closer eye on them. Never stop the insulin , even if the child is not eating. The dose may need to go up or down, but you decide that together with the diabetes team. Check more often than usual. The hospitals' advice is at least every 2 to 3 hours, also at night. Check ketones in the urine when the child is ill, especially with vomiting or diarrhoea. Make sure the child drinks enough. With vomiting, small amounts of a sugary drink, such as squash or a sports drink, can replace meals. Call the hospital early. The threshold for getting in touch should be low, especially with vomiting and diarrhoea. After illness the insulin need can be lower for one to two weeks. Keep checking often. Doses and percentages are not given here. Ask your diabetes team for a written plan for illness, with who to call and when. Source: Sørlandet Hospital: Acute illness and diabetes (in Norwegian) · NHI: Insulin treatment during infections (in Norwegian)"}, {"p": "Illness, travel and parties", "s": "Travelling", "t": "Choose a section to open it."}, {"p": "Illness, travel and parties", "s": "Before you leave", "t": "Get an international diabetes ID card from Diabetesforbundet. Check that your travel insurance covers diabetes. If not, you may need a separate policy. If you are travelling in Europe: order a European Health Insurance Card from Helfo. Teach the people you travel with to recognise low blood sugar, and how emergency medicine (glucagon) is used. Talk to your doctor about what to do with vomiting, diarrhoea and fever, and whether you should bring something for diarrhoea."}, {"p": "Illness, travel and parties", "s": "What to bring", "t": "Enough insulin and equipment for the whole trip, plus spare. Blood glucose meter and test strips. Extra battery for the pump. An insulin pen as a backup, even if the child uses a pump. Glucose tablets and other sugary food for hypos. A cool bag or thermos for insulin. A thermometer if the insulin goes in a fridge."}, {"p": "Illness, travel and parties", "s": "Airport and plane", "t": "Keep insulin and all equipment in your hand luggage . The hold can get freezing cold, and luggage can be delayed. Keep the medicine in its original packaging with the pharmacy label and name. Glucagon too. Bring a doctor's letter in English. Some countries require a hospital stamp. Pack the diabetes equipment in its own bag, so it is easy to take out at security. Do not send the pump or sensor through X-ray. The manufacturers give different advice about body scanners and metal detectors. Check the manual, and ask for a manual check if you are unsure. Contact the airline in advance about the pump and sensor, since they are wireless. Take rapid-acting insulin only when the food is in front of you. Bring a packed meal and some quick sugary food. It can help to use two clocks, one for home time and one for the time at your destination."}, {"p": "Illness, travel and parties", "s": "Time zones", "t": "North or south: doses are usually not adjusted. East or west: when you cross several time zones, the doses may need to be adjusted. Agree a plan with your diabetes team before you leave. With a pump: change the clock when you arrive. It is safer to have slightly higher blood sugar the first days than too low."}, {"p": "Illness, travel and parties", "s": "Heat, cold and storing insulin", "t": "Insulin cannot tolerate frost, direct sun or high temperatures. Do not leave it in the car. At room temperature, up to 30 degrees, insulin usually keeps for 4 to 6 weeks. Check the package leaflet. Hotel fridges can freeze insulin. Use a thermometer. In the cold, the insulin pen can be carried close to the body. The blood glucose meter works best between 15 and 35 degrees. Cold gives readings that are too low, and heat readings that are too high. Heat and sun increase the absorption of insulin and give a greater risk of low blood sugar. Talk to the team about what to do in hot weather. Drink enough water."}, {"p": "Illness, travel and parties", "s": "Other countries and other units", "t": "Norway uses insulin with a strength of 100 IU/ml. Some countries use 80 or 40. The syringe must match the strength, otherwise the dose will be wrong. Some countries give blood sugar in mg/dl. Divide the number by 18 to get mmol/L. mg/dl mmol/L Source: NHI: Type 1 diabetes and travel (in Norwegian) · NHI: Air travel and type 1 diabetes (in Norwegian)"}, {"p": "Illness, travel and parties", "s": "Teenagers, parties and alcohol", "t": "For teenagers and parents. Here are the facts, so it is easier to make good choices. Alcohol lowers blood sugar , because the liver does not make sugar while it is breaking down alcohol. The risk is there for as long as there is alcohol in the blood. Low blood sugar is harder to notice when you have been drinking. A hypo can look like being drunk. Then help may come too late. That is why the people around you need to know what to look for. Emergency medicine (glucagon) works less well after alcohol."}, {"p": "Illness, travel and parties", "s": "What helps", "t": "Check your blood sugar while you drink. Eat food with carbohydrates before you go to bed, and while you drink. Tell the people you are with what to look for. Avoid home-distilled spirits and pure spirits. They give a high blood alcohol level in a short time. Tell your parents or others at home that you have been drinking when you go to sleep. Talk to your diabetes team about what applies to you, for example about insulin in the evening. Source: Sørlandet Hospital: Alcohol and diabetes (in Norwegian)"}, {"p": "Illness, travel and parties", "s": "Small children and kindergarten", "t": "Small children cannot always say how they feel. Then the adults have to watch how the child behaves. Signs of low blood sugar can be paleness, hunger or thirst, difficulty concentrating and changed behaviour. The signs differ from child to child. The child must always be allowed to eat when blood sugar is low. Keep hypo food at the kindergarten, for example juice, honey, raisins and glucose tablets. Children with a pump should have an insulin pen available as a backup. The child should have one fixed adult in charge. Agree who brings the equipment and hypo food on trips. Wash your hands before checking. Dirty hands can give a wrong reading. The parents train the adults and make a plan for hypos. The kindergarten sets aside time and informs all staff. Give notice in advance about different days, such as trip days, carnival and end-of-term events. Source: Diabetesforbundet: My kindergarten day with diabetes (in Norwegian)"}, {"p": "Illness, travel and parties", "s": "About type 1 diabetes", "t": "The immune system attacks the cells that make insulin. The condition is lifelong, and you need insulin every day. Around 30,000 people in Norway have type 1 diabetes. More than half are diagnosed before they are 18. The condition often starts over a few days, with thirst, a lot of urinating, weight loss and feeling generally unwell. A sensor measures sugar in the tissue about every five minutes. Usual follow-up is a check-up every three to four months, and an annual check. Source: NHI: Type 1 diabetes (in Norwegian)"}, {"p": "Illness, travel and parties", "s": "Words and terms", "t": "Hypo (føling), low blood sugar Blood sugar below 4 mmol/L. High blood sugar Above what is wanted. Diabetesforbundet says 4 to 10 mmol/L is a good range. mmol/L and mg/dl Two ways of giving blood sugar. Norway uses mmol/L. Divide mg/dl by 18. Sensor, CGM Measures sugar in the tissue around the clock. Bolus Insulin for a meal, or an extra dose to correct. Basal The steady insulin the pump gives around the clock. Carbohydrate ratio and correction factor Numbers from your diabetes team that the pump uses. See How the numbers fit together . HbA1c Long-term blood sugar. A blood test that shows how blood sugar has been over the past weeks. Ketones Substances the body makes when it lacks insulin. Can be measured in urine. Many ketones together with signs of illness is dangerous. Glucagon Emergency medicine that makes the body release sugar during a severe hypo. IU International units. The unit of measurement for insulin. Suggestions"}, {"p": "Illness, travel and parties", "s": "Ask the diabetes team", "t": "Questions that can be good to bring to the next appointment. The list is made by me, not by an official source. What do we do if the child has vomiting or diarrhoea? Can we get a written plan? Who do we call at night and at weekends? Should we have emergency medicine (glucagon), and where should it be kept? What do we do if the pump or sensor fails? What do we do when travelling, and with time zones? Can you help us make an action plan for the school or kindergarten? What kind of follow-up and check-ups should we expect going forward?"}, {"p": "Illness, travel and parties", "s": "Sources", "t": "NHI: Type 1 diabetes (in Norwegian) NHI: Type 1 diabetes and travel (in Norwegian) NHI: Air travel and type 1 diabetes (in Norwegian) NHI: Insulin treatment during infections (in Norwegian) Sørlandet Hospital: Acute illness and diabetes (in Norwegian) Sørlandet Hospital: Alcohol and diabetes (in Norwegian) Sørlandet Hospital: Travel and diabetes (in Norwegian) Diabetesforbundet: My kindergarten day with diabetes (in Norwegian) Diabetesforbundet: My school day with diabetes (in Norwegian) The site collects information from Norwegian sources and is not a medical device. It does not replace advice from your diabetes team, and it contains no doses. For acute illness, call the out-of-hours clinic (legevakt) on 116 117, or 113 in an emergency. See the privacy policy ."}, {"p": "Illness, travel and parties", "s": "Sources", "t": ""}, {"p": "Rights and support", "s": "", "t": "← Diabetes Rights and support. A simple overview of support that often applies to families with children who have diabetes. This is not a complete list, and it is NAV and Helfo who decide what you are entitled to. (NAV is the Norwegian Labour and Welfare Administration, and Helfo is the Norwegian Health Economics Administration.) Also ask your diabetes team or the social worker at the hospital. They know the schemes and can help with applications and doctor's statements."}, {"p": "Rights and support", "s": "From NAV", "t": "NAV: Basic benefit (grunnstønad) Support for fixed extra expenses because of illness, for example a more expensive diet. The expenses must usually be lasting (2–3 years or more), and a doctor's statement is needed. NAV gives diets such as coeliac disease as examples, and diabetes is not among them. Ask NAV or the social worker whether it may apply to you. NAV decides. NAV: Attendance benefit (hjelpestønad) For parents of children who need extra supervision or care. An increased benefit can be given when the need is considerably greater than for other children. NAV: Extra care days (ekstra omsorgsdager) Ten extra days per child (20 if you are the only carer) for parents of children with a chronic or long-term illness, when the illness gives a markedly higher risk of absence from work. Applies to children up to and including the calendar year they turn 18. Each parent applies separately, with a doctor's statement. NAV: Care benefit for a sick child (pleiepenger) Replaces lost income when a child under 18 is admitted to hospital or needs continuous care at home. The links go to nav.no. There you will find the application and up-to-date conditions."}, {"p": "Rights and support", "s": "From Helfo and Helsenorge", "t": "Helfo: Support for consumables (forbruksmateriell) Covers part of the cost of consumables and over-the-counter medicines when they go over an excess amount. A doctor's statement and receipts are needed. The excess amount changes, so check the current amount on Helsenorge. Patient travel (pasientreiser) Covers travel costs to and from treatment, for example to check-ups at the hospital."}, {"p": "Rights and support", "s": "School and kindergarten", "t": "My school day with diabetes Booklet (PDF) from Diabetesforbundet about what the school should know and do. In Norwegian. My kindergarten day with diabetes Booklet (PDF) from Diabetesforbundet for the kindergarten. In Norwegian. Talk to your diabetes team about how to prepare the school or kindergarten. The overview is compiled from nav.no, helsenorge.no and a presentation from Oslo University Hospital (2024). Rules and amounts change, and some links may be moved. I do not give advice on what you are entitled to. Always check up-to-date information on nav.no and helsenorge.no."}, {"p": "Rights and support", "s": "School and kindergarten", "t": ""}, {"p": "How the numbers fit together", "s": "", "t": "← Diabetes How the numbers fit together. The pump uses a few numbers from the diabetes team when it works out insulin. Here you can see what they mean, with an example that is nobody's own numbers. Example numbers"}, {"p": "How the numbers fit together", "s": "Four numbers the pump uses", "t": "Every family has its own numbers, set by the diabetes team. The numbers below are only to show how it fits together. Carbohydrate ratio 1 : 10 example One unit of insulin covers 10 grams of carbohydrates. Correction factor 2 mmol/L per unit, example One unit of insulin lowers blood sugar by 2 mmol/L. Target value 6 mmol/L, example The value the pump aims for when it corrects. Insulin duration 4 hours, example How long the insulin works. The pump subtracts what is left. Example numbers"}, {"p": "How the numbers fit together", "s": "How the pump puts a dose together", "t": "A meal of 60 grams of carbohydrates, and blood sugar of 10 mmol/L. 1 The food 60 grams, and one unit covers 10 grams. That gives 6 units. 2 Correct 10 is 4 above the target of 6, and one unit lowers by 2. That gives 2 units. 3 Put together 6 and 2 make 8 units. If the child already has active insulin, the pump subtracts it. You do not need to calculate this yourself. The pump does it when you enter carbohydrates and blood sugar. You only need to check that the numbers you enter are correct."}, {"p": "How the numbers fit together", "s": "Where do the numbers come from?", "t": "The diabetes team finds the numbers by looking at how much insulin the child uses over a day and night and how blood sugar goes. Some also use two rules of thumb as a first estimate. The 500 rule 500 divided by the daily dose Estimates how many grams of carbohydrates one unit covers. The 100 rule 100 divided by the daily dose Estimates how many mmol/L one unit lowers blood sugar. Example: A child uses 25 units a day. 500 divided by 25 is 20, so one unit covers about 20 grams of carbohydrates. 100 divided by 25 is 4, so one unit lowers about 4 mmol/L. These are rough estimates, not a recipe. The 500 rule fits best when the basal insulin is set correctly. Studies of real-world settings show that many people use other numbers, and that children and teenagers deviate most. Children grow, and the need changes. The diabetes team adjusts the numbers along the way. Never use these rules to change settings yourself. Sources: Sørlandet Hospital, procedure (in Norwegian) · DiabetesNet, 500 rule · Diabettech, the rules against real data"}, {"p": "How the numbers fit together", "s": "Remember", "t": "✓ Changes to the settings are made only together with the diabetes team. ✓ Write down the numbers you have in “Settings and checklist”, so they are easy to find. ✓ If you are unsure about a number on the pump, call the team. The examples are made to explain, and the numbers belong to nobody. The rules are common rules of thumb in diabetes care. The site is not a medical device and does not replace advice from the diabetes team. See the privacy policy ."}, {"p": "How the numbers fit together", "s": "Remember", "t": ""}, {"p": "The Plate", "s": "", "t": "← Diabetes The Plate your own. Find out how many grams of carbohydrate are in the food. Search for what you are going to eat, put it on the plate, and see the total. Manuals for pump and sensor are on a separate page. Loading the food table …"}, {"p": "The Plate", "s": "1. Find the food", "t": "Favourites Recently used My foods My meals Food from a packet I know the grams of carbs"}, {"p": "The Plate", "s": "2. The plate", "t": "0 g carbohydrate in total Oh, that is a lot! Check that you have entered the right number. Remember that the number on the packet should be “per 100 g”. Ask an adult for help. Put food on the plate, and you will see the total carbohydrate. Save as meal Empty the plate Add to home screen The numbers come from Matvaretabellen (Norwegian Food Safety Authority) and are averages. The data is used under NLOD 2.0 . The Norwegian Food Safety Authority is not behind this site. For food from a packet, the number on the packet is more accurate, and it is best to weigh the food. The Plate is a simple tool for adding up carbohydrate. It is not a medical device, gives no medical advice and does not calculate insulin. Follow the advice you have received from the diabetes team. Everything you enter stays only on this phone."}, {"p": "The Plate", "s": "2. The plate", "t": ""}, {"p": "Trend arrows and automation", "s": "", "t": "← Diabetes Trend arrows and automation. What the arrows on the sensor mean, and how the pump can adjust the insulin by itself. The drawings are simplified, so your own screen may look different."}, {"p": "Trend arrows and automation", "s": "The sensor screen", "t": "1 The number What the sensor shows right now. 2 The arrow Which way the number is going, and how fast. 3 The curve The last hours. It shows whether the number has been going up or down for a while."}, {"p": "Trend arrows and automation", "s": "What the arrows mean on Dexcom", "t": "Seven steps, from fastest up to fastest down. A double arrow means faster than a single arrow. Two arrows up Rising fastest. One arrow up Rising quickly. Arrow diagonally up Rising at a steady pace. Arrow straight ahead The number stays about the same. Arrow diagonally down Falling at a steady pace. One arrow down Falling quickly. Two arrows down Falling fastest. How many mmol/L per minute each arrow stands for, and what to do for each arrow, is in the user guide and with the diabetes team."}, {"p": "Trend arrows and automation", "s": "Control-IQ", "t": "The pump looks at what the sensor thinks the value will be in 30 minutes, and chooses based on that. 10.0 mmol/L 8.9 6.25 3.9 Delivers Gives an automatic correction bolus if the value is expected to go above 10.0. Increases Increases the basal dose if the value is expected to go above 8.9. Keeps Uses the settings in your active profile. Reduces Reduces the basal dose if the value is expected to go below 6.25. Stops Stops the basal dose if the value is expected to go below 3.9. The target range is 3.9 to 10 mmol/L. The pump goes by what the value is expected to be, not just what it is now."}, {"p": "Trend arrows and automation", "s": "Basal-IQ", "t": "The simpler function. It only watches for low values. 1 Looks ahead The pump predicts the values 30 minutes ahead. 2 Stops the insulin If the value is expected to go below 4.4, or a sensor reading is below 3.9. 3 Starts again The insulin comes back automatically when the values begin to rise. Basal-IQ applies to t:slim X2 with Dexcom G6. Control-IQ applies to both G6 and G7. The page is an aid for understanding the screen and does not replace training and advice from the diabetes team. The pump cannot stop all high and low values, and it only works when the sensor and pump are connected. For acute illness, call the out-of-hours clinic (legevakt) on 116 117, or 113 in an emergency."}, {"p": "Trend arrows and automation", "s": "Basal-IQ", "t": ""}];
+  var URLS={"Useful information": "info/index.html", "Settings and checklist": "innstillinger/index.html", "Manuals": "manualer/index.html", "Food and blood sugar": "mat-og-blodsukker/index.html", "Illness, travel and parties": "nyttig-info/index.html", "Rights and support": "rettigheter/index.html", "How the numbers fit together": "tallene/index.html", "The Plate": "tallerken/index.html", "Trend arrows and automation": "trendpiler/index.html"};
+  var SYN={"hypo": ["low blood sugar", "low", "hypoglycaemia", "hypoglycemia"], "low": ["hypo", "low blood sugar"], "hypoglycaemia": ["hypo", "low blood sugar"], "hypoglycemia": ["hypo", "low blood sugar"], "high": ["hyper"], "hyper": ["high"], "pump": ["insulin pump"], "arrow": ["arrows", "trend"], "arrows": ["arrow", "trend"], "trend": ["arrow", "arrows"], "sugar": ["glucose", "blood sugar"], "glucose": ["sugar", "blood sugar"], "glucagon": ["emergency medicine"], "emergency": ["113", "glucagon", "legevakt"], "restaurant": ["eating out", "food"], "school": ["kindergarten", "teacher"], "teacher": ["school", "kindergarten"], "money": ["benefit", "nav", "helfo", "support"], "benefit": ["nav", "support"], "insulin": ["bolus", "dose"], "dose": ["bolus", "insulin"], "food": ["carbohydrates", "meal"], "carbs": ["carbohydrates", "carbohydrate"], "call": ["phone", "emergency", "113"], "phone": ["call", "emergency"], "doctor": ["gp", "diabetes team"], "travel": ["trip", "flight", "plane", "holiday"], "flight": ["plane", "travel", "airport"], "sick": ["illness", "ill"], "ill": ["illness", "sick"], "party": ["alcohol", "teenagers"], "drink": ["alcohol"]};
+  var input=document.getElementById('sok'), x=document.getElementById('sokx'), stat=document.getElementById('sokstat'), res=document.getElementById('sokres'), flis=document.getElementById('flis');
+  function norm(s){return s.toLowerCase().replace(/[.,;:!?()“”’"'\u2013\u2014-]/g,' ').replace(/\s+/g,' ').trim();}
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var idx=DATA.map(function(e){return{e:e,p:norm(e.p),s:norm(e.s),t:norm(e.t)};});
+  function hasWord(hay,tok){
+    if(!tok) return false;
+    if(hay.indexOf(tok)===0) return true;
+    return hay.indexOf(' '+tok)!==-1;
+  }
+  function tokScore(it,tok){
+    var alts=[tok].concat(SYN[tok]||[]), best=0;
+    alts.forEach(function(a){
+      var sc=0;
+      if(hasWord(it.s,a)) sc=Math.max(sc,6);
+      if(hasWord(it.p,a)) sc=Math.max(sc,5);
+      if(hasWord(it.t,a)) sc=Math.max(sc,2);
+      if(a!==tok) sc=sc*0.8;
+      if(sc>best) best=sc;
+    });
+    if(!best && tok.length>=4){
+      var stem=tok.slice(0,tok.length-1);
+      if(hasWord(it.s,stem)) best=4; else if(hasWord(it.p,stem)) best=3; else if(hasWord(it.t,stem)) best=1;
+    }
+    return best;
+  }
+  function snippet(e,toks){
+    var txt=e.t||e.s; if(!txt) return '';
+    var low=txt.toLowerCase(), pos=-1;
+    for(var i=0;i<toks.length;i++){var p=low.indexOf(toks[i]);if(p!==-1){pos=p;break;}}
+    var start=Math.max(0,pos===-1?0:pos-50), out=txt.slice(start,start+150);
+    if(start>0) out='… '+out;
+    if(start+150<txt.length) out+=' …';
+    out=esc(out);
+    toks.forEach(function(t){if(t.length<2)return;out=out.replace(new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>');});
+    return out;
+  }
+  function sok(q){
+    var n=norm(q), toks=n.split(' ').filter(function(t){return t.length>=2;});
+    if(!toks.length){res.innerHTML='';stat.textContent='';flis.hidden=false;return;}
+    flis.hidden=true;
+    var hits=[];
+    idx.forEach(function(it){
+      var total=0, ok=true;
+      for(var i=0;i<toks.length;i++){var s=tokScore(it,toks[i]);if(!s){ok=false;break;}total+=s;}
+      if(ok){ if(it.s) total+=0.5; hits.push({it:it,sc:total}); }
+    });
+    hits.sort(function(a,b){return b.sc-a.sc;});
+    var shown=hits.slice(0,10);
+    if(!shown.length){
+      stat.textContent='No results';
+      res.innerHTML='<div class="ingen"><b>Found nothing for “'+esc(q.trim())+'”</b><p style="margin:4px 0 0;color:var(--muted)">Try a simpler word, or choose one of these.</p><div class="forslag">'+['low blood sugar','arrow','carbohydrates','school','NAV','manual'].map(function(w){return '<button type="button" data-q="'+w+'">'+w+'</button>';}).join('')+'</div></div>';
+      return;
+    }
+    stat.textContent=hits.length===1?'1 result':(hits.length>10?'Showing 10 of '+hits.length+' results':hits.length+' results');
+    res.innerHTML='<ul class="sres">'+shown.map(function(h){
+      var e=h.it.e;
+      return '<li><a href="'+(URLS[e.p]||'#')+'"><span class="pg">'+esc(e.p)+'</span><span class="st">'+esc(e.s||e.p)+'</span><span class="sn">'+snippet(e,toks)+'</span></a></li>';
+    }).join('')+'</ul>';
+  }
+  var timer;
+  input.addEventListener('input',function(){x.hidden=!input.value;clearTimeout(timer);timer=setTimeout(function(){sok(input.value);},120);});
+  x.addEventListener('click',function(){input.value='';x.hidden=true;sok('');input.focus();});
+  input.addEventListener('keydown',function(e){if(e.key==='Escape'&&input.value){input.value='';x.hidden=true;sok('');}});
+  res.addEventListener('click',function(e){var b=e.target.closest('button[data-q]');if(b){input.value=b.getAttribute('data-q');x.hidden=false;sok(input.value);input.focus();}});
+  if(location.hash==='#sok') input.focus();
+})();
+</script>
+<script>
+(function(){
+  function fmt(t){var d=t.replace(/\D/g,'');return (d.length===8&&t.indexOf('+')<0)?d.replace(/(\d{3})(\d{2})(\d{3})/,'$1 $2 $3'):t;}
+  var box=document.getElementById('vips'),snar=document.getElementById('snar');if(!box)return;
+  try{
+    var l=JSON.parse(localStorage.getItem('rg-vip-liste')||'null');
+    if(!Array.isArray(l)){var o=JSON.parse(localStorage.getItem('rg-vip')||'null');l=[o&&o.t?o:null,null];}
+    l=l.filter(function(v){return v&&v.t;}).slice(0,2);
+    if(!l.length)return;
+    box.innerHTML='';
+    l.forEach(function(v){
+      var a=document.createElement('a');a.className='vip';a.href='tel:'+v.t.replace(/[^\d+]/g,'');
+      var b=document.createElement('b');b.textContent=v.n||'Important person';
+      var s=document.createElement('span');s.className='nr';s.textContent=fmt(v.t);
+      var c=document.createElement('span');c.className='ch';c.setAttribute('aria-hidden','true');c.textContent='\u260E';
+      a.appendChild(b);a.appendChild(s);a.appendChild(c);box.appendChild(a);});
+    if(l.length>1)snar.classList.add('tre');
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
