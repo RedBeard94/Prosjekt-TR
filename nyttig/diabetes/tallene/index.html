@@ -127,16 +127,21 @@
 
 
 
+
+
 /*lang*/
   nav .lang{display:inline-flex;margin-left:18px;border:2px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.75);vertical-align:middle}
   nav .lang a{margin:0;padding:4px 12px;min-height:38px;display:inline-flex;align-items:center;font-size:.8rem;font-weight:800;letter-spacing:.04em;color:var(--muted);text-decoration:none}
   nav .lang a.on{background:var(--a);color:#fff}
   @media (max-width:560px){nav{display:flex;align-items:center;flex-wrap:wrap}nav .lang{margin-left:auto}}
+  @media (display-mode:standalone){nav > a,nav .dd{display:none}nav{display:flex;justify-content:flex-end}nav .lang{margin-left:auto}}
 /*/lang*/
 </style>
 <link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/bilder/ikon/apple-touch-icon.png">
+
+
 
 
 
