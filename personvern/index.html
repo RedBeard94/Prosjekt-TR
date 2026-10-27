@@ -216,8 +216,12 @@
     <p>Tallerkenen henter matvaretall fra Matvaretabellen. Da får Matvaretabellen din IP-adresse, slik som ved alle andre nettsider du besøker.</p>
   </section>
   <section class="panel" style="margin-bottom:16px">
+    <h2>Besøkstall</h2>
+    <p>Vi teller hvor mange som besøker sidene, for å se hva som brukes (anonym besøkstelling). Tellingen sender bare sidens adresse, hvilken del av nettsiden det gjelder, språk og om siden er åpnet som app. Den bruker ingen cookies, vi lagrer ikke IP-adressen din, og du kan ikke gjenkjennes. Samme side telles én gang per økt. Tallene vises bare for oss, i vår egen portal. Har du slått på «Do Not Track» i nettleseren, telles du ikke.</p>
+  </section>
+  <section class="panel" style="margin-bottom:16px">
     <h2>Nettsiden</h2>
-    <p>Domenenavnet og e-posten vår er hos Domeneshop. Selve nettsiden ligger hos GitHub Pages, og GitHub kan som alle tjenere logge IP-adresser. Skrifttypen er lagret på vår egen side, så den hentes ikke fra Google. Vi bruker ingen sporings- eller annonsetjenester, og ingen informasjonskapsler til analyse.</p>
+    <p>Domenenavnet og e-posten vår er hos Domeneshop. Selve nettsiden ligger hos GitHub Pages, og GitHub kan som alle tjenere logge IP-adresser. Skrifttypen er lagret på vår egen side, så den hentes ikke fra Google. Vi bruker ingen sporings- eller annonsetjenester fra andre, og ingen informasjonskapsler til analyse. Se Besøkstall over for vår egen anonyme telling.</p>
   </section>
   <section class="panel" style="margin-bottom:16px">
     <h2>Innlogging</h2>
@@ -255,5 +259,6 @@ document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
 })();
 </script>
+<!--telle--><script src="/telle.js" defer></script><!--/telle-->
 </body>
 </html>
