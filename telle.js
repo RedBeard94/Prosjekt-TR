@@ -3,7 +3,7 @@
    Ingen cookies, ingen IP-adresse lagres, ingen person kan gjenkjennes. Telles én gang per side per økt.
    Slå på: bytt ut adressen under med adressen til tellepunktet i portalen. Er den ikke byttet, gjør skriptet ingenting. */
 (function () {
-  var URL = 'PLASSHOLDER-ADRESSE-TIL-TELLEPUNKTET-I-PORTALEN';
+  var URL = 'https://reinertsengruppen-portal.thomas-756.workers.dev/telle';
   if (URL.indexOf('PLASSHOLDER') === 0) return;
   if (navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
   var p = location.pathname.replace(/index\.html$/, '');
