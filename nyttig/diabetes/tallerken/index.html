@@ -345,6 +345,12 @@
     var fav=favs.indexOf(f.id)>=0;
     return '<li style="display:flex;gap:6px;align-items:center"><button class="food" type="button" data-id="'+esc(f.id)+'"><span class="dotf" style="background:'+colorOf(f.name)+'">'+esc(f.name.charAt(0).toUpperCase())+'</span><span class="nm">'+esc(f.name)+'</span><span class="kb">'+nb(f.carbs)+' g/100 g</span></button><button class="star" type="button" data-fav="'+esc(f.id)+'" aria-pressed="'+fav+'" aria-label="'+(fav?'Fjern fra favoritter':'Legg til i favoritter')+'">★</button></li>';
   }
+  /* Etter at mat er lagt på tallerkenen: tøm søket og skjul listen til brukeren søker igjen */
+  function nullstill(){
+    $('q').value=''; mode='';
+    ['chFav','chRec','chMine','chMeal'].forEach(function(id){$(id).setAttribute('aria-pressed','false');});
+    $('results').innerHTML=''; $('hint').textContent='';
+  }
   function renderResults(){
     var q=$('q').value, list=[], hint='';
     if(q.trim()){list=matches(q); if(!list.length)hint='Fant ingenting. Prøv et annet ord, eller bruk «Mat fra en pakke».';}
@@ -408,7 +414,7 @@
       var v=upd(); if(!(v>0)){gi.focus();return;}
       if(editing){plate[idx].grams=v;}
       else{plate.push({id:food.id,name:name,per100:per100,grams:v}); recent=[food.id].concat(recent.filter(function(x){return x!==food.id;})).slice(0,12); ls('tk_recent',recent);}
-      savePlate(); renderPlate(); closeSheet();
+      savePlate(); renderPlate(); closeSheet(); if(!editing)nullstill();
     });
     if(editing)$('rm').addEventListener('click',function(){plate.splice(idx,1);savePlate();renderPlate();closeSheet();});
     else $('cn').addEventListener('click',closeSheet);
@@ -435,7 +441,7 @@
         if(ex){ex.carbs=v.p;id=ex.id;}else{id='m'+Date.now().toString(36);mine.unshift({id:id,name:nm,carbs:v.p});}
         mine=mine.slice(0,100); ls('tk_mine',mine); rebuild(); renderResults();
       }
-      plate.push({id:id,name:nm,per100:v.p,grams:v.g,own:id==='own'?(pack?'pack':'gram'):undefined}); savePlate(); renderPlate(); closeSheet();
+      plate.push({id:id,name:nm,per100:v.p,grams:v.g,own:id==='own'?(pack?'pack':'gram'):undefined}); savePlate(); renderPlate(); closeSheet(); nullstill();
     });
   }
 
@@ -455,7 +461,7 @@
     var m=meals.filter(function(x){return x.id===id;})[0]; if(!m)return; var t=0; m.items.forEach(function(it){t+=carbsOf(it);});
     sheet.innerHTML='<h3>'+esc(m.name)+'</h3><ul class="items" style="margin:0 0 10px">'+m.items.map(function(it){return '<li style="display:flex;justify-content:space-between;gap:10px;padding:6px 0"><span>'+esc(it.name)+' <small style="color:var(--muted)">'+nb(it.grams,0)+' g</small></span><b>'+nb(carbsOf(it),1)+' g</b></li>';}).join('')+'</ul><div class="res"><div class="n">'+nb(Math.round(t),0)+'<small>g karbo</small></div></div><div class="row2"><button class="btn" id="ok" type="button">Legg på tallerkenen</button><button class="btn danger" id="rm" type="button">Slett</button></div><button class="btn ghost" id="cn" type="button" style="width:100%;margin-top:10px">Lukk</button>';
     sbg.classList.add('on'); $('cn').addEventListener('click',closeSheet);
-    $('ok').addEventListener('click',function(){m.items.forEach(function(it){plate.push({id:it.id,name:it.name,per100:it.per100,grams:it.grams,own:it.own});});savePlate();renderPlate();closeSheet();});
+    $('ok').addEventListener('click',function(){m.items.forEach(function(it){plate.push({id:it.id,name:it.name,per100:it.per100,grams:it.grams,own:it.own});});savePlate();renderPlate();closeSheet();nullstill();});
     $('rm').addEventListener('click',function(){askYes('Slette «'+m.name+'»?','Måltidet fjernes fra Mine måltider.','Ja, slett',function(){meals=meals.filter(function(x){return x.id!==id;});ls('tk_meals',meals);renderResults();closeSheet();});});
   }
 
