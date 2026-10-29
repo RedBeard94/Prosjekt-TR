@@ -1,11 +1,20 @@
 /* Enkel, anonym besøkstelling for Reinertsengruppen.
    Sender bare: sidens adresse, gruppe (forside/hjelpemidler/apper), språk og om siden er åpnet som app.
    Ingen cookies, ingen IP-adresse lagres, ingen person kan gjenkjennes. Telles én gang per side per økt.
+   Eieren kan slå av tellingen av egne besøk i sin egen nettleser (?ikke-tell).
    Slå på: bytt ut adressen under med adressen til tellepunktet i portalen. Er den ikke byttet, gjør skriptet ingenting. */
 (function () {
   var URL = 'https://reinertsengruppen-portal.thomas-756.workers.dev/telle';
   if (URL.indexOf('PLASSHOLDER') === 0) return;
   if (navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
+  // Eieren kan slå av tellingen av egne besøk i en nettleser: åpne siden med ?ikke-tell (på igjen: ?ikke-tell=av).
+  // Det lagres bare et lite merke i den nettleseren. Vanlige besøkende får det aldri.
+  var FLAGG = 'rg-ikke-tell';
+  try {
+    if (/[?&]ikke-tell=av(&|$)/.test(location.search)) localStorage.removeItem(FLAGG);
+    else if (/[?&]ikke-tell(=|&|$)/.test(location.search)) localStorage.setItem(FLAGG, '1');
+    if (localStorage.getItem(FLAGG)) { if (window.console) console.info('Besøkstelling: av i denne nettleseren (?ikke-tell=av slår den på igjen)'); return; }
+  } catch (e) {}
   var p = location.pathname.replace(/index\.html$/, '');
   function grp() {
     if (p.indexOf('/nyttig/diabetes/') === 0 || p.indexOf('/nyttig/hjelpemidler/') === 0 || p.indexOf('/nyttig/hvem-ringer-jeg/') === 0 || p.indexOf('/nyttig/dagsplan/') === 0) return 'hjelpemidler';

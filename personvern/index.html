@@ -168,16 +168,6 @@
   .rgstrip a{color:var(--a)}
   @media (min-width:561px){.ddm{left:auto;right:-4px}}
   @media (max-width:560px){.ddm{min-width:170px}}
-  details.pv{padding:0;margin-bottom:12px;overflow:hidden}
-  details.pv summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;min-height:56px}
-  details.pv summary::-webkit-details-marker{display:none}
-  details.pv summary h2{margin:0}
-  details.pv summary::after{content:"";flex:none;width:9px;height:9px;border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
-  details.pv[open] summary::after{transform:rotate(-135deg)}
-  details.pv summary:focus-visible{outline:3px solid var(--a);outline-offset:-3px;border-radius:24px}
-  details.pv .in{padding:0 20px 16px}
-  details.pv .in p:first-child{margin-top:0}
-  details.pv .in p:last-child{margin-bottom:0}
 </style>
 <link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
@@ -202,20 +192,41 @@
   <a class="back" href="../index.html">← Forsiden</a>
   <h1>Personvern<em>.</em></h1>
   <p class="lead">Slik behandler vi opplysninger på reinertsengruppen.no. Sist oppdatert: 26. oktober 2026.</p>
-  <details class="panel pv"><summary><h2>Hvem er ansvarlig?</h2></summary><div class="in">    <p>Behandlingsansvarlig er Thomas Reinertsen, som driver nettsiden som privatperson. Kontakt: <a href="mailto:post@reinertsengruppen.no">post@reinertsengruppen.no</a>.</p></div></details>
-  <details class="panel pv"><summary><h2>Kontaktskjemaet</h2></summary><div class="in">    <p><b>Hva vi lagrer:</b> navnet ditt, e-postadressen din og meldingen du skriver.</p>
+  <section class="panel" style="margin-bottom:16px">
+    <h2>Hvem er ansvarlig?</h2>
+    <p>Behandlingsansvarlig er Thomas Reinertsen, som driver nettsiden som privatperson. Kontakt: <a href="mailto:post@reinertsengruppen.no">post@reinertsengruppen.no</a>.</p>
+  </section>
+  <section class="panel" style="margin-bottom:16px">
+    <h2>Kontaktskjemaet</h2>
+    <p><b>Hva vi lagrer:</b> navnet ditt, e-postadressen din og meldingen du skriver.</p>
     <p><b>Hvorfor:</b> for å svare på henvendelsen din. Grunnlaget er at du selv tar kontakt og ber om svar (personvernforordningen artikkel 6 nr. 1 bokstav f).</p>
     <p><b>Hvem får opplysningene:</b> meldingen sendes via skjematjenesten Web3Forms (Web3Creative, India) til vår e-post. Web3Forms behandler den på våre vegne i henhold til sin databehandleravtale. De bruker underleverandører som blant annet Amazon Web Services og Cloudflare, og opplysningene kan behandles utenfor EØS. Overføring skjer på grunnlag av EUs standardkontrakter (SCC). E-posten ligger hos vår e-postleverandør, Domeneshop.</p>
     <p><b>Hvor lenge:</b> vi sletter meldingen fra vår e-post senest 12 måneder etter at saken er avsluttet. Web3Forms kan oppbevare innsendte meldinger i inntil tre år etter sin databehandleravtale. Ønsker du sletting, kontakt oss, så ber vi dem slette den.</p>
-    <p><b>Helseopplysninger:</b> ikke skriv helseopplysninger i meldingen. Vi ber ikke om slike opplysninger og trenger dem ikke for å svare på innspill.</p></div></details>
-  <details class="panel pv"><summary><h2>E-post</h2></summary><div class="in">    <p>Knappen «Send innspill» under Nyttig åpner e-postprogrammet ditt med en melding til post@reinertsengruppen.no. Den sendes rett til oss, uten skjematjeneste. E-posten ligger hos Domeneshop. Vi bruker den bare til å svare deg, og sletter den senest 12 måneder etter at saken er avsluttet. Ikke skriv helseopplysninger.</p></div></details>
-  <details class="panel pv"><summary><h2>Verktøyene under Nyttig</h2></summary><div class="in">    <p>Tallerkenen, manualene, notatene, Dagsplan, Hvem ringer jeg, Viktig person og Innstillinger og sjekkliste lagrer det du legger inn, for eksempel favoritter, måltider, egne oppgaver, telefonnumre og dine egne innstillinger fra diabetesteamet, <b>bare på din egen enhet</b>, i nettleserens lokale lagring. Vi får ikke tilgang til det, og det sendes ikke noe sted. Du kan slette det når som helst ved å fjerne nettstedsdata i nettleseren din. Bruker du en delt enhet, bør du tømme feltene på Innstillinger og sjekkliste, og fjerne navn og nummer under Viktig person, etter bruk.</p>
+    <p><b>Helseopplysninger:</b> ikke skriv helseopplysninger i meldingen. Vi ber ikke om slike opplysninger og trenger dem ikke for å svare på innspill.</p>
+  </section>
+  <section class="panel" style="margin-bottom:16px">
+    <h2>E-post</h2>
+    <p>Knappen «Send innspill» under Nyttig åpner e-postprogrammet ditt med en melding til post@reinertsengruppen.no. Den sendes rett til oss, uten skjematjeneste. E-posten ligger hos Domeneshop. Vi bruker den bare til å svare deg, og sletter den senest 12 måneder etter at saken er avsluttet. Ikke skriv helseopplysninger.</p>
+  </section>
+  <section class="panel" style="margin-bottom:16px">
+    <h2>Verktøyene under Nyttig</h2>
+    <p>Tallerkenen, manualene, notatene, Dagsplan, Hvem ringer jeg, Viktig person og Innstillinger og sjekkliste lagrer det du legger inn, for eksempel favoritter, måltider, egne oppgaver, telefonnumre og dine egne innstillinger fra diabetesteamet, <b>bare på din egen enhet</b>, i nettleserens lokale lagring. Vi får ikke tilgang til det, og det sendes ikke noe sted. Du kan slette det når som helst ved å fjerne nettstedsdata i nettleseren din. Bruker du en delt enhet, bør du tømme feltene på Innstillinger og sjekkliste, og fjerne navn og nummer under Viktig person, etter bruk.</p>
     <p>For at Tallerkenen, Dagsplan og diabetes-sidene skal virke uten nett, kan nettleseren lagre selve sidene (tekst, bilder og skrifter) på enheten din. Det er kun filer fra dette nettstedet, ingen personopplysninger. Dette fjernes også når du sletter nettstedsdata, eller fjerner appen fra hjemskjermen.</p>
     <p>Fyret henter vær- og havdata fra Meteorologisk institutt (MET Norway) og tidevann fra Kartverket for faste koordinater ved fyrene på Sørlandskysten og Flekkerøya. Da får MET og Kartverket din IP-adresse, slik som ved alle andre nettsider du besøker. Fyret lagrer siste svar i nettleseren din i noen minutter, så siden ikke henter oftere enn nødvendig. Det inneholder ingen personopplysninger.</p>
-    <p>Tallerkenen henter matvaretall fra Matvaretabellen. Da får Matvaretabellen din IP-adresse, slik som ved alle andre nettsider du besøker.</p></div></details>
-  <details class="panel pv"><summary><h2>Besøkstall</h2></summary><div class="in">    <p>Vi teller hvor mange som besøker sidene, for å se hva som brukes (anonym besøkstelling). Tellingen sender bare sidens adresse, hvilken del av nettsiden det gjelder, språk og om siden er åpnet som app. Den bruker ingen cookies, vi lagrer ikke IP-adressen din, og du kan ikke gjenkjennes. Samme side telles én gang per økt. Tallene vises bare for oss, i vår egen portal. Har du slått på «Do Not Track» i nettleseren, telles du ikke.</p></div></details>
-  <details class="panel pv"><summary><h2>Nettsiden</h2></summary><div class="in">    <p>Domenenavnet og e-posten vår er hos Domeneshop. Selve nettsiden ligger hos GitHub Pages, og GitHub kan som alle tjenere logge IP-adresser. Skrifttypen er lagret på vår egen side, så den hentes ikke fra Google. Vi bruker ingen sporings- eller annonsetjenester fra andre, og ingen informasjonskapsler til analyse. Se Besøkstall over for vår egen anonyme telling.</p></div></details>
-  <details class="panel pv"><summary><h2>Innlogging</h2></summary><div class="in">    <p>Knappen «Logg inn» går til en portal som bare er for personer i Reinertsengruppen. Vanlige besøkende bruker den ikke. Portalen leveres via Cloudflare, som blant annet kan logge IP-adresser for å drive tjenesten.</p></div></details>
+    <p>Tallerkenen henter matvaretall fra Matvaretabellen. Da får Matvaretabellen din IP-adresse, slik som ved alle andre nettsider du besøker.</p>
+  </section>
+  <section class="panel" style="margin-bottom:16px">
+    <h2>Besøkstall</h2>
+    <p>Vi teller hvor mange som besøker sidene, for å se hva som brukes (anonym besøkstelling). Tellingen sender bare sidens adresse, hvilken del av nettsiden det gjelder, språk og om siden er åpnet som app. Den bruker ingen cookies, vi lagrer ikke IP-adressen din, og du kan ikke gjenkjennes. Samme side telles én gang per økt. Tallene vises bare for oss, i vår egen portal. Har du slått på «Do Not Track» i nettleseren, telles du ikke. Eieren av nettsiden kan slå av tellingen av egne besøk i sin egen nettleser. Det lagrer et lite merke i akkurat den nettleseren, og bare når eieren selv ber om det. Vanlige besøkende får aldri dette merket.</p>
+  </section>
+  <section class="panel" style="margin-bottom:16px">
+    <h2>Nettsiden</h2>
+    <p>Domenenavnet og e-posten vår er hos Domeneshop. Selve nettsiden ligger hos GitHub Pages, og GitHub kan som alle tjenere logge IP-adresser. Skrifttypen er lagret på vår egen side, så den hentes ikke fra Google. Vi bruker ingen sporings- eller annonsetjenester fra andre, og ingen informasjonskapsler til analyse. Se Besøkstall over for vår egen anonyme telling.</p>
+  </section>
+  <section class="panel" style="margin-bottom:16px">
+    <h2>Innlogging</h2>
+    <p>Knappen «Logg inn» går til en portal som bare er for personer i Reinertsengruppen. Vanlige besøkende bruker den ikke. Portalen leveres via Cloudflare, som blant annet kan logge IP-adresser for å drive tjenesten.</p>
+  </section>
   <section class="panel" style="margin-bottom:16px">
     <h2>Dine rettigheter</h2>
     <p>Du kan be om innsyn i, retting av eller sletting av opplysningene vi har om deg, og du kan be om at behandlingen begrenses. Send en e-post til adressen over. Du kan klage til <a href="https://www.datatilsynet.no/" target="_blank" rel="noopener">Datatilsynet</a>.</p>
