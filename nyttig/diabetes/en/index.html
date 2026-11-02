@@ -236,6 +236,10 @@
   @media (max-width:560px){nav{display:flex;align-items:center;flex-wrap:wrap}nav .lang{margin-left:auto}}
   @media (display-mode:standalone){nav > a,nav .dd{display:none}nav{display:flex;justify-content:flex-end}nav .lang{margin-left:auto}}
 /*/lang*/
+  /* mobil: ikon og meny på samme linje */
+  @media (max-width:560px){.bar{flex-wrap:nowrap;gap:8px}.brand{flex:none}.brand svg{height:32px}nav{width:auto;flex-wrap:nowrap;margin-left:auto}nav a{margin:0 9px 0 0;font-size:.88rem}.dd{margin:0 9px 0 0}nav .dd>.ddb{font-size:.88rem}nav .lang{margin-left:2px}nav .lang a{padding:4px 9px;min-height:34px}}
+  @media (max-width:340px){.brand svg{height:28px}nav a{margin:0 6px 0 0;font-size:.8rem}.dd{margin:0 6px 0 0}nav .dd>.ddb{font-size:.8rem}nav .lang a{padding:3px 7px}.bar{padding-left:12px;padding-right:12px}}
+  @media (display-mode:standalone){.brand{display:none}}
 </style>
 <meta name="theme-color" content="#2563eb">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -255,6 +259,7 @@
 <body>
 <header>
   <div class="bar">
+    <a class="brand" href="/index.html" aria-label="Reinertsengruppen"><svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg></a>
     <nav>
       <a href="/index.html#om">About us</a>
       <a href="/index.html#kontakt">Contact</a>
