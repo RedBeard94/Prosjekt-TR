@@ -39,14 +39,6 @@ header { position:sticky; top:env(safe-area-inset-top,0px); z-index:10; backgrou
 nav { display:flex; align-items:center; }
 nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
 nav a:hover, nav a[aria-current] { color:var(--fg); }
-  nav a.home{display:inline-flex;align-items:center;margin:0 2px 0 0;opacity:.9} nav a.home:hover{opacity:1} nav a.home svg{height:26px;width:26px;display:block;overflow:visible}
-  header .back{margin:0;min-height:0;align-self:center;display:inline-flex;align-items:center;gap:8px;padding:8px 16px 8px 12px;border:2px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(37,99,235,.10);font-size:.95rem;font-weight:800;transition:background .15s,border-color .15s,transform .1s}
-  header .back svg{width:18px;height:18px;flex:none}
-  header .back:hover{text-decoration:none;background:#eef4ff;border-color:#bcd0f7}
-  header .back:active{transform:scale(.97)}
-  @media (max-width:560px){header nav a.home{margin:0 10px 0 0}header nav>a{margin-right:12px}header nav .lang{margin-left:auto}}
-  @media (max-width:380px){header nav>a{font-size:.88rem;margin-right:9px}header nav .dd>.ddb{font-size:.88rem}header nav a.home{margin-right:8px}header nav .lang a{padding:4px 9px}}
-  @media (display-mode:standalone){header nav>a.home{display:none}header .bar{flex-wrap:nowrap}header nav{width:auto;margin-left:auto}}
 .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
 .brand svg { height:42px; width:auto; display:block; overflow:visible; }
 .bld { fill:var(--bld); }
@@ -231,9 +223,11 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
 
 <header>
   <div class="bar">
-    <a class="back" href="/nyttig/diabetes/en/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
+    <a class="brand" href="/index.html" aria-label="Reinertsengruppen">
+      <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
+      <span class="rglogo"><span class="rg1">REINERTSEN</span><span class="rg2"><span>G</span><span>R</span><span>U</span><span>P</span><span>P</span><span>E</span><span>N</span></span><span class="rgln"></span></span>
+    </a>
     <nav>
-      <a class="home" href="/index.html" title="reinertsengruppen.no" aria-label="Til reinertsengruppen.no"><svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg></a>
       <a href="/index.html#om">About us</a>
       <a href="/index.html#kontakt">Contact</a>
       <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Useful</button><div class="ddm" hidden><a href="/nyttig/apper/index.html">Apps<small>Fyret (the lighthouse) and more</small></a><a href="/nyttig/hjelpemidler/index.html" aria-current="page">Aids<small>Diabetes and more</small></a></div></div>
@@ -243,6 +237,7 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
 
 <main data-rg="rg-2026-10-nyttig-diabetes-mat-og-blodsukker-en-8c1e">
   <div class="col">
+    <a class="back" href="/nyttig/diabetes/en/">← Diabetes</a>
     <h1>Food and <em>blood sugar.</em></h1>
     <p class="lead adult">The same amount of carbohydrate can give different blood sugar curves. Here is why, and how you can find out what applies to you.</p>
     <p class="lead kid" hidden>The food you eat can make your blood sugar rise in different ways. Here is a simple explanation.</p>
@@ -490,7 +485,7 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
   </div>
 </main>
 
-<footer class="pfoot"><a href="/index.html">Reinertsengruppen</a> · <a href="/personvern/index.html">Privacy</a> · <a href="/opphavsrett/index.html">Copyright</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. All rights reserved.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">This is information and support, not medical advice. Always talk to your diabetes team about your treatment. This site is under construction and may contain errors.</p></footer>
+<footer class="pfoot"><a href="/index.html">Reinertsengruppen</a> · <a href="/personvern/index.html">Privacy</a> · <a href="/opphavsrett/index.html">Copyright</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. All rights reserved.</div><div style="margin-top:4px;font-size:.72em;opacity:.7">This site is under construction and may contain errors.</div></footer>
 <button type="button" id="top-btn" aria-label="Back to top">↑</button>
 
 <script>
@@ -499,7 +494,6 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
   var NS='http://www.w3.org/2000/svg';
   function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
   var rand=rng(7), msvg=document.getElementById('mark'), wins=[];
-  if(!msvg)return;
   var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
   function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);msvg.appendChild(e);return e;}
   el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});

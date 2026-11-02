@@ -33,14 +33,6 @@
   .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
   nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
   nav a:hover, nav a[aria-current] { color:var(--fg); }
-  nav a.home{display:inline-flex;align-items:center;margin:0 2px 0 0;opacity:.9} nav a.home:hover{opacity:1} nav a.home svg{height:26px;width:26px;display:block;overflow:visible}
-  header .back{margin:0;min-height:0;align-self:center;display:inline-flex;align-items:center;gap:8px;padding:8px 16px 8px 12px;border:2px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(37,99,235,.10);font-size:.95rem;font-weight:800;transition:background .15s,border-color .15s,transform .1s}
-  header .back svg{width:18px;height:18px;flex:none}
-  header .back:hover{text-decoration:none;background:#eef4ff;border-color:#bcd0f7}
-  header .back:active{transform:scale(.97)}
-  @media (max-width:560px){header nav a.home{margin:0 10px 0 0}header nav>a{margin-right:12px}header nav .lang{margin-left:auto}}
-  @media (max-width:380px){header nav>a{font-size:.88rem;margin-right:9px}header nav .dd>.ddb{font-size:.88rem}header nav a.home{margin-right:8px}header nav .lang a{padding:4px 9px}}
-  @media (display-mode:standalone){header nav>a.home{display:none}header .bar{flex-wrap:nowrap}header nav{width:auto;margin-left:auto}}
   .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
   .brand svg { height:42px; width:auto; display:block; overflow:visible; }
   .bld { fill:var(--bld); } .w { fill:var(--win-off); } .w.on { fill:var(--win-on); filter:var(--glow); }
@@ -205,9 +197,11 @@
 <body>
 <header>
   <div class="bar">
-    <a class="back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
+    <a class="brand" href="../../../index.html" aria-label="Reinertsengruppen">
+      <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
+      <span class="rglogo"><span class="rg1">REINERTSEN</span><span class="rg2"><span>G</span><span>R</span><span>U</span><span>P</span><span>P</span><span>E</span><span>N</span></span><span class="rgln"></span></span>
+    </a>
     <nav>
-      <a class="home" href="../../../index.html" title="reinertsengruppen.no" aria-label="Til reinertsengruppen.no"><svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg></a>
       <a href="../../../index.html#om">Om oss</a>
       <a href="../../../index.html#kontakt">Kontakt</a>
       <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="../../apper/index.html">Apper<small>Fyret og flere</small></a><a href="../../hjelpemidler/index.html" aria-current="page">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
@@ -216,6 +210,7 @@
 </header>
 
 <main data-rg="rg-2026-10-nyttig-diabetes-manualer-be26">
+  <a class="back" href="../index.html">← Diabetes</a>
   <h1>Manualer <em>og veiledninger.</em></h1>
   <p class="lead">Offisielle brukerveiledninger for pumpa og sensoren. Lenkene går til produsentenes egne sider, så du alltid får siste versjon.</p>
   <div class="grid">
@@ -235,14 +230,13 @@
   <p class="foot">Siden eier ingen av veiledningene. Merkenavn tilhører produsentene. Siden er ikke tilknyttet eller godkjent av produsentene. Ved akutt sykdom, ring legevakt 116 117, eller 113 i nødsituasjon. Denne siden erstatter ikke opplæring og råd fra diabetesteamet.</p>
 </main>
 
-<footer class="pfoot"><a href="../../../index.html">Reinertsengruppen</a> · <a href="../../../personvern/index.html">Personvern</a> · <a href="../../../opphavsrett/index.html">Opphavsrett</a> · <a href="../tilbakemelding/index.html">Tilbakemelding</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. Alle rettigheter forbeholdt.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">Dette er informasjon og hjelp, ikke medisinsk rådgivning. Snakk alltid med diabetesteamet ditt om behandlingen din. Siden er under oppbygging, og det kan ligge feil her.</p></footer>
+<footer class="pfoot"><a href="../../../index.html">Reinertsengruppen</a> · <a href="../../../personvern/index.html">Personvern</a> · <a href="../../../opphavsrett/index.html">Opphavsrett</a> · <a href="../tilbakemelding/index.html">Tilbakemelding</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. Alle rettigheter forbeholdt.</div><div style="margin-top:4px;font-size:.72em;opacity:.7">Siden er under oppbygging, og det kan ligge feil her.</div></footer>
 <script>
 (function(){
   /* ====== Logo ====== */
   var NS='http://www.w3.org/2000/svg';
   function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
   var rand=rng(7), msvg=document.getElementById('mark'), wins=[];
-  if(!msvg)return;
   var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
   function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);msvg.appendChild(e);return e;}
   el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
@@ -255,7 +249,7 @@
   function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   /* ====== Sensorvelger ====== */
   var SENS=[
-    {id:'g7',n:'Dexcom G7',l:[['Dexcom G7: slik setter du på sensoren (video)','Fra Nordic Infucare. Åpner deres side. Se «Hvordan sette sensoren på armen» eller «på magen».','https://www.diabetesinfucare.com/no/dexcom-g7/starta-dexcom-g-7'],['Dexcom G7: brukerveiledning (norsk, PDF)','mmol/L','https://s3.us-west-2.amazonaws.com/dexcompdf/G7/AW-00046-67_UG_G7_OUS_no_MMOL.pdf'],['Alle Dexcom-veiledninger','Dexcoms nedlastingsside','https://www.dexcom.com/nb-NO/downloadsandguides/search'],['Sikkerhetsinformasjon','Fra Dexcom','https://www.dexcom.com/nb-no/safety-information']]},
+    {id:'g7',n:'Dexcom G7',l:[['Dexcom G7: brukerveiledning (norsk, PDF)','mmol/L','https://s3.us-west-2.amazonaws.com/dexcompdf/G7/AW-00046-67_UG_G7_OUS_no_MMOL.pdf'],['Alle Dexcom-veiledninger','Dexcoms nedlastingsside','https://www.dexcom.com/nb-NO/downloadsandguides/search'],['Sikkerhetsinformasjon','Fra Dexcom','https://www.dexcom.com/nb-no/safety-information']]},
     {id:'g6',n:'Dexcom G6',l:[['Dexcom G6: brukerveiledning (norsk, PDF)','mmol/L','https://s3-us-west-2.amazonaws.com/dexcompdf/Downloads+and+Guides+Updates/LBL016312+G6+Using+Your+G6+OUS+NO+mmolL.pdf'],['Alle Dexcom-veiledninger','Dexcoms nedlastingsside','https://www.dexcom.com/nb-NO/downloadsandguides/search'],['Sikkerhetsinformasjon','Fra Dexcom','https://www.dexcom.com/nb-no/safety-information']]},
     {id:'libre',n:'FreeStyle Libre 3 Plus',l:[['FreeStyle Libre (Abbott)','Abbotts hovedside. Velg Norge der.','https://www.freestyle.abbott/']],note:'Jeg fant ingen verifisert lenke til norsk brukerveiledning. Spør diabetesteamet eller Abbott.'},
     {id:'simplera',n:'Simplera Sync',l:[['Medtronic','Medtronics hovedside','https://www.medtronic.com/']],note:'Jeg fant ingen verifisert lenke til norsk brukerveiledning. Spør diabetesteamet eller Medtronic.'}
@@ -264,7 +258,6 @@
   (function(){
     var box=$('senChips'), card=$('senCard'); if(!box||!card)return;
     try{var c=localStorage.getItem('mn_sen');if(SENS.some(function(x){return x.id===c;}))senCur=c;}catch(x){}
-    var hs=(location.hash.match(/^#sen-(\w+)/)||[])[1]; if(hs&&SENS.some(function(x){return x.id===hs;}))senCur=hs;
     senDraw=function(){
       box.innerHTML=SENS.map(function(p){return '<button class="chip" type="button" data-sen="'+p.id+'" aria-pressed="'+(p.id===senCur)+'">'+esc(p.n)+'</button>';}).join('');
       var p=SENS.filter(function(x){return x.id===senCur;})[0];
@@ -294,19 +287,15 @@
       ['Alle nedlastinger','Mylife sin nedlastingsside','https://www.mylife-diabetescare.com/en/services/downloads.html?category[]=122&category[]=32']],
      note:'Jeg fant ingen norsk brukerveiledning som PDF. Spør diabetesteamet om den norske utgaven.'},
     {id:'mm',sen:'simplera',n:'Medtronic MiniMed 780G',t:'Slangepumpe, automatisk regulering',l:[
-      ['Brukerhåndbok for systemet (norsk, PDF)','MiniMed 780G, fra Medtronic. Dekker sensorene Instinct, Simplera Sync og Guardian 4','https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2026-09/ifu_mm780g_instinct.pdf'],
       ['Medtronic','Medtronics hovedside','https://www.medtronic.com/']],
-     note:'Sjekk at sensoren deres står i håndboken. Spør diabetesteamet eller Medtronic hvis dere har en annen sensor.'},
-    {id:'solo',n:'Accu-Chek Solo',t:'Slangeløs mikropumpe',l:[
-      ['Bruksanvisning (PDF)','Fra Accu-Chek Norge','https://www.accu-chek.no/document/accu-chek-solo-ifupdf/download?inline'],
-      ['Opplæringshåndbok (PDF)','Fra Accu-Chek Norge','https://www.accu-chek.no/document/accu-chek-solo-opplaeringshandbokpdf/download?inline']],
-     note:'Begge PDF-ene ligger på accu-chek.no. Spør diabetesteamet eller Roche (Accu-Chek) om dere lurer på noe.'}
+     note:'Jeg fant ingen verifisert lenke til brukerveiledningen på norsk. Spør diabetesteamet eller Medtronic.'},
+    {id:'solo',n:'Accu-Chek Solo',t:'Slangeløs mikropumpe',l:[],
+     note:'Jeg fant ingen verifisert lenke til brukerveiledningen på norsk. Spør diabetesteamet eller Roche (Accu-Chek).'}
   ];
   (function(){
     var box=$('pumpChips'), card=$('pumpCard'); if(!box||!card)return;
     var cur=''; try{cur=localStorage.getItem('mn_pump')||'';}catch(x){}
     if(!PUMPS.some(function(p){return p.id===cur;}))cur='tslim';
-    var hp=(location.hash.match(/^#pump-(\w+)/)||[])[1]; if(hp&&PUMPS.some(function(p){return p.id===hp;})){cur=hp;var p0=PUMPS.filter(function(x){return x.id===hp;})[0];if(p0.sen&&p0.sen!=='none'){senCur=p0.sen;senDraw();}}
     function draw(){
       box.innerHTML=PUMPS.map(function(p){return '<button class="chip" type="button" data-pump="'+p.id+'" aria-pressed="'+(p.id===cur)+'">'+esc(p.n)+'</button>';}).join('');
       var p=PUMPS.filter(function(x){return x.id===cur;})[0];
@@ -314,7 +303,6 @@
     }
     box.addEventListener('click',function(e){var b=e.target.closest('[data-pump]');if(!b)return;cur=b.getAttribute('data-pump');try{localStorage.setItem('mn_pump',cur);}catch(x){}var pp=PUMPS.filter(function(x){return x.id===cur;})[0];if(pp.sen&&pp.sen!=='none'){senCur=pp.sen;try{localStorage.setItem('mn_sen',senCur);}catch(x){}senDraw();}draw();var a=box.querySelector('[aria-pressed="true"]');if(a)a.focus();});
     draw();
-    var hm=location.hash.match(/^#(pump|sen)-/); if(hm){var tg=document.getElementById(hm[1]==='pump'?'pumpChips':'senChips'),sec=tg&&tg.closest('section'); if(sec){sec.style.scrollMarginTop='130px';setTimeout(function(){sec.scrollIntoView({block:'start'});},60);}}
   })();
 
 })();
