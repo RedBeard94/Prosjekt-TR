@@ -15,7 +15,6 @@
 <meta name="description" content="Hvordan Reinertsengruppen behandler personopplysninger.">
 <style>
   @font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(../fonts/manrope-latin-200-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/manrope-latin-400-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/manrope-latin-600-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(../fonts/manrope-latin-800-normal.woff2) format("woff2");}
-  @font-face{font-family:"Cinzel";font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/cinzel-latin-600-normal.woff2) format("woff2");}
   :root {
     --bg:#f6f9ff; --fg:#0f172a; --muted:#5b6b82; --line:#e3eaf5; --card:#ffffff;
     --a:#2563eb; --b:#7c3aed; --c:#14b8a6; --ok:#1fa971; --bad:#d64545;
@@ -36,8 +35,11 @@
   .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
   .brand svg { height:42px; width:auto; display:block; overflow:visible; }
   .bld { fill:var(--bld); } .w { fill:var(--win-off); } .w.on { fill:var(--win-on); filter:var(--glow); }
-  .rglogo{display:flex;flex-direction:column;font-family:"Cinzel",Georgia,serif;font-weight:600;color:#111522;line-height:1} .rg1{font-size:18px;letter-spacing:.16em;margin-right:-.16em;white-space:nowrap} .rg2{display:flex;justify-content:space-between;font-size:11.5px;margin-top:5px;color:#2b3350} .rgln{height:2px;margin-top:6px;border-radius:2px;background:linear-gradient(90deg,var(--a),var(--b) 60%,transparent)}
-  @media (max-width:560px) { .bar { flex-wrap:wrap; row-gap:6px; } .brand svg { height:36px; } .rg1{font-size:14px} .rg2{font-size:9.5px} nav { width:100%; } nav a { margin:0 16px 0 0; } }
+  .wordmark { font-weight:200; font-size:1.25rem; letter-spacing:-.03em; line-height:1; position:relative; padding-bottom:6px; white-space:nowrap; }
+  .wordmark b { font-weight:800; }
+  .wordmark::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:100%; background:linear-gradient(90deg,var(--a),var(--b) 55%,transparent); }
+  .wordmark::before { content:""; position:absolute; left:0; bottom:-2px; width:20px; height:6px; border-radius:6px; background:var(--a); box-shadow:0 0 10px rgba(37,99,235,.6); }
+  @media (max-width:560px) { .bar { flex-wrap:wrap; row-gap:6px; } .brand svg { height:36px; } .wordmark { font-size:1.05rem; } nav { width:100%; } nav a { margin:0 16px 0 0; } }
 
   main { max-width:1040px; margin:0 auto; padding:26px 20px 40px; }
   h1 { font-size:clamp(2.2rem,8vw,3.6rem); line-height:1.04; margin:0 0 6px; letter-spacing:-.045em; font-weight:800; }
@@ -166,6 +168,16 @@
   .rgstrip a{color:var(--a)}
   @media (min-width:561px){.ddm{left:auto;right:-4px}}
   @media (max-width:560px){.ddm{min-width:170px}}
+  details.pv{padding:0;margin-bottom:12px;overflow:hidden}
+  details.pv summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;min-height:56px}
+  details.pv summary::-webkit-details-marker{display:none}
+  details.pv summary h2{margin:0}
+  details.pv summary::after{content:"";flex:none;width:9px;height:9px;border-right:2.5px solid var(--muted);border-bottom:2.5px solid var(--muted);transform:rotate(45deg);transition:transform .2s}
+  details.pv[open] summary::after{transform:rotate(-135deg)}
+  details.pv summary:focus-visible{outline:3px solid var(--a);outline-offset:-3px;border-radius:24px}
+  details.pv .in{padding:0 20px 16px}
+  details.pv .in p:first-child{margin-top:0}
+  details.pv .in p:last-child{margin-bottom:0}
 </style>
 <link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
@@ -176,7 +188,7 @@
   <div class="bar">
     <a class="brand" href="../index.html" aria-label="Reinertsengruppen">
       <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
-      <span class="rglogo"><span class="rg1">REINERTSEN</span><span class="rg2"><span>G</span><span>R</span><span>U</span><span>P</span><span>P</span><span>E</span><span>N</span></span><span class="rgln"></span></span>
+      <span class="wordmark"><b>Reinertsen</b>gruppen</span>
     </a>
     <nav>
       <a href="../index.html#om">Om oss</a>
@@ -190,49 +202,20 @@
   <a class="back" href="../index.html">← Forsiden</a>
   <h1>Personvern<em>.</em></h1>
   <p class="lead">Slik behandler vi opplysninger på reinertsengruppen.no. Sist oppdatert: 26. oktober 2026.</p>
-  <section class="panel" style="margin-bottom:16px">
-    <h2>Hvem er ansvarlig?</h2>
-    <p>Behandlingsansvarlig er Thomas Reinertsen, som driver nettsiden som privatperson. Kontakt: <a href="mailto:post@reinertsengruppen.no">post@reinertsengruppen.no</a>.</p>
-  </section>
-  <section class="panel" style="margin-bottom:16px">
-    <h2>Kontaktskjemaet</h2>
-    <p><b>Hva vi lagrer:</b> navnet ditt, e-postadressen din og meldingen du skriver.</p>
+  <details class="panel pv"><summary><h2>Hvem er ansvarlig?</h2></summary><div class="in">    <p>Behandlingsansvarlig er Thomas Reinertsen, som driver nettsiden som privatperson. Kontakt: <a href="mailto:post@reinertsengruppen.no">post@reinertsengruppen.no</a>.</p></div></details>
+  <details class="panel pv"><summary><h2>Kontaktskjemaet</h2></summary><div class="in">    <p><b>Hva vi lagrer:</b> navnet ditt, e-postadressen din og meldingen du skriver.</p>
     <p><b>Hvorfor:</b> for å svare på henvendelsen din. Grunnlaget er at du selv tar kontakt og ber om svar (personvernforordningen artikkel 6 nr. 1 bokstav f).</p>
     <p><b>Hvem får opplysningene:</b> meldingen sendes via skjematjenesten Web3Forms (Web3Creative, India) til vår e-post. Web3Forms behandler den på våre vegne i henhold til sin databehandleravtale. De bruker underleverandører som blant annet Amazon Web Services og Cloudflare, og opplysningene kan behandles utenfor EØS. Overføring skjer på grunnlag av EUs standardkontrakter (SCC). E-posten ligger hos vår e-postleverandør, Domeneshop.</p>
     <p><b>Hvor lenge:</b> vi sletter meldingen fra vår e-post senest 12 måneder etter at saken er avsluttet. Web3Forms kan oppbevare innsendte meldinger i inntil tre år etter sin databehandleravtale. Ønsker du sletting, kontakt oss, så ber vi dem slette den.</p>
-    <p><b>Helseopplysninger:</b> ikke skriv helseopplysninger i meldingen. Vi ber ikke om slike opplysninger og trenger dem ikke for å svare på innspill.</p>
-  </section>
-  <section class="panel" style="margin-bottom:16px">
-    <h2>Tilbakemeldingsskjemaet på diabetessidene</h2>
-    <p><b>Hva vi lagrer:</b> svarene du skriver i skjemaet. Vi spør ikke om navn eller e-post.</p>
-    <p><b>Hvorfor:</b> for å gjøre sidene bedre. Grunnlaget er at du selv velger å svare (personvernforordningen artikkel 6 nr. 1 bokstav f).</p>
-    <p><b>Hvem får opplysningene:</b> svarene sendes via skjematjenesten Web3Forms (Web3Creative, India) til vår e-post, på samme måte som kontaktskjemaet. Tjenesten kan se teknisk informasjon som IP-adresse, og kan oppbevare innsendte svar i inntil tre år. Det betyr at skjemaet ikke er teknisk garantert anonymt, selv om vi ikke ber om navn eller e-post og ikke ser IP-adressen selv.</p>
-    <p><b>Hvor lenge:</b> vi sletter svarene fra vår e-post når vi har brukt dem til å forbedre sidene, senest 12 måneder etter at de ble sendt.</p>
-    <p><b>Helseopplysninger:</b> ikke skriv navn, sykdomsdetaljer eller noe som kan peke ut deg eller barnet. Vi ber ikke om slike opplysninger.</p>
-  </section>
-  <section class="panel" style="margin-bottom:16px">
-    <h2>E-post</h2>
-    <p>Knappen «Send innspill» under Nyttig åpner e-postprogrammet ditt med en melding til post@reinertsengruppen.no. Den sendes rett til oss, uten skjematjeneste. E-posten ligger hos Domeneshop. Vi bruker den bare til å svare deg, og sletter den senest 12 måneder etter at saken er avsluttet. Ikke skriv helseopplysninger.</p>
-  </section>
-  <section class="panel" style="margin-bottom:16px">
-    <h2>Verktøyene under Nyttig</h2>
-    <p>Tallerkenen, manualene, notatene, Dagsplan, Hvem ringer jeg, Viktig person og Innstillinger og sjekkliste lagrer det du legger inn, for eksempel favoritter, måltider, egne oppgaver, telefonnumre og dine egne innstillinger fra diabetesteamet, <b>bare på din egen enhet</b>, i nettleserens lokale lagring. Vi får ikke tilgang til det, og det sendes ikke noe sted. Du kan slette det når som helst ved å fjerne nettstedsdata i nettleseren din. Bruker du en delt enhet, bør du tømme feltene på Innstillinger og sjekkliste, og fjerne navn og nummer under Viktig person, etter bruk.</p>
+    <p><b>Helseopplysninger:</b> ikke skriv helseopplysninger i meldingen. Vi ber ikke om slike opplysninger og trenger dem ikke for å svare på innspill.</p></div></details>
+  <details class="panel pv"><summary><h2>E-post</h2></summary><div class="in">    <p>Knappen «Send innspill» under Nyttig åpner e-postprogrammet ditt med en melding til post@reinertsengruppen.no. Den sendes rett til oss, uten skjematjeneste. E-posten ligger hos Domeneshop. Vi bruker den bare til å svare deg, og sletter den senest 12 måneder etter at saken er avsluttet. Ikke skriv helseopplysninger.</p></div></details>
+  <details class="panel pv"><summary><h2>Verktøyene under Nyttig</h2></summary><div class="in">    <p>Tallerkenen, manualene, notatene, Dagsplan, Hvem ringer jeg, Viktig person og Innstillinger og sjekkliste lagrer det du legger inn, for eksempel favoritter, måltider, egne oppgaver, telefonnumre og dine egne innstillinger fra diabetesteamet, <b>bare på din egen enhet</b>, i nettleserens lokale lagring. Vi får ikke tilgang til det, og det sendes ikke noe sted. Du kan slette det når som helst ved å fjerne nettstedsdata i nettleseren din. Bruker du en delt enhet, bør du tømme feltene på Innstillinger og sjekkliste, og fjerne navn og nummer under Viktig person, etter bruk.</p>
     <p>For at Tallerkenen, Dagsplan og diabetes-sidene skal virke uten nett, kan nettleseren lagre selve sidene (tekst, bilder og skrifter) på enheten din. Det er kun filer fra dette nettstedet, ingen personopplysninger. Dette fjernes også når du sletter nettstedsdata, eller fjerner appen fra hjemskjermen.</p>
     <p>Fyret henter vær- og havdata fra Meteorologisk institutt (MET Norway) og tidevann fra Kartverket for faste koordinater ved fyrene på Sørlandskysten og Flekkerøya. Da får MET og Kartverket din IP-adresse, slik som ved alle andre nettsider du besøker. Fyret lagrer siste svar i nettleseren din i noen minutter, så siden ikke henter oftere enn nødvendig. Det inneholder ingen personopplysninger.</p>
-    <p>Tallerkenen henter matvaretall fra Matvaretabellen. Da får Matvaretabellen din IP-adresse, slik som ved alle andre nettsider du besøker.</p>
-  </section>
-  <section class="panel" style="margin-bottom:16px">
-    <h2>Besøkstall</h2>
-    <p>Vi teller hvor mange som besøker sidene, for å se hva som brukes (anonym besøkstelling). Tellingen sender bare sidens adresse, hvilken del av nettsiden det gjelder, språk og om siden er åpnet som app. Den bruker ingen cookies, vi lagrer ikke IP-adressen din, og du kan ikke gjenkjennes. Samme side telles én gang per økt. Tallene vises bare for oss, i vår egen portal. Har du slått på «Do Not Track» i nettleseren, telles du ikke. Eieren av nettsiden kan slå av tellingen av egne besøk i sin egen nettleser. Det lagrer et lite merke i akkurat den nettleseren, og bare når eieren selv ber om det. Vanlige besøkende får aldri dette merket.</p>
-  </section>
-  <section class="panel" style="margin-bottom:16px">
-    <h2>Nettsiden</h2>
-    <p>Domenenavnet og e-posten vår er hos Domeneshop. Selve nettsiden ligger hos GitHub Pages, og GitHub kan som alle tjenere logge IP-adresser. Skrifttypen er lagret på vår egen side, så den hentes ikke fra Google. Vi bruker ingen sporings- eller annonsetjenester fra andre, og ingen informasjonskapsler til analyse. Se Besøkstall over for vår egen anonyme telling.</p>
-  </section>
-  <section class="panel" style="margin-bottom:16px">
-    <h2>Innlogging</h2>
-    <p>Knappen «Logg inn» går til en portal som bare er for personer i Reinertsengruppen. Vanlige besøkende bruker den ikke. Portalen leveres via Cloudflare, som blant annet kan logge IP-adresser for å drive tjenesten.</p>
-  </section>
+    <p>Tallerkenen henter matvaretall fra Matvaretabellen. Da får Matvaretabellen din IP-adresse, slik som ved alle andre nettsider du besøker.</p></div></details>
+  <details class="panel pv"><summary><h2>Besøkstall</h2></summary><div class="in">    <p>Vi teller hvor mange som besøker sidene, for å se hva som brukes (anonym besøkstelling). Tellingen sender bare sidens adresse, hvilken del av nettsiden det gjelder, språk og om siden er åpnet som app. Den bruker ingen cookies, vi lagrer ikke IP-adressen din, og du kan ikke gjenkjennes. Samme side telles én gang per økt. Tallene vises bare for oss, i vår egen portal. Har du slått på «Do Not Track» i nettleseren, telles du ikke.</p></div></details>
+  <details class="panel pv"><summary><h2>Nettsiden</h2></summary><div class="in">    <p>Domenenavnet og e-posten vår er hos Domeneshop. Selve nettsiden ligger hos GitHub Pages, og GitHub kan som alle tjenere logge IP-adresser. Skrifttypen er lagret på vår egen side, så den hentes ikke fra Google. Vi bruker ingen sporings- eller annonsetjenester fra andre, og ingen informasjonskapsler til analyse. Se Besøkstall over for vår egen anonyme telling.</p></div></details>
+  <details class="panel pv"><summary><h2>Innlogging</h2></summary><div class="in">    <p>Knappen «Logg inn» går til en portal som bare er for personer i Reinertsengruppen. Vanlige besøkende bruker den ikke. Portalen leveres via Cloudflare, som blant annet kan logge IP-adresser for å drive tjenesten.</p></div></details>
   <section class="panel" style="margin-bottom:16px">
     <h2>Dine rettigheter</h2>
     <p>Du kan be om innsyn i, retting av eller sletting av opplysningene vi har om deg, og du kan be om at behandlingen begrenses. Send en e-post til adressen over. Du kan klage til <a href="https://www.datatilsynet.no/" target="_blank" rel="noopener">Datatilsynet</a>.</p>
@@ -240,7 +223,7 @@
   <p class="foot">Siden er et enkelt hjelpemiddel og ikke medisinsk utstyr. Den erstatter ikke råd fra helsepersonell.</p>
 </main>
 
-<footer class="pfoot"><a href="../index.html">Reinertsengruppen</a> · <a href="index.html">Personvern</a> · <a href="../opphavsrett/index.html">Opphavsrett</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. Alle rettigheter forbeholdt.</div></footer>
+<footer class="pfoot"><a href="../index.html">Reinertsengruppen</a> · <a href="index.html">Personvern</a><span class="rgsig">Laget av Thomas Reinertsen. Tekster, bilder og kode tilhører Reinertsengruppen og kan ikke kopieres eller brukes på andre nettsider uten skriftlig tillatelse.</span></footer>
 <script>
 (function(){
   /* ====== Logo ====== */

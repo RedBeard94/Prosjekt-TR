@@ -33,6 +33,14 @@
   .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
   nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
   nav a:hover, nav a[aria-current] { color:var(--fg); }
+  nav a.home{display:inline-flex;align-items:center;margin:0 2px 0 0;opacity:.9} nav a.home:hover{opacity:1} nav a.home svg{height:26px;width:26px;display:block;overflow:visible}
+  header .back{margin:0;min-height:0;align-self:center;display:inline-flex;align-items:center;gap:8px;padding:8px 16px 8px 12px;border:2px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(37,99,235,.10);font-size:.95rem;font-weight:800;transition:background .15s,border-color .15s,transform .1s}
+  header .back svg{width:18px;height:18px;flex:none}
+  header .back:hover{text-decoration:none;background:#eef4ff;border-color:#bcd0f7}
+  header .back:active{transform:scale(.97)}
+  @media (max-width:560px){header nav a.home{margin:0 10px 0 0}header nav>a{margin-right:12px}header nav .lang{margin-left:auto}}
+  @media (max-width:380px){header nav>a{font-size:.88rem;margin-right:9px}header nav .dd>.ddb{font-size:.88rem}header nav a.home{margin-right:8px}header nav .lang a{padding:4px 9px}}
+  @media (display-mode:standalone){header nav>a.home{display:none}header .bar{flex-wrap:nowrap}header nav{width:auto;margin-left:auto}}
   .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
   .brand svg { height:42px; width:auto; display:block; overflow:visible; }
   .bld { fill:var(--bld); } .w { fill:var(--win-off); } .w.on { fill:var(--win-on); filter:var(--glow); }
@@ -197,11 +205,9 @@
 <body>
 <header>
   <div class="bar">
-    <a class="brand" href="../../../index.html" aria-label="Reinertsengruppen">
-      <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
-      <span class="rglogo"><span class="rg1">REINERTSEN</span><span class="rg2"><span>G</span><span>R</span><span>U</span><span>P</span><span>P</span><span>E</span><span>N</span></span><span class="rgln"></span></span>
-    </a>
+    <a class="back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
     <nav>
+      <a class="home" href="../../../index.html" title="reinertsengruppen.no" aria-label="Til reinertsengruppen.no"><svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg></a>
       <a href="../../../index.html#om">Om oss</a>
       <a href="../../../index.html#kontakt">Kontakt</a>
       <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Nyttig</button><div class="ddm" hidden><a href="../../apper/index.html">Apper<small>Fyret og flere</small></a><a href="../../hjelpemidler/index.html" aria-current="page">Hjelpemidler<small>Diabetes og flere</small></a></div></div>
@@ -210,7 +216,6 @@
 </header>
 
 <main data-rg="rg-2026-10-nyttig-diabetes-rettigheter-204f">
-  <a class="back" href="../index.html">← Diabetes</a>
   <h1>Rettigheter <em>og støtte.</em></h1>
   <p class="lead">En enkel oversikt over støtte som ofte er aktuell for familier med barn som har diabetes. Dette er ikke en komplett liste, og det er NAV og Helfo som avgjør hva du har rett på.</p>
   <p class="lead" style="margin-top:-8px">Spør også diabetesteamet eller sosionomen på sykehuset. De kjenner ordningene og kan hjelpe med søknader og legeerklæringer.</p>
@@ -245,6 +250,7 @@
   var NS='http://www.w3.org/2000/svg';
   function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
   var rand=rng(7), msvg=document.getElementById('mark'), wins=[];
+  if(!msvg)return;
   var blds=[[40,140,70,200,16],[110,220,55,120,16],[165,130,70,210,16],[178,100,44,30,2],[188,75,24,25,2],[235,200,50,140,16],[285,120,75,220,16]];
   function el(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);msvg.appendChild(e);return e;}
   el('polygon',{'class':'bld',points:'200,18 194.5,76 205.5,76'});
