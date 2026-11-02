@@ -134,6 +134,17 @@
   @media (max-width:560px){nav{display:flex;align-items:center;flex-wrap:wrap}nav .lang{margin-left:auto}}
   @media (display-mode:standalone){nav > a,nav .dd{display:none}nav{display:flex;justify-content:flex-end}nav .lang{margin-left:auto}}
 /*/lang*/
+  /* mobil: ikon og meny på samme linje */
+  @media (max-width:560px){.bar{flex-wrap:nowrap;gap:8px}.brand{flex:none}.brand svg{height:32px}nav{width:auto;flex-wrap:nowrap;margin-left:auto}nav a{margin:0 9px 0 0;font-size:.88rem}.dd{margin:0 9px 0 0}nav .dd>.ddb{font-size:.88rem}nav .lang{margin-left:2px}nav .lang a{padding:4px 9px;min-height:34px}}
+  @media (max-width:340px){.brand svg{height:28px}nav a{margin:0 6px 0 0;font-size:.8rem}.dd{margin:0 6px 0 0}nav .dd>.ddb{font-size:.8rem}nav .lang a{padding:3px 7px}.bar{padding-left:12px;padding-right:12px}}
+  /* finere tilbakeknapp */
+  .back{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:8px 16px 8px 12px;min-height:0;border:2px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(37,99,235,.10);font-size:.95rem;font-weight:700;color:var(--a);text-decoration:none}
+  .back svg,.apptilbake svg{width:18px;height:18px;flex:none}
+  .back:hover{text-decoration:none;background:#eef4ff;border-color:#bcd0f7}
+  .back:active{transform:scale(.97)}
+  .apptilbake{display:none;align-items:center;gap:6px;padding:8px 14px 8px 8px;min-height:44px;color:var(--a);font-weight:800;font-size:1.05rem;text-decoration:none}
+  /* app-versjon: ingen logo, Tilbake øverst */
+  @media (display-mode:standalone){.brand{display:none}.apptilbake{display:inline-flex}.bar{justify-content:space-between}main .back{display:none}}
 </style>
 <link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
@@ -149,9 +160,9 @@
 <body>
 <header>
   <div class="bar">
+    <a class="apptilbake" href="/nyttig/diabetes/en/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Back</a>
     <a class="brand" href="/index.html" aria-label="Reinertsengruppen">
       <svg viewBox="30 10 340 340" id="mark" aria-hidden="true"></svg>
-      <span class="rglogo"><span class="rg1">REINERTSEN</span><span class="rg2"><span>G</span><span>R</span><span>U</span><span>P</span><span>P</span><span>E</span><span>N</span></span><span class="rgln"></span></span>
     </a>
     <nav>
       <a href="/index.html#om">About us</a>
@@ -162,7 +173,7 @@
 </header>
 
 <main data-rg="rg-2026-10-nyttig-diabetes-tallene-en-6ea7">
-  <a class="back" href="/nyttig/diabetes/en/">← Diabetes</a>
+  <a class="back" href="/nyttig/diabetes/en/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
   <div class="col">
   <h1>How the <em>numbers fit together.</em></h1>
   <p class="lead">The pump uses a few numbers from the diabetes team when it works out insulin. Here you can see what they mean, with an example that is nobody's own numbers.</p>
