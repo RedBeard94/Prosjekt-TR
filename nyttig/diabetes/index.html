@@ -31,7 +31,6 @@
     --a:#2563eb; --b:#7c3aed; --c:#14b8a6; --ok:#1fa971; --bad:#d64545;
     --bld:#1b2440; --win-off:#cfe4f7; --win-on:#cfe4f7; --glow:none;
   }
-  body.night-icon { --win-off:#2a3558; --win-on:#ffd36b; --glow:drop-shadow(0 0 2px rgba(255,190,70,.9)); }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body { margin:0; background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; overflow-x:hidden; }
@@ -256,6 +255,20 @@
   .fyrstraale{transform-origin:139px 173px;animation:fyrsving 7s ease-in-out infinite alternate}
   @keyframes fyrsving{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
   @media (prefers-reduced-motion:reduce){html.natt .fyr,.fyrstraale{animation:none}.fyrstraale{transform:none}}
+
+  /* Video-knapp og visning */
+  .vidb{display:inline-flex;align-items:center;gap:10px;min-height:48px;margin:2px 0 18px;padding:0 20px 0 14px;border:2px solid var(--a);border-radius:999px;background:#fff;color:var(--a);font:inherit;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 2px 10px rgba(30,60,150,.10)}
+  .vidb .vi{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--a);color:#fff;flex:none}
+  .vidb .vi svg{width:13px;height:13px;margin-left:2px;fill:currentColor}
+  .vidb:hover{background:var(--a);color:#fff}.vidb:hover .vi{background:#fff;color:var(--a)}
+  .vidb:focus-visible{outline:3px solid var(--a);outline-offset:3px}
+  .vidm{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(8,12,20,.78)}
+  .vidm.open{display:flex}
+  .vidbox{position:relative;width:min(960px,100%);background:#000;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .vidbox video{display:block;width:100%;max-height:calc(100vh - 100px);background:#000}
+  .vidx{position:absolute;top:8px;right:8px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .vidx:hover{background:rgba(0,0,0,.9)}
+  .vidx:focus-visible{outline:3px solid #fff;outline-offset:2px}
 </style>
 <meta name="theme-color" content="#2563eb">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -287,6 +300,7 @@
 <main data-rg="rg-2026-10-nyttig-diabetes-b63a">
   <h1>Hjelpemidler for <em>diabetikere.</em></h1>
   <p class="lead">Enkle verktøy og nyttige lenker for deg med diabetes, og for familien rundt. Velg hva du trenger.</p>
+  <button class="vidb" type="button" aria-label="Se video: slik bruker du Diabetes-appen" aria-haspopup="dialog"><span class="vi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg></span>Se video: slik bruker du appen</button>
   <div class="snar" id="snar">
   <a class="sos" href="info/index.html"><b>Akutt?</b><span>Nødnumre og legevakt</span><span class="ch" aria-hidden="true">›</span></a>
   <span id="vips"><a class="vip" href="info/index.html#viktig"><b>Viktig person</b><span>Legg inn et nummer</span><span class="ch" aria-hidden="true">›</span></a></span>
@@ -458,5 +472,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 </script>
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
+<div class="vidm" id="vidm" role="dialog" aria-modal="true" aria-label="Video: Slik bruker du Diabetes-appen" hidden><div class="vidbox"><button class="vidx" type="button" aria-label="Lukk video">&times;</button><video id="vidv" controls playsinline preload="none" src="video/slik-bruker-du-appen.mp4">Nettleseren din kan ikke spille av videoen.</video></div></div><script>
+(function(){var b=document.querySelector('.vidb'),m=document.getElementById('vidm'),v=document.getElementById('vidv');if(!b||!m||!v)return;
+function open(){m.hidden=false;m.classList.add('open');document.body.style.overflow='hidden';var p=v.play();if(p&&p.catch)p.catch(function(){});m.querySelector('.vidx').focus()}
+function close(){v.pause();m.classList.remove('open');m.hidden=true;document.body.style.overflow='';b.focus()}
+b.addEventListener('click',open);
+m.querySelector('.vidx').addEventListener('click',close);
+m.addEventListener('click',function(e){if(e.target===m)close()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close()});
+})();
+</script>
 </body>
 </html>
