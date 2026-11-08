@@ -226,7 +226,11 @@
   .forslag button:hover{border-color:var(--a);color:var(--a)}
   
   .sres a{transition:none}
-  .dp-inst{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-top:30px}
+  .dp-inst{display:block;margin-top:30px}
+  .dp-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:14px 0}
+  .dp-opt{border:2px solid #e2e8f0;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:8px}.dp-opt.e{border-color:#c4b5fd;background:#faf8ff}
+  .dp-top{display:flex;gap:12px;align-items:center}.dp-top img{width:64px;height:64px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.25)}.dp-top b{font-size:1.1rem}
+  .dp-opt p{margin:0;color:var(--muted,#475569);font-size:.95rem}.dp-opt .btn{margin-top:auto;text-align:center;text-decoration:none}.dp-opt.e .btn{background:#7c3aed;color:#fff;border-color:#7c3aed}
   @media(max-width:560px){.dp-inst{grid-template-columns:1fr}}
   .dp-wall{display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(160deg,#1e3a8a,#6d28d9 60%,#be185d);border-radius:26px;padding:22px 34px;color:#fff;font-size:.8rem;font-weight:600}
   .dp-wall svg{width:72px;height:72px;border-radius:17px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
@@ -340,15 +344,17 @@
     </div>
   </div>
   <section class="panel dp-inst" id="instWrap" hidden>
-    <div class="dp-wall" aria-label="Slik ser ikonet ut på hjemskjermen"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><rect width="192" height="192" fill="url(#dg)"/><path d="M96 26C96 26 52 74 52 108a44 44 0 0 0 88 0C140 74 96 26 96 26z" fill="#fff"/><g fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M72 122l16-14 12 8 24-26"/><path d="M116 90h12v12"/></g></svg><span>Diabetes</span></div>
     <div>
       <h2>Legg Diabetes på hjemskjermen</h2>
-      <p>Da åpner du siden som en vanlig app, uten å skrive adresse. Sidene virker også uten nett etter at du har åpnet dem én gang.</p>
+      <p>Velg hvilken versjon du vil ha. Du kan ha begge. De er to egne apper. Sidene virker også uten nett etter at du har åpnet dem én gang.</p>
+      <div class="dp-two">
+        <div class="dp-opt"><div class="dp-top"><img src="icon-192.png" alt="" width="64" height="64"><b>Diabetes</b></div><p>Alt: Tallerken, sjekkliste, pilene, tallene, mat, manualer, video og mer.</p><button class="btn" type="button" id="install">Legg på hjemskjermen</button></div>
+        <div class="dp-opt e"><div class="dp-top"><img src="../diabetes-enkel/icon-192.png" alt="" width="64" height="64"><b>Diabetes enkel</b></div><p>Bare det viktigste, med store knapper. Akutt 113 og egne numre. Passer for barn.</p><a class="btn" href="../diabetes-enkel/index.html">Åpne enkel versjon</a></div>
+      </div>
       <ol>
         <li><b>iPhone:</b> trykk på Del-knappen i Safari, og velg «Legg til på Hjem-skjerm».</li>
         <li><b>Android:</b> åpne menyen i Chrome, og velg «Installer app» eller «Legg til på startskjermen».</li>
       </ol>
-      <button class="btn" type="button" id="install">Legg på hjemskjermen</button>
     </div>
   </section>
   <p class="foot">Savner du noe? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Hjelpemidler%20for%20diabetikere">Send innspill på e-post</a> (ikke skriv helseopplysninger). Siden er ikke medisinsk utstyr og erstatter ikke råd fra diabetesteamet. Alt du legger inn blir bare på denne enheten. Se <a href="../../personvern/index.html">personvern</a>.</p>
