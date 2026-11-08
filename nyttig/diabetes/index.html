@@ -278,6 +278,11 @@
   .vidx{position:absolute;top:8px;right:8px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
   .vidx:hover{background:rgba(0,0,0,.9)}
   .vidx:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .fb{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .fbb{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 14px;border-radius:12px;font-size:.9rem;font-weight:800;text-decoration:none;background:linear-gradient(90deg,var(--a),var(--b));color:#fff}
+  .fbb.g{background:#fff;color:var(--a);border:2px solid var(--line)}
+  .fb+.foot{margin-top:12px}
+  @media (display-mode:standalone){.fb,.fgl{display:none}}
 </style>
 <meta name="theme-color" content="#2563eb">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -357,10 +362,11 @@
       </ol>
     </div>
   </section>
-  <p class="foot">Savner du noe? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Hjelpemidler%20for%20diabetikere">Send innspill på e-post</a> (ikke skriv helseopplysninger). Siden er ikke medisinsk utstyr og erstatter ikke råd fra diabetesteamet. Alt du legger inn blir bare på denne enheten. Se <a href="../../personvern/index.html">personvern</a>.</p>
+  <div class="fb"><a class="fbb" href="tilbakemelding/index.html">Gi tilbakemelding</a><a class="fbb g" href="fagfolk/index.html">Er du helsepersonell?</a></div>
+  <p class="foot">Siden er ikke medisinsk utstyr og erstatter ikke råd fra diabetesteamet. Alt du legger inn blir bare på denne enheten. Se <a href="../../personvern/index.html">personvern</a>.</p>
 </main>
 
-<footer class="pfoot"><a href="../../index.html">Reinertsengruppen</a> · <a href="../../personvern/index.html">Personvern</a> · <a href="../../opphavsrett/index.html">Opphavsrett</a> · <a href="tilbakemelding/index.html">Tilbakemelding</a> · <a href="nytt/index.html">Hva er nytt</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. Alle rettigheter forbeholdt.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">Dette er informasjon og hjelp, ikke medisinsk rådgivning. Snakk alltid med diabetesteamet ditt om behandlingen din. Siden er under oppbygging, og det kan ligge feil her.</p></footer>
+<footer class="pfoot"><a href="../../index.html">Reinertsengruppen</a> · <a href="../../personvern/index.html">Personvern</a> · <a href="../../opphavsrett/index.html">Opphavsrett</a> · <a href="tilbakemelding/index.html">Tilbakemelding</a> · <a class="fgl" href="fagfolk/index.html">For helsepersonell</a> · <a href="nytt/index.html">Hva er nytt</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. Alle rettigheter forbeholdt.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">Dette er informasjon og hjelp, ikke medisinsk rådgivning. Snakk alltid med diabetesteamet ditt om behandlingen din. Siden er under oppbygging, og det kan ligge feil her.</p></footer>
 <script>
 (function(){
 
