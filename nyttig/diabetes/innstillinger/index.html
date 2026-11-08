@@ -262,5 +262,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
+<script src="../enkel.js" defer></script>
 </body>
 </html>

@@ -267,8 +267,8 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
     <p class="lead kid" hidden>Maten du spiser kan få blodsukkeret til å gå opp på ulike måter. Her får du en enkel forklaring.</p>
     <div class="mode" data-mode="adult" role="group" aria-label="Velg versjon">
       <span class="thumb" aria-hidden="true"></span>
-      <button type="button" id="m-adult" aria-pressed="true">Voksen</button>
-      <button type="button" id="m-kid" aria-pressed="false">Barn</button>
+      <button type="button" id="m-adult" aria-pressed="true">Vanlig</button>
+      <button type="button" id="m-kid" aria-pressed="false">Enkel</button>
     </div>
 
     <aside class="note adult" aria-labelledby="notice-h">
@@ -533,12 +533,12 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
     mK.setAttribute('aria-pressed',kid?'true':'false');
     Array.prototype.forEach.call(document.querySelectorAll('.adult'),function(e){e.hidden=kid;});
     Array.prototype.forEach.call(document.querySelectorAll('.kid'),function(e){e.hidden=!kid;});
-    try{history.replaceState(null,'',kid?'#barn':location.pathname+location.search);}catch(e){}
+    try{history.replaceState(null,'',kid?'#enkel':location.pathname+location.search);}catch(e){}
   }
   if(mode&&mA&&mK){
     mA.addEventListener('click',function(){setMode(false);});
     mK.addEventListener('click',function(){setMode(true);});
-    if(location.hash==='#barn')setMode(true);
+    if(location.hash==='#barn'||location.hash==='#enkel')setMode(true);
   }
 
   /* ====== Barn: velg en mat ====== */
@@ -582,4 +582,5 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom:0; }
 
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
+<script src="../enkel.js" defer></script>
 </body></html>
