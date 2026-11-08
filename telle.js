@@ -17,7 +17,7 @@
   } catch (e) {}
   var p = location.pathname.replace(/index\.html$/, '');
   function grp() {
-    if (p.indexOf('/nyttig/diabetes/') === 0 || p.indexOf('/nyttig/hjelpemidler/') === 0 || p.indexOf('/nyttig/hvem-ringer-jeg/') === 0 || p.indexOf('/nyttig/dagsplan/') === 0) return 'hjelpemidler';
+    if (p.indexOf('/nyttig/diabetes/') === 0 || p.indexOf('/nyttig/diabetes-enkel/') === 0 || p.indexOf('/nyttig/hjelpemidler/') === 0 || p.indexOf('/nyttig/hvem-ringer-jeg/') === 0 || p.indexOf('/nyttig/dagsplan/') === 0) return 'hjelpemidler';
     if (p.indexOf('/nyttig/apper/') === 0 || p.indexOf('/nyttig/fyret/') === 0) return 'apper';
     return 'forside';
   }
