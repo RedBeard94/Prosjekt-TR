@@ -37,6 +37,7 @@ h1{font-size:1.9rem;line-height:1.1;margin:8px 0 4px;font-weight:200;text-align:
 .ov button{font:inherit;font-weight:800;border:0;border-radius:18px;min-height:64px;width:min(320px,100%);font-size:1.2rem;cursor:pointer}
 .ov .av{background:#fff;color:#7f1d1d}.ov .nu{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7);min-height:52px;font-size:1rem}
 </style><style>.hold .icon{outline:3px dashed #64748b;outline-offset:3px}.hold[data-sos] .icon{outline-color:#b91c1c}.hint{display:block;font-size:.72rem;font-weight:600;color:#475569;margin-top:-4px}</style>
+<style>.hold .icon,.vip .icon.hl{outline-offset:3px}.vip .icon.hl{outline:3px dashed #2563eb}.vip .hint{display:block;font-size:.7rem;font-weight:600;color:#475569;margin-top:-4px}.nd{position:fixed;inset:0;z-index:40;background:rgba(15,23,42,.55);display:flex;align-items:center;justify-content:center;padding:16px}.nd[hidden]{display:none}.nbox{background:#fff;border-radius:22px;max-width:380px;width:100%;padding:22px;max-height:92vh;overflow:auto}.nbox h2{margin:0 0 4px;font-size:1.25rem}.nbox p{margin:0 0 8px;color:#475569;font-size:.95rem}.nbox label{display:block;font-weight:600;font-size:.9rem;margin:10px 0 4px}.nbox input{width:100%;box-sizing:border-box;font:inherit;font-size:1.1rem;padding:12px;border:2px solid #cbd5e1;border-radius:12px}.nbox .err{color:#b91c1c;font-size:.85rem;min-height:1.2em;margin-top:6px}.nb{display:grid;gap:8px;margin-top:10px}.nb button{font:inherit;font-weight:700;border-radius:14px;padding:14px;border:0;cursor:pointer;font-size:1rem}.nb .go{background:#2563eb;color:#fff}.nb .no{background:#f1f5f9;color:#0f172a;font-weight:600}.nb .del{background:#fff;color:#b91c1c;border:2px solid #fca5a5;font-weight:600}</style>
 </head><body><main class="wrap" data-rg="rg-2026-11-nyttig-diabetes-enkel">
 <h1>Diabetes <em>enkel versjon.</em></h1>
 <p class="lead">Det viktigste på ett sted.</p>
@@ -50,30 +51,49 @@ h1{font-size:1.9rem;line-height:1.1;margin:8px 0 4px;font-weight:200;text-align:
 <button class="app hold" type="button" data-hold="2000" data-sos="1" aria-label="Akutt 113. Hold inne i 2 sekunder."><span class="icon" style="background:linear-gradient(160deg,#ef4444,#b91c1c)"><i class="fill"></i><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg></span><span class="lb">Akutt 113</span><span class="hint">Hold inne 2 sek</span></button>
 <span id="vips" style="display:contents"></span>
 </div>
-<p class="small">Navn og nummer legges inn i vanlig versjon (hold inne «Vanlig»).</p>
+<p class="small">Trykk på en tom rute for å legge til nummer. Hold inne et nummer i 5 sekunder for å endre det.</p>
 </main>
 <div class="ov" id="ov" role="alertdialog" aria-modal="true" aria-labelledby="ovh" hidden><h2 id="ovh">Ringer 113 om</h2><div class="cnt" id="cnt" aria-live="polite">5</div><p><b>Er du eller noen andre i nød?</b><br>Da skal du ringe. 113 er ambulanse.</p><p class="sm">Trykket du ved et uhell? Trykk Avbryt.</p><button class="av" id="av" type="button">AVBRYT</button><button class="nu" id="nu" type="button">Ring nå</button></div>
+<div class="nd" id="nd" hidden><div class="nbox" role="dialog" aria-modal="true"></div></div>
 <div class="toast" id="t" role="status"></div>
 <script>(function(){
 var t=document.getElementById('t'),tm;function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){t.classList.remove('on')},2800)}
 var PH='<svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>';
-/* Numre: de samme som i vanlig versjon (Nyttig informasjon > Viktige personer) */
-try{
-  var l=JSON.parse(localStorage.getItem('rg-vip-liste')||'null');
-  if(!Array.isArray(l)){var o=JSON.parse(localStorage.getItem('rg-vip')||'null');l=[o&&o.t?o:null];}
-  l=l.filter(function(v){return v&&v.t&&String(v.t).replace(/[^\d+]/g,'')}).slice(0,2);
-  var box=document.getElementById('vips');
-  for(var i=0;i<2;i++){
-    var v=l[i],a;
-    if(v){a=document.createElement('a');a.className='app';a.href='tel:'+String(v.t).replace(/[^\d+]/g,'');
-      a.innerHTML='<span class="icon" style="background:linear-gradient(160deg,#3b82f6,#1d4ed8)">'+PH+'</span><span class="lb"></span>';
-      a.querySelector('.lb').textContent=v.n||'Ring';a.setAttribute('aria-label','Ring '+(v.n||'')+' '+v.t);}
-    else{a=document.createElement('button');a.type='button';a.className='app empty';
-      a.innerHTML='<span class="icon">'+PH.replace('#fff','#64748b')+'</span><span class="lb">Ingen nummer</span>';
-      a.addEventListener('click',function(){toast('Numre legges inn i vanlig versjon. Hold inne «Vanlig» i 5 sekunder.')});}
-    box.appendChild(a);
-  }
-}catch(e){}
+/* Numre: de samme som i vanlig versjon (Nyttig informasjon > Viktige personer). Tom rute: trykk for å legge til. Rute med nummer: trykk ringer, hold 5 sek for å endre. */
+var K='rg-vip-liste',box=document.getElementById('vips'),dlg=document.getElementById('nd'),dbox=dlg.querySelector('.nbox');
+function load(){try{var l=JSON.parse(localStorage.getItem(K)||'null');if(!Array.isArray(l)){var o=JSON.parse(localStorage.getItem('rg-vip')||'null');l=[o&&o.t?o:null,null]}
+  return [0,1].map(function(i){var v=l[i];return v&&v.t&&String(v.t).replace(/[^\d+]/g,'')?v:null})}catch(e){return [null,null]}}
+function save(l){try{localStorage.setItem(K,JSON.stringify(l));return true}catch(e){toast('Kunne ikke lagre på denne telefonen.');return false}}
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function openNd(i){var l=load(),v=l[i]||{n:'',t:''},old=document.activeElement;
+  dbox.innerHTML='<h2>'+(l[i]?'Endre nummer':'Legg til nummer')+'</h2><p>Skriv et kort navn, for eksempel Mamma.</p><label for="nn">Navn</label><input id="nn" maxlength="14" value="'+esc(v.n)+'" autocomplete="off"><label for="nt">Telefonnummer</label><input id="nt" type="tel" inputmode="tel" value="'+esc(v.t)+'" autocomplete="off"><div class="err" id="ne" role="alert"></div><div class="nb"><button type="button" class="go" id="nok">Lagre</button><button type="button" class="no" id="nav">Avbryt</button>'+(l[i]?'<button type="button" class="del" id="nsl">Slett nummer</button>':'')+'</div>';
+  dlg.hidden=false;dbox.querySelector('#nn').focus();
+  function close(){dlg.hidden=true;try{old&&old.focus&&old.focus()}catch(e){}}
+  dbox.querySelector('#nav').onclick=close;
+  dbox.querySelector('#nok').onclick=function(){var n=dbox.querySelector('#nn').value.trim(),t=dbox.querySelector('#nt').value.trim();
+    if(!n||!/^\+?[\d ]{3,}$/.test(t)){dbox.querySelector('#ne').textContent='Skriv både navn og et nummer (bare siffer).';return}
+    var x=load();x[i]={n:n,t:t};if(save(x)){close();drawV();toast('Lagret')}};
+  var sl=dbox.querySelector('#nsl');if(sl)sl.onclick=function(){var x=load();x[i]=null;if(save(x)){close();drawV();toast('Slettet')}};
+  dlg.onclick=function(e){if(e.target===dlg)close()};
+  dlg.onkeydown=function(e){if(e.key==='Escape')close()}}
+function drawV(){box.innerHTML='';var l=load();
+  for(var i=0;i<2;i++){(function(i){var v=l[i],a;
+    if(v){a=document.createElement('button');a.type='button';a.className='app vip';
+      a.innerHTML='<span class="icon" style="background:linear-gradient(160deg,#3b82f6,#1d4ed8)"><i class="fill"></i>'+PH+'</span><span class="lb"></span><span class="hint">Hold 5 sek: endre</span>';
+      a.querySelector('.lb').textContent=v.n||'Ring';a.setAttribute('aria-label','Ring '+(v.n||'')+' '+v.t+'. Hold inne i 5 sekunder for å endre.');
+      var f=a.querySelector('.fill'),ic=a.querySelector('.icon'),st=0,raf=0,done=0;
+      var stop=function(){cancelAnimationFrame(raf);st=0;f.style.height='0';ic.classList.remove('hl')};
+      var tick=function(){var p=Math.min(1,(performance.now()-st)/5000);f.style.height=p*100+'%';if(p>=1){done=1;stop();openNd(i)}else raf=requestAnimationFrame(tick)};
+      a.addEventListener('pointerdown',function(){done=0;st=performance.now();ic.classList.add('hl');raf=requestAnimationFrame(tick)});
+      a.addEventListener('pointerup',function(){if(st&&!done&&performance.now()-st<600){stop();location.href='tel:'+String(v.t).replace(/[^\d+]/g,'')}else if(st&&!done){stop();toast('Hold inne i 5 sekunder for å endre. Trykk kort for å ringe.')}});
+      ['pointerleave','pointercancel'].forEach(function(ev){a.addEventListener(ev,function(){if(st&&!done)stop()})});
+      a.addEventListener('contextmenu',function(e){e.preventDefault()});
+      a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();location.href='tel:'+String(v.t).replace(/[^\d+]/g,'')}else if(e.key==='e'||e.key==='E'){openNd(i)}});
+    }else{a=document.createElement('button');a.type='button';a.className='app empty';
+      a.innerHTML='<span class="icon">'+PH.replace('#fff','#64748b')+'</span><span class="lb">Legg til nummer</span>';
+      a.addEventListener('click',function(){openNd(i)})}
+    box.appendChild(a)})(i)}}
+drawV();
 /* Hold inne */
 var ov=document.getElementById('ov'),cnt=document.getElementById('cnt'),ci=0,left=0;
 function endSos(call){clearInterval(ci);ov.hidden=true;if(call){location.href='tel:113'}else toast('Avbrutt. Ingen samtale startet.')}

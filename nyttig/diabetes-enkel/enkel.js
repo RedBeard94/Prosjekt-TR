@@ -9,6 +9,7 @@
   var parts = location.pathname.replace(/index\.html$/, '').split('/').filter(Boolean);
   var key = parts[parts.length - 1];
   var FORCE = document.documentElement.getAttribute('data-enkel') === '1';
+  if (!FORCE) return; /* Enkel versjon finnes bare i egen app (diabetes-enkel) */
   var BACK = FORCE ? '../index.html' : '../../diabetes-enkel/index.html';
 
   function on() { return FORCE || location.hash === '#enkel' || location.hash === '#barn'; }
