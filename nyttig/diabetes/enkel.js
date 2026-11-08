@@ -12,6 +12,40 @@
   if (!FORCE) return; /* Enkel versjon finnes bare i egen app (diabetes-enkel) */
   var BACK = FORCE ? '../index.html' : '../../diabetes-enkel/index.html';
 
+
+  /* ---------- Samme utseende som enkel-forsiden (kun i enkel-appen) ---------- */
+  var ICONS = {"tallerken": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#60a5fa,#2563eb)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"4.5\"/></svg></span>", "innstillinger": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#818cf8,#4f46e5)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6\"/></svg></span>", "trendpiler": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#f472b6,#be185d)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 16l5-5 4 3 7-8M15 6h5v5\"/></svg></span>", "tallene": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#34d399,#059669)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 7h14M5 12h14M5 17h14M9 4v16\"/></svg></span>", "mat-og-blodsukker": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#fb923c,#c2410c)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 20h18M4 16c3 0 3-9 6-9s2 9 5 9 3-6 5-6\"/></svg></span>"};
+  function shell() {
+    var st = document.createElement('style');
+    st.textContent = 'body{background:radial-gradient(circle at 15% 10%,#c7d9ff 0,transparent 45%),radial-gradient(circle at 90% 30%,#ffd9c2 0,transparent 40%),radial-gradient(circle at 30% 95%,#cdeedd 0,transparent 45%),#eef3fb!important}' +
+      'body>header{display:none!important}main .back{display:none!important}' +
+      '.apptop{padding:14px 16px 0;max-width:1040px;margin:0 auto}' +
+      '.apptop a{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 20px 0 12px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid #fff;font-weight:800;font-size:1.05rem;color:#2563eb;text-decoration:none;box-shadow:0 2px 8px rgba(15,23,42,.1)}' +
+      '.apptop a:focus-visible{outline:3px solid #7c3aed;outline-offset:3px}' +
+      '.hero{display:flex;justify-content:center;margin:6px 0 4px}' +
+      '.hero .icon{position:relative;overflow:hidden;width:92px;aspect-ratio:1;border-radius:22%;display:grid;place-items:center;box-shadow:0 4px 12px rgba(15,23,42,.22),inset 0 1px 0 rgba(255,255,255,.35)}.hero .icon svg{width:52%;height:52%}' +
+      'main h1,main .lead{text-align:center}' +
+      '.cardx{background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);border-radius:34px;padding:14px;box-shadow:0 14px 40px rgba(15,23,42,.12);margin-top:14px}' +
+      '.hjelp{margin-top:14px;background:#fff7e0;border:1px solid #f1d98a;border-radius:16px;padding:12px 14px;color:#5b4300;font-size:.95rem;line-height:1.4;text-align:center}';
+    document.head.appendChild(st);
+    var m = document.querySelector('main'); if (!m) return;
+    var top = document.createElement('div'); top.className = 'apptop';
+    top.innerHTML = '<a href="../index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Tilbake</a>';
+    m.parentNode.insertBefore(top, m);
+    var h1 = m.querySelector('h1');
+    if (h1 && ICONS[key]) { var hero = document.createElement('div'); hero.className = 'hero'; hero.setAttribute('aria-hidden', 'true'); hero.innerHTML = ICONS[key]; h1.parentNode.insertBefore(hero, h1); }
+    var lead = m.querySelector('.lead');
+    if (lead) {
+      var card = document.createElement('div'); card.className = 'cardx';
+      var n = lead.nextElementSibling, arr = [];
+      while (n) { arr.push(n); n = n.nextElementSibling; }
+      lead.after(card); arr.forEach(function (x) { card.appendChild(x); });
+      var hj = document.createElement('p'); hj.className = 'hjelp';
+      hj.innerHTML = '<b>Dette er bare et hjelpemiddel.</b> Det er ikke fasit. Spør alltid en voksen eller diabetesteamet.';
+      card.appendChild(hj);
+    }
+  }
+
   function on() { return FORCE || location.hash === '#enkel' || location.hash === '#barn'; }
 
   /* ---------- Bare tilbake-lenken på «Mat og blodsukker» (har egen bryter) ---------- */
@@ -34,6 +68,7 @@
     });
     window.addEventListener('hashchange', upd);
     upd();
+    if (FORCE) shell();
     return;
   }
 
@@ -245,4 +280,5 @@
   bE.addEventListener('click', function () { set(true, true); });
   window.addEventListener('hashchange', function () { set(on(), false); });
   set(on(), false);
+  if (FORCE) shell();
 })();
