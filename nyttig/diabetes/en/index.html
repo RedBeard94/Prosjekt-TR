@@ -226,7 +226,11 @@
   .forslag button:hover{border-color:var(--a);color:var(--a)}
   
   .sres a{transition:none}
-  .dp-inst{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin-top:30px}
+  .dp-inst{display:block;margin-top:30px}
+  .dp-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:14px 0}
+  .dp-opt{border:2px solid #e2e8f0;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:8px}.dp-opt.e{border-color:#c4b5fd;background:#faf8ff}
+  .dp-top{display:flex;gap:12px;align-items:center}.dp-top img{width:64px;height:64px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.25)}.dp-top b{font-size:1.1rem}
+  .dp-opt p{margin:0;color:var(--muted,#475569);font-size:.95rem}.dp-opt .btn{margin-top:auto;text-align:center;text-decoration:none}.dp-opt.e .btn{background:#7c3aed;color:#fff;border-color:#7c3aed}
   @media(max-width:560px){.dp-inst{grid-template-columns:1fr}}
   .dp-wall{display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(160deg,#1e3a8a,#6d28d9 60%,#be185d);border-radius:26px;padding:22px 34px;color:#fff;font-size:.8rem;font-weight:600}
   .dp-wall svg{width:72px;height:72px;border-radius:17px;box-shadow:0 6px 16px rgba(0,0,0,.35)}
@@ -333,15 +337,17 @@
     </div>
   </div>
   <section class="panel dp-inst" id="instWrap" hidden>
-    <div class="dp-wall" aria-label="This is how the icon looks on the home screen"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><defs><linearGradient id="dg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><rect width="192" height="192" fill="url(#dg)"/><path d="M96 26C96 26 52 74 52 108a44 44 0 0 0 88 0C140 74 96 26 96 26z" fill="#fff"/><g fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M72 122l16-14 12 8 24-26"/><path d="M116 90h12v12"/></g></svg><span>Diabetes</span></div>
     <div>
       <h2>Add Diabetes to your home screen</h2>
-      <p>Then you open the site like a normal app, without typing an address. The pages also work without internet after you have opened them once.</p>
+      <p>Choose the version you want. You can have both. They are two separate apps. The pages also work without internet after you have opened them once.</p>
+      <div class="dp-two">
+        <div class="dp-opt"><div class="dp-top"><img src="../icon-192.png" alt="" width="64" height="64"><b>Diabetes</b></div><p>Everything: the Plate, checklist, arrows, numbers, food, manuals, video and more.</p><button class="btn" type="button" id="install">Add to home screen</button></div>
+        <div class="dp-opt e"><div class="dp-top"><img src="../../diabetes-simple/icon-192.png" alt="" width="64" height="64"><b>Diabetes simple</b></div><p>Only the most important things, with big buttons. Emergency 113 and your own numbers. Good for children.</p><a class="btn" href="../../diabetes-simple/index.html">Open simple version</a></div>
+      </div>
       <ol>
         <li><b>iPhone:</b> tap the Share button in Safari and choose “Add to Home Screen”.</li>
         <li><b>Android:</b> open the menu in Chrome and choose “Install app” or “Add to Home screen”.</li>
       </ol>
-      <button class="btn" type="button" id="install">Add to home screen</button>
     </div>
   </section>
   <p class="foot">Missing something? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Hjelpemidler%20for%20diabetikere">Send feedback by email</a> (do not write any health information). The site is not a medical device and does not replace advice from your diabetes team. Everything you enter stays on this device only. See the <a href="/personvern/index.html">privacy policy</a>.</p>

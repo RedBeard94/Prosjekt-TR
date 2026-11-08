@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html data-enkel="1" lang="en">
+<head>
+<meta name="robots" content="noindex">
+<script>if(!location.hash)try{history.replaceState(null,"","#enkel")}catch(e){}</script>
+
+<meta charset="utf-8">
+<!--
+  © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no
+  All rights reserved. Copying without written permission is not permitted.
+  Opprinnelsesmerke: rg-2026-10-nyttig-diabetes-trendpiler-en-fa85
+-->
+<meta name="author" content="Thomas Reinertsen, Reinertsengruppen">
+<meta name="copyright" content="© 2026 Reinertsengruppen">
+<meta name="rg-origin" content="rg-2026-10-nyttig-diabetes-trendpiler-en-fa85">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trend arrows and automation – Reinertsengruppen</title>
+<meta name="description" content="What the arrows on the sensor mean, and how Control-IQ and Basal-IQ adjust the insulin. Simplified drawings.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Reinertsengruppen">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Trend arrows and automation – Reinertsengruppen">
+<meta property="og:description" content="What the arrows on the sensor mean, and how Control-IQ and Basal-IQ adjust the insulin. Simplified drawings.">
+<meta property="og:image" content="https://reinertsengruppen.no/bilder/delingsbilde-diabetes.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(/fonts/manrope-latin-200-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/manrope-latin-400-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/manrope-latin-600-normal.woff2) format("woff2");}@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/manrope-latin-800-normal.woff2) format("woff2");}
+  @font-face{font-family:"Cinzel";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/cinzel-latin-600-normal.woff2) format("woff2");}
+  :root {
+    --bg:#f6f9ff; --fg:#0f172a; --muted:#5b6b82; --line:#e3eaf5; --card:#ffffff;
+    --a:#2563eb; --b:#7c3aed; --c:#14b8a6; --ok:#1fa971; --bad:#d64545;
+    --bld:#1b2440; --win-off:#cfe4f7; --win-on:#cfe4f7; --glow:none;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:'Manrope',system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; overflow-x:hidden; }
+  body::before, body::after { content:""; position:fixed; border-radius:50%; filter:blur(90px); opacity:.5; z-index:-1; }
+  body::before { width:55vmax; height:55vmax; background:#cfe0ff; top:-22vmax; right:-18vmax; }
+  body::after  { width:45vmax; height:45vmax; background:#c8f2ea; bottom:-20vmax; left:-15vmax; }
+  button { font:inherit; color:inherit; cursor:pointer; }
+  header { position:sticky; top:env(safe-area-inset-top,0px); z-index:10; background:rgba(246,249,255,.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .bar { max-width:1040px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:18px; font-size:.95rem; font-weight:600; }
+  nav a:hover, nav a[aria-current] { color:var(--fg); }
+  .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--fg); }
+  .brand svg { height:42px; width:auto; display:block; overflow:visible; }
+  .bld { fill:var(--bld); } .w { fill:var(--win-off); } .w.on { fill:var(--win-on); filter:var(--glow); }
+  .rglogo{display:flex;flex-direction:column;font-family:"Cinzel",Georgia,serif;font-weight:600;color:#111522;line-height:1} .rg1{font-size:18px;letter-spacing:.16em;margin-right:-.16em;white-space:nowrap} .rg2{display:flex;justify-content:space-between;font-size:11.5px;margin-top:5px;color:#2b3350} .rgln{height:2px;margin-top:6px;border-radius:2px;background:linear-gradient(90deg,var(--a),var(--b) 60%,transparent)}
+  @media (max-width:560px) { .bar { flex-wrap:wrap; row-gap:6px; } .brand svg { height:36px; } .rg1{font-size:14px} .rg2{font-size:9.5px} nav { width:100%; } nav a { margin:0 16px 0 0; } }
+
+  main { max-width:1040px; margin:0 auto; padding:26px 20px 40px; }
+  h1 { font-size:clamp(2rem,7.4vw,3.4rem); line-height:1.04; margin:0 0 6px; letter-spacing:-.045em; font-weight:800; }
+  h1 em { font-style:normal; background:linear-gradient(90deg,#f97316,#ec4899 50%,#7c3aed); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead { color:var(--muted); font-size:1.08rem; margin:0 0 20px; max-width:560px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:20px; box-shadow:0 6px 22px rgba(15,23,42,.05); }
+  .panel h2 { margin:0 0 12px; font-size:1.15rem; letter-spacing:-.02em; font-weight:800; }
+  .btn { border:0; border-radius:14px; padding:12px 18px; font-weight:800; background:linear-gradient(90deg,var(--a),var(--b)); color:#fff; min-height:48px; box-shadow:0 8px 20px rgba(37,99,235,.25); display:inline-flex;align-items:center;justify-content:center;text-decoration:none; }
+  .fine { margin-top:18px; color:var(--muted); font-size:.82rem; line-height:1.6; }
+  .fine a { color:var(--a); }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } }
+
+  .dd{position:relative;display:inline-block;margin-left:18px}
+  nav .dd>.ddb{font:inherit;font-size:.95rem;font-weight:600;color:var(--muted);background:none;border:0;padding:4px 0;cursor:pointer}
+  nav .dd>.ddb:hover,nav .dd>.ddb[aria-expanded="true"],nav .dd>.ddb.cur{color:var(--fg)}
+  .ddb::after{content:"";display:inline-block;margin-left:6px;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .2s}
+  .ddb[aria-expanded="true"]::after{transform:translateY(1px) rotate(-135deg)}
+  .ddm{position:absolute;top:calc(100% + 8px);left:-12px;min-width:230px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);z-index:30}
+  .ddm[hidden]{display:none}
+  nav .ddm a{display:block;margin:0;padding:10px 12px;border-radius:10px;color:var(--fg);font-weight:700}
+  nav .ddm a small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
+  nav .ddm a:hover,nav .ddm a:focus-visible{background:#eef4ff;outline:none}
+  nav .ddm a[aria-current]{background:#eef4ff}
+  .pfoot{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.9rem}
+  .pfoot a{color:var(--muted)}
+  .dd,.ddb{white-space:nowrap}
+  nav a{white-space:nowrap}
+  @media (max-width:560px){nav{flex-wrap:wrap;row-gap:4px} nav a{margin:0 12px 0 0} .dd{margin:0 12px 0 0}}
+
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:12px}
+  @media (max-width:820px){.tiles{grid-template-columns:1fr}}
+  .tile{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:24px;text-decoration:none;color:var(--fg);box-shadow:0 6px 22px rgba(15,23,42,.05);transition:transform .15s,box-shadow .15s,border-color .15s;min-height:190px}
+  .tile:hover,.tile:focus-visible{transform:translateY(-3px);box-shadow:0 14px 34px rgba(37,99,235,.16);border-color:var(--a);outline:none}
+  .tile .ic{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;margin-bottom:6px}
+  .tile .ic svg{width:34px;height:34px}
+  .tile b{font-size:1.35rem;letter-spacing:-.02em;font-weight:800}
+  .tile span.d{color:var(--muted);font-size:1rem}
+  .tile .go{margin-top:auto;color:var(--a);font-weight:800}
+  @media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+
+  .grp{margin:30px 0 0;font-size:.82rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .grp:first-of-type{margin-top:22px}
+  .new{display:inline-block;vertical-align:middle;margin-left:8px;font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,var(--a),var(--b));padding:2px 9px;border-radius:999px;position:relative;top:-2px}
+  .prev{display:inline-block;margin:0 0 12px;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--a);background:#e6efff;padding:5px 12px;border-radius:999px}
+
+  .back{display:inline-block;margin:0 0 10px;color:var(--a);font-weight:700;text-decoration:none;padding:8px 0;min-height:44px}
+  .back:hover{text-decoration:underline}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin-top:20px}
+  @media (max-width:820px){.grid{grid-template-columns:1fr}}
+  .small{color:var(--muted);font-size:.95rem}
+  .foot{margin-top:22px;color:var(--muted);font-size:.88rem}
+  .note{background:#eef4ff;border:1px solid #c9dafc;border-radius:16px;padding:12px 14px;margin:16px 0 0;font-size:.95rem}
+  .warn{margin:14px 0 0;padding:12px 14px;border-radius:16px;background:#fff4d6;border:2px solid #f0b429;font-size:.98rem;font-weight:600}
+  .btn.ghost{background:#fff;color:var(--a);border:2px solid var(--line);box-shadow:none}
+  .fig svg{display:block;width:100%;height:auto;max-width:100%}
+  svg text{font-family:'Manrope',system-ui,sans-serif}
+  .legend{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:12px}
+  .legend li{display:flex;gap:12px;align-items:flex-start}
+  .num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--a);color:#fff;font-weight:800;font-size:.9rem;display:grid;place-items:center;margin-top:1px}
+  .legend b{display:block}.legend .d{display:block;color:var(--muted);font-size:.95rem}
+  .arrows{list-style:none;margin:6px 0 0;padding:0}
+  .arr{display:flex;gap:14px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+  .arr:first-child{border-top:0}
+  .arr svg{flex:none;width:44px;height:44px}
+  .arr b{display:block;font-weight:800;line-height:1.25}.arr span{display:block;color:var(--muted);font-size:.92rem;line-height:1.35}
+  .ladder{display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:10px;margin-top:10px}
+  .axis{position:relative;font-size:.78rem;color:var(--muted);font-weight:700;text-align:right;line-height:1.2}
+  .axis span{position:absolute;right:0;transform:translateY(-50%)}
+  .axis small{display:block;font-size:.7rem;font-weight:400}
+  .zones{display:grid;grid-template-rows:repeat(5,1fr);gap:4px}
+  .zone{border-radius:14px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;min-width:0}
+  .zone svg{flex:none;width:28px;height:28px;margin-top:2px}
+  .zone b{display:block;font-weight:800;line-height:1.25}.zone span{display:block;font-size:.92rem;line-height:1.4;margin-top:2px}
+  .z1{background:#d6ebfa;color:#0f4a73}.z2{background:#e6f2fb;color:#1d5a85}.z3{background:#eef1f3;color:#3c4f55}.z4{background:#fdf0d8;color:#6b4608}.z5{background:#fbe1df;color:#8a1f1a}
+  .steps{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:14px}
+  .steps li{display:flex;gap:12px;align-items:flex-start}
+  .steps b{display:block}.steps .d{display:block;color:var(--muted);font-size:.95rem}
+  .field{display:grid;gap:6px;margin:0 0 12px;font-weight:700;font-size:.92rem;color:var(--muted)}
+  .field input{font:inherit;font-size:1.2rem;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;color:var(--fg);width:100%;min-height:52px}
+  .field input:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+  .field small{font-weight:400;font-size:.82rem}
+  .row2{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+  .chk{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line);cursor:pointer;min-height:56px}
+  .chk:first-of-type{border-top:0}
+  .chk input{flex:none;width:28px;height:28px;margin:2px 0 0;accent-color:var(--a)}
+  .chk b{display:block;font-weight:800}.chk .d{display:block;color:var(--muted);font-size:.95rem}
+  .chk.done b{color:var(--muted);text-decoration:line-through}
+  .bar2{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin-top:6px}
+  .bar2 i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:width .2s}
+  .stat{font-weight:800}
+  .stat.ok{color:var(--ok)}
+  [hidden]{display:none!important}
+  .rgsig{display:block;margin-top:10px;font-size:.8rem;line-height:1.5;color:var(--muted);max-width:640px}
+  .rgstrip{max-width:1040px;margin:0 auto 14px;padding:0 20px}
+  .rgstrip div{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.88rem;color:var(--muted)}
+  .rgstrip i{flex:none;width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:.8rem}
+  .rgstrip a{color:var(--a)}
+  @media (min-width:561px){.ddm{left:auto;right:-4px}}
+  @media (max-width:560px){.ddm{min-width:170px}}
+
+
+
+
+
+
+/*lang*/
+  nav .lang{display:inline-flex;margin-left:18px;border:2px solid var(--line);border-radius:999px;overflow:hidden;background:rgba(255,255,255,.75);vertical-align:middle}
+  nav .lang a{margin:0;padding:4px 12px;min-height:38px;display:inline-flex;align-items:center;font-size:.8rem;font-weight:800;letter-spacing:.04em;color:var(--muted);text-decoration:none}
+  nav .lang a.on{background:var(--a);color:#fff}
+  @media (max-width:560px){nav{display:flex;align-items:center;flex-wrap:wrap}nav .lang{margin-left:auto}}
+  @media (display-mode:standalone){nav > a,nav .dd{display:none}nav{display:flex;justify-content:flex-end}nav .lang{margin-left:auto}}
+/*/lang*/
+  /* mobil: ikon og meny på samme linje */
+  @media (max-width:560px){.bar{flex-wrap:nowrap;gap:8px}.brand{flex:none}.brand svg{height:32px}nav{width:auto;flex-wrap:nowrap;margin-left:auto}nav a{margin:0 9px 0 0;font-size:.88rem}.dd{margin:0 9px 0 0}nav .dd>.ddb{font-size:.88rem}nav .lang{margin-left:2px}nav .lang a{padding:4px 9px;min-height:34px}}
+  @media (max-width:340px){.brand svg{height:28px}nav a{margin:0 6px 0 0;font-size:.8rem}.dd{margin:0 6px 0 0}nav .dd>.ddb{font-size:.8rem}nav .lang a{padding:3px 7px}.bar{padding-left:12px;padding-right:12px}}
+  /* finere tilbakeknapp */
+  .back{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:8px 16px 8px 12px;min-height:0;border:2px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(37,99,235,.10);font-size:.95rem;font-weight:700;color:var(--a);text-decoration:none}
+  .back svg,.apptilbake svg{width:18px;height:18px;flex:none}
+  .back:hover{text-decoration:none;background:#eef4ff;border-color:#bcd0f7}
+  .back:active{transform:scale(.97)}
+  .apptilbake{display:none;align-items:center;gap:6px;padding:8px 14px 8px 8px;min-height:44px;color:var(--a);font-weight:800;font-size:1.05rem;text-decoration:none}
+  /* app-versjon: ingen logo, Tilbake øverst */
+  @media (display-mode:standalone){.brand{display:none}.apptilbake{display:inline-flex}.bar{justify-content:space-between}main .back{display:none}}
+  .fyr{opacity:0;transition:opacity 1.5s ease}
+  html.natt .fyr{opacity:1;animation:fyrpuls 4s ease-in-out infinite}
+  @keyframes fyrpuls{0%,100%{opacity:.8}50%{opacity:1}}
+  .fyrstraale{transform-origin:139px 173px;animation:fyrsving 7s ease-in-out infinite alternate}
+  @keyframes fyrsving{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+  @media (prefers-reduced-motion:reduce){html.natt .fyr,.fyrstraale{animation:none}.fyrstraale{transform:none}}
+</style>
+<link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/bilder/ikon/apple-touch-icon.png">
+
+
+
+
+
+
+<!--hl--><!--/hl-->
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="apptilbake" href="/nyttig/diabetes/en/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Back</a>
+    <a class="brand" href="/index.html" aria-label="Reinertsengruppen"><svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reinertsengruppen" focusable="false" viewBox="0 0 412 412"><clipPath id="ca"><rect width="412" height="412" rx="32"/></clipPath><rect width="412" height="412" rx="32" fill="#0b0f14"/><defs><radialGradient id="fyrg"><stop offset="0" stop-color="#ffd36b" stop-opacity=".95"/><stop offset=".45" stop-color="#ffb347" stop-opacity=".45"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs><g class="fyr"><circle cx="139" cy="173" r="56" fill="url(#fyrg)"/><rect x="116" y="163" width="46" height="21" fill="#ffe08a"/></g><g clip-path="url(#ca)"><g transform="translate(206,198) scale(.93) translate(-206,-206)"><path fill="#ffffff" fill-rule="evenodd" d="M89.19,379.58C87.93,379.25 90.31,376.95 93.77,375.15C95.06,374.47 96.75,373.50 97.51,372.99C99.35,371.75 113.07,364.89 115.52,363.99C116.59,363.60 118.16,362.93 119.01,362.50C119.86,362.06 122.12,361.16 124.02,360.49C125.92,359.82 127.79,359.11 128.18,358.91C130.84,357.54 148.21,352.18 156.50,350.17C169.26,347.08 174.03,346.00 174.88,346.00C175.29,346.00 176.83,345.78 178.31,345.50C179.79,345.23 182.21,344.77 183.69,344.50C185.17,344.22 186.94,344.00 187.62,343.99C188.31,343.99 189.83,343.77 191.00,343.50C192.27,343.21 194.09,343.01 195.50,343.00C196.91,342.99 198.73,342.79 200.00,342.50C201.99,342.04 203.16,342.01 218.00,342.01C232.84,342.01 234.01,342.04 236.00,342.50C237.27,342.79 239.09,342.99 240.50,343.00C241.91,343.01 243.73,343.21 245.00,343.50C246.17,343.77 247.97,343.99 249.00,344.00C250.03,344.01 251.83,344.23 253.00,344.50C254.17,344.77 255.74,344.99 256.50,345.00C257.26,345.01 258.83,345.23 260.00,345.50C261.17,345.77 262.50,345.99 262.95,345.99C263.41,346.00 264.87,346.23 266.20,346.51C267.54,346.80 269.72,347.25 271.06,347.51C272.40,347.78 274.65,348.23 276.06,348.51C277.47,348.79 280.59,349.46 283.00,350.00C285.41,350.54 288.53,351.21 289.94,351.49C291.35,351.77 293.65,352.23 295.06,352.51C296.47,352.80 298.75,353.25 300.12,353.53C301.50,353.80 304.59,354.46 307.00,355.00C309.41,355.54 312.53,356.21 313.94,356.49C315.35,356.77 317.60,357.22 318.94,357.49C320.28,357.75 322.46,358.20 323.80,358.49C325.13,358.77 326.59,359.00 327.05,359.01C327.50,359.01 328.83,359.23 330.00,359.50C331.17,359.77 332.74,359.99 333.50,360.00C334.26,360.01 335.83,360.23 337.00,360.50C338.17,360.77 339.74,360.99 340.50,361.00C341.26,361.01 342.83,361.23 344.00,361.50C345.27,361.79 347.09,361.99 348.50,362.00C349.91,362.01 351.73,362.21 353.00,362.50C354.66,362.88 356.09,362.99 359.50,363.00C362.91,363.01 364.34,363.12 366.00,363.50C369.29,364.26 384.69,364.24 388.07,363.48C392.12,362.56 399.75,362.96 399.75,364.09C399.75,366.33 368.75,375.97 361.45,376.01C360.72,376.01 359.17,376.23 358.00,376.50C356.73,376.79 354.91,376.99 353.50,377.00C352.09,377.01 350.27,377.21 349.00,377.50C347.03,377.95 345.86,377.99 333.00,377.99C320.14,377.99 318.97,377.95 317.00,377.50C315.76,377.22 313.94,377.01 312.62,377.01C311.39,377.00 309.17,376.78 307.69,376.50C306.21,376.23 303.79,375.77 302.31,375.50C300.83,375.22 299.08,375.00 298.42,375.00C297.76,375.00 296.13,374.77 294.80,374.49C293.46,374.20 291.34,373.75 290.08,373.49C288.81,373.22 287.46,373.00 287.08,373.00C286.69,373.00 285.19,372.78 283.75,372.51C282.31,372.24 279.77,371.80 278.12,371.52C276.48,371.25 273.75,370.79 272.06,370.51C270.38,370.23 267.62,369.77 265.94,369.49C264.25,369.21 261.69,368.76 260.25,368.49C258.81,368.22 257.06,368.00 256.38,367.99C255.69,367.99 254.17,367.77 253.00,367.50C251.83,367.23 250.26,367.01 249.50,367.00C248.74,366.99 247.17,366.77 246.00,366.50C244.83,366.23 243.03,366.01 242.00,366.00C240.97,365.99 239.17,365.77 238.00,365.50C236.83,365.23 235.03,365.01 234.00,365.00C232.97,364.99 231.17,364.77 230.00,364.50C228.48,364.15 226.91,364.01 224.50,364.00C222.09,363.99 220.52,363.85 219.00,363.50C216.99,363.04 215.80,363.01 196.50,363.01C177.20,363.01 176.01,363.04 174.00,363.50C172.48,363.85 170.91,363.99 168.50,364.00C166.09,364.01 164.52,364.15 163.00,364.50C161.83,364.77 160.03,364.99 159.00,365.00C157.97,365.01 156.17,365.23 155.00,365.50C153.83,365.77 152.26,365.99 151.50,366.00C150.74,366.01 149.17,366.23 148.00,366.50C146.83,366.77 145.50,366.99 145.05,366.99C144.59,367.00 143.13,367.23 141.80,367.51C140.46,367.80 138.28,368.25 136.94,368.51C135.60,368.78 133.35,369.23 131.94,369.51C122.87,371.32 103.87,375.93 98.77,377.56C95.52,378.60 90.44,379.82 89.80,379.72C89.71,379.71 89.43,379.64 89.19,379.58ZM38.88,365.49C37.29,365.11 35.85,365.01 32.00,365.00C28.10,364.99 26.70,364.89 25.00,364.50C23.40,364.13 21.93,364.01 19.05,364.01C9.86,363.99 9.70,361.92 17.95,349.57C19.59,347.12 21.19,344.60 21.50,343.99C22.41,342.20 24.64,339.02 28.32,334.26C28.90,333.51 29.65,332.50 29.98,332.01C30.31,331.52 31.22,330.39 31.99,329.50C32.77,328.61 33.67,327.48 34.00,327.00C34.33,326.52 36.35,324.27 38.50,322.00C40.65,319.73 42.76,317.37 43.18,316.75C44.84,314.32 48.95,310.77 54.07,307.34C56.76,305.54 62.12,303.49 65.47,302.99C66.38,302.85 67.80,302.58 68.62,302.37C69.45,302.17 70.52,302.01 71.00,302.00C72.96,301.99 73.72,301.55 76.97,298.53C78.71,296.91 80.63,295.25 81.25,294.82C81.87,294.39 82.82,293.59 83.36,293.02C84.35,292.00 84.35,292.00 92.57,292.00C100.28,292.00 100.78,292.03 100.65,292.44C100.20,293.92 100.01,295.41 100.00,297.50C99.99,298.92 99.79,300.73 99.50,302.00C99.23,303.17 99.01,304.97 99.01,306.00C98.98,311.97 96.75,315.77 90.91,319.78C88.67,321.32 85.64,321.53 80.95,320.49C77.06,319.62 73.19,320.08 67.30,322.10C64.12,323.19 59.13,326.77 53.64,331.89C51.57,333.82 49.35,335.77 48.70,336.21C46.99,337.37 38.10,346.37 36.94,348.12C36.39,348.95 35.08,350.50 34.04,351.56C31.71,353.94 31.81,354.33 34.52,353.36C37.24,352.38 41.29,350.43 43.60,348.98C46.25,347.31 48.58,345.91 50.10,345.06C50.77,344.68 52.82,343.39 54.66,342.19C56.50,340.99 58.94,339.54 60.07,338.97C61.20,338.40 62.45,337.71 62.84,337.43C64.98,335.92 72.00,333.34 74.87,333.01C75.97,332.88 77.66,332.59 78.62,332.37C80.08,332.02 81.61,331.96 87.75,332.01C91.81,332.04 95.31,332.05 95.54,332.03C95.93,332.00 98.72,330.04 101.75,327.67C103.62,326.20 109.62,322.20 111.00,321.50C111.62,321.19 112.75,320.51 113.50,320.00C118.98,316.28 132.70,311.02 136.99,310.99C137.48,310.99 138.83,310.77 140.00,310.50C143.20,309.77 159.80,309.77 163.00,310.50C164.32,310.80 166.07,310.99 167.62,311.00C169.05,311.00 170.72,311.17 171.50,311.38C173.99,312.07 177.00,311.81 177.00,310.92C177.00,309.98 174.33,308.11 171.25,306.89C169.94,306.38 167.75,305.50 166.38,304.94C162.47,303.37 156.37,301.50 151.88,300.52C145.68,299.15 144.70,299.00 142.13,299.00C137.67,299.00 137.00,298.38 137.00,294.26C137.00,292.00 137.00,292.00 156.72,292.00C175.28,292.00 176.46,292.03 176.62,292.44C176.71,292.68 176.87,293.94 176.98,295.25C177.26,298.82 178.24,300.00 180.90,300.00C181.83,300.00 184.55,300.53 189.81,301.76C195.59,303.10 201.66,306.52 206.88,311.38C210.86,315.10 211.15,315.21 214.62,314.37C218.26,313.49 223.38,314.04 229.12,315.92C236.25,318.24 252.81,327.87 249.94,328.02C246.69,328.18 240.80,327.90 238.94,327.49C237.20,327.10 235.77,327.00 231.94,326.99C228.08,326.99 226.70,326.89 225.00,326.50C221.78,325.76 202.22,325.76 199.00,326.50C197.48,326.85 195.91,326.99 193.50,327.00C191.09,327.01 189.52,327.15 188.00,327.50C186.76,327.78 184.94,327.99 183.62,327.99C182.39,328.00 180.14,328.23 178.62,328.51C177.11,328.80 174.69,329.25 173.25,329.51C171.81,329.78 170.29,330.00 169.88,330.00C168.68,330.00 152.59,333.79 147.00,335.39C140.23,337.33 133.23,339.70 127.56,341.97C121.03,344.59 119.73,345.11 117.68,345.90C116.47,346.37 114.34,347.33 112.96,348.02C111.57,348.72 109.56,349.61 108.49,350.00C107.42,350.40 105.85,351.07 105.00,351.50C104.15,351.93 102.59,352.60 101.52,352.99C100.45,353.39 97.45,354.77 94.85,356.07C88.08,359.46 82.21,361.38 72.20,363.49C70.87,363.77 69.18,364.00 68.45,364.01C67.72,364.01 66.17,364.23 65.00,364.50C63.48,364.85 61.91,364.99 59.50,365.00C57.09,365.01 55.52,365.15 54.00,365.50C50.98,366.19 41.85,366.18 38.88,365.49Z"/><path fill="#ffffff" d="M80,78H276A95,95 0 0 1 371,173A95,95 0 0 1 311,261.32 L396,352H321L191,215H270A44,44 0 0 0 270,127H130Z"/><path fill="#ffffff" d="M132.5,134C134.5,138 136,143 136,152H129C129,143 130.5,138 132.5,134ZM104.5,166A28,17.5 0 0 1 160.5,166ZM102,165H163V169H102ZM105,190H160V194H105ZM100,194H165L171,214H94ZM96,214H169L179.5,292L182,303H83L85.5,292Z"/><path fill="#ffffff" d="M109,169h4v21h-4zM121,169h3v21h-3zM141,169h3v21h-3zM152,169h4v21h-4z"/><path fill="#0b0f14" d="M108,214H136.5V305H95V303L97.5,292Z"/><path fill="#0b0f14" d="M111,196H141Q143,196 143,198V200Q143,202 141,202H111Q109,202 109,200V198Q109,196 111,196Z"/></g></g><g clip-path="url(#ca)"><defs><linearGradient id="fyrbg" gradientUnits="userSpaceOnUse" x1="139" y1="173" x2="760" y2="173"><stop offset="0" stop-color="#ffffff" stop-opacity="1"/><stop offset=".12" stop-color="#fff6cc" stop-opacity=".85"/><stop offset=".45" stop-color="#ffe08a" stop-opacity=".38"/><stop offset="1" stop-color="#ffd36b" stop-opacity="0"/></linearGradient><linearGradient id="fyrbg2" gradientUnits="userSpaceOnUse" x1="139" y1="173" x2="-480" y2="173"><stop offset="0" stop-color="#ffffff" stop-opacity="1"/><stop offset=".12" stop-color="#fff6cc" stop-opacity=".85"/><stop offset=".45" stop-color="#ffe08a" stop-opacity=".38"/><stop offset="1" stop-color="#ffd36b" stop-opacity="0"/></linearGradient></defs><g class="fyr fyrb"><g class="fyrstraale"><polygon points="139,173 760,52 760,294" fill="url(#fyrbg)"/><polygon points="139,173 -480,52 -480,294" fill="url(#fyrbg2)"/></g></g></g></svg></a>
+    <nav>
+      <a href="/index.html#om">About us</a>
+      <a href="/index.html#kontakt">Contact</a>
+      <div class="dd"><button class="ddb cur" type="button" aria-expanded="false" aria-haspopup="true">Useful</button><div class="ddm" hidden><a href="/nyttig/apper/index.html">Apps<small>Fyret (the lighthouse) and more</small></a><a href="/nyttig/hjelpemidler/index.html" aria-current="page">Aids<small>Diabetes and more</small></a></div></div>
+    <!--lang--><div class="lang" role="group" aria-label="Language / Språk"><a href="/nyttig/diabetes/trendpiler/" hreflang="no" lang="no">NO</a><a href="/nyttig/diabetes/en/trendpiler/" hreflang="en" lang="en" class="on" aria-current="true">EN</a></div><!--/lang--></nav>
+  </div>
+</header>
+
+<main data-rg="rg-2026-10-nyttig-diabetes-trendpiler-en-fa85">
+  <a class="back" href="/nyttig/diabetes/en/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
+  <h1>Trend arrows <em>and automation.</em></h1>
+  <p class="lead">What the arrows on the sensor mean, and how the pump can adjust the insulin by itself. The drawings are simplified, so your own screen may look different.</p>
+  <p style="margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#fff7e0;border:1px solid #f0d98a;color:#5b4a10;font-size:.9rem;line-height:1.4"><b>Remember:</b> This is a tool, not a final answer. Check important numbers with your diabetes team.</p>
+  <div class="grid">
+    <section class="panel" aria-label="The sensor screen">
+      <h2>The sensor screen</h2>
+      <div class="fig"><svg viewBox="0 0 360 310" role="img" aria-labelledby="t1 d1"><title id="t1">Simplified sensor screen with three labelled parts</title><desc id="d1">The screen shows a number for the sensor value, a trend arrow and a curve for the last hours with a green target range.</desc>
+<rect x="70" y="8" width="220" height="294" rx="26" fill="#f9fbff" stroke="#e3eaf5" stroke-width="2"/>
+<text x="92" y="48" font-size="13" fill="#5b6b82">Sensor value, example</text>
+<text x="92" y="104" font-size="52" font-weight="800" fill="#0f172a">7.8</text><text x="172" y="104" font-size="14" fill="#5b6b82">mmol/L</text>
+<g transform="translate(246 82) rotate(-45)"><path d="M-16 0 H14 M2 -12 L16 0 L2 12" fill="none" stroke="#b4561b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="88" y="150" width="184" height="62" rx="6" fill="#dcefe3"/><line x1="88" y1="236" x2="272" y2="236" stroke="#e3eaf5" stroke-width="2"/>
+<polyline points="88,200 112,194 136,186 160,178 184,184 208,170 232,160 256,150" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="256" cy="150" r="6" fill="#2563eb"/>
+<text x="88" y="262" font-size="12" fill="#5b6b82">3 hours ago</text><text x="272" y="262" font-size="12" fill="#5b6b82" text-anchor="end">now</text><text x="88" y="284" font-size="12" fill="#5b6b82">Green area: target range</text>
+<line x1="40" y1="84" x2="88" y2="84" stroke="#2563eb" stroke-width="2"/><circle cx="30" cy="84" r="13" fill="#2563eb"/><text x="30" y="89" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">1</text>
+<line x1="266" y1="62" x2="316" y2="40" stroke="#2563eb" stroke-width="2"/><circle cx="328" cy="36" r="13" fill="#2563eb"/><text x="328" y="41" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">2</text>
+<line x1="272" y1="190" x2="316" y2="190" stroke="#2563eb" stroke-width="2"/><circle cx="328" cy="190" r="13" fill="#2563eb"/><text x="328" y="195" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">3</text></svg></div>
+      <ul class="legend">
+        <li><span class="num" aria-hidden="true">1</span><div><b>The number</b><span class="d">What the sensor shows right now.</span></div></li>
+        <li><span class="num" aria-hidden="true">2</span><div><b>The arrow</b><span class="d">Which way the number is going, and how fast.</span></div></li>
+        <li><span class="num" aria-hidden="true">3</span><div><b>The curve</b><span class="d">The last hours. It shows whether the number has been going up or down for a while.</span></div></li>
+      </ul>
+    </section>
+    <section class="panel" aria-label="The arrows on Dexcom">
+      <h2>What the arrows mean on Dexcom</h2>
+      <p class="small" style="margin:0">Seven steps, from fastest up to fastest down. A double arrow means faster than a single arrow.</p>
+      <ul class="arrows"><li class="arr"><svg viewBox="-24 -24 48 48" aria-hidden="true"><g><path d="M-9 14 V-12 M-16 -5 L-9 -13 L-2 -5 M9 14 V-12 M2 -5 L9 -13 L16 -5" fill="none" stroke="#b4561b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div><b>Two arrows up</b><span>Rising fastest.</span></div></li><li class="arr"><svg viewBox="-24 -24 48 48" aria-hidden="true"><g transform="rotate(-90)"><path d="M-14 0 H12 M2 -10 L14 0 L2 10" fill="none" stroke="#b4561b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div><b>One arrow up</b><span>Rising quickly.</span></div></li><li class="arr"><svg viewBox="-24 -24 48 48" aria-hidden="true"><g transform="rotate(-45)"><path d="M-14 0 H12 M2 -10 L14 0 L2 10" fill="none" stroke="#b4561b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div><b>Arrow diagonally up</b><span>Rising at a steady pace.</span></div></li><li class="arr"><svg viewBox="-24 -24 48 48" aria-hidden="true"><g transform="rotate(0)"><path d="M-14 0 H12 M2 -10 L14 0 L2 10" fill="none" stroke="#1f8a5a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div><b>Arrow straight ahead</b><span>The number stays about the same.</span></div></li><li class="arr"><svg viewBox="-24 -24 48 48" aria-hidden="true"><g transform="rotate(45)"><path d="M-14 0 H12 M2 -10 L14 0 L2 10" fill="none" stroke="#7a3fa0" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div><b>Arrow diagonally down</b><span>Falling at a steady pace.</span></div></li><li class="arr"><svg viewBox="-24 -24 48 48" aria-hidden="true"><g transform="rotate(90)"><path d="M-14 0 H12 M2 -10 L14 0 L2 10" fill="none" stroke="#7a3fa0" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div><b>One arrow down</b><span>Falling quickly.</span></div></li><li class="arr"><svg viewBox="-24 -24 48 48" aria-hidden="true"><g><path d="M-9 -14 V12 M-16 5 L-9 13 L-2 5 M9 -14 V12 M2 5 L9 13 L16 5" fill="none" stroke="#7a3fa0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div><b>Two arrows down</b><span>Falling fastest.</span></div></li></ul>
+      <div class="note">How many mmol/L per minute each arrow stands for, and what to do for each arrow, is in the user guide and with the diabetes team.</div>
+    </section>
+  </div>
+  <div class="grid">
+    <section class="panel" aria-label="Control-IQ">
+      <h2>Control-IQ</h2>
+      <p class="small" style="margin:0">The pump looks at what the sensor thinks the value will be in 30 minutes, and chooses based on that.</p>
+      <div class="ladder">
+        <div class="axis" aria-hidden="true"><span style="top:20%">10.0<small>mmol/L</small></span><span style="top:40%">8.9</span><span style="top:60%">6.25</span><span style="top:80%">3.9</span></div>
+        <div class="zones" role="list"><div class="zone z1" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3 C14 3 6 12.5 6 17.5 a8 8 0 0 0 16 0 C22 12.5 14 3 14 3 Z" fill="currentColor"/></svg><div><b>Delivers</b><span>Gives an automatic correction bolus if the value is expected to go above 10.0.</span></div></div><div class="zone z2" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M6 17 L14 9 L22 17 M6 24 L14 16 L22 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Increases</b><span>Increases the basal dose if the value is expected to go above 8.9.</span></div></div><div class="zone z3" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M6 11 H22 M6 18 H22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><div><b>Keeps</b><span>Uses the settings in your active profile.</span></div></div><div class="zone z4" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M6 11 L14 19 L22 11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Reduces</b><span>Reduces the basal dose if the value is expected to go below 6.25.</span></div></div><div class="zone z5" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="7" y="6" width="5" height="16" rx="1.5" fill="currentColor"/><rect x="16" y="6" width="5" height="16" rx="1.5" fill="currentColor"/></svg><div><b>Stops</b><span>Stops the basal dose if the value is expected to go below 3.9.</span></div></div></div>
+      </div>
+      <p class="small" style="margin:14px 0 0">The target range is 3.9 to 10 mmol/L. The pump goes by what the value is expected to be, not just what it is now.</p>
+    </section>
+    <section class="panel" aria-label="Basal-IQ">
+      <h2>Basal-IQ</h2>
+      <p class="small" style="margin:0">The simpler function. It only watches for low values.</p>
+      <div class="fig" style="margin-top:12px"><svg viewBox="0 0 340 150" role="img" aria-labelledby="t2 d2"><title id="t2">Basal-IQ in three steps</title><desc id="d2">The sensor values fall, the pump stops the insulin in the red area, and the insulin starts again when the values begin to rise.</desc>
+<rect x="108" y="10" width="110" height="100" fill="#fbe1df"/><line x1="8" y1="10" x2="332" y2="10" stroke="#e3eaf5" stroke-width="2"/><line x1="8" y1="110" x2="332" y2="110" stroke="#e3eaf5" stroke-width="2"/>
+<g fill="#0f172a"><circle cx="26" cy="26" r="6"/><circle cx="52" cy="36" r="6"/><circle cx="78" cy="50" r="6"/><circle cx="104" cy="64" r="6"/><circle cx="130" cy="78" r="6"/><circle cx="156" cy="88" r="6"/><circle cx="182" cy="94" r="6"/><circle cx="208" cy="90" r="6"/><circle cx="234" cy="80" r="6"/><circle cx="260" cy="72" r="6"/><circle cx="286" cy="66" r="6"/><circle cx="312" cy="60" r="6"/></g>
+<g font-size="13" font-weight="800" text-anchor="middle"><circle cx="58" cy="132" r="11" fill="#2563eb"/><text x="58" y="137" fill="#fff">1</text><circle cx="163" cy="132" r="11" fill="#d64545"/><text x="163" y="137" fill="#fff">2</text><circle cx="270" cy="132" r="11" fill="#2563eb"/><text x="270" y="137" fill="#fff">3</text></g></svg></div>
+      <ol class="steps">
+        <li><span class="num" aria-hidden="true">1</span><div><b>Looks ahead</b><span class="d">The pump predicts the values 30 minutes ahead.</span></div></li>
+        <li><span class="num" aria-hidden="true">2</span><div><b>Stops the insulin</b><span class="d">If the value is expected to go below 4.4, or a sensor reading is below 3.9.</span></div></li>
+        <li><span class="num" aria-hidden="true">3</span><div><b>Starts again</b><span class="d">The insulin comes back automatically when the values begin to rise.</span></div></li>
+      </ol>
+      <div class="note">Basal-IQ applies to t:slim X2 with Dexcom G6. Control-IQ applies to both G6 and G7.</div>
+    </section>
+  </div>
+  <p class="foot">The page is an aid for understanding the screen and does not replace training and advice from the diabetes team. The pump cannot stop all high and low values, and it only works when the sensor and pump are connected. For acute illness, call the out-of-hours clinic (legevakt) on 116 117, or 113 in an emergency.</p>
+</main>
+
+<footer class="pfoot"><a href="/personvern/index.html">Privacy</a> · <a href="/opphavsrett/index.html">Copyright</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. All rights reserved.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">This is information and support, not medical advice. Always talk to your diabetes team about your treatment. This site is under construction and may contain errors.</p></footer>
+<script>
+(function(){
+})();
+(function(){var b=document.querySelector('.ddb'),m=document.querySelector('.ddm');if(!b||!m)return;
+function set(o){b.setAttribute('aria-expanded',o);m.hidden=!o;}
+b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target))set(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
+})();
+</script>
+
+<!--telle--><script src="/telle.js" defer></script><!--/telle-->
+<script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
+<script src="../enkel.js" defer></script>
+</body>
+</html>

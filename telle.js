@@ -17,7 +17,7 @@
   } catch (e) {}
   var p = location.pathname.replace(/index\.html$/, '');
   function grp() {
-    if (p.indexOf('/nyttig/diabetes/') === 0 || p.indexOf('/nyttig/diabetes-enkel/') === 0 || p.indexOf('/nyttig/hjelpemidler/') === 0 || p.indexOf('/nyttig/hvem-ringer-jeg/') === 0 || p.indexOf('/nyttig/dagsplan/') === 0) return 'hjelpemidler';
+    if (p.indexOf('/nyttig/diabetes/') === 0 || p.indexOf('/nyttig/diabetes-enkel/') === 0 || p.indexOf('/nyttig/diabetes-simple/') === 0 || p.indexOf('/nyttig/hjelpemidler/') === 0 || p.indexOf('/nyttig/hvem-ringer-jeg/') === 0 || p.indexOf('/nyttig/dagsplan/') === 0) return 'hjelpemidler';
     if (p.indexOf('/nyttig/apper/') === 0 || p.indexOf('/nyttig/fyret/') === 0) return 'apper';
     return 'forside';
   }
@@ -27,7 +27,7 @@
   function send(type, sti) {
     var key = 'rg-t:' + type + ':' + sti;
     try { if (sessionStorage.getItem(key)) return; sessionStorage.setItem(key, '1'); } catch (e) {}
-    var body = JSON.stringify({ t: type, sti: sti, grp: grp(), sprak: p.indexOf('/nyttig/diabetes/en/') === 0 ? 'en' : 'no', app: app() });
+    var body = JSON.stringify({ t: type, sti: sti, grp: grp(), sprak: (p.indexOf('/nyttig/diabetes/en/') === 0 || p.indexOf('/nyttig/diabetes-simple/') === 0) ? 'en' : 'no', app: app() });
     try {
       if (navigator.sendBeacon) navigator.sendBeacon(URL, new Blob([body], { type: 'text/plain' }));
       else fetch(URL, { method: 'POST', body: body, mode: 'no-cors', keepalive: true, credentials: 'omit' });
