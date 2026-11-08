@@ -80,8 +80,7 @@
       ['main > p[style*="fff7e0"]', '<b>Husk:</b> Dette hjelper deg å finne ut av det. Det er ikke fasit. Sjekk med en voksen eller diabetesteamet.'],
       ['.layout > .panel h2', 'Legg til mat', 0],
       ['.layout > .panel h2', 'På tallerkenen', 1],
-      ['#ownGram', 'Skriv inn gram selv'],
-      ['#warn', '<b>Oi, det er mye!</b> Sjekk at du har skrevet riktig tall. Spør en voksen om hjelp.']
+      ['#ownGram', 'Skriv inn gram selv']
     ]
   };
   R.innstillinger = {

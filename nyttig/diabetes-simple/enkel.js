@@ -80,8 +80,7 @@
       ['main > p[style*="fff7e0"]', '<b>Remember:</b> This helps you work it out. It is not the final answer. Check with an adult or your diabetes team.'],
       ['.layout > .panel h2', 'Add food', 0],
       ['.layout > .panel h2', 'On the plate', 1],
-      ['#ownGram', 'Type in grams yourself'],
-      ['#warn', '<b>Oops, that is a lot!</b> Check that you typed the right number. Ask an adult for help.']
+      ['#ownGram', 'Type in grams yourself']
     ]
   };
   R.innstillinger = {

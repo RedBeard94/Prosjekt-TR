@@ -92,6 +92,7 @@
   .total .t { color:var(--muted); font-weight:600; }
   .warn { margin:10px 0 0; padding:12px 14px; border-radius:16px; background:#fff4d6; border:2px solid #f0b429; font-size:1rem; font-weight:600; }
   .warn[hidden] { display:none; }
+  .warn.red { background:#fdeeee; border-color:#d64545; color:#7a1f1f; }
   .pump { margin:10px 0 14px; padding:12px 14px; border-radius:16px; background:#eef4ff; border:1px solid #d6e3fb; font-size:.95rem; }
   .items { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
   .item { display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#fff; border:2px solid var(--line); border-radius:14px; padding:8px 12px; min-height:56px; }
@@ -267,7 +268,7 @@
       <h2>2. The plate</h2>
       <div class="plate"><svg id="plateSvg" viewBox="0 0 220 220" role="img" aria-label="Plate with the food you have added"></svg></div>
       <div class="total"><div class="n" id="tot">0<small>g</small></div><div class="t">carbohydrate in total</div></div>
-      <div class="warn" id="warn" role="alert" hidden><b>Oh, that is a lot!</b> Check that you have entered the right number. Remember that the number on the packet should be “per 100 g”. Ask an adult for help.</div>
+      <div class="warn" id="warn" role="alert" hidden><b>That is a lot.</b> Check that you typed the right number. Ask an adult for help.</div>
       <div class="pump" id="pump">Put food on the plate, and you will see the total carbohydrate.</div>
       <ul class="items" id="items"></ul>
       <div class="actions"><button class="btn ghost" id="saveMeal" type="button">Save as meal</button><button class="btn danger" id="clear" type="button">Empty the plate</button></div>
@@ -393,8 +394,8 @@
     svg+='<text x="110" y="118" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="30" fill="#0f172a">'+(plate.length?nb(Math.round(tot),0):'')+'</text>';
     $('plateSvg').innerHTML=svg;
     $('tot').innerHTML=nb(Math.round(tot),0)+'<small>g</small>';
-    $('warn').hidden=!(tot>150);
-    $('pump').innerHTML=plate.length?'Total: <b>'+nb(Math.round(tot),0)+' g</b> carbohydrate. Use the total as you have learned from the diabetes team.':'Put food on the plate, and you will see the total carbohydrate.';
+    var red=tot>300; $('warn').hidden=!(tot>100); $('warn').classList.toggle('red',red); $('warn').innerHTML=red?'<b>This is probably not right.</b> You most likely typed a wrong number. Do not use this total. Ask an adult for help.':'<b>That is a lot.</b> Check that you typed the right number. Ask an adult for help.';
+    $('pump').innerHTML=plate.length?(red?'The total is not shown as a number you can use. Fix the numbers above first.':'Total: <b>'+nb(Math.round(tot),0)+' g</b> carbohydrate. Use the total as you have learned from the diabetes team.'):'Put food on the plate, and you will see the total carbohydrate.';
     $('items').innerHTML=plate.map(function(it,i){return '<li><button class="item" type="button" data-i="'+i+'"><span class="sw" style="background:'+colorOf(it.name)+'"></span><span class="nm">'+esc(it.name)+'<small>'+nb(it.grams,0)+' g'+(it.own==='gram'?'':' · '+nb(it.per100)+' g carbs per 100 g')+'</small></span><span class="kb">'+nb(carbsOf(it),1)+' g</span></button></li>';}).join('');
     $('clear').style.display=plate.length?'':'none';
   }
