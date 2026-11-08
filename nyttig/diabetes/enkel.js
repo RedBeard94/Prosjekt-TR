@@ -3,23 +3,27 @@
 (function () {
   'use strict';
   var main = document.querySelector('main');
-  if (!main) return;
+  var parts0 = location.pathname;
+  if (!main && !/mat-og-blodsukker/.test(parts0)) return;
+  main = main || document.body;
   var parts = location.pathname.replace(/index\.html$/, '').split('/').filter(Boolean);
   var key = parts[parts.length - 1];
-  var BACK = '../enkel/index.html';
+  var FORCE = document.documentElement.getAttribute('data-enkel') === '1';
+  var BACK = FORCE ? '../index.html' : '../../diabetes-enkel/index.html';
 
-  function on() { return location.hash === '#enkel' || location.hash === '#barn'; }
+  function on() { return FORCE || location.hash === '#enkel' || location.hash === '#barn'; }
 
   /* ---------- Bare tilbake-lenken på «Mat og blodsukker» (har egen bryter) ---------- */
-  var back = main.querySelector('a.back');
-  var backOrig = null;
+  /* To tilbake-lenker: «.back» i innholdet, og «.apptilbake» i toppmenyen når appen er installert på telefonen */
+  var backs = [].slice.call(document.querySelectorAll('a.back, a.apptilbake')).map(function (a) { return { a: a, o: null }; });
   function setBack(enkel) {
-    if (!back) return;
-    var tn = null, i, n;
-    for (i = back.childNodes.length - 1; i >= 0; i--) { n = back.childNodes[i]; if (n.nodeType === 3 && n.nodeValue.trim()) { tn = n; break; } }
-    if (!backOrig) backOrig = { href: back.getAttribute('href'), text: tn ? tn.nodeValue : null };
-    back.setAttribute('href', enkel ? BACK : backOrig.href);
-    if (tn && backOrig.text != null) tn.nodeValue = enkel ? 'Tilbake' : backOrig.text;
+    backs.forEach(function (b) {
+      var a = b.a, tn = null, i, n;
+      for (i = a.childNodes.length - 1; i >= 0; i--) { n = a.childNodes[i]; if (n.nodeType === 3 && n.nodeValue.trim()) { tn = n; break; } }
+      if (!b.o) b.o = { href: a.getAttribute('href'), text: tn ? tn.nodeValue : null };
+      a.setAttribute('href', enkel ? BACK : b.o.href);
+      if (tn && b.o.text != null) tn.nodeValue = enkel ? 'Tilbake' : b.o.text;
+    });
   }
   if (key === 'mat-og-blodsukker') {
     var upd = function () { setBack(on() || (document.getElementById('m-kid') && document.getElementById('m-kid').getAttribute('aria-pressed') === 'true')); };
@@ -27,6 +31,7 @@
       var b = document.getElementById(id);
       if (b) b.addEventListener('click', function () { setTimeout(upd, 0); });
     });
+    window.addEventListener('hashchange', upd);
     upd();
     return;
   }
@@ -221,7 +226,7 @@
   /* ---------- Bryter: Vanlig / Enkel ---------- */
   var lead = main.querySelector('.lead');
   var bar = document.createElement('div');
-  bar.className = 'e-mode'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Velg versjon');
+  bar.className = 'e-mode'; if (FORCE) bar.style.display = 'none'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Velg versjon');
   bar.innerHTML = '<button type="button" id="e-vanlig" aria-pressed="true">Vanlig</button><button type="button" id="e-enkel" aria-pressed="false">Enkel</button>';
   if (lead) lead.parentNode.insertBefore(bar, lead.nextSibling); else main.insertBefore(bar, main.firstChild);
   var bV = bar.querySelector('#e-vanlig'), bE = bar.querySelector('#e-enkel'), cur = false;

@@ -1,0 +1,38 @@
+{
+  "name": "Diabetes enkel versjon",
+  "short_name": "Diabetes enkel",
+  "description": "Enkel versjon: Tallerkenen, mine tall og sjekkliste, pilene, tallene og mat og blodsukker.",
+  "lang": "nb",
+  "id": "/nyttig/diabetes-enkel/",
+  "start_url": "/nyttig/diabetes-enkel/",
+  "scope": "/nyttig/diabetes-enkel/",
+  "display": "standalone",
+  "theme_color": "#eef3fb",
+  "background_color": "#eef3fb",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

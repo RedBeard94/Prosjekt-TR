@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<!-- © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no · Alle rettigheter forbeholdt. -->
+<meta name="author" content="Thomas Reinertsen, Reinertsengruppen">
+<meta name="rg-origin" content="rg-2026-11-nyttig-diabetes-enkel">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Diabetes enkel versjon – Reinertsengruppen</title>
+<meta name="theme-color" content="#eef3fb">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Diabetes enkel">
+<style>@font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(../../fonts/manrope-latin-200-normal.woff2) format("woff2")}@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(../../fonts/manrope-latin-400-normal.woff2) format("woff2")}@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(../../fonts/manrope-latin-600-normal.woff2) format("woff2")}@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(../../fonts/manrope-latin-800-normal.woff2) format("woff2")}
+:root{--fg:#0f172a;--muted:#5b6b82}*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);min-height:100vh;
+background:radial-gradient(circle at 15% 10%,#c7d9ff 0,transparent 45%),radial-gradient(circle at 90% 30%,#ffd9c2 0,transparent 40%),radial-gradient(circle at 30% 95%,#cdeedd 0,transparent 45%),#eef3fb}
+.wrap{max-width:460px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 18px 40px}
+h1{font-size:1.9rem;line-height:1.1;margin:8px 0 4px;font-weight:200;text-align:center}h1 em{font-style:normal;font-weight:800;color:#2563eb}
+.lead{text-align:center;color:var(--muted);margin:0 0 18px}
+.folder{background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.7);border-radius:34px;padding:26px 16px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 8px;box-shadow:0 14px 40px rgba(15,23,42,.12)}
+.app{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--fg);background:none;border:0;padding:0;font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:pan-y;min-width:0}
+.icon{position:relative;overflow:hidden;width:min(92px,24vw);aspect-ratio:1;border-radius:22%;display:grid;place-items:center;box-shadow:0 4px 12px rgba(15,23,42,.22),inset 0 1px 0 rgba(255,255,255,.35)}
+.icon svg{width:52%;height:52%;position:relative}
+.icon .fill{position:absolute;left:0;right:0;bottom:0;height:0;background:rgba(255,255,255,.45);pointer-events:none}
+.lb{font-size:.9rem;font-weight:700;text-align:center;line-height:1.15;max-width:100%;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.app:active .icon{transform:scale(.96)}.app:focus-visible .icon{outline:3px solid #7c3aed;outline-offset:3px}
+.app.empty .icon{background:rgba(148,163,184,.25)!important;box-shadow:none;border:2px dashed #94a3b8}.app.empty svg{opacity:.7}.app.empty .lb{color:var(--muted)}
+.small{text-align:center;font-size:.85rem;color:var(--muted);margin:14px 6px 0}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,30px);opacity:0;background:#0f172a;color:#fff;padding:12px 16px;border-radius:14px;font-size:.92rem;max-width:90%;text-align:center;transition:.25s;pointer-events:none}.toast.on{opacity:1;transform:translate(-50%,0)}
+.ov{position:fixed;inset:0;z-index:50;background:#7f1d1d;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:14px}.ov[hidden]{display:none}
+.ov h2{margin:0;font-size:1.4rem;font-weight:800}.ov .cnt{font-size:6.5rem;font-weight:800;line-height:1}
+.ov p{margin:0;max-width:320px;font-size:1.05rem;line-height:1.4}.ov .sm{font-size:.92rem;opacity:.9}
+.ov button{font:inherit;font-weight:800;border:0;border-radius:18px;min-height:64px;width:min(320px,100%);font-size:1.2rem;cursor:pointer}
+.ov .av{background:#fff;color:#7f1d1d}.ov .nu{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7);min-height:52px;font-size:1rem}
+</style><style>.hold .icon{outline:3px dashed #64748b;outline-offset:3px}.hold[data-sos] .icon{outline-color:#b91c1c}.hint{display:block;font-size:.72rem;font-weight:600;color:#475569;margin-top:-4px}</style>
+</head><body><main class="wrap" data-rg="rg-2026-11-nyttig-diabetes-enkel">
+<h1>Diabetes <em>enkel versjon.</em></h1>
+<p class="lead">Det viktigste på ett sted.</p>
+<div class="folder">
+<a class="app" href="tallerken/index.html"><span class="icon" style="background:linear-gradient(160deg,#60a5fa,#2563eb)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></svg></span><span class="lb">Tallerken</span></a>
+<a class="app" href="innstillinger/index.html"><span class="icon" style="background:linear-gradient(160deg,#818cf8,#4f46e5)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6"/></svg></span><span class="lb">Mine tall</span></a>
+<a class="app" href="trendpiler/index.html"><span class="icon" style="background:linear-gradient(160deg,#f472b6,#be185d)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16l5-5 4 3 7-8M15 6h5v5"/></svg></span><span class="lb">Pilene</span></a>
+<a class="app" href="tallene/index.html"><span class="icon" style="background:linear-gradient(160deg,#34d399,#059669)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14M9 4v16"/></svg></span><span class="lb">Tallene</span></a>
+<a class="app" href="mat-og-blodsukker/index.html"><span class="icon" style="background:linear-gradient(160deg,#fb923c,#c2410c)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M4 16c3 0 3-9 6-9s2 9 5 9 3-6 5-6"/></svg></span><span class="lb">Mat</span></a>
+<button class="app hold" type="button" data-hold="5000" data-href="../diabetes/index.html" aria-label="Vanlig versjon. Hold inne i 5 sekunder."><span class="icon" style="background:linear-gradient(160deg,#94a3b8,#475569)"><i class="fill"></i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="lb">Vanlig</span><span class="hint">Hold inne 5 sek</span></button>
+<button class="app hold" type="button" data-hold="2000" data-sos="1" aria-label="Akutt 113. Hold inne i 2 sekunder."><span class="icon" style="background:linear-gradient(160deg,#ef4444,#b91c1c)"><i class="fill"></i><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg></span><span class="lb">Akutt 113</span><span class="hint">Hold inne 2 sek</span></button>
+<span id="vips" style="display:contents"></span>
+</div>
+<p class="small">Navn og nummer legges inn i vanlig versjon (hold inne «Vanlig»).</p>
+</main>
+<div class="ov" id="ov" role="alertdialog" aria-modal="true" aria-labelledby="ovh" hidden><h2 id="ovh">Ringer 113 om</h2><div class="cnt" id="cnt" aria-live="polite">5</div><p><b>Er du eller noen andre i nød?</b><br>Da skal du ringe. 113 er ambulanse.</p><p class="sm">Trykket du ved et uhell? Trykk Avbryt.</p><button class="av" id="av" type="button">AVBRYT</button><button class="nu" id="nu" type="button">Ring nå</button></div>
+<div class="toast" id="t" role="status"></div>
+<script>(function(){
+var t=document.getElementById('t'),tm;function toast(m){t.textContent=m;t.classList.add('on');clearTimeout(tm);tm=setTimeout(function(){t.classList.remove('on')},2800)}
+var PH='<svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>';
+/* Numre: de samme som i vanlig versjon (Nyttig informasjon > Viktige personer) */
+try{
+  var l=JSON.parse(localStorage.getItem('rg-vip-liste')||'null');
+  if(!Array.isArray(l)){var o=JSON.parse(localStorage.getItem('rg-vip')||'null');l=[o&&o.t?o:null];}
+  l=l.filter(function(v){return v&&v.t&&String(v.t).replace(/[^\d+]/g,'')}).slice(0,2);
+  var box=document.getElementById('vips');
+  for(var i=0;i<2;i++){
+    var v=l[i],a;
+    if(v){a=document.createElement('a');a.className='app';a.href='tel:'+String(v.t).replace(/[^\d+]/g,'');
+      a.innerHTML='<span class="icon" style="background:linear-gradient(160deg,#3b82f6,#1d4ed8)">'+PH+'</span><span class="lb"></span>';
+      a.querySelector('.lb').textContent=v.n||'Ring';a.setAttribute('aria-label','Ring '+(v.n||'')+' '+v.t);}
+    else{a=document.createElement('button');a.type='button';a.className='app empty';
+      a.innerHTML='<span class="icon">'+PH.replace('#fff','#64748b')+'</span><span class="lb">Ingen nummer</span>';
+      a.addEventListener('click',function(){toast('Numre legges inn i vanlig versjon. Hold inne «Vanlig» i 5 sekunder.')});}
+    box.appendChild(a);
+  }
+}catch(e){}
+/* Hold inne */
+var ov=document.getElementById('ov'),cnt=document.getElementById('cnt'),ci=0,left=0;
+function endSos(call){clearInterval(ci);ov.hidden=true;if(call){location.href='tel:113'}else toast('Avbrutt. Ingen samtale startet.')}
+function startSos(){left=5;cnt.textContent=left;ov.hidden=false;document.getElementById('av').focus();clearInterval(ci);ci=setInterval(function(){left--;if(left<=0)endSos(true);else cnt.textContent=left},1000)}
+document.getElementById('av').addEventListener('click',function(){endSos(false)});
+document.getElementById('nu').addEventListener('click',function(){endSos(true)});
+document.addEventListener('visibilitychange',function(){if(document.hidden&&!ov.hidden){clearInterval(ci);ov.hidden=true}});
+document.querySelectorAll('.hold').forEach(function(b){var f=b.querySelector('.fill'),d=+b.dataset.hold,st=0,raf=0,done=0;
+function stop(){cancelAnimationFrame(raf);if(!done){f.style.transition='height .15s';f.style.height='0'}st=0}
+function go(){done=1;if(b.dataset.sos)startSos();else if(b.dataset.href)location.href=b.dataset.href;setTimeout(function(){done=0;f.style.height='0'},1200)}
+function tick(){var p=Math.min(1,(performance.now()-st)/d);f.style.transition='none';f.style.height=p*100+'%';if(p>=1)go();else raf=requestAnimationFrame(tick)}
+function begin(){if(done||st)return;st=performance.now();raf=requestAnimationFrame(tick)}
+function end(){if(st&&!done){if(performance.now()-st<d)toast('Hold litt lenger inne');stop()}}
+b.addEventListener('pointerdown',begin);b.addEventListener('pointerup',end);
+['pointerleave','pointercancel'].forEach(function(ev){b.addEventListener(ev,function(){if(st&&!done)stop()})});
+b.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&!e.repeat){e.preventDefault();begin()}});
+b.addEventListener('keyup',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();end()}});
+b.addEventListener('blur',function(){if(st&&!done)stop()});
+b.addEventListener('contextmenu',function(e){e.preventDefault()})});
+if('serviceWorker' in navigator&&location.protocol==='https:'){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
+})();</script>
+</body></html>
