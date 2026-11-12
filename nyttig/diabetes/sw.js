@@ -1,5 +1,5 @@
 /* Enkel service worker for Diabetes-sidene: lagrer siden og filene på telefonen, så den åpner uten nett. */
-var CACHE = 'diabetes-v44';
+var CACHE = 'diabetes-v45';
 var FILES = ["./", "index.html", "enkel.js", "utstyr.js", "manifest.webmanifest", "icon-192.png", "icon-512.png", "tallerken/index.html", "mat-og-blodsukker/index.html", "manualer/index.html", "nytt/index.html", "rettigheter/index.html", "info/index.html", "trendpiler/index.html", "innstillinger/index.html", "tallene/index.html", "akutt/index.html", "vare/index.html", "quiz/index.html", "en/akutt/index.html", "en/vare/index.html", "en/quiz/index.html", "nyttig-info/index.html", "../../fonts/manrope-latin-200-normal.woff2", "../../fonts/manrope-latin-400-normal.woff2", "../../fonts/manrope-latin-600-normal.woff2", "../../fonts/manrope-latin-800-normal.woff2", "apple-touch-icon.png", "en/index.html", "en/info/index.html", "en/innstillinger/index.html", "en/manualer/index.html", "en/mat-og-blodsukker/index.html", "en/nytt/index.html", "en/nyttig-info/index.html", "en/rettigheter/index.html", "en/tallene/index.html", "en/tallerken/index.html", "en/trendpiler/index.html"];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

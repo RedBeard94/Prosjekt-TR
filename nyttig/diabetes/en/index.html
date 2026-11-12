@@ -304,6 +304,11 @@
   #velkommen .alt{background:#fff;color:var(--a);border:2px solid #dbe5f5;margin-top:14px}
   #velkommen .vwarn{margin:12px 0 0;text-align:center;background:#fff1ec;border:2px solid #f0a68a;border-radius:14px;padding:12px 14px;color:#6b2a10;font-size:1rem;line-height:1.4}
   #velkommen .rec{margin:12px 0 0;font-size:.9rem;color:#0f5132;background:#e6f7ee;border-radius:12px;padding:8px 10px;line-height:1.4}
+  .fb{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0}
+  .fbb{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 14px;border-radius:12px;font-size:.9rem;font-weight:800;text-decoration:none;background:linear-gradient(90deg,var(--a),var(--b));color:#fff}
+  .fbb.g{background:#fff;color:var(--a);border:2px solid var(--line)}
+  .fb+.foot{margin-top:12px}
+  @media (display-mode:standalone){.fb{display:none}}
 </style>
 <meta name="theme-color" content="#2563eb">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -404,6 +409,7 @@
       </ol>
     </div>
   </section>
+  <div class="fb"><a class="fbb" href="../tilbakemelding/index.html" hreflang="no">Give feedback (Norwegian)</a><a class="fbb g" href="../fagfolk/index.html" hreflang="no">Healthcare professional? (Norwegian)</a></div>
   <p class="foot">Missing something? <a href="mailto:post@reinertsengruppen.no?subject=Innspill%20til%20Hjelpemidler%20for%20diabetikere">Send feedback by email</a> (do not write any health information). The site is not a medical device and does not replace advice from your diabetes team. Everything you enter stays on this device only. See the <a href="/personvern/index.html">privacy policy</a>.</p>
 </main>
 
