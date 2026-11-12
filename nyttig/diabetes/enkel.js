@@ -127,8 +127,18 @@
       ['section.panel > h2', 'Hva pilene betyr', 1],
       ['section.panel > p.small', 'Sju piler, fra raskest opp til raskest ned. To piler betyr fortere enn én pil.',0],
       ['.note', 'Hva du skal gjøre ved hver pil, har du lært av diabetesteamet. Spør en voksen hvis du er usikker.', 0]
-    ].concat(ARR.map(function (a, i) { return ['.arrows li > div', '<b>' + a[0] + '</b><span>' + a[1] + '</span>', i]; })),
-    hide: [['main > .grid', 1]],
+].concat(ARR.map(function (a, i) { return ['.arrows li > div', '<b>' + a[0] + '</b><span>' + a[1] + '</span>', i]; })).concat([
+      ['[data-sen="simplera"] > h2', 'Hva pilene betyr'],
+      ['[data-sen="simplera"] > p.small', 'Opptil tre piler, opp eller ned. Flere piler betyr fortere.'],
+      ['[data-sen="simplera"] > .note', 'Hva du skal gjøre ved hver pil, har du lært av diabetesteamet. Spør en voksen hvis du er usikker.'],
+      ['[data-sen="libre"] > h2', 'Hva pilene betyr'],
+      ['[data-sen="libre"] > p.small', 'Fem piler, fra raskest opp til raskest ned.'],
+      ['[data-sen="libre"] > .note', 'Hva du skal gjøre ved hver pil, har du lært av diabetesteamet. Spør en voksen hvis du er usikker.'],
+      ['[data-sen="simplera"] .arrows li > div','<b>Tre piler opp</b><span>Tallet går opp aller fortest.</span>',0],['[data-sen="simplera"] .arrows li > div','<b>To piler opp</b><span>Tallet går opp fort.</span>',1],['[data-sen="simplera"] .arrows li > div','<b>En pil opp</b><span>Tallet går sakte opp.</span>',2],['[data-sen="simplera"] .arrows li > div','<b>Ingen pil</b><span>Tallet endrer seg sakte.</span>',3],['[data-sen="simplera"] .arrows li > div','<b>En pil ned</b><span>Tallet går sakte ned.</span>',4],['[data-sen="simplera"] .arrows li > div','<b>To piler ned</b><span>Tallet går ned fort.</span>',5],['[data-sen="simplera"] .arrows li > div','<b>Tre piler ned</b><span>Tallet går ned aller fortest.</span>',6],
+      ['[data-sen="libre"] .arrows li > div','<b>Pil opp</b><span>Tallet går opp fort.</span>',0],['[data-sen="libre"] .arrows li > div','<b>Pil skrått opp</b><span>Tallet går sakte opp.</span>',1],['[data-sen="libre"] .arrows li > div','<b>Pil rett frem</b><span>Tallet endrer seg sakte.</span>',2],['[data-sen="libre"] .arrows li > div','<b>Pil skrått ned</b><span>Tallet går sakte ned.</span>',3],['[data-sen="libre"] .arrows li > div','<b>Pil ned</b><span>Tallet går ned fort.</span>',4],
+    ]),
+    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0]],
+
     add: {
       after: ['main > .grid', 0],
       html: '<section class="panel"><h2>Pumpen kan hjelpe deg</h2>' +
@@ -192,7 +202,12 @@
   var added = null;
   var labelSaved = [];
 
-  function pick(sel, idx) { return main.querySelectorAll(sel)[idx || 0]; }
+  function pick(sel, idx) {
+    var l = main.querySelectorAll(sel);
+    /* Deler som bare vises for bestemt utstyr (data-sen / data-pump) teller ikke med i posisjonene under. */
+    if (!/data-(sen|pump)/.test(sel)) l = Array.prototype.filter.call(l, function (x) { return !x.closest('[data-sen="libre"],[data-sen="simplera"],[data-pump="mm"]'); });
+    return l[idx || 0];
+  }
 
   function apply() {
     cfg.txt.forEach(function (r) {
@@ -211,7 +226,8 @@
       if (small) small.textContent = cfg.labels[id][1];
     });
     (cfg.hide || []).forEach(function (h) { var el = pick(h[0], h[1]); if (el) { el.classList.add('e-hide'); hidden.push(el); } });
-    if (cfg.add) {
+    var ES = ''; try { ES = localStorage.getItem('mn_sen') || ''; } catch (x) { }
+    if (cfg.add && ES !== 'libre') {
       var after = pick(cfg.add.after[0], cfg.add.after[1]);
       if (after) { added = document.createElement('div'); added.className = after.className; added.innerHTML = cfg.add.html; after.parentNode.insertBefore(added, after.nextSibling); }
     }
@@ -225,6 +241,7 @@
     if (added) { added.remove(); added = null; }
     if (key === 'tallerken') plateDown();
     setBack(false);
+    if (window.utRelabel) window.utRelabel();
   }
 
   /* Tallerkenen: tallerken og sum øverst, og de blir stående når man blar */

@@ -211,12 +211,13 @@
     <section class="panel" aria-label="My settings">
       <h2>My settings</h2>
       <p class="small" style="margin:0 0 14px">Enter the numbers you have been given by your diabetes team.</p>
-      <label class="field" for="f-karb">Carbohydrate ratio<small>grams per unit</small><input type="text" id="f-karb" inputmode="decimal" placeholder="From the team" autocomplete="off"></label>
-      <label class="field" for="f-korr">Correction factor<small>mmol/L per unit</small><input type="text" id="f-korr" inputmode="decimal" placeholder="From the team" autocomplete="off"></label>
-      <label class="field" for="f-mal">Target value<small>mmol/L</small><input type="text" id="f-mal" inputmode="decimal" placeholder="From the team" autocomplete="off"></label>
-      <label class="field" for="f-varig">Insulin duration<small>hours</small><input type="text" id="f-varig" inputmode="decimal" placeholder="From the team" autocomplete="off"></label>
+      <label class="field" for="f-karb" data-lab-mm="Carbohydrate ratio (Karbohydratforhold)">Carbohydrate ratio<small>grams per unit</small><input type="text" id="f-karb" inputmode="decimal" placeholder="From the team" autocomplete="off"></label>
+      <label class="field" for="f-korr" data-lab-mm="Insulin sensitivity factor (Insulinsensitivitetsfaktor)">Correction factor<small>mmol/L per unit</small><input type="text" id="f-korr" inputmode="decimal" placeholder="From the team" autocomplete="off"></label>
+      <label class="field" for="f-mal" data-lab-mm="Blood glucose target (BS-mål)">Target value<small>mmol/L</small><input type="text" id="f-mal" inputmode="decimal" placeholder="From the team" autocomplete="off"></label>
+      <label class="field" for="f-varig" data-lab-mm="Active insulin time (Aktivt insulin-tid)">Insulin duration<small>hours</small><input type="text" id="f-varig" inputmode="decimal" placeholder="From the team" autocomplete="off"></label>
       <div class="warn">The site does not calculate doses. Only enter numbers you have been given by the team, and check them against the pump.</div>
       <div class="row2"><button class="btn ghost" type="button" id="tom">Clear the fields</button><span class="small" id="saved">Stored on this device only.</span></div>
+          <div class="note" data-pump="mm" data-sen="simplera" hidden style="margin-top:14px"><b>On MiniMed 780G</b> the fields above have other names: Correction factor is called Insulin sensitivity factor (Insulinsensitivitetsfaktor), Target value is called BS-mål (blood glucose target), and Insulin duration is called Aktivt insulin-tid (active insulin time). Medtronic writes that you should always use a fingerstick reading when you enter a blood glucose value in the pump. Source: <a href="https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2025-02/m018857c022doc1_a_final_web.pdf" target="_blank" rel="noopener">Medtronic's Norwegian user guide</a>.</div>
     </section>
     <section class="panel" aria-label="Checklist before a bolus">
       <h2>Checklist before a bolus</h2>

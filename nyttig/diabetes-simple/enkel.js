@@ -127,8 +127,17 @@
       ['section.panel > h2', 'What the arrows mean', 1],
       ['section.panel > p.small', 'Seven arrows, from fastest up to fastest down. Two arrows mean faster than one arrow.',0],
       ['.note', 'You have learned what to do for each arrow from your diabetes team. Ask an adult if you are not sure.', 0]
-    ].concat(ARR.map(function (a, i) { return ['.arrows li > div', '<b>' + a[0] + '</b><span>' + a[1] + '</span>', i]; })),
-    hide: [['main > .grid', 1]],
+].concat(ARR.map(function (a, i) { return ['.arrows li > div', '<b>' + a[0] + '</b><span>' + a[1] + '</span>', i]; })).concat([
+      ['[data-sen="simplera"] > h2', 'What the arrows mean'],
+      ['[data-sen="simplera"] > p.small', 'Up to three arrows, up or down. More arrows mean faster.'],
+      ['[data-sen="simplera"] > .note', 'You have learned what to do for each arrow from your diabetes team. Ask an adult if you are not sure.'],
+      ['[data-sen="libre"] > h2', 'What the arrows mean'],
+      ['[data-sen="libre"] > p.small', 'Five arrows, from fastest up to fastest down.'],
+      ['[data-sen="libre"] > .note', 'You have learned what to do for each arrow from your diabetes team. Ask an adult if you are not sure.'],
+      ['[data-sen="simplera"] .arrows li > div','<b>Three arrows up</b><span>The number is going up very fast.</span>',0],['[data-sen="simplera"] .arrows li > div','<b>Two arrows up</b><span>The number is going up fast.</span>',1],['[data-sen="simplera"] .arrows li > div','<b>One arrow up</b><span>The number is going up slowly.</span>',2],['[data-sen="simplera"] .arrows li > div','<b>No arrow</b><span>The number is changing slowly.</span>',3],['[data-sen="simplera"] .arrows li > div','<b>One arrow down</b><span>The number is going down slowly.</span>',4],['[data-sen="simplera"] .arrows li > div','<b>Two arrows down</b><span>The number is going down fast.</span>',5],['[data-sen="simplera"] .arrows li > div','<b>Three arrows down</b><span>The number is going down very fast.</span>',6],
+      ['[data-sen="libre"] .arrows li > div','<b>Arrow up</b><span>The number is going up fast.</span>',0],['[data-sen="libre"] .arrows li > div','<b>Arrow slanting up</b><span>The number is going up slowly.</span>',1],['[data-sen="libre"] .arrows li > div','<b>Arrow straight across</b><span>The number is changing slowly.</span>',2],['[data-sen="libre"] .arrows li > div','<b>Arrow slanting down</b><span>The number is going down slowly.</span>',3],['[data-sen="libre"] .arrows li > div','<b>Arrow down</b><span>The number is going down fast.</span>',4],
+    ]),
+    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0]],
     add: {
       after: ['main > .grid', 0],
       html: '<section class="panel"><h2>The pump can help you</h2>' +
@@ -192,7 +201,11 @@
   var added = null;
   var labelSaved = [];
 
-  function pick(sel, idx) { return main.querySelectorAll(sel)[idx || 0]; }
+  function pick(sel, idx) {
+    var l = main.querySelectorAll(sel);
+    if (!/data-(sen|pump)/.test(sel)) l = Array.prototype.filter.call(l, function (x) { return !x.closest('[data-sen="libre"],[data-sen="simplera"],[data-pump="mm"]'); });
+    return l[idx || 0];
+  }
 
   function apply() {
     cfg.txt.forEach(function (r) {
@@ -211,7 +224,8 @@
       if (small) small.textContent = cfg.labels[id][1];
     });
     (cfg.hide || []).forEach(function (h) { var el = pick(h[0], h[1]); if (el) { el.classList.add('e-hide'); hidden.push(el); } });
-    if (cfg.add) {
+    var ES = ''; try { ES = localStorage.getItem('mn_sen') || ''; } catch (x) { }
+    if (cfg.add && ES !== 'libre') {
       var after = pick(cfg.add.after[0], cfg.add.after[1]);
       if (after) { added = document.createElement('div'); added.className = after.className; added.innerHTML = cfg.add.html; after.parentNode.insertBefore(added, after.nextSibling); }
     }
@@ -225,6 +239,7 @@
     if (added) { added.remove(); added = null; }
     if (key === 'tallerken') plateDown();
     setBack(false);
+    if (window.utRelabel) window.utRelabel();
   }
 
   /* Tallerkenen: tallerken og sum øverst, og de blir stående når man blar */

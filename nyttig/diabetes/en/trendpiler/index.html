@@ -204,7 +204,7 @@
 <main data-rg="rg-2026-10-nyttig-diabetes-trendpiler-en-fa85">
   <a class="back" href="/nyttig/diabetes/en/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
   <h1>Trend arrows <em>and automation.</em></h1>
-  <p class="lead" id="ld">What the arrows on the sensor mean, and how the pump can adjust the insulin by itself. The drawings are simplified, so your own screen may look different.</p>
+  <p class="lead" data-for-libre="What the arrows on the sensor mean. The drawings are simplified, so your own screen may look different.">What the arrows on the sensor mean, and how the pump can adjust the insulin by itself. The drawings are simplified, so your own screen may look different.</p>
   <p class="pump" data-ok-mm-simplera="<b>This page fits MiniMed 780G with Simplera Sync.</b> The arrows and SmartGuard are explained from Medtronic's Norwegian guides." data-libre="<b>The arrows fit FreeStyle Libre 3 Plus.</b> Pump automation is not explained for Libre yet." style="margin:10px 0;background:#fff1ec;border:1.5px solid #f0a68a;border-radius:12px;padding:8px 11px;color:#6b2a10;font-size:.82rem;line-height:1.35"><b>Made for Dexcom sensor and Tandem pump.</b> If you have another pump, this may be misleading for you.</p>
   <p style="margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#fff7e0;border:1px solid #f0d98a;color:#5b4a10;font-size:.9rem;line-height:1.4"><b>Remember:</b> This is a tool, not a final answer. Check important numbers with your diabetes team.</p>
   <div class="grid">
@@ -278,6 +278,7 @@
       <ol class="steps">
         <li><span class="num" aria-hidden="true">1</span><div><b>Watches for a risk of low</b><span class="d">The pump follows the sensor values.</span></div></li>
         <li><span class="num" aria-hidden="true">2</span><div><b>Stops basal insulin</b><span class="d">When the pump sees a risk of low blood sugar, it pauses the basal insulin.</span></div></li>
+      <li><span class="num" aria-hidden="true">3</span><div><b>Stops for up to two hours</b><span class="d">The insulin is paused for a maximum of two hours. The feature is off by default, and is used in manual mode, not together with SmartGuard.</span></div></li>
       </ol>
       <div class="note">The limits the pump uses are in the user guide and with your diabetes team. Source: <a href="https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2025-02/minimed_780g_og_simplera_sync_oppstartsguide_folger_med_nye_pumper.pdf" target="_blank" rel="noopener">Medtronic's training guide</a>.</div>
     </section>
@@ -300,10 +301,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
 <script src="/nyttig/diabetes/utstyr.js" defer></script>
-<script>(function(){var P='',S='';try{P=localStorage.getItem('mn_pump')||'';S=localStorage.getItem('mn_sen')||''}catch(e){}
-if(!P&&!S)return;
-function ok(v,a){if(!a)return true;var l=a.split(' ');return v?l.indexOf(v)>-1:(l.indexOf('g7')>-1||l.indexOf('tslim')>-1)}
-document.querySelectorAll('[data-sen],[data-pump]').forEach(function(e){var show=ok(S,e.getAttribute('data-sen'))&&ok(P,e.getAttribute('data-pump'));e.hidden=!show;e.style.display=show?'':'none'});
-var l=document.getElementById('ld');if(l&&S&&S!=='g7'&&S!=='g6'){l.textContent=(P==='mm'&&S==='simplera')?'What the arrows on the sensor mean, and how the pump can adjust the insulin by itself. The drawings are simplified, so your own screen may look different.':'What the arrows on the sensor mean. The drawings are simplified, so your own screen may look different.'}})();</script>
+
 </body>
 </html>

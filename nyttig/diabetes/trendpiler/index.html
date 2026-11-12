@@ -204,7 +204,7 @@
 <main data-rg="rg-2026-10-nyttig-diabetes-trendpiler-9c9c">
   <a class="back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
   <h1>Trendpiler <em>og automatikk.</em></h1>
-  <p class="lead" id="ld">Hva pilene på sensoren betyr, og hvordan pumpen kan justere insulinet selv. Tegningene er forenklet, så din egen skjerm kan se annerledes ut.</p>
+  <p class="lead" data-for-libre="Hva pilene på sensoren betyr. Tegningene er forenklet, så din egen skjerm kan se annerledes ut.">Hva pilene på sensoren betyr, og hvordan pumpen kan justere insulinet selv. Tegningene er forenklet, så din egen skjerm kan se annerledes ut.</p>
   <p class="pump" data-ok-mm-simplera="<b>Siden passer MiniMed 780G med Simplera Sync.</b> Pilene og SmartGuard er forklart etter Medtronics norske veiledninger." data-libre="<b>Pilene passer FreeStyle Libre 3 Plus.</b> Automatikk i pumpen er ikke forklart for Libre ennå." style="margin:10px 0;background:#fff1ec;border:1.5px solid #f0a68a;border-radius:12px;padding:8px 11px;color:#6b2a10;font-size:.82rem;line-height:1.35"><b>Laget for Dexcom-sensor og Tandem-pumpe.</b> Har du en annen pumpe, kan det være misvisende for deg.</p>
   <p style="margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#fff7e0;border:1px solid #f0d98a;color:#5b4a10;font-size:.9rem;line-height:1.4"><b>Husk:</b> Dette er et hjelpemiddel, ikke en fasit. Sjekk viktige tall med diabetesteamet ditt.</p>
   <div class="grid">
@@ -278,6 +278,7 @@
       <ol class="steps">
         <li><span class="num" aria-hidden="true">1</span><div><b>Ser etter fare for lavt</b><span class="d">Pumpen følger sensorverdiene.</span></div></li>
         <li><span class="num" aria-hidden="true">2</span><div><b>Stopper basalinsulinet</b><span class="d">Når pumpen ser fare for lavt blodsukker, pauser den basalinsulinet.</span></div></li>
+      <li><span class="num" aria-hidden="true">3</span><div><b>Stopper i opptil to timer</b><span class="d">Insulinet stoppes midlertidig, i maksimalt to timer. Funksjonen er slått av som standard, og brukes i manuell modus, ikke sammen med SmartGuard.</span></div></li>
       </ol>
       <div class="note">Hvilke grenser pumpen bruker, står i håndboken og hos diabetesteamet. Kilde: <a href="https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2025-02/minimed_780g_og_simplera_sync_oppstartsguide_folger_med_nye_pumper.pdf" target="_blank" rel="noopener">Medtronics opplæringsguide</a>.</div>
     </section>
@@ -301,10 +302,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
 <script src="../enkel.js" defer></script>
 <script src="/nyttig/diabetes/utstyr.js" defer></script>
-<script>(function(){var P='',S='';try{P=localStorage.getItem('mn_pump')||'';S=localStorage.getItem('mn_sen')||''}catch(e){}
-if(!P&&!S)return;
-function ok(v,a){if(!a)return true;var l=a.split(' ');return v?l.indexOf(v)>-1:(l.indexOf('g7')>-1||l.indexOf('tslim')>-1)}
-document.querySelectorAll('[data-sen],[data-pump]').forEach(function(e){var show=ok(S,e.getAttribute('data-sen'))&&ok(P,e.getAttribute('data-pump'));e.hidden=!show;e.style.display=show?'':'none'});
-var l=document.getElementById('ld');if(l&&S&&S!=='g7'&&S!=='g6'){l.textContent=(P==='mm'&&S==='simplera')?'Hva pilene på sensoren betyr, og hvordan pumpen kan justere insulinet selv. Tegningene er forenklet, så din egen skjerm kan se annerledes ut.':'Hva pilene på sensoren betyr. Tegningene er forenklet, så din egen skjerm kan se annerledes ut.'}})();</script>
+
 </body>
 </html>

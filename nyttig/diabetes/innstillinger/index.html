@@ -211,12 +211,13 @@
     <section class="panel" aria-label="Mine innstillinger">
       <h2>Mine innstillinger</h2>
       <p class="small" style="margin:0 0 14px">Skriv inn tallene du har fått fra diabetesteamet.</p>
-      <label class="field" for="f-karb">Karbohydratforhold<small>gram per enhet</small><input type="text" id="f-karb" inputmode="decimal" placeholder="Fra teamet" autocomplete="off"></label>
-      <label class="field" for="f-korr">Korreksjonsfaktor<small>mmol/L per enhet</small><input type="text" id="f-korr" inputmode="decimal" placeholder="Fra teamet" autocomplete="off"></label>
-      <label class="field" for="f-mal">Målverdi<small>mmol/L</small><input type="text" id="f-mal" inputmode="decimal" placeholder="Fra teamet" autocomplete="off"></label>
-      <label class="field" for="f-varig">Insulinvarighet<small>timer</small><input type="text" id="f-varig" inputmode="decimal" placeholder="Fra teamet" autocomplete="off"></label>
+      <label class="field" for="f-karb" data-lab-mm="Karbohydratforhold">Karbohydratforhold<small>gram per enhet</small><input type="text" id="f-karb" inputmode="decimal" placeholder="Fra teamet" autocomplete="off"></label>
+      <label class="field" for="f-korr" data-lab-mm="Insulinsensitivitetsfaktor">Korreksjonsfaktor<small>mmol/L per enhet</small><input type="text" id="f-korr" inputmode="decimal" placeholder="Fra teamet" autocomplete="off"></label>
+      <label class="field" for="f-mal" data-lab-mm="BS-mål">Målverdi<small>mmol/L</small><input type="text" id="f-mal" inputmode="decimal" placeholder="Fra teamet" autocomplete="off"></label>
+      <label class="field" for="f-varig" data-lab-mm="Aktivt insulin-tid">Insulinvarighet<small>timer</small><input type="text" id="f-varig" inputmode="decimal" placeholder="Fra teamet" autocomplete="off"></label>
       <div class="warn">Siden regner ikke ut doser. Skriv bare inn tall du har fått fra teamet, og sjekk dem mot pumpen.</div>
       <div class="row2"><button class="btn ghost" type="button" id="tom">Tøm feltene</button><span class="small" id="saved">Lagres bare på denne enheten.</span></div>
+          <div class="note" data-pump="mm" data-sen="simplera" hidden style="margin-top:14px"><b>På MiniMed 780G</b> heter feltene over noe annet: Korreksjonsfaktor heter Insulinsensitivitetsfaktor, Målverdi heter BS-mål, og Insulinvarighet heter Aktivt insulin-tid. Medtronic skriver at du alltid skal bruke en fingermåling når du legger inn et blodsukker i pumpen. Kilde: <a href="https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2025-02/m018857c022doc1_a_final_web.pdf" target="_blank" rel="noopener">Medtronics norske brukerhåndbok</a>.</div>
     </section>
     <section class="panel" aria-label="Sjekkliste før bolus">
       <h2>Sjekkliste før bolus</h2>
