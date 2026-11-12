@@ -4,40 +4,40 @@
   var T = EN ? {
     pump: 'Choose pump', sen: 'Choose sensor', other: 'Other / not sure',
     suit: 'Sensor that fits: ', mine: 'Your equipment: ', edit: 'Change', pick: 'Choose your equipment',
-    none: 'You have not chosen a pump or sensor.', noneB: ' These pages are made for Tandem pump with Dexcom sensor, or MiniMed 780G with Simplera Sync, so they may be misleading for you. ',
+    none: 'You have not chosen a pump or sensor.', noneB: ' These pages are made for Tandem pump with Dexcom sensor, MiniMed 780G with Simplera Sync, or Omnipod 5 with FreeStyle Libre 3 Plus, so they may be misleading for you. ',
     fitB: 'This page fits your equipment: ', fitA: '. Your screen may still look a little different.',
-    warnA: 'You have chosen ', warnB: '. This page is made for Tandem pump with Dexcom sensor, or MiniMed 780G with Simplera Sync, so the arrows and names may look different for you. Find guides for your equipment under ',
-    warnE: '. This page is made for Tandem pump with Dexcom sensor, or MiniMed 780G with Simplera Sync, so the arrows and names may look different for you.', frontWarn: ' The pages are made for Tandem pump with Dexcom sensor, or MiniMed 780G with Simplera Sync, so they may be misleading for you.', man: 'Manuals', oldB: 'Made for Dexcom sensor and Tandem pump.', oldA: ' If you have another pump, this may be misleading for you. ',
-    soonTag: ' (coming soon)', soonH: 'Coming soon. ', soonA: 'We have not made the pages for ', soonB: ' yet. You can tap "Just look around", but the pages may be misleading for you.', soonE: 'You can continue to the simple version, but its pages are made for Tandem pump with Dexcom sensor, or MiniMed 780G with Simplera Sync, and may be misleading for you.', noOther: 'other equipment',
+    warnA: 'You have chosen ', warnB: '. This page is made for Tandem pump with Dexcom sensor, MiniMed 780G with Simplera Sync, or Omnipod 5 with FreeStyle Libre 3 Plus, so the arrows and names may look different for you. Find guides for your equipment under ',
+    warnE: '. This page is made for Tandem pump with Dexcom sensor, MiniMed 780G with Simplera Sync, or Omnipod 5 with FreeStyle Libre 3 Plus, so the arrows and names may look different for you.', frontWarn: ' The pages are made for Tandem pump with Dexcom sensor, MiniMed 780G with Simplera Sync, or Omnipod 5 with FreeStyle Libre 3 Plus, so they may be misleading for you.', man: 'Manuals', oldB: 'Made for Dexcom sensor and Tandem pump.', oldA: ' If you have another pump, this may be misleading for you. ',
+    soonTag: ' (coming soon)', soonH: 'Coming soon. ', soonA: 'We have not made the pages for ', soonB: ' yet. You can tap "Just look around", but the pages may be misleading for you.', soonE: 'You can continue to the simple version, but its pages are made for Tandem pump with Dexcom sensor, MiniMed 780G with Simplera Sync, or Omnipod 5 with FreeStyle Libre 3 Plus, and may be misleading for you.', noOther: 'other equipment',
     home: '/nyttig/diabetes/en/?velg', manPath: '/nyttig/diabetes/en/manualer/',
-    N: { dash: 'Omnipod DASH has no fixed sensor. Choose the one you use.', solo: 'Accu-Chek Solo has no fixed sensor in our list. Choose the one you use.', o5: 'Omnipod 5 can be used with Dexcom G6, Dexcom G7 and FreeStyle Libre 2 Plus.', tslim: 'Tandem t:slim X2 is used with Dexcom G7 and G6.', ypso: 'mylife YpsoPump is often used with FreeStyle Libre.', mm: 'MiniMed 780G is used with Simplera Sync (and Instinct or Guardian 4).' }
+    N: { dash: 'Omnipod DASH has no fixed sensor. Choose the one you use.', solo: 'Accu-Chek Solo has no fixed sensor in our list. Choose the one you use.', o5: 'Omnipod 5 can be used with Dexcom G6, Dexcom G7, FreeStyle Libre 2 Plus and FreeStyle Libre 3 Plus. Our pages are made for Libre 3 Plus.', tslim: 'Tandem t:slim X2 is used with Dexcom G7 and G6.', ypso: 'mylife YpsoPump is often used with FreeStyle Libre.', mm: 'MiniMed 780G is used with Simplera Sync (and Instinct or Guardian 4).' }
   } : {
     pump: 'Velg pumpe', sen: 'Velg sensor', other: 'Annen / vet ikke',
     suit: 'Sensor som passer: ', mine: 'Ditt utstyr: ', edit: 'Endre', pick: 'Velg utstyret ditt',
-    none: 'Du har ikke valgt pumpe eller sensor.', noneB: ' Sidene er laget for Tandem-pumpe med Dexcom-sensor, eller MiniMed 780G med Simplera Sync, så de kan være misvisende for deg. ',
+    none: 'Du har ikke valgt pumpe eller sensor.', noneB: ' Sidene er laget for Tandem-pumpe med Dexcom-sensor, MiniMed 780G med Simplera Sync, eller Omnipod 5 med FreeStyle Libre 3 Plus, så de kan være misvisende for deg. ',
     fitB: 'Denne siden passer for utstyret ditt: ', fitA: '. Skjermen din kan likevel se litt annerledes ut.',
-    warnA: 'Du har valgt ', warnB: '. Denne siden er laget for Tandem-pumpe med Dexcom-sensor, eller MiniMed 780G med Simplera Sync, så pilene og navnene kan se annerledes ut hos deg. Veiledning for ditt utstyr finner du under ',
-    warnE: '. Denne siden er laget for Tandem-pumpe med Dexcom-sensor, eller MiniMed 780G med Simplera Sync, så pilene og navnene kan se annerledes ut hos deg.', frontWarn: ' Sidene er laget for Tandem-pumpe med Dexcom-sensor, eller MiniMed 780G med Simplera Sync, så de kan være misvisende for deg.', man: 'Manualer', oldB: 'Laget for Dexcom-sensor og Tandem-pumpe.', oldA: ' Har du en annen pumpe, kan det være misvisende for deg. ',
-    soonTag: ' (kommer snart)', soonH: 'Kommer snart. ', soonA: 'Vi har ikke laget sidene for ', soonB: ' ennå. Du kan trykke «Bare se meg rundt», men sidene kan være misvisende for deg.', soonE: 'Du kan gå videre til enkel versjon, men sidene der er laget for Tandem-pumpe med Dexcom-sensor, eller MiniMed 780G med Simplera Sync, og kan være misvisende for deg.', noOther: 'annet utstyr',
+    warnA: 'Du har valgt ', warnB: '. Denne siden er laget for Tandem-pumpe med Dexcom-sensor, MiniMed 780G med Simplera Sync, eller Omnipod 5 med FreeStyle Libre 3 Plus, så pilene og navnene kan se annerledes ut hos deg. Veiledning for ditt utstyr finner du under ',
+    warnE: '. Denne siden er laget for Tandem-pumpe med Dexcom-sensor, MiniMed 780G med Simplera Sync, eller Omnipod 5 med FreeStyle Libre 3 Plus, så pilene og navnene kan se annerledes ut hos deg.', frontWarn: ' Sidene er laget for Tandem-pumpe med Dexcom-sensor, MiniMed 780G med Simplera Sync, eller Omnipod 5 med FreeStyle Libre 3 Plus, så de kan være misvisende for deg.', man: 'Manualer', oldB: 'Laget for Dexcom-sensor og Tandem-pumpe.', oldA: ' Har du en annen pumpe, kan det være misvisende for deg. ',
+    soonTag: ' (kommer snart)', soonH: 'Kommer snart. ', soonA: 'Vi har ikke laget sidene for ', soonB: ' ennå. Du kan trykke «Bare se meg rundt», men sidene kan være misvisende for deg.', soonE: 'Du kan gå videre til enkel versjon, men sidene der er laget for Tandem-pumpe med Dexcom-sensor, MiniMed 780G med Simplera Sync, eller Omnipod 5 med FreeStyle Libre 3 Plus, og kan være misvisende for deg.', noOther: 'annet utstyr',
     home: '/nyttig/diabetes/?velg', manPath: '/nyttig/diabetes/manualer/',
-    N: { dash: 'Omnipod DASH har ingen fast sensor. Velg den du bruker.', solo: 'Accu-Chek Solo har ingen fast sensor i listen vår. Velg den du bruker.', o5: 'Omnipod 5 kan brukes med Dexcom G6, Dexcom G7 og FreeStyle Libre 2 Plus.', tslim: 'Tandem t:slim X2 brukes med Dexcom G7 og G6.', ypso: 'mylife YpsoPump brukes ofte med FreeStyle Libre.', mm: 'MiniMed 780G brukes med Simplera Sync (og Instinct eller Guardian 4).' }
+    N: { dash: 'Omnipod DASH har ingen fast sensor. Velg den du bruker.', solo: 'Accu-Chek Solo har ingen fast sensor i listen vår. Velg den du bruker.', o5: 'Omnipod 5 kan brukes med Dexcom G6, Dexcom G7, FreeStyle Libre 2 Plus og FreeStyle Libre 3 Plus. Sidene våre er laget for Libre 3 Plus.', tslim: 'Tandem t:slim X2 brukes med Dexcom G7 og G6.', ypso: 'mylife YpsoPump brukes ofte med FreeStyle Libre.', mm: 'MiniMed 780G brukes med Simplera Sync (og Instinct eller Guardian 4).' }
   };
   var PUMPS = [['tslim', 'Tandem t:slim X2'], ['dash', 'Omnipod DASH'], ['o5', 'Omnipod 5'], ['ypso', 'mylife YpsoPump'], ['mm', 'Medtronic MiniMed 780G'], ['solo', 'Accu-Chek Solo']];
   var SENS = [['g7', 'Dexcom G7'], ['g6', 'Dexcom G6'], ['libre', 'FreeStyle Libre 3 Plus'], ['simplera', 'Simplera Sync']];
   /* Ferdig laget: legg til id her når sidene er klare for en pumpe eller sensor. */
-  var SUP = { p: ['tslim', 'mm'], s: ['g7', 'g6', 'simplera'] };
+  var SUP = { p: ['tslim', 'mm', 'o5'], s: ['g7', 'g6', 'simplera', 'libre'] };
   /* Pumpe og sensor som hører sammen i sidene våre. */
-  var PAIRS = ['tslim+g7', 'tslim+g6', 'mm+simplera'];
+  var PAIRS = ['tslim+g7', 'tslim+g6', 'mm+simplera', 'o5+libre'];
   function pairOk(p, s) { return !p || !s || PAIRS.indexOf(p + '+' + s) > -1; }
-  var PDEF = { g7: 'tslim', g6: 'tslim', simplera: 'mm' };
-  var SUGG = { tslim: 'g7', o5: 'g7', ypso: 'libre', mm: 'simplera' };
+  var PDEF = { g7: 'tslim', g6: 'tslim', simplera: 'mm', libre: 'o5' };
+  var SUGG = { tslim: 'g7', o5: 'libre', ypso: 'libre', mm: 'simplera' };
   function $(i) { return document.getElementById(i); }
   function g(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
   function st(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) { } }
   function nm(a, v) { for (var i = 0; i < a.length; i++) if (a[i][0] === v) return a[i][1]; return ''; }
   function get() { var p = nm(PUMPS, g('mn_pump')) ? g('mn_pump') : '', s = nm(SENS, g('mn_sen')) ? g('mn_sen') : '', o = g('mn_other') ? '1' : ''; return { p: p, s: s, o: o }; }
   function names(c) { var t = []; if (c.p) t.push(nm(PUMPS, c.p)); if (c.s) t.push(nm(SENS, c.s)); if (c.o) t.push(T.other); return t; }
-  function fitOf(c) { return (c.p === 'tslim' && (c.s === 'g7' || c.s === 'g6' || !c.s)) || (c.p === 'mm' && (c.s === 'simplera' || !c.s)) || (!c.p && !c.o && (c.s === 'g7' || c.s === 'g6' || c.s === 'simplera')); }
+  function fitOf(c) { return (c.p === 'tslim' && (c.s === 'g7' || c.s === 'g6' || !c.s)) || (c.p === 'mm' && (c.s === 'simplera' || !c.s)) || (c.p === 'o5' && (c.s === 'libre' || !c.s)) || (!c.p && !c.o && (c.s === 'g7' || c.s === 'g6' || c.s === 'simplera' || c.s === 'libre')); }
   function has(c) { return !!(c.p || c.s || c.o); }
   var root = document.documentElement;
   var ENK = root.hasAttribute('data-enkel') || /\/diabetes-(enkel|simple)\//.test(location.pathname);
@@ -98,9 +98,9 @@
       e.hidden = !show; e.style.display = show ? '' : 'none';
     }
     function relabel() {
-      if (P !== 'mm' || document.body.classList.contains('enkel')) return;
-      var ls = document.querySelectorAll('[data-lab-mm]');
-      for (var q = 0; q < ls.length; q++) for (var w = 0; w < ls[q].childNodes.length; w++) { var nd = ls[q].childNodes[w]; if (nd.nodeType === 3 && nd.nodeValue.trim()) { nd.nodeValue = ls[q].getAttribute('data-lab-mm'); break; } }
+      if (!P || document.body.classList.contains('enkel')) return;
+      var ls = document.querySelectorAll('[data-lab-' + P + ']');
+      for (var q = 0; q < ls.length; q++) for (var w = 0; w < ls[q].childNodes.length; w++) { var nd = ls[q].childNodes[w]; if (nd.nodeType === 3 && nd.nodeValue.trim()) { nd.nodeValue = ls[q].getAttribute('data-lab-' + P); break; } }
     }
     relabel(); window.utRelabel = relabel;
     var ks = [P, S];

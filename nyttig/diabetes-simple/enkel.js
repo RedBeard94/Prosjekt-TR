@@ -137,7 +137,7 @@
       ['[data-sen="simplera"] .arrows li > div','<b>Three arrows up</b><span>The number is going up very fast.</span>',0],['[data-sen="simplera"] .arrows li > div','<b>Two arrows up</b><span>The number is going up fast.</span>',1],['[data-sen="simplera"] .arrows li > div','<b>One arrow up</b><span>The number is going up slowly.</span>',2],['[data-sen="simplera"] .arrows li > div','<b>No arrow</b><span>The number is changing slowly.</span>',3],['[data-sen="simplera"] .arrows li > div','<b>One arrow down</b><span>The number is going down slowly.</span>',4],['[data-sen="simplera"] .arrows li > div','<b>Two arrows down</b><span>The number is going down fast.</span>',5],['[data-sen="simplera"] .arrows li > div','<b>Three arrows down</b><span>The number is going down very fast.</span>',6],
       ['[data-sen="libre"] .arrows li > div','<b>Arrow up</b><span>The number is going up fast.</span>',0],['[data-sen="libre"] .arrows li > div','<b>Arrow slanting up</b><span>The number is going up slowly.</span>',1],['[data-sen="libre"] .arrows li > div','<b>Arrow straight across</b><span>The number is changing slowly.</span>',2],['[data-sen="libre"] .arrows li > div','<b>Arrow slanting down</b><span>The number is going down slowly.</span>',3],['[data-sen="libre"] .arrows li > div','<b>Arrow down</b><span>The number is going down fast.</span>',4],
     ]),
-    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0]],
+    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0], ['main > .grid[data-pump="o5"]', 0]],
     add: {
       after: ['main > .grid', 0],
       html: '<section class="panel"><h2>The pump can help you</h2>' +
@@ -203,7 +203,7 @@
 
   function pick(sel, idx) {
     var l = main.querySelectorAll(sel);
-    if (!/data-(sen|pump)/.test(sel)) l = Array.prototype.filter.call(l, function (x) { return !x.closest('[data-sen="libre"],[data-sen="simplera"],[data-pump="mm"]'); });
+    if (!/data-(sen|pump)/.test(sel)) l = Array.prototype.filter.call(l, function (x) { return !x.closest('[data-sen="libre"],[data-sen="simplera"],[data-pump="mm"],[data-pump="o5"]'); });
     return l[idx || 0];
   }
 
@@ -224,8 +224,8 @@
       if (small) small.textContent = cfg.labels[id][1];
     });
     (cfg.hide || []).forEach(function (h) { var el = pick(h[0], h[1]); if (el) { el.classList.add('e-hide'); hidden.push(el); } });
-    var ES = ''; try { ES = localStorage.getItem('mn_sen') || ''; } catch (x) { }
-    if (cfg.add && ES !== 'libre') {
+    var ES = '', EP = ''; try { ES = localStorage.getItem('mn_sen') || ''; EP = localStorage.getItem('mn_pump') || ''; } catch (x) { }
+    if (cfg.add && !(ES === 'libre' && EP !== 'o5')) {
       var after = pick(cfg.add.after[0], cfg.add.after[1]);
       if (after) { added = document.createElement('div'); added.className = after.className; added.innerHTML = cfg.add.html; after.parentNode.insertBefore(added, after.nextSibling); }
     }
