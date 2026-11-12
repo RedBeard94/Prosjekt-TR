@@ -7,7 +7,8 @@
     none: 'You have not chosen a pump or sensor.', noneB: ' These pages are made for Dexcom sensor and Tandem pump, so they may be misleading for you. ',
     fitB: 'This page fits your equipment: ', fitA: '. Your screen may still look a little different.',
     warnA: 'You have chosen ', warnB: '. This page is made for Dexcom sensor and Tandem pump, so the arrows and names may look different for you. Find guides for your equipment under ',
-    man: 'Manuals', oldB: 'Made for Dexcom sensor and Tandem pump.', oldA: ' If you have another pump, this may be misleading for you. ',
+    warnE: '. This page is made for Dexcom sensor and Tandem pump, so the arrows and names may look different for you.', frontWarn: ' The pages are made for Dexcom sensor and Tandem pump, so they may be misleading for you.', man: 'Manuals', oldB: 'Made for Dexcom sensor and Tandem pump.', oldA: ' If you have another pump, this may be misleading for you. ',
+    soonTag: ' (coming soon)', soonH: 'Coming soon. ', soonA: 'We have not made the pages for ', soonB: ' yet. You can tap "Just look around", but the pages may be misleading for you.', soonE: 'You can continue to the simple version, but its pages are made for Dexcom sensor and Tandem pump and may be misleading for you.', noOther: 'other equipment',
     home: '/nyttig/diabetes/en/?velg', manPath: '/nyttig/diabetes/en/manualer/',
     N: { dash: 'Omnipod DASH has no fixed sensor. Choose the one you use.', solo: 'Accu-Chek Solo has no fixed sensor in our list. Choose the one you use.', o5: 'Omnipod 5 can be used with Dexcom G6, Dexcom G7 and FreeStyle Libre 2 Plus.', tslim: 'Tandem t:slim X2 is used with Dexcom G7 and G6.', ypso: 'mylife YpsoPump is often used with FreeStyle Libre.', mm: 'MiniMed 780G is used with Simplera Sync (and Instinct or Guardian 4).' }
   } : {
@@ -16,12 +17,15 @@
     none: 'Du har ikke valgt pumpe eller sensor.', noneB: ' Sidene er laget for Dexcom-sensor og Tandem-pumpe, så de kan være misvisende for deg. ',
     fitB: 'Denne siden passer for utstyret ditt: ', fitA: '. Skjermen din kan likevel se litt annerledes ut.',
     warnA: 'Du har valgt ', warnB: '. Denne siden er laget for Dexcom-sensor og Tandem-pumpe, så pilene og navnene kan se annerledes ut hos deg. Veiledning for ditt utstyr finner du under ',
-    man: 'Manualer', oldB: 'Laget for Dexcom-sensor og Tandem-pumpe.', oldA: ' Har du en annen pumpe, kan det være misvisende for deg. ',
+    warnE: '. Denne siden er laget for Dexcom-sensor og Tandem-pumpe, så pilene og navnene kan se annerledes ut hos deg.', frontWarn: ' Sidene er laget for Dexcom-sensor og Tandem-pumpe, så de kan være misvisende for deg.', man: 'Manualer', oldB: 'Laget for Dexcom-sensor og Tandem-pumpe.', oldA: ' Har du en annen pumpe, kan det være misvisende for deg. ',
+    soonTag: ' (kommer snart)', soonH: 'Kommer snart. ', soonA: 'Vi har ikke laget sidene for ', soonB: ' ennå. Du kan trykke «Bare se meg rundt», men sidene kan være misvisende for deg.', soonE: 'Du kan gå videre til enkel versjon, men sidene der er laget for Dexcom-sensor og Tandem-pumpe og kan være misvisende for deg.', noOther: 'annet utstyr',
     home: '/nyttig/diabetes/?velg', manPath: '/nyttig/diabetes/manualer/',
     N: { dash: 'Omnipod DASH har ingen fast sensor. Velg den du bruker.', solo: 'Accu-Chek Solo har ingen fast sensor i listen vår. Velg den du bruker.', o5: 'Omnipod 5 kan brukes med Dexcom G6, Dexcom G7 og FreeStyle Libre 2 Plus.', tslim: 'Tandem t:slim X2 brukes med Dexcom G7 og G6.', ypso: 'mylife YpsoPump brukes ofte med FreeStyle Libre.', mm: 'MiniMed 780G brukes med Simplera Sync (og Instinct eller Guardian 4).' }
   };
   var PUMPS = [['tslim', 'Tandem t:slim X2'], ['dash', 'Omnipod DASH'], ['o5', 'Omnipod 5'], ['ypso', 'mylife YpsoPump'], ['mm', 'Medtronic MiniMed 780G'], ['solo', 'Accu-Chek Solo']];
   var SENS = [['g7', 'Dexcom G7'], ['g6', 'Dexcom G6'], ['libre', 'FreeStyle Libre 3 Plus'], ['simplera', 'Simplera Sync']];
+  /* Ferdig laget: legg til id her når sidene er klare for en pumpe eller sensor. */
+  var SUP = { p: ['tslim'], s: ['g7', 'g6'] };
   var SUGG = { tslim: 'g7', o5: 'g7', ypso: 'libre', mm: 'simplera' };
   function $(i) { return document.getElementById(i); }
   function g(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
@@ -31,13 +35,14 @@
   function names(c) { var t = []; if (c.p) t.push(nm(PUMPS, c.p)); if (c.s) t.push(nm(SENS, c.s)); if (c.o) t.push(T.other); return t; }
   function has(c) { return !!(c.p || c.s || c.o); }
   var root = document.documentElement;
+  var ENK = root.hasAttribute('data-enkel') || /\/diabetes-(enkel|simple)\//.test(location.pathname);
 
   /* ---- Varsel på undersidene ---- */
   var ban = document.querySelector('p.pump');
   if (ban) {
     var c = get();
     if (!has(c)) {
-      ban.innerHTML = '<b>' + T.oldB + '</b>' + T.oldA + '<a href="' + T.home + '">' + T.pick + '</a>.';
+      ban.innerHTML = '<b>' + T.oldB + '</b>' + T.oldA + (ENK ? '' : '<a href="' + T.home + '">' + T.pick + '</a>.');
     } else {
       var n = names(c).join(EN ? ' and ' : ' og ');
       var fits = (c.p === 'tslim' && (c.s === 'g7' || c.s === 'g6' || !c.s)) || (!c.p && !c.o && (c.s === 'g7' || c.s === 'g6'));
@@ -45,18 +50,48 @@
         ban.style.background = '#e6f7ee'; ban.style.borderColor = '#8fd3ae'; ban.style.color = '#0f5132';
         ban.innerHTML = '<b>' + T.fitB + '</b>' + n + T.fitA;
       } else {
-        ban.innerHTML = '<b>' + T.warnA + n + '.</b>' + T.warnB.slice(1) + '<a href="' + T.manPath + '">' + T.man + '</a>. <a href="' + T.home + '">' + T.edit + '</a>';
+        ban.innerHTML = ENK ? '<b>' + T.warnA + n + '.</b>' + T.warnE.slice(1) : '<b>' + T.warnA + n + '.</b>' + T.warnB.slice(1) + '<a href="' + T.manPath + '">' + T.man + '</a>. <a href="' + T.home + '">' + T.edit + '</a>';
       }
+    }
+  }
+
+  /* ---- Forsiden i enkel versjon: vis valgt utstyr ---- */
+  if (ENK && !ban) {
+    var fold = document.querySelector('.folder');
+    if (fold && fold.parentNode) {
+      var c2 = get(), n2 = document.createElement('p');
+      n2.style.cssText = 'margin:0 0 14px;border-radius:14px;padding:10px 12px;font-size:.9rem;line-height:1.4;';
+      var fits2 = (c2.p === 'tslim' && (c2.s === 'g7' || c2.s === 'g6' || !c2.s)) || (!c2.p && !c2.o && (c2.s === 'g7' || c2.s === 'g6'));
+      if (has(c2)) {
+        n2.style.background = fits2 ? '#e6f7ee' : '#fff1ec'; n2.style.color = fits2 ? '#0f5132' : '#6b2a10'; if (!fits2) n2.style.border = '1.5px solid #f0a68a';
+        n2.innerHTML = '<b>' + T.mine + '</b>' + names(c2).join(' + ') + '.' + (fits2 ? '' : T.frontWarn);
+      } else {
+        n2.style.background = '#fff1ec'; n2.style.border = '1.5px solid #f0a68a'; n2.style.color = '#6b2a10';
+        n2.innerHTML = '<b>' + T.none + '</b>' + T.frontWarn;
+      }
+      fold.parentNode.insertBefore(n2, fold);
     }
   }
 
   /* ---- Velkomst og forside ---- */
   var vk = $('velkommen'); if (!vk) return;
   var ps = $('ut-p'), ss = $('ut-s'), rec = $('ut-rec'), go = $('ut-go'), se = $('ut-se'), note = null;
-  function fill(el, ph, a) { var h = '<option value="">' + ph + '</option>'; for (var i = 0; i < a.length; i++) h += '<option value="' + a[i][0] + '">' + a[i][1] + '</option>'; el.innerHTML = h + '<option value="annen">' + T.other + '</option>'; }
-  fill(ps, T.pump, PUMPS); fill(ss, T.sen, SENS);
+  function fill(el, ph, a, kind) { var h = '<option value="">' + ph + '</option>'; for (var i = 0; i < a.length; i++) h += '<option value="' + a[i][0] + '">' + a[i][1] + (SUP[kind].indexOf(a[i][0]) < 0 ? T.soonTag : '') + '</option>'; el.innerHTML = h + '<option value="annen">' + T.other + '</option>'; }
+  fill(ps, T.pump, PUMPS, 'p'); fill(ss, T.sen, SENS, 's');
   function ver() { var r = document.querySelector('input[name="ut-v"]:checked'); return r ? r.value : 'vanlig'; }
-  function chk() { go.disabled = !(ps.value || ss.value || ver() === 'enkel'); }
+  function bad(kind, v) { return !!v && (v === 'annen' || SUP[kind].indexOf(v) < 0); }
+  var soon = document.createElement('p'); soon.id = 'ut-soon'; soon.setAttribute('role', 'status'); soon.hidden = true;
+  soon.style.cssText = 'margin:12px 0 0;font-size:.9rem;border-radius:12px;padding:8px 10px;line-height:1.4;';
+  rec.parentNode.insertBefore(soon, rec.nextSibling);
+  function chk() {
+    var pb = bad('p', ps.value), sb = bad('s', ss.value), enk = ver() === 'enkel', nm2 = [];
+    if (pb) nm2.push(ps.value === 'annen' ? T.noOther : nm(PUMPS, ps.value));
+    if (sb) nm2.push(ss.value === 'annen' ? T.noOther : nm(SENS, ss.value));
+    if (nm2.length && enk) { soon.hidden = false; soon.style.background = '#e8f1ff'; soon.style.color = '#1e3a8a'; soon.style.border = '0'; soon.innerHTML = T.soonE; }
+    else if (nm2.length) { soon.hidden = false; soon.style.background = '#fff1ec'; soon.style.border = '1.5px solid #f0a68a'; soon.style.color = '#6b2a10'; soon.innerHTML = '<b>' + T.soonH + '</b>' + T.soonA + nm2.join(EN ? ' and ' : ' og ') + T.soonB; }
+    else { soon.hidden = true; }
+    go.disabled = !(ps.value || ss.value || enk) || ((pb || sb) && !enk);
+  }
   var rv = document.querySelectorAll('input[name="ut-v"]'); for (var ri = 0; ri < rv.length; ri++) rv[ri].addEventListener('change', chk);
   function recDraw() {
     var v = ps.value, t = '';
