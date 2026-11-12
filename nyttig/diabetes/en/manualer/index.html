@@ -268,15 +268,28 @@
     {id:'simplera',n:'Simplera Sync',l:[['Medtronic','Medtronic\'s main page','https://www.medtronic.com/']],note:'I did not find a verified link to a Norwegian user guide. Ask your diabetes team or Medtronic.'}
   ];
   var senCur='g7', senDraw=function(){};
+  /* Viser bare utstyret du valgte på forsiden. «Vis alle» åpner hele listen. */
+  var CHO={p:'',s:''},ALL={p:false,s:false};
+  try{CHO.p=localStorage.getItem('mn_pump')||'';CHO.s=localStorage.getItem('mn_sen')||'';}catch(x){}
+  function only(list,id,kind){
+    var has=list.some(function(x){return x.id===id;});
+    if(!has||ALL[kind])return list.map(function(p){return [p,false];}).map(function(a){return a[0];});
+    return list.filter(function(x){return x.id===id;});
+  }
+  function extra(kind){
+    var has=kind==='p'?PUMPS.some(function(x){return x.id===CHO.p;}):SENS.some(function(x){return x.id===CHO.s;});
+    if(!has)return '';
+    return (ALL[kind]?'':'<button class="chip" type="button" data-all="'+kind+'">'+(kind==='p'?'Show all pumps':'Show all sensors')+'</button>')+((kind==='p'||!CHO.p)?'<a class="chip" href="/nyttig/diabetes/en/?velg" style="text-decoration:none">Change my equipment</a>':'');
+  }
   (function(){
     var box=$('senChips'), card=$('senCard'); if(!box||!card)return;
     try{var c=localStorage.getItem('mn_sen');if(SENS.some(function(x){return x.id===c;}))senCur=c;}catch(x){}
     senDraw=function(){
-      box.innerHTML=SENS.map(function(p){return '<button class="chip" type="button" data-sen="'+p.id+'" aria-pressed="'+(p.id===senCur)+'">'+esc(p.n)+'</button>';}).join('');
+      box.innerHTML=only(SENS,CHO.s,'s').map(function(p){return '<button class="chip" type="button" data-sen="'+p.id+'" aria-pressed="'+(p.id===senCur)+'">'+esc(p.n)+'</button>';}).join('')+extra('s');
       var p=SENS.filter(function(x){return x.id===senCur;})[0];
       card.innerHTML='<p class="small" style="margin:8px 0 0"><b>'+esc(p.n)+'</b></p>'+p.l.map(function(k){return '<a class="lnk" href="'+esc(k[2])+'" target="_blank" rel="noopener"><b>'+esc(k[0])+'</b><span>'+esc(k[1])+'</span></a>';}).join('')+(p.note?'<p class="note">'+esc(p.note)+'</p>':'');
     };
-    box.addEventListener('click',function(e){var b=e.target.closest('[data-sen]');if(!b)return;senCur=b.getAttribute('data-sen');try{localStorage.setItem('mn_sen',senCur);}catch(x){}senDraw();var a=box.querySelector('[aria-pressed="true"]');if(a)a.focus();});
+    box.addEventListener('click',function(e){var al=e.target.closest('[data-all]');if(al){ALL.s=true;senDraw();return;}var b=e.target.closest('[data-sen]');if(!b)return;senCur=b.getAttribute('data-sen');try{localStorage.setItem('mn_sen',senCur);}catch(x){}senDraw();var a=box.querySelector('[aria-pressed="true"]');if(a)a.focus();});
     senDraw();
   })();
 
@@ -313,11 +326,11 @@
     var cur=''; try{cur=localStorage.getItem('mn_pump')||'';}catch(x){}
     if(!PUMPS.some(function(p){return p.id===cur;}))cur='tslim';
     function draw(){
-      box.innerHTML=PUMPS.map(function(p){return '<button class="chip" type="button" data-pump="'+p.id+'" aria-pressed="'+(p.id===cur)+'">'+esc(p.n)+'</button>';}).join('');
+      box.innerHTML=only(PUMPS,CHO.p,'p').map(function(p){return '<button class="chip" type="button" data-pump="'+p.id+'" aria-pressed="'+(p.id===cur)+'">'+esc(p.n)+'</button>';}).join('')+extra('p');
       var p=PUMPS.filter(function(x){return x.id===cur;})[0];
       card.innerHTML='<p class="small" style="margin:8px 0 0"><b>'+esc(p.n)+'</b> · '+esc(p.t)+'</p>'+(p.sen?'<p class="sen"><b>Sensor in the public agreement (may change):</b> '+(p.sen==='none'?'Does not have automatic sensor control itself':esc(SENS.filter(function(x){return x.id===p.sen;})[0].n))+'</p>':'')+p.l.map(function(k){return '<a class="lnk" href="'+esc(k[2])+'" target="_blank" rel="noopener"><b>'+esc(k[0])+'</b><span>'+esc(k[1])+'</span></a>';}).join('')+'<p class="note">'+esc(p.note)+'</p>';
     }
-    box.addEventListener('click',function(e){var b=e.target.closest('[data-pump]');if(!b)return;cur=b.getAttribute('data-pump');try{localStorage.setItem('mn_pump',cur);}catch(x){}var pp=PUMPS.filter(function(x){return x.id===cur;})[0];if(pp.sen&&pp.sen!=='none'){senCur=pp.sen;try{localStorage.setItem('mn_sen',senCur);}catch(x){}senDraw();}draw();var a=box.querySelector('[aria-pressed="true"]');if(a)a.focus();});
+    box.addEventListener('click',function(e){var al=e.target.closest('[data-all]');if(al){ALL.p=true;draw();return;}var b=e.target.closest('[data-pump]');if(!b)return;cur=b.getAttribute('data-pump');try{localStorage.setItem('mn_pump',cur);}catch(x){}var pp=PUMPS.filter(function(x){return x.id===cur;})[0];if(pp.sen&&pp.sen!=='none'){senCur=pp.sen;try{localStorage.setItem('mn_sen',senCur);}catch(x){}senDraw();}draw();var a=box.querySelector('[aria-pressed="true"]');if(a)a.focus();});
     draw();
   })();
 

@@ -86,7 +86,7 @@
     closeVk();
   });
   function drawNote() {
-    if (!note) { note = document.createElement('div'); note.id = 'utnote'; var ref = document.querySelector('main .btnrow') || $('snar'); if (ref && ref.parentNode) ref.parentNode.insertBefore(note, ref.nextSibling); else return; }
+    if (!note) { note = document.createElement('div'); note.id = 'utnote'; var ref = $('snar'); if (ref && ref.parentNode) ref.parentNode.insertBefore(note, ref); else return; }
     var c = get(), a;
     note.style.cssText = 'margin:0 0 14px;border-radius:14px;padding:10px 12px;font-size:.88rem;line-height:1.4;';
     if (has(c)) {
