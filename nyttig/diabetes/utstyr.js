@@ -41,7 +41,11 @@
   var ban = document.querySelector('p.pump');
   if (ban) {
     var c = get();
-    if (c.s === 'libre' && ban.getAttribute('data-libre')) {
+    var okx = ban.getAttribute('data-ok-' + c.p + '-' + c.s);
+    if (okx) {
+      ban.style.background = '#e6f7ee'; ban.style.borderColor = '#8fd3ae'; ban.style.color = '#0f5132';
+      ban.innerHTML = okx;
+    } else if (c.s === 'libre' && ban.getAttribute('data-libre')) {
       ban.style.background = '#e6f7ee'; ban.style.borderColor = '#8fd3ae'; ban.style.color = '#0f5132';
       ban.innerHTML = ban.getAttribute('data-libre');
     } else if (!has(c)) {
