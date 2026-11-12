@@ -246,5 +246,6 @@ function finish(){show('end');window.scrollTo(0,0);$('sc').textContent=score+' /
 (function(){var P='',S='';try{P=localStorage.getItem('mn_pump')||'';S=localStorage.getItem('mn_sen')||''}catch(e){}
 var R;if(P==='mm'||(!P&&S==='simplera'))R=[["Hva betyr to piler opp?", ["Hva betyr tre piler opp?", ["Tallet går opp aller fortest", "Tallet er omtrent likt", "Tallet går sakte ned"], "Flere piler betyr fortere. Tre piler opp: tallet går opp aller fortest."]], ["Hva betyr en pil rett frem?", ["Hva betyr det når det ikke er noen pil ved tallet?", ["Tallet endrer seg sakte", "Tallet går opp fort", "Tallet går ned fort"], "Ingen pil betyr at tallet endrer seg sakte."]]];else if(S==='libre'||(!S&&P==='o5'))R=[["Hva betyr to piler opp?", ["Hva betyr pil opp?", ["Tallet går opp fort", "Tallet er omtrent likt", "Tallet går sakte ned"], "Pil opp betyr at tallet går opp fort."]], ["Hva betyr en pil rett frem?", ["Hva betyr pil rett frem?", ["Tallet endrer seg sakte", "Tallet går opp fort", "Tallet går ned fort"], "Pil rett frem betyr at tallet endrer seg sakte."]]];else return;
 for(var i=0;i<R.length;i++)for(var k=0;k<Q.length;k++)if(Q[k][0]===R[i][0]){Q[k]=R[i][1];break}})();
-$('go').onclick=start;$('again').onclick=start;$('next').onclick=function(){n++;if(n>=Q.length)finish();else ask()}})();</script></body>
+$('go').onclick=start;$('again').onclick=start;$('next').onclick=function(){n++;if(n>=Q.length)finish();else ask()}})();</script><script src="/nyttig/diabetes/utstyr.js" defer></script>
+</body>
 </html>

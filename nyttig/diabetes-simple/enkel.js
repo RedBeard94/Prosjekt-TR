@@ -137,7 +137,7 @@
       ['[data-sen="simplera"] .arrows li > div','<b>Three arrows up</b><span>The number is going up very fast.</span>',0],['[data-sen="simplera"] .arrows li > div','<b>Two arrows up</b><span>The number is going up fast.</span>',1],['[data-sen="simplera"] .arrows li > div','<b>One arrow up</b><span>The number is going up slowly.</span>',2],['[data-sen="simplera"] .arrows li > div','<b>No arrow</b><span>The number is changing slowly.</span>',3],['[data-sen="simplera"] .arrows li > div','<b>One arrow down</b><span>The number is going down slowly.</span>',4],['[data-sen="simplera"] .arrows li > div','<b>Two arrows down</b><span>The number is going down fast.</span>',5],['[data-sen="simplera"] .arrows li > div','<b>Three arrows down</b><span>The number is going down very fast.</span>',6],
       ['[data-sen="libre"] .arrows li > div','<b>Arrow up</b><span>The number is going up fast.</span>',0],['[data-sen="libre"] .arrows li > div','<b>Arrow slanting up</b><span>The number is going up slowly.</span>',1],['[data-sen="libre"] .arrows li > div','<b>Arrow straight across</b><span>The number is changing slowly.</span>',2],['[data-sen="libre"] .arrows li > div','<b>Arrow slanting down</b><span>The number is going down slowly.</span>',3],['[data-sen="libre"] .arrows li > div','<b>Arrow down</b><span>The number is going down fast.</span>',4],
     ]),
-    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0], ['main > .grid[data-pump="o5"]', 0]],
+    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0], ['main > .grid[data-pump="o5"]', 0], ['main > .grid[data-pump="tslim"]', 1]],
     add: {
       after: ['main > .grid', 0],
       html: '<section class="panel"><h2>The pump can help you</h2>' +

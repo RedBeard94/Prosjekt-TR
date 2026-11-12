@@ -137,7 +137,7 @@
       ['[data-sen="simplera"] .arrows li > div','<b>Tre piler opp</b><span>Tallet går opp aller fortest.</span>',0],['[data-sen="simplera"] .arrows li > div','<b>To piler opp</b><span>Tallet går opp fort.</span>',1],['[data-sen="simplera"] .arrows li > div','<b>En pil opp</b><span>Tallet går sakte opp.</span>',2],['[data-sen="simplera"] .arrows li > div','<b>Ingen pil</b><span>Tallet endrer seg sakte.</span>',3],['[data-sen="simplera"] .arrows li > div','<b>En pil ned</b><span>Tallet går sakte ned.</span>',4],['[data-sen="simplera"] .arrows li > div','<b>To piler ned</b><span>Tallet går ned fort.</span>',5],['[data-sen="simplera"] .arrows li > div','<b>Tre piler ned</b><span>Tallet går ned aller fortest.</span>',6],
       ['[data-sen="libre"] .arrows li > div','<b>Pil opp</b><span>Tallet går opp fort.</span>',0],['[data-sen="libre"] .arrows li > div','<b>Pil skrått opp</b><span>Tallet går sakte opp.</span>',1],['[data-sen="libre"] .arrows li > div','<b>Pil rett frem</b><span>Tallet endrer seg sakte.</span>',2],['[data-sen="libre"] .arrows li > div','<b>Pil skrått ned</b><span>Tallet går sakte ned.</span>',3],['[data-sen="libre"] .arrows li > div','<b>Pil ned</b><span>Tallet går ned fort.</span>',4],
     ]),
-    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0], ['main > .grid[data-pump="o5"]', 0]],
+    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0], ['main > .grid[data-pump="o5"]', 0], ['main > .grid[data-pump="tslim"]', 1]],
 
     add: {
       after: ['main > .grid', 0],
