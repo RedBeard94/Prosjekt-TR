@@ -264,8 +264,8 @@
   var SENS=[
     {id:'g7',n:'Dexcom G7',l:[['Dexcom G7: slik setter du på sensoren (video)','Fra Nordic Infucare. Åpner deres side. Se «Hvordan sette sensoren på armen» eller «på magen».','https://www.diabetesinfucare.com/no/dexcom-g7/starta-dexcom-g-7'],['Dexcom G7: brukerveiledning (norsk, PDF)','mmol/L','https://s3.us-west-2.amazonaws.com/dexcompdf/G7/AW-00046-67_UG_G7_OUS_no_MMOL.pdf'],['Alle Dexcom-veiledninger','Dexcoms nedlastingsside','https://www.dexcom.com/nb-NO/downloadsandguides/search'],['Sikkerhetsinformasjon','Fra Dexcom','https://www.dexcom.com/nb-no/safety-information']]},
     {id:'g6',n:'Dexcom G6',l:[['Dexcom G6: brukerveiledning (norsk, PDF)','mmol/L','https://s3-us-west-2.amazonaws.com/dexcompdf/Downloads+and+Guides+Updates/LBL016312+G6+Using+Your+G6+OUS+NO+mmolL.pdf'],['Alle Dexcom-veiledninger','Dexcoms nedlastingsside','https://www.dexcom.com/nb-NO/downloadsandguides/search'],['Sikkerhetsinformasjon','Fra Dexcom','https://www.dexcom.com/nb-no/safety-information']]},
-    {id:'libre',n:'FreeStyle Libre 3 Plus',l:[['FreeStyle Libre (Abbott)','Abbotts hovedside. Velg Norge der.','https://www.freestyle.abbott/']],note:'Jeg fant ingen verifisert lenke til norsk brukerveiledning. Spør diabetesteamet eller Abbott.'},
-    {id:'simplera',n:'Simplera Sync',l:[['Medtronic','Medtronics hovedside','https://www.medtronic.com/']],note:'Jeg fant ingen verifisert lenke til norsk brukerveiledning. Spør diabetesteamet eller Medtronic.'}
+    {id:'libre',n:'FreeStyle Libre 3 Plus',l:[['Brukerveiledninger for Libre 3 (Abbott, norsk)','Abbotts side med norske veiledninger for leser og app.','https://www.diabetescare.abbott/support/manuals/no.html'],['FreeStyle Libre (Abbott)','Abbotts hovedside. Velg Norge der.','https://www.freestyle.abbott/']],note:'Velg FreeStyle Libre 3 på Abbott-siden. Spør diabetesteamet hvis du er usikker på hvilken som gjelder deg.'},
+    {id:'simplera',n:'Simplera Sync',l:[['Opplæringsguide MiniMed 780G med Simplera Sync (norsk, PDF)','Fra Medtronic','https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2025-02/minimed_780g_og_simplera_sync_oppstartsguide_folger_med_nye_pumper.pdf'],['Brukerhåndbok med Simplera Sync (norsk, PDF)','Fra Medtronic. Her står pilene og SmartGuard','https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2025-02/m018857c022doc1_a_final_web.pdf'],['Medtronic','Medtronics hovedside','https://www.medtronic.com/']],note:'Sjekk at sensoren din er Simplera Sync. Spør diabetesteamet hvis du er usikker.'}
   ];
   var senCur='g7', senDraw=function(){};
   /* Viser bare utstyret du valgte på forsiden. «Vis alle» åpner hele listen. */
@@ -305,15 +305,19 @@
      note:'Dette er den tekniske håndboken. Den vanlige brukerveiledningen får dere av Insulet eller diabetesteamet.'},
     {id:'o5',n:'Omnipod 5',t:'Slangeløs pumpe, automatisk regulering',l:[
       ['Veiledning for omsorgsperson (norsk, PDF)','Omnipod 5, for foreldre og andre som hjelper','https://www.omnipod.com/sites/default/files/omnipod-5_caregiver-guide_no-no.pdf'],
+['Brukerveiledning for pumpen (norsk, PDF)','Omnipod 5, fra Insulet','https://www.omnipod.com/sites/default/files/omnipod-5_technical-user-guide_no-norsk_0.pdf'],
       ['Omnipod sine sider','Her legger Insulet ut veiledninger','https://www.omnipod.com/']],
-     note:'Brukerveiledningen til selve pumpen har jeg ikke klart å bekrefte på norsk. Spør diabetesteamet eller Insulet.'},
+     note:'Veiledningen er fra Insulet (versjon oktober 2026). Spør diabetesteamet hvis noe ikke stemmer med din pumpe.'},
     {id:'ypso',sen:'libre',n:'mylife YpsoPump',t:'Slangepumpe, kan brukes med automatisk system',l:[
+['mylife CamAPS FX: brukerveiledning (norsk, PDF)','Appen som styrer YpsoPump automatisk','https://s3-eu-west-1.amazonaws.com/camdiab.user.manual/user_manual_fx_mgdl_no_commercial.pdf'],
       ['Videoer om bruk (norsk)','Fra mylife Diabetescare','https://www.mylife-diabetescare.com/no-NO/kom-i-gang/videoer-om-handtering'],
       ['Brukerveiledning (engelsk, PDF)','Fra mylife Diabetescare','https://a.storyblok.com/f/287658439214273/x/b3585f27af/ypu_eifu_ref_700012342_in-en_v02.pdf'],
       ['Alle nedlastinger','Mylife sin nedlastingsside','https://www.mylife-diabetescare.com/en/services/downloads.html?category[]=122&category[]=32']],
-     note:'Jeg fant ingen norsk brukerveiledning som PDF. Spør diabetesteamet om den norske utgaven.'},
+     note:'Pumpens egen brukerveiledning finnes bare på engelsk. Appen CamAPS FX har norsk veiledning (lenken over). Spør diabetesteamet om den norske utgaven av pumpen.'},
     {id:'mm',sen:'simplera',n:'Medtronic MiniMed 780G',t:'Slangepumpe, automatisk regulering',l:[
       ['Brukerhåndbok for systemet (norsk, PDF)','MiniMed 780G, fra Medtronic. Dekker sensorene Instinct, Simplera Sync og Guardian 4','https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2026-09/ifu_mm780g_instinct.pdf'],
+['Opplæringsguide MiniMed 780G med Simplera Sync (norsk, PDF)','Fra Medtronic','https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2025-02/minimed_780g_og_simplera_sync_oppstartsguide_folger_med_nye_pumper.pdf'],
+      ['Brukerhåndbok med Simplera Sync (norsk, PDF)','Fra Medtronic. Her står pilene og SmartGuard','https://resources.cloud.medtronic-diabetes.com/sites/prd/files/documents/2025-02/m018857c022doc1_a_final_web.pdf'],
       ['Medtronic','Medtronics hovedside','https://www.medtronic.com/']],
      note:'Sjekk at sensoren deres står i håndboken. Spør diabetesteamet eller Medtronic hvis dere har en annen sensor.'},
     {id:'solo',n:'Accu-Chek Solo',t:'Slangeløs mikropumpe',l:[

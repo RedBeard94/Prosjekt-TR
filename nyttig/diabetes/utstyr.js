@@ -41,7 +41,10 @@
   var ban = document.querySelector('p.pump');
   if (ban) {
     var c = get();
-    if (!has(c)) {
+    if (c.s === 'libre' && ban.getAttribute('data-libre')) {
+      ban.style.background = '#e6f7ee'; ban.style.borderColor = '#8fd3ae'; ban.style.color = '#0f5132';
+      ban.innerHTML = ban.getAttribute('data-libre');
+    } else if (!has(c)) {
       ban.innerHTML = '<b>' + T.oldB + '</b>' + T.oldA + (ENK ? '' : '<a href="' + T.home + '">' + T.pick + '</a>.');
     } else {
       var n = names(c).join(EN ? ' and ' : ' og ');
