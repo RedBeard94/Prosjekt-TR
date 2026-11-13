@@ -1,5 +1,5 @@
 /* Enkel service worker for Diabetes-sidene: lagrer siden og filene på telefonen, så den åpner uten nett. */
-var CACHE = 'diabetes-v60';
+var CACHE = 'diabetes-v61';
 var FILES = ["./", "index.html", "enkel.js", "utstyr.js", "manifest.webmanifest", "icon-192.png", "icon-512.png", "tallerken/index.html", "mat-og-blodsukker/index.html", "manualer/index.html", "nytt/index.html", "rettigheter/index.html", "info/index.html", "trendpiler/index.html", "innstillinger/index.html", "tallene/index.html", "akutt/index.html", "vare/index.html", "quiz/index.html", "en/akutt/index.html", "en/vare/index.html", "en/quiz/index.html", "nyttig-info/index.html", "../../fonts/manrope-latin-200-normal.woff2", "../../fonts/manrope-latin-400-normal.woff2", "../../fonts/manrope-latin-600-normal.woff2", "../../fonts/manrope-latin-800-normal.woff2", "apple-touch-icon.png", "en/index.html", "en/info/index.html", "en/innstillinger/index.html", "en/manualer/index.html", "en/mat-og-blodsukker/index.html", "en/nytt/index.html", "en/nyttig-info/index.html", "en/rettigheter/index.html", "en/tallene/index.html", "en/tallerken/index.html", "en/trendpiler/index.html"];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
@@ -13,11 +13,11 @@ self.addEventListener('fetch', function (e) {
   var r = e.request;
   if (r.method !== 'GET' || new URL(r.url).origin !== location.origin) return;
   if (/\.mp4(\?|$)/.test(r.url)) return; /* video: la nettleseren hente selv */
-  if (r.mode === 'navigate') {
-    /* Siden: prøv nettet først, så du får siste versjon. Uten nett brukes den lagrede. */
+  if (r.mode === 'navigate' || /\.js(\?|$)/.test(r.url)) {
+    /* Sider og skriptfiler (.js): prøv nettet først, så du får siste versjon. Uten nett brukes den lagrede. */
     e.respondWith(fetch(r).then(function (res) {
-      var copy = res.clone(); caches.open(CACHE).then(function (c) { c.put(r, copy); }); return res;
-    }).catch(function () { return caches.match(r).then(function (m) { return m || caches.match('./'); }); }));
+      if (res.ok) { var copy = res.clone(); caches.open(CACHE).then(function (c) { c.put(r, copy); }); } return res;
+    }).catch(function () { return caches.match(r).then(function (m) { if (m) return m; if (r.mode !== 'navigate') return Response.error(); var u = r.url.split('?')[0].split('#')[0]; return (/\/$/.test(u) ? caches.match(u + 'index.html') : Promise.resolve()).then(function (m2) { return m2 || caches.match('./'); }); }); }));
     return;
   }
   e.respondWith(caches.match(r).then(function (m) {

@@ -1,5 +1,5 @@
 /* Enkel service worker for Diabetes-sidene: lagrer siden og filene på telefonen, så den åpner uten nett. */
-var CACHE = 'diabetes-simple-v23';
+var CACHE = 'diabetes-simple-v24';
 var FILES = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-192.png", "icon-maskable-512.png", "apple-touch-icon.png", "enkel.js", "/nyttig/diabetes/utstyr.js", "tallerken/index.html", "innstillinger/index.html", "trendpiler/index.html", "tallene/index.html", "akutt/index.html", "quiz/index.html", "vare/index.html", "mat-og-blodsukker/index.html", "../../fonts/manrope-latin-200-normal.woff2", "../../fonts/manrope-latin-400-normal.woff2", "../../fonts/manrope-latin-600-normal.woff2", "../../fonts/manrope-latin-800-normal.woff2"];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
@@ -13,11 +13,11 @@ self.addEventListener('fetch', function (e) {
   var r = e.request;
   if (r.method !== 'GET' || new URL(r.url).origin !== location.origin) return;
   if (/\.mp4(\?|$)/.test(r.url)) return; /* video: la nettleseren hente selv */
-  if (r.mode === 'navigate') {
-    /* Siden: prøv nettet først, så du får siste versjon. Uten nett brukes den lagrede. */
+  if (r.mode === 'navigate' || /\.js(\?|$)/.test(r.url)) {
+    /* Sider og skriptfiler (.js): prøv nettet først, så du får siste versjon. Uten nett brukes den lagrede. */
     e.respondWith(fetch(r).then(function (res) {
-      var copy = res.clone(); caches.open(CACHE).then(function (c) { c.put(r, copy); }); return res;
-    }).catch(function () { return caches.match(r).then(function (m) { return m || caches.match('./'); }); }));
+      if (res.ok) { var copy = res.clone(); caches.open(CACHE).then(function (c) { c.put(r, copy); }); } return res;
+    }).catch(function () { return caches.match(r).then(function (m) { if (m) return m; if (r.mode !== 'navigate') return Response.error(); var u = r.url.split('?')[0].split('#')[0]; return (/\/$/.test(u) ? caches.match(u + 'index.html') : Promise.resolve()).then(function (m2) { return m2 || caches.match('./'); }); }); }));
     return;
   }
   e.respondWith(caches.match(r).then(function (m) {
