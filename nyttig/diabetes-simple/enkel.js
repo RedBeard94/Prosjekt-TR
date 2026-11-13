@@ -128,16 +128,16 @@
       ['section.panel > p.small', 'Seven arrows, from fastest up to fastest down. Two arrows mean faster than one arrow.',0],
       ['.note', 'You have learned what to do for each arrow from your diabetes team. Ask an adult if you are not sure.', 0]
 ].concat(ARR.map(function (a, i) { return ['.arrows li > div', '<b>' + a[0] + '</b><span>' + a[1] + '</span>', i]; })).concat([
-      ['[data-sen="simplera"] > h2', 'What the arrows mean'],
-      ['[data-sen="simplera"] > p.small', 'Up to three arrows, up or down. More arrows mean faster.'],
-      ['[data-sen="simplera"] > .note', 'You have learned what to do for each arrow from your diabetes team. Ask an adult if you are not sure.'],
+      ['[data-sen~="simplera"] > h2', 'What the arrows mean'],
+      ['[data-sen~="simplera"] > p.small', 'Up to three arrows, up or down. More arrows mean faster.'],
+      ['[data-sen~="simplera"] > .note', 'You have learned what to do for each arrow from your diabetes team. Ask an adult if you are not sure.'],
       ['[data-sen="libre"] > h2', 'What the arrows mean'],
       ['[data-sen="libre"] > p.small', 'Five arrows, from fastest up to fastest down.'],
       ['[data-sen="libre"] > .note', 'You have learned what to do for each arrow from your diabetes team. Ask an adult if you are not sure.'],
-      ['[data-sen="simplera"] .arrows li > div','<b>Three arrows up</b><span>The number is going up very fast.</span>',0],['[data-sen="simplera"] .arrows li > div','<b>Two arrows up</b><span>The number is going up fast.</span>',1],['[data-sen="simplera"] .arrows li > div','<b>One arrow up</b><span>The number is going up slowly.</span>',2],['[data-sen="simplera"] .arrows li > div','<b>No arrow</b><span>The number is changing slowly.</span>',3],['[data-sen="simplera"] .arrows li > div','<b>One arrow down</b><span>The number is going down slowly.</span>',4],['[data-sen="simplera"] .arrows li > div','<b>Two arrows down</b><span>The number is going down fast.</span>',5],['[data-sen="simplera"] .arrows li > div','<b>Three arrows down</b><span>The number is going down very fast.</span>',6],
+      ['[data-sen~="simplera"] .arrows li > div','<b>Three arrows up</b><span>The number is going up very fast.</span>',0],['[data-sen~="simplera"] .arrows li > div','<b>Two arrows up</b><span>The number is going up fast.</span>',1],['[data-sen~="simplera"] .arrows li > div','<b>One arrow up</b><span>The number is going up slowly.</span>',2],['[data-sen~="simplera"] .arrows li > div','<b>No arrow</b><span>The number is changing slowly.</span>',3],['[data-sen~="simplera"] .arrows li > div','<b>One arrow down</b><span>The number is going down slowly.</span>',4],['[data-sen~="simplera"] .arrows li > div','<b>Two arrows down</b><span>The number is going down fast.</span>',5],['[data-sen~="simplera"] .arrows li > div','<b>Three arrows down</b><span>The number is going down very fast.</span>',6],
       ['[data-sen="libre"] .arrows li > div','<b>Arrow up</b><span>The number is going up fast.</span>',0],['[data-sen="libre"] .arrows li > div','<b>Arrow slanting up</b><span>The number is going up slowly.</span>',1],['[data-sen="libre"] .arrows li > div','<b>Arrow straight across</b><span>The number is changing slowly.</span>',2],['[data-sen="libre"] .arrows li > div','<b>Arrow slanting down</b><span>The number is going down slowly.</span>',3],['[data-sen="libre"] .arrows li > div','<b>Arrow down</b><span>The number is going down fast.</span>',4],
     ]),
-    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"]', 0], ['main > .grid[data-pump="o5"]', 0], ['main > .grid[data-pump="tslim"]', 1]],
+    hide: [['main > .grid', 1], ['main > .grid[data-pump="mm"][data-sen~="simplera"]', 0], ['main > .grid[data-pump="o5"]', 0], ['main > .grid[data-pump="tslim"]', 1]],
     add: {
       after: ['main > .grid', 0],
       html: '<section class="panel"><h2>The pump can help you</h2>' +
@@ -203,7 +203,7 @@
 
   function pick(sel, idx) {
     var l = main.querySelectorAll(sel);
-    if (!/data-(sen|pump)/.test(sel)) l = Array.prototype.filter.call(l, function (x) { return !x.closest('[data-sen="libre"],[data-sen="simplera"],[data-pump="mm"],[data-pump="o5"]'); });
+    if (!/data-(sen|pump)/.test(sel)) l = Array.prototype.filter.call(l, function (x) { return !x.closest('[data-sen="libre"],[data-sen~="simplera"],[data-pump="mm"],[data-pump="o5"]'); });
     return l[idx || 0];
   }
 
