@@ -228,7 +228,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
-<script src="../enkel.js" defer></script>
 <script>(function(){var K={matinfo:{b:"https://produkter.matinfo.no/",s:function(e){return"https://produkter.matinfo.no/resultat?query="+e}},oda:{b:"https://oda.com/no/",s:function(e){return"https://oda.com/no/search/?q="+e}},off:{b:"https://no.openfoodfacts.org/",s:function(e){return"https://no.openfoodfacts.org/search?q="+e}},meny:{b:"https://meny.no/",s:function(e){return"https://meny.no/sok?query="+e}}};
 var q=document.getElementById("q"),SO="Search for “",OP="Go to ";
 function up(){var v=q.value.replace(/\s+/g," ").trim(),e=encodeURIComponent(v);document.querySelectorAll(".lk[data-k]").forEach(function(a){var k=K[a.getAttribute("data-k")],g=a.querySelector(".gt");if(v){a.href=k.s(e);g.textContent=SO+v+(SO.indexOf("«")>-1?"»":"”")}else{a.href=k.b;g.textContent=OP+a.getAttribute("data-n")}})}

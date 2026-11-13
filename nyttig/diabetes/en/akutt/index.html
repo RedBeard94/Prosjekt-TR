@@ -228,7 +228,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
-<script src="../enkel.js" defer></script>
 <script>(function(){var l=document.getElementById("lo"),h=document.getElementById("hi"),a=document.getElementById("blo"),c=document.getElementById("bhi");function sh(x){l.hidden=x;h.hidden=!x;a.setAttribute("aria-pressed",String(!x));c.setAttribute("aria-pressed",String(x))}a.onclick=function(){sh(false)};c.onclick=function(){sh(true)};
 var ov=document.getElementById("ov"),cnt=document.getElementById("cnt"),ci=0,left=0;function endSos(call){clearInterval(ci);ov.hidden=true;if(call)location.href="tel:113"}
 function startSos(){left=5;cnt.textContent=left;ov.hidden=false;document.getElementById("av").focus();clearInterval(ci);ci=setInterval(function(){left--;if(left<=0)endSos(true);else cnt.textContent=left},1000)}
