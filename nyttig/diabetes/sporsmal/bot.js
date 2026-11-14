@@ -151,7 +151,7 @@ function ask(raw){var t=norm(raw);
 function open(){panel.classList.add("sb-open");bub.style.display="none";inp.focus()}
 function close(){panel.classList.remove("sb-open");bub.style.display="";bub.focus()}
 function build(){
- var l=document.createElement("link");l.rel="stylesheet";l.href=BASE+"bot.css";document.head.appendChild(l);
+ var l=document.createElement("link");l.rel="stylesheet";l.href=BASE+"bot.css?v=2";document.head.appendChild(l);
  root=document.createElement("div");root.id="sb-root";
  root.innerHTML='<button type="button" id="sb-bubble" aria-label="Åpne spørsmålsboten">\ud83d\udcac</button>'+
  '<section id="sb-panel" role="dialog" aria-label="Spørsmål og svar om diabetes"><div class="sb-hd"><b>Spør om diabetes</b><button type="button" id="sb-min" aria-label="Minimer">\u2013</button></div>'+
