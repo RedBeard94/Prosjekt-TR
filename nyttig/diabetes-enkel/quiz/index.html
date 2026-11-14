@@ -243,5 +243,6 @@ for(k=0;k<all.length;k++){all[k].disabled=true;if(all[k].textContent===Q[n][1][0
 $('pts').textContent=score+' '+T.right;$('why').innerHTML='<b>'+(c?T.yes:T.no)+'</b>'+Q[n][2];$('why').classList.remove('hide');
 $('next').textContent=(n===Q.length-1)?T.res:T.next;$('next').classList.remove('hide');$('prog').style.width=((n+1)/Q.length*100)+'%%';$('next').scrollIntoView({block:'nearest',behavior:'smooth'})}
 function finish(){show('end');window.scrollTo(0,0);$('sc').textContent=score+' / '+Q.length;var r=score>=17?T.r3:score>=11?T.r2:T.r1;$('sh').textContent=r[0];$('sm').textContent=r[1]}
-$('go').onclick=start;$('again').onclick=start;$('next').onclick=function(){n++;if(n>=Q.length)finish();else ask()}})();</script></body>
+$('go').onclick=start;$('again').onclick=start;$('next').onclick=function(){n++;if(n>=Q.length)finish();else ask()}})();</script><script src="/nyttig/diabetes/sporsmal/bot.js" defer></script>
+</body>
 </html>

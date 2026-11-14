@@ -235,5 +235,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 <script>(function(){var K={matinfo:{b:"https://produkter.matinfo.no/",s:function(e){return"https://produkter.matinfo.no/resultat?query="+e}},oda:{b:"https://oda.com/no/",s:function(e){return"https://oda.com/no/search/?q="+e}},off:{b:"https://no.openfoodfacts.org/",s:function(e){return"https://no.openfoodfacts.org/search?q="+e}},meny:{b:"https://meny.no/",s:function(e){return"https://meny.no/sok?query="+e}}};
 var q=document.getElementById("q"),SO="Søk etter «",OP="Åpne ";
 function up(){var v=q.value.replace(/\s+/g," ").trim(),e=encodeURIComponent(v);document.querySelectorAll(".lk[data-k]").forEach(function(a){var k=K[a.getAttribute("data-k")],g=a.querySelector(".gt");if(v){a.href=k.s(e);g.textContent=SO+v+(SO.indexOf("«")>-1?"»":"”")}else{a.href=k.b;g.textContent=OP+a.getAttribute("data-n")}})}
-q.addEventListener("input",up);up()})();</script></body>
+q.addEventListener("input",up);up()})();</script><script src="/nyttig/diabetes/sporsmal/bot.js" defer></script>
+</body>
 </html>

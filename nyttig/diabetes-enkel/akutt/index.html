@@ -239,5 +239,6 @@ var b=document.getElementById("ring"),f=document.getElementById("fl"),st=0,raf=0
 function tick(){var p=Math.min(1,(performance.now()-st)/2000);f.style.transition="none";f.style.width=p*100+"%";if(p>=1){done=1;startSos();setTimeout(function(){done=0;f.style.width="0"},1200)}else raf=requestAnimationFrame(tick)}
 function begin(){if(done||st)return;st=performance.now();raf=requestAnimationFrame(tick)}function end(){if(st&&!done)stop()}
 b.addEventListener("pointerdown",begin);b.addEventListener("pointerup",end);["pointerleave","pointercancel"].forEach(function(e){b.addEventListener(e,function(){if(st&&!done)stop()})});
-b.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&!e.repeat){e.preventDefault();begin()}});b.addEventListener("keyup",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();end()}});b.addEventListener("contextmenu",function(e){e.preventDefault()})})();</script></body>
+b.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&!e.repeat){e.preventDefault();begin()}});b.addEventListener("keyup",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();end()}});b.addEventListener("contextmenu",function(e){e.preventDefault()})})();</script><script src="/nyttig/diabetes/sporsmal/bot.js" defer></script>
+</body>
 </html>
