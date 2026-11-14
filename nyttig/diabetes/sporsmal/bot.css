@@ -1,0 +1,33 @@
+/* Utseende for spørsmålsboten. Hører bare til boten i denne mappen. */
+#sb-root{--sb-bg:#fff;--sb-tx:#14213d;--sb-mut:#5b6b85;--sb-ln:#dbe3ef;--sb-ac:#2563eb;--sb-on-ac:#fff;--sb-link:#1d4ed8;--sb-red:#fdecec;--sb-redb:#e08a8a;--sb-redt:#7a1111;--sb-warn:#fff6df;--sb-warnb:#f0cf7a;--sb-warnt:#3b2f06;color-scheme:light}
+@media (prefers-color-scheme:dark){#sb-root{--sb-bg:#18223a;--sb-tx:#eaf0fb;--sb-mut:#a5b4cf;--sb-ln:#2b3858;--sb-ac:#5b8def;--sb-on-ac:#0b1020;--sb-link:#9db9ff;--sb-red:#3a1616;--sb-redb:#a24444;--sb-redt:#ffd5d5;--sb-warn:#3a2f10;--sb-warnb:#8a6d1c;--sb-warnt:#fff2cc;color-scheme:dark}}
+#sb-root,#sb-root *{box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:normal;text-transform:none}
+#sb-root{font-size:16px;line-height:1.5;color:var(--sb-tx)}
+#sb-bubble{position:fixed;right:16px;bottom:16px;width:60px;height:60px;border-radius:50%;border:0;background:var(--sb-ac);color:var(--sb-on-ac);font-size:28px;line-height:1;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:2147483000;padding:0}
+#sb-bubble:focus-visible,#sb-min:focus-visible,#sb-q:focus-visible,#sb-f button:focus-visible,.sb-b:focus-visible,.sb-lnk:focus-visible,.sb-ml:focus-visible{outline:3px solid var(--sb-ac);outline-offset:2px}
+#sb-panel{position:fixed;right:16px;bottom:16px;width:340px;max-width:calc(100vw - 16px);height:470px;max-height:calc(100vh - 16px);background:var(--sb-bg);color:var(--sb-tx);border:1px solid var(--sb-ln);border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.35);display:none;flex-direction:column;z-index:2147483001;overflow:hidden}
+#sb-panel.sb-open{display:flex}
+.sb-hd{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--sb-ln)}
+.sb-hd b{flex:1;font-size:17px}
+#sb-min{min-width:44px;min-height:44px;border:1px solid var(--sb-ln);background:transparent;color:var(--sb-tx);border-radius:12px;font-size:24px;line-height:1;cursor:pointer;padding:0}
+.sb-warn{background:var(--sb-warn);color:var(--sb-warnt);border-bottom:1px solid var(--sb-warnb);padding:6px 12px;font-size:14px}
+#sb-log{flex:1;overflow:auto;padding:10px 12px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
+.sb-m{padding:9px 12px;border-radius:14px;border:1px solid var(--sb-ln);max-width:96%;font-size:16px;line-height:1.55;word-wrap:break-word;overflow-wrap:anywhere}
+.sb-m p{margin:0}
+.sb-me{align-self:flex-end;background:var(--sb-ac);color:var(--sb-on-ac);border-color:transparent}
+.sb-bot{align-self:flex-start;background:var(--sb-bg);color:var(--sb-tx)}
+.sb-red{background:var(--sb-red);border-color:var(--sb-redb);color:var(--sb-redt)}
+.sb-on{font-size:13px;color:var(--sb-mut);margin:0 0 4px}
+.sb-red .sb-on{color:var(--sb-redt)}
+.sb-g{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--sb-mut);margin:10px 0 2px}
+.sb-red .sb-g{color:var(--sb-redt)}
+.sb-b{display:block;width:100%;min-height:44px;text-align:left;margin:4px 0;padding:8px 12px;border:1px solid var(--sb-ln);border-radius:12px;background:var(--sb-bg);color:var(--sb-tx);font-size:16px;line-height:1.35;cursor:pointer}
+.sb-lnk{display:block;width:fit-content;max-width:100%;min-height:44px;line-height:44px;padding:0 14px;border-radius:12px;background:var(--sb-ac);color:var(--sb-on-ac);text-decoration:none;margin-top:8px}
+.sb-red .sb-lnk{background:var(--sb-redt);color:var(--sb-red)}
+.sb-ml{display:block;padding:10px 12px;margin:6px 0;border:1px solid var(--sb-ln);border-radius:12px;color:var(--sb-link);text-decoration:underline;font-size:15px;line-height:1.35;background:var(--sb-bg)}
+.sb-m svg{display:block;margin:6px 0;max-width:100%;height:auto}
+#sb-f{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--sb-ln);margin:0}
+#sb-q{flex:1;min-width:0;min-height:44px;padding:0 12px;border-radius:12px;border:1px solid var(--sb-ln);background:var(--sb-bg);color:var(--sb-tx);font-size:16px}
+#sb-f button{min-height:44px;padding:0 16px;border:0;border-radius:12px;background:var(--sb-ac);color:var(--sb-on-ac);font-size:16px;cursor:pointer}
+@media (prefers-reduced-motion:no-preference){#sb-panel.sb-open{animation:sbin .15s ease-out}@keyframes sbin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
+@media print{#sb-root{display:none}}
