@@ -341,7 +341,7 @@
   <section id="velkommen" aria-label="Hva bruker du?">
     <h2 class="vh">Hjelpemidler for <em>diabetikere.</em></h2>
     <p class="lead">Velg pumpe og sensor, så får du sidene som passer best.</p>
-    <p class="vw"><b>Viktig:</b> Denne siden er bare et hjelpemiddel. Du er selv ansvarlig for å sjekke at informasjonen stemmer med det sykehuset og diabetesteamet har bestemt for deg.</p>
+    <p class="vw"><b>Viktig:</b> Denne siden er bare et hjelpemiddel. Du er selv ansvarlig for å sjekke at informasjonen stemmer med det sykehuset og diabetesteamet har bestemt for deg. Diabetes-appene og nettsiden er ikke gjennomgått av helsepersonell ennå. Følg alltid planen fra diabetesteamet.</p>
     <div class="panel"><h2>Hva bruker du?</h2><p class="small" style="margin:0 0 4px;color:var(--muted)">Lagres bare på denne enheten. Du kan endre det senere.</p>
     <label for="ut-p">Pumpe</label><select id="ut-p"></select>
     <label for="ut-s">Sensor</label><select id="ut-s"></select>
@@ -543,5 +543,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
 <script src="/nyttig/diabetes/utstyr.js" defer></script>
+<script src="/nyttig/diabetes/sporsmal/bot.js" defer></script>
 </body>
 </html>
