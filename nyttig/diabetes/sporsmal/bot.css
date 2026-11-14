@@ -1,6 +1,5 @@
 /* Utseende for spørsmålsboten. Hører bare til boten i denne mappen. */
 #sb-root{--sb-bg:#fff;--sb-tx:#14213d;--sb-mut:#5b6b85;--sb-ln:#dbe3ef;--sb-ac:#2563eb;--sb-on-ac:#fff;--sb-link:#1d4ed8;--sb-red:#fdecec;--sb-redb:#e08a8a;--sb-redt:#7a1111;--sb-warn:#fff6df;--sb-warnb:#f0cf7a;--sb-warnt:#3b2f06;color-scheme:light}
-@media (prefers-color-scheme:dark){#sb-root{--sb-bg:#18223a;--sb-tx:#eaf0fb;--sb-mut:#a5b4cf;--sb-ln:#2b3858;--sb-ac:#5b8def;--sb-on-ac:#0b1020;--sb-link:#9db9ff;--sb-red:#3a1616;--sb-redb:#a24444;--sb-redt:#ffd5d5;--sb-warn:#3a2f10;--sb-warnb:#8a6d1c;--sb-warnt:#fff2cc;color-scheme:dark}}
 #sb-root,#sb-root *{box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:normal;text-transform:none}
 #sb-root{font-size:16px;line-height:1.5;color:var(--sb-tx)}
 #sb-bubble{position:fixed;right:16px;bottom:16px;width:60px;height:60px;border-radius:50%;border:0;background:var(--sb-ac);color:var(--sb-on-ac);font-size:28px;line-height:1;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:2147483000;padding:0}
