@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Fant du svaret? · Diabetes</title>
+<style>
+:root{--bg:#f4f7ff;--fg:#0f1a33;--muted:#5b6b88;--line:#dbe3f5;--card:#fff;--a:#2563eb}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--fg);padding:18px}
+main{max-width:560px;margin:0 auto}
+a{color:var(--a)}h1{font-size:28px;line-height:1.15;margin:8px 0}
+.note{background:#fff5d6;border:1px solid #ecd58a;border-radius:14px;padding:12px 14px;margin:12px 0;color:#5a4300;font-size:15px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+legend,label.t{font-weight:700;display:block;margin:0 0 8px;padding:0}
+fieldset{border:0;padding:0;margin:0 0 16px}
+.o{display:flex;gap:8px;flex-wrap:wrap}
+.o label{border:2px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:600;min-height:44px;cursor:pointer}
+.o input{position:absolute;opacity:0;pointer-events:none}
+.o label:has(input:checked){border-color:var(--a);background:#e8f0ff}
+.o label:has(input:focus-visible){outline:3px solid var(--a);outline-offset:2px}
+textarea{width:100%;border:2px solid var(--line);border-radius:12px;padding:12px;font:inherit;min-height:110px}
+.btn{margin-top:14px;background:var(--a);color:#fff;border:0;border-radius:12px;padding:14px 22px;font:700 17px/1 inherit;min-height:48px;cursor:pointer}
+.btn:disabled{opacity:.6}
+small,.small{color:var(--muted)}
+.foot{font-size:14px;color:var(--muted);margin-top:18px}
+</style>
+</head>
+<body>
+<main>
+<a href="/nyttig/diabetes/sporsmal/">&larr; Tilbake til spørsmålene</a>
+<h1>Fant du svaret?</h1>
+<p>Dette tar under ett minutt. Det hjelper oss å lage bedre svar.</p>
+<p class="note"><b>Ikke skriv navn eller helseopplysninger.</b> Skriv bare hva du lette etter. Svaret sendes til oss på e-post via en skjematjeneste som kan se teknisk informasjon som IP-adresse. Se <a href="/personvern/">personvern</a>.</p>
+<form id="tb" class="panel" novalidate>
+<fieldset><legend>Fant du det du lette etter?</legend>
+<div class="o">
+<label><input type="radio" name="fant" value="Ja">Ja</label>
+<label><input type="radio" name="fant" value="Delvis">Delvis</label>
+<label><input type="radio" name="fant" value="Nei">Nei</label>
+</div></fieldset>
+<label class="t" for="tx">Hva spurte du om, eller hva fant du ikke? <small>(frivillig)</small></label>
+<textarea id="tx" name="tekst" maxlength="1500" placeholder="For eksempel: «Jeg lette etter hva jeg skal gjøre ved sykdom på skolen.»"></textarea>
+<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+<button class="btn" type="submit" id="send">Send inn</button>
+<p class="small" id="st" role="status" aria-live="polite"></p>
+</form>
+<section class="panel" id="ok" hidden>
+<h2 style="margin-top:0">Takk for hjelpen</h2>
+<p style="margin:0">Svaret er sendt. Det gjør svarene bedre for andre.</p>
+</section>
+<p class="foot">Dette erstatter ikke råd fra diabetesteamet. Ved akutt sykdom, ring legevakt 116 117, eller 113 i nødsituasjon.</p>
+</main>
+<script>
+(function(){
+var KEY='d6619d9b-97f3-4521-8e77-37a56a1978e1'; /* samme nøkkel som tilbakemeldingsskjemaet bruker */
+var f=document.getElementById('tb'),btn=document.getElementById('send'),st=document.getElementById('st'),ok=document.getElementById('ok');
+f.addEventListener('submit',function(e){
+e.preventDefault();
+if(f.botcheck.checked)return;
+var r=f.querySelector('input[name="fant"]:checked'),fant=r?r.value:'',tx=f.tekst.value.trim();
+if(!fant&&!tx){st.textContent='Velg et svar eller skriv noe før du sender.';return;}
+var msg='Fant du det du lette etter: '+(fant||'(ikke besvart)')+'\n\nHva spurte du om, eller hva fant du ikke: '+(tx||'(ikke besvart)');
+btn.disabled=true;st.textContent='Sender …';
+fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+body:JSON.stringify({access_key:KEY,subject:'Tilbakemelding svarbot (diabetes)',from_name:'Reinertsengruppen.no',message:msg,botcheck:''})
+}).then(function(x){return x.json();}).then(function(j){
+if(!j.success)throw new Error('feil');
+f.hidden=true;ok.hidden=false;ok.scrollIntoView({block:'start'});
+}).catch(function(){st.textContent='Klarte ikke å sende. Prøv igjen om litt.';btn.disabled=false;});
+});
+})();
+</script>
+</body>
+</html>
