@@ -11,14 +11,14 @@
 <meta name="copyright" content="© 2026 Reinertsengruppen">
 <meta name="rg-origin" content="rg-2026-10-nyttig-fyret-9c22">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fyret – Reinertsengruppen</title>
-<meta name="description" content="Vær, sjø og tidevann ved ti fyr mellom Tvedestrand og Egersund, pluss Fyret på Flekkerøya.">
+<title>Fyrene – Reinertsengruppen</title>
+<meta name="description" content="Vær, sjø og tidevann ved ti fyr mellom Tvedestrand og Egersund.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Reinertsengruppen">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:url" content="https://reinertsengruppen.no/nyttig/fyret/">
-<meta property="og:title" content="Fyret – Reinertsengruppen">
-<meta property="og:description" content="Vær, sjø og tidevann ved ti fyr mellom Tvedestrand og Egersund, pluss Fyret på Flekkerøya.">
+<meta property="og:title" content="Fyrene – Reinertsengruppen">
+<meta property="og:description" content="Vær, sjø og tidevann ved ti fyr mellom Tvedestrand og Egersund.">
 <meta property="og:image" content="https://reinertsengruppen.no/bilder/delingsbilde-forside.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -381,8 +381,8 @@ function verdict(w,o){
 /* ---------- visninger ---------- */
 function viewHub(){
   var h='<span class="tag"><span class="dot"></span> Ti fyr, fra Tvedestrand til Egersund</span>';
-  h+='<h1>Fyret <em>langs Sørlandskysten.</em></h1>';
-  h+='<p class="lead">Velg et fyr for å se været, sjøen og tidevannet der akkurat nå. Se også <a href="flekkeroya/index.html">Fyret på Flekkerøya</a>.</p>';
+  h+='<h1>Fyrene <em>langs Sørlandskysten.</em></h1>';
+  h+='<p class="lead">Velg et fyr for å se været, sjøen og tidevannet der akkurat nå. Tallene kommer fra Meteorologisk institutt og Kartverket.</p>';
   h+='<div class="grid">';
   for(var i=0;i<LH.length;i++){ var L=LH[i];
     h+='<a class="card" href="#/'+L.id+'" aria-label="'+esc(L.name)+' fyr, '+esc(L.kommune)+'">'+tower(L.t)
@@ -391,7 +391,7 @@ function viewHub(){
   h+='</div>';
   h+=foot();
   $app.innerHTML=h;
-  document.title="Fyret – Reinertsengruppen";
+  document.title="Fyrene – Reinertsengruppen";
   LH.forEach(function(L,i){
     if(L.lat===null) return;
     setTimeout(function(){
@@ -510,7 +510,7 @@ function tideHTML(tide){
 
 function foot(){
   return '<p class="foot">Værdata fra <a href="https://api.met.no" target="_blank" rel="noopener">Meteorologisk institutt (MET)</a>, lisens CC BY 4.0 / NLOD. Tidevann fra <a href="https://www.kartverket.no/til-sjos/se-havniva" target="_blank" rel="noopener">Kartverket</a>, lisens CC BY 4.0. '
-   +'Fyret er ikke en varslingstjeneste. Vurderingen på siden er en enkel pekepinn og kan ta feil. Siden henter data direkte fra MET og Kartverket, som dermed får din IP-adresse, slik som ved alle andre nettsider. Siste svar lagres i nettleseren din i noen minutter. Det inneholder ingen personopplysninger. Utseendet på fyrtårnene er forenklede tegninger.</p>';
+   +'Denne siden er ikke en varslingstjeneste. Vurderingen på siden er en enkel pekepinn og kan ta feil. Siden henter data direkte fra MET og Kartverket, som dermed får din IP-adresse, slik som ved alle andre nettsider. Siste svar lagres i nettleseren din i noen minutter. Det inneholder ingen personopplysninger. Utseendet på fyrtårnene er forenklede tegninger.</p>';
 }
 
 function route(){
