@@ -13,15 +13,16 @@ HER = os.path.dirname(os.path.abspath(__file__))
 ROT = os.path.dirname(HER)
 DELAR = os.path.join(HER, "delar")
 
-# side: (bunn-del, valgt side i menyen)
+# side: (bunn-del, valgt side i menyen, bredde-del)
+# bredde=True: sidene med smal midtkolonne får samme bredde som forsiden (bare PC, fra 900 px).
 SIDER = {
-    "index.html":                        ("bunn-forside", None),
-    "nyttig/index.html":                 ("bunn-under",   None),
-    "nyttig/apper/index.html":           ("bunn-under",   "apper"),
-    "nyttig/hjelpemidler/index.html":    ("bunn-under",   "hjelp"),
-    "nyttig/fyret/index.html":           ("bunn-under",   "apper"),
-    "nyttig/fyret/flekkeroya/index.html":("bunn-under",   "apper"),
-    "sponsorer/index.html":              ("bunn-sponsor", None),
+    "index.html":                        ("bunn-forside", None,     False),
+    "nyttig/index.html":                 ("bunn-under",   None,     True),
+    "nyttig/apper/index.html":           ("bunn-under",   "apper",  True),
+    "nyttig/hjelpemidler/index.html":    ("bunn-under",   "hjelp",  True),
+    "nyttig/fyret/index.html":           ("bunn-under",   "apper",  True),
+    "nyttig/fyret/flekkeroya/index.html":("bunn-under",   "apper",  True),
+    "sponsorer/index.html":              ("bunn-sponsor", None,     False),
 }
 
 def les(navn):
@@ -40,7 +41,7 @@ def bytt(s, navn, regex, innhold):
     m = ms[0]
     return s[:m.start()] + blokk + s[m.end():]
 
-def bygg(side, bunn, valgt):
+def bygg(side, bunn, valgt, bredde):
     dybde = side.count("/")
     r = "../" * dybde
     forside = side == "index.html"
@@ -56,10 +57,19 @@ def bygg(side, bunn, valgt):
     s = bytt(s, "logo",  r'<a class="brand"[^>]*><svg.*?</svg></a>', les("logo").replace("{R}", r))
     s = bytt(s, "meny",  r'<nav aria-label="Hovedmeny">.*?</nav>', meny)
     s = bytt(s, "bunn",  r'<footer.*?</footer>', les(bunn).replace("{R}", r))
+    if bredde:
+        blokk = "<!--rg:bredde-->" + les("bredde") + "<!--/rg:bredde-->"
+        m = re.search(r"<!--rg:bredde-->.*?<!--/rg:bredde-->", s, flags=re.S)
+        if m:
+            s = s[:m.start()] + blokk + s[m.end():]
+        else:
+            if s.count("</head>") != 1:
+                sys.exit("Fant ikke </head> i " + side)
+            s = s.replace("</head>", blokk + "\n</head>")
     with open(sti, "w", encoding="utf-8", newline="") as f:
         f.write(s)
     print("ok", side)
 
 if __name__ == "__main__":
-    for side, (bunn, valgt) in SIDER.items():
-        bygg(side, bunn, valgt)
+    for side, (bunn, valgt, bredde) in SIDER.items():
+        bygg(side, bunn, valgt, bredde)

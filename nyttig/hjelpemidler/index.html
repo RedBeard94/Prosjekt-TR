@@ -231,6 +231,13 @@
 <link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/bilder/ikon/apple-touch-icon.png">
 <link rel="canonical" href="https://reinertsengruppen.no/nyttig/hjelpemidler/">
+<!--rg:bredde--><style id="rg-bredde">
+/* Samme bredde som forsiden på PC. Mobil og nettbrett (under 900 px) er uendret. */
+@media (min-width:900px){
+  .bar{max-width:none;padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px)}
+  main,main.sider,main.fy,.pfoot,.rgstrip{max-width:none;padding-left:clamp(20px,5vw,64px);padding-right:clamp(20px,5vw,64px)}
+}
+</style><!--/rg:bredde-->
 </head>
 <body>
 <header>
