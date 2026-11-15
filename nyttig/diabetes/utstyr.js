@@ -10,7 +10,7 @@
     warnE: '. This page is made for Tandem pump with Dexcom or Libre 3 Plus sensor, Accu-Chek Solo, Omnipod DASH, mylife YpsoPump, MiniMed 780G with Simplera Sync, Instinct and Guardian 4, or Omnipod 5 with FreeStyle Libre 3 Plus, so the arrows and names may look different for you.', frontWarn: ' The pages are made for Tandem pump with Dexcom or Libre 3 Plus sensor, Accu-Chek Solo, Omnipod DASH, mylife YpsoPump, MiniMed 780G with Simplera Sync, Instinct and Guardian 4, or Omnipod 5 with FreeStyle Libre 3 Plus, so they may be misleading for you.', man: 'Manuals', oldB: 'Made for Dexcom sensor and Tandem pump.', oldA: ' If you have another pump, this may be misleading for you. ',
     soonTag: ' (coming soon)', soonH: 'Coming soon. ', soonA: 'We have not made the pages for ', soonB: ' yet. You can tap "Just look around", but the pages may be misleading for you.', soonE: 'You can continue to the simple version, but its pages are made for Tandem pump with Dexcom or Libre 3 Plus sensor, Accu-Chek Solo, Omnipod DASH, mylife YpsoPump, MiniMed 780G with Simplera Sync, Instinct and Guardian 4, or Omnipod 5 with FreeStyle Libre 3 Plus, and may be misleading for you.', noOther: 'other equipment',
     home: '/nyttig/diabetes/en/?velg', manPath: '/nyttig/diabetes/en/manualer/',
-    N: { dash: 'Omnipod DASH has no automation and is not connected to a sensor. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). You type the sensor value into the pump yourself.', solo: 'Accu-Chek Solo has no automation and is not connected to a sensor. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). You type the sensor value into the pump yourself.', o5: 'Omnipod 5 can be used with Dexcom G6, Dexcom G7, FreeStyle Libre 2 Plus and FreeStyle Libre 3 Plus. Our pages are made for Libre 3 Plus.', tslim: 'Tandem t:slim X2 is used with Dexcom G7, Dexcom G6 and FreeStyle Libre 3 Plus.', ypso: 'mylife YpsoPump has no sensor connection or bolus calculator of its own. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). Automation through the CamAPS FX app is not explained here yet.', mm: 'MiniMed 780G is used with Simplera Sync, Instinct and Guardian 4. Instinct needs a pump software upgrade first.' }
+    N: { dash: 'Omnipod DASH has no automation and is not connected to a sensor. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). You type the sensor value into the pump yourself.', solo: 'Accu-Chek Solo has no automation and is not connected to a sensor. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). You type the sensor value into the pump yourself.', o5: 'Omnipod 5 can be used with Dexcom G6, Dexcom G7, FreeStyle Libre 2 Plus and FreeStyle Libre 3 Plus. Our pages are made for Libre 3 Plus.', tslim: 'Tandem t:slim X2 is used with Dexcom G7, Dexcom G6 and FreeStyle Libre 3 Plus.', ypso: 'mylife YpsoPump has no sensor connection or bolus calculator of its own. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). If you use the CamAPS FX app, choose "mylife YpsoPump with CamAPS FX".', ypsocam: 'mylife YpsoPump with the CamAPS FX app controls the pump automatically. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). Ask your diabetes team that your combination is supported.', mm: 'MiniMed 780G is used with Simplera Sync, Instinct and Guardian 4. Instinct needs a pump software upgrade first.' }
   } : {
     pump: 'Velg pumpe', sen: 'Velg sensor', other: 'Annen / vet ikke',
     suit: 'Sensor som passer: ', mine: 'Ditt utstyr: ', edit: 'Endre', pick: 'Velg utstyret ditt',
@@ -20,14 +20,14 @@
     warnE: '. Denne siden er laget for Tandem-pumpe med Dexcom- eller Libre 3 Plus-sensor, Accu-Chek Solo, Omnipod DASH, mylife YpsoPump, MiniMed 780G med Simplera Sync, Instinct og Guardian 4, eller Omnipod 5 med FreeStyle Libre 3 Plus, så pilene og navnene kan se annerledes ut hos deg.', frontWarn: ' Sidene er laget for Tandem-pumpe med Dexcom- eller Libre 3 Plus-sensor, Accu-Chek Solo, Omnipod DASH, mylife YpsoPump, MiniMed 780G med Simplera Sync, Instinct og Guardian 4, eller Omnipod 5 med FreeStyle Libre 3 Plus, så de kan være misvisende for deg.', man: 'Manualer', oldB: 'Laget for Dexcom-sensor og Tandem-pumpe.', oldA: ' Har du en annen pumpe, kan det være misvisende for deg. ',
     soonTag: ' (kommer snart)', soonH: 'Kommer snart. ', soonA: 'Vi har ikke laget sidene for ', soonB: ' ennå. Du kan trykke «Bare se meg rundt», men sidene kan være misvisende for deg.', soonE: 'Du kan gå videre til enkel versjon, men sidene der er laget for Tandem-pumpe med Dexcom- eller Libre 3 Plus-sensor, Accu-Chek Solo, Omnipod DASH, mylife YpsoPump, MiniMed 780G med Simplera Sync, Instinct og Guardian 4, eller Omnipod 5 med FreeStyle Libre 3 Plus, og kan være misvisende for deg.', noOther: 'annet utstyr',
     home: '/nyttig/diabetes/?velg', manPath: '/nyttig/diabetes/manualer/',
-    N: { dash: 'Omnipod DASH har ingen automatikk og er ikke koblet til en sensor. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Du legger sensorverdien inn i pumpen selv.', solo: 'Accu-Chek Solo har ingen automatikk og er ikke koblet til en sensor. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Du legger sensorverdien inn i pumpen selv.', o5: 'Omnipod 5 kan brukes med Dexcom G6, Dexcom G7, FreeStyle Libre 2 Plus og FreeStyle Libre 3 Plus. Sidene våre er laget for Libre 3 Plus.', tslim: 'Tandem t:slim X2 brukes med Dexcom G7, Dexcom G6 og FreeStyle Libre 3 Plus.', ypso: 'mylife YpsoPump har ingen sensorkobling eller boluskalkulator selv. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Automatikk via appen CamAPS FX er ikke forklart her ennå.', mm: 'MiniMed 780G brukes med Simplera Sync, Instinct og Guardian 4. Instinct krever at pumpen oppgraderes først.' }
+    N: { dash: 'Omnipod DASH har ingen automatikk og er ikke koblet til en sensor. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Du legger sensorverdien inn i pumpen selv.', solo: 'Accu-Chek Solo har ingen automatikk og er ikke koblet til en sensor. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Du legger sensorverdien inn i pumpen selv.', o5: 'Omnipod 5 kan brukes med Dexcom G6, Dexcom G7, FreeStyle Libre 2 Plus og FreeStyle Libre 3 Plus. Sidene våre er laget for Libre 3 Plus.', tslim: 'Tandem t:slim X2 brukes med Dexcom G7, Dexcom G6 og FreeStyle Libre 3 Plus.', ypso: 'mylife YpsoPump har ingen sensorkobling eller boluskalkulator selv. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Bruker du appen CamAPS FX, velg «mylife YpsoPump med CamAPS FX».', ypsocam: 'mylife YpsoPump med appen CamAPS FX styrer pumpen automatisk. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Spør diabetesteamet at kombinasjonen din støttes.', mm: 'MiniMed 780G brukes med Simplera Sync, Instinct og Guardian 4. Instinct krever at pumpen oppgraderes først.' }
   };
-  var PUMPS = [['tslim', 'Tandem t:slim X2'], ['dash', 'Omnipod DASH'], ['o5', 'Omnipod 5'], ['ypso', 'mylife YpsoPump'], ['mm', 'Medtronic MiniMed 780G'], ['solo', 'Accu-Chek Solo']];
+  var PUMPS = [['tslim', 'Tandem t:slim X2'], ['dash', 'Omnipod DASH'], ['o5', 'Omnipod 5'], ['ypso', 'mylife YpsoPump'], ['ypsocam', EN ? 'mylife YpsoPump with CamAPS FX' : 'mylife YpsoPump med CamAPS FX'], ['mm', 'Medtronic MiniMed 780G'], ['solo', 'Accu-Chek Solo']];
   var SENS = [['g7', 'Dexcom G7'], ['g6', 'Dexcom G6'], ['libre', 'FreeStyle Libre 3 Plus'], ['simplera', 'Simplera Sync'], ['instinct', 'Instinct'], ['guardian', 'Guardian 4']];
   /* Ferdig laget: legg til id her når sidene er klare for en pumpe eller sensor. */
-  var SUP = { p: ['tslim', 'mm', 'o5', 'solo', 'dash', 'ypso'], s: ['g7', 'g6', 'simplera', 'libre', 'instinct', 'guardian'] };
+  var SUP = { p: ['tslim', 'mm', 'o5', 'solo', 'dash', 'ypso', 'ypsocam'], s: ['g7', 'g6', 'simplera', 'libre', 'instinct', 'guardian'] };
   /* Pumpe og sensor som hører sammen i sidene våre. */
-  var PAIRS = ['tslim+g7', 'tslim+g6', 'tslim+libre', 'mm+simplera', 'mm+instinct', 'mm+guardian', 'o5+libre', 'solo+g7', 'solo+g6', 'solo+libre', 'dash+g7', 'dash+g6', 'dash+libre', 'ypso+g7', 'ypso+g6', 'ypso+libre'];
+  var PAIRS = ['tslim+g7', 'tslim+g6', 'tslim+libre', 'mm+simplera', 'mm+instinct', 'mm+guardian', 'o5+libre', 'solo+g7', 'solo+g6', 'solo+libre', 'dash+g7', 'dash+g6', 'dash+libre', 'ypso+g7', 'ypso+g6', 'ypso+libre', 'ypsocam+g7', 'ypsocam+g6', 'ypsocam+libre'];
   function pairOk(p, s) { return !p || !s || PAIRS.indexOf(p + '+' + s) > -1; }
   var PDEF = { g7: 'tslim', g6: 'tslim', simplera: 'mm', libre: 'o5', instinct: 'mm', guardian: 'mm' };
   var SUGG = { tslim: 'g7', o5: 'libre', ypso: 'libre', mm: 'simplera' };
@@ -35,8 +35,8 @@
   function g(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
   function st(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) { } }
   function nm(a, v) { for (var i = 0; i < a.length; i++) if (a[i][0] === v) return a[i][1]; return ''; }
-  function get() { var p = nm(PUMPS, g('mn_pump')) ? g('mn_pump') : '', s = nm(SENS, g('mn_sen')) ? g('mn_sen') : '', o = g('mn_other') ? '1' : ''; return { p: p, s: s, o: o }; }
-  function names(c) { var t = []; if (c.p) t.push(nm(PUMPS, c.p)); if (c.s) t.push(nm(SENS, c.s)); if (c.o) t.push(T.other); return t; }
+  function get() { var p = nm(PUMPS, g('mn_pump')) ? g('mn_pump') : '', s = nm(SENS, g('mn_sen')) ? g('mn_sen') : '', o = g('mn_other') ? '1' : ''; return { p: p, s: s, o: o, cam: p === 'ypso' && g('mn_cam') === '1' }; }
+  function names(c) { var t = []; if (c.p) t.push(nm(PUMPS, c.cam ? 'ypsocam' : c.p)); if (c.s) t.push(nm(SENS, c.s)); if (c.o) t.push(T.other); return t; }
   function fitOf(c) { return (c.p === 'tslim' && (c.s === 'g7' || c.s === 'g6' || c.s === 'libre' || !c.s)) || ((c.p === 'solo' || c.p === 'dash' || c.p === 'ypso') && (c.s === 'g7' || c.s === 'g6' || c.s === 'libre')) || (c.p === 'mm' && (c.s === 'simplera' || c.s === 'instinct' || c.s === 'guardian' || !c.s)) || (c.p === 'o5' && (c.s === 'libre' || !c.s)) || (!c.p && !c.o && (c.s === 'g7' || c.s === 'g6' || c.s === 'simplera' || c.s === 'libre' || c.s === 'instinct' || c.s === 'guardian')); }
   function has(c) { return !!(c.p || c.s || c.o); }
   var root = document.documentElement;
@@ -46,7 +46,7 @@
   var ban = document.querySelector('p.pump');
   if (ban) {
     var c = get();
-    var okx = ban.getAttribute('data-ok-' + c.p + '-' + c.s);
+    var okx = ban.getAttribute('data-ok-' + (c.cam && !ENK ? 'ypsocam' : c.p) + '-' + c.s);
     if (okx) {
       ban.style.background = '#e6f7ee'; ban.style.borderColor = '#8fd3ae'; ban.style.color = '#0f5132';
       ban.innerHTML = okx;
@@ -90,6 +90,7 @@
      data-for-mm="tekst" / data-for-libre="tekst": bytter innholdet når pumpen eller sensoren er den valgte. Uten valg vises Tandem og Dexcom. */
   (function () {
     var c = get(), S = c.s || (c.p && SUGG[c.p]) || '', P = c.p || PDEF[S] || '';
+    if (c.cam && !ENK) P = 'ypsocam';
     if (!c.p && !c.s) { S = ''; P = ''; }
     function ok(v, a, d) { if (!a) return true; var l = a.split(' '); return v ? l.indexOf(v) > -1 : l.indexOf(d) > -1; }
     var els = document.querySelectorAll('[data-sen],[data-pump]');
@@ -142,11 +143,12 @@
   }
   ps.addEventListener('change', function () { var v = ps.value; if (SUGG[v]) ss.value = SUGG[v]; else if (v) ss.value = ''; recDraw(); chk(); });
   ss.addEventListener('change', chk);
-  function preset() { var c = get(); var vv = g('mn_ver') === 'enkel' ? 'enkel' : 'vanlig'; for (var q = 0; q < rv.length; q++) rv[q].checked = rv[q].value === vv; ps.value = c.p || (c.o && !c.s ? 'annen' : ''); ss.value = c.s || ''; recDraw(); chk(); }
+  function preset() { var c = get(); var vv = g('mn_ver') === 'enkel' ? 'enkel' : 'vanlig'; for (var q = 0; q < rv.length; q++) rv[q].checked = rv[q].value === vv; ps.value = c.cam ? 'ypsocam' : (c.p || (c.o && !c.s ? 'annen' : '')); ss.value = c.s || ''; recDraw(); chk(); }
   function openVk() { preset(); root.className += ' vk'; window.scrollTo(0, 0); }
   function closeVk() { root.className = root.className.replace(/(^|\s)vk(?=\s|$)/g, ''); window.scrollTo(0, 0); drawNote(); }
   go.addEventListener('click', function () {
-    st('mn_pump', ps.value && ps.value !== 'annen' ? ps.value : '');
+    st('mn_pump', ps.value && ps.value !== 'annen' ? (ps.value === 'ypsocam' ? 'ypso' : ps.value) : '');
+    st('mn_cam', ps.value === 'ypsocam' ? '1' : '');
     st('mn_sen', ss.value && ss.value !== 'annen' ? ss.value : '');
     st('mn_other', (ps.value === 'annen' || ss.value === 'annen') ? '1' : '');
     st('mn_ver', ver() === 'enkel' ? 'enkel' : '');
