@@ -1,0 +1,25 @@
+# Diabetes – Reinertsengruppen
+
+> Gratis norsk nettside for personer med diabetes type 1 og pårørende. Forklarer trendpiler, insulinpumpe, sensor, automatikk, karbohydrater og blodsukker, med kilder fra produsentenes manualer og norske kilder. Laget av Thomas Reinertsen (privat, ikke en klinikk). Ikke gjennomgått av helsepersonell ennå. Ikke medisinsk rådgivning: følg alltid planen fra diabetesteamet.
+
+## Hovedsider (norsk)
+- [Forsiden](https://reinertsengruppen.no/nyttig/diabetes/): oversikt og valg av pumpe og sensor
+- [Trendpiler og automatikk](https://reinertsengruppen.no/nyttig/diabetes/trendpiler/): hva pilene betyr, Control-IQ, Basal-IQ, Omnipod 5, MiniMed 780G, CamAPS FX
+- [Slik henger tallene sammen](https://reinertsengruppen.no/nyttig/diabetes/tallene/): karbohydratforhold, korreksjonsfaktor, målverdi, aktivt insulin
+- [Mat og blodsukker](https://reinertsengruppen.no/nyttig/diabetes/mat-og-blodsukker/): karbohydrater, fett, protein
+- [Manualer](https://reinertsengruppen.no/nyttig/diabetes/manualer/): lenker til brukerveiledninger for pumper og sensorer
+- [Innstillinger og sjekkliste](https://reinertsengruppen.no/nyttig/diabetes/innstillinger/)
+- [Spørsmål og svar](https://reinertsengruppen.no/nyttig/diabetes/sporsmal/)
+- [Akutt: lavt og høyt blodsukker](https://reinertsengruppen.no/nyttig/diabetes/akutt/)
+- [Rettigheter og støtte](https://reinertsengruppen.no/nyttig/diabetes/rettigheter/)
+
+## English
+- [Start page](https://reinertsengruppen.no/nyttig/diabetes/en/)
+- [Trend arrows and automation](https://reinertsengruppen.no/nyttig/diabetes/en/trendpiler/)
+- [How the numbers fit together](https://reinertsengruppen.no/nyttig/diabetes/en/tallene/)
+- [Food and blood sugar](https://reinertsengruppen.no/nyttig/diabetes/en/mat-og-blodsukker/)
+- [Manuals](https://reinertsengruppen.no/nyttig/diabetes/en/manualer/)
+
+## Merk
+- Siden gir generell informasjon og regner ikke ut doser.
+- Støttede pumper: Tandem t:slim X2, Omnipod DASH, Omnipod 5, mylife YpsoPump (også med CamAPS FX), Medtronic MiniMed 780G, Accu-Chek Solo.
