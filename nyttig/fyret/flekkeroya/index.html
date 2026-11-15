@@ -73,7 +73,10 @@
   .verdict .fine { margin-top:8px; font-size:.78rem; }
 
   .lh { width:100%; height:auto; display:block; max-height:360px; }
-  .lhbox { position:relative; width:100%; max-width:560px; justify-self:end; }
+  .lhcol { width:100%; max-width:560px; justify-self:end; }
+  .lhbox { position:relative; width:100%; }
+  .lhlink { margin:16px 4px 0; font-size:17px; line-height:1.6; }
+  .lhlink a { font-weight:700; }
   .lhbox .lhimg { display:block; width:100%; height:auto; border-radius:5.9% / 11%; box-shadow:0 10px 30px rgba(20,40,80,.12); }
   .lhbox .lhov { position:absolute; inset:0; width:100%; height:100%; max-height:none; }
   .lh .beam { fill:var(--verdict); opacity:.34; transform-origin:150px 74px; animation:sweep 7s ease-in-out infinite; transition:fill .6s; }
@@ -221,6 +224,7 @@
         <p class="fine">En enkel indikasjon for småbåt og tur, ikke et sikkerhetsvarsel. Sjekk alltid offisielt farevarsel på <a href="https://www.yr.no/nb/v%C3%A6rvarsel/daglig-tabell/1-2377374/Norge/Agder/Kristiansand/Flekker%C3%B8y" target="_blank" rel="noopener">yr.no</a> før du drar ut.</p>
       </div>
     </div>
+    <div class="lhcol">
     <div class="lhbox" aria-hidden="true">
       <img class="lhimg" src="../../../bilder/flekkeroya-kyst.jpg" width="1200" height="630" alt="">
       <svg class="lh lhov" viewBox="0 0 1541 809">
@@ -228,6 +232,8 @@
         <rect x="1301" y="451" width="4" height="46" fill="#5a4636"/>
         <path class="lamp" d="M1305 453 L1365 471 L1305 489Z"/>
       </svg>
+    </div>
+    <p class="lhlink">Ønsker du mer værinfo, kan du gå til <a href="../index.html#oksoy">Oksøy fyr →</a></p>
     </div>
   </section>
 
