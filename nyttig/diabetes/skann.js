@@ -219,7 +219,7 @@
     var own = document.querySelector('.own');
     if (own && !$('scanBtn')) {
       var b = document.createElement('button');
-      b.className = 'btn'; b.id = 'scanBtn'; b.type = 'button'; b.textContent = '📷 ' + T.btn;
+      b.className = 'btn'; b.id = 'scanBtn'; b.type = 'button'; b.textContent = T.btn;
       own.insertBefore(b, own.firstChild);
       b.addEventListener('click', openScan);
     }
