@@ -244,5 +244,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 </script>
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
+<script>/* Kom fra Diabetes enkel/simple: tilbake dit, ikke til vanlig Diabetes */
+(function(){var f=(location.search.match(/[?&]fra=(enkel|simple)/)||[])[1];if(!f)return;
+var home=f==='enkel'?'/nyttig/diabetes-enkel/':'/nyttig/diabetes-simple/',to=home,txt=f==='enkel'?'Tilbake':'Back';
+try{var u=new URL(document.referrer);if(u.origin===location.origin&&u.pathname.indexOf(home)===0)to=u.pathname+u.search;}catch(e){}
+[].forEach.call(document.querySelectorAll('a.back,a.apptilbake'),function(a){a.setAttribute('href',to);for(var i=a.childNodes.length-1;i>=0;i--){var n=a.childNodes[i];if(n.nodeType===3&&n.nodeValue.trim()){n.nodeValue=(/^\s*←/.test(n.nodeValue)?'← ':'')+txt;break;}}});
+[].forEach.call(document.querySelectorAll('a.brand'),function(a){a.setAttribute('href',home);});
+[].forEach.call(document.querySelectorAll('header nav > a, header nav .dd'),function(e){e.style.display='none';});
+[].forEach.call(document.querySelectorAll('.lang a'),function(a){a.setAttribute('href',a.getAttribute('href').split('?')[0]+'?fra='+(a.getAttribute('hreflang')==='en'?'simple':'enkel'));});
+[].forEach.call(document.querySelectorAll('a[href*="personvern"],a[href*="opphavsrett"]'),function(a){if(a.closest('.lang'))return;var h=a.getAttribute('href').split('?')[0];if(/personvern/.test(h))h=f==='enkel'?'/nyttig/diabetes/personvern/':'/nyttig/diabetes/en/personvern/';a.setAttribute('href',h+'?fra='+f);});
+})();</script>
 </body>
 </html>
