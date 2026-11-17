@@ -209,6 +209,112 @@
   @keyframes fyrsving{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
   @media (prefers-reduced-motion:reduce){html.natt .fyr,.fyrstraale{animation:none}.fyrstraale{transform:none}}
 </style>
+<style id="tk-ny">
+/* === Ny Tallerken (mobil først) === */
+body{padding-bottom:var(--sumh,84px);font-size:17px}
+main{max-width:560px}
+.trygg{background:#fff7e0;border:2px solid #f0d98a;border-radius:16px;padding:12px 14px;margin:14px 0;color:#4a3b08;line-height:1.45}
+.trygg b{display:block;margin-bottom:2px}
+.trygg details{margin-top:6px;font-size:.93rem}
+.trygg summary{font-weight:800;cursor:pointer;min-height:40px;display:flex;align-items:center}
+.trygg details p{margin:6px 0}
+.panel.tk{padding:16px;border-radius:22px;margin:0 0 14px}
+.sok{position:relative}
+.sok svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:22px;height:22px}
+.sok input{width:100%;font:inherit;font-size:1.1rem;padding:15px 16px 15px 46px;border:2px solid var(--line);border-radius:16px;background:#f9fbff;color:var(--fg)}
+.sok input:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+.over{font-weight:800;margin:14px 2px 8px;color:var(--muted);font-size:.98rem}
+.hint{color:var(--muted);font-weight:700;margin:10px 2px}
+.hint.liten{font-weight:600;font-size:.9rem}
+.grupper{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gruppe{display:flex;flex-direction:column;align-items:flex-start;gap:6px;background:#fff;border:2px solid var(--line);border-radius:18px;padding:12px;text-align:left;min-height:96px}
+.gruppe:hover,.gruppe:focus-visible{border-color:var(--a);outline:none}
+.gruppe .ikon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center}
+.gruppe .ikon svg{width:28px;height:28px}
+.gruppe b{font-size:1rem;line-height:1.2}
+.liste{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.liste li{display:flex;gap:6px;align-items:center}
+.mat{flex:1;display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:2px solid var(--line);border-radius:16px;padding:10px 12px;min-height:60px;min-width:0}
+.mat:hover,.mat:focus-visible{border-color:var(--a);outline:none}
+.dot{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font-weight:800}
+.mat .nm{flex:1;font-weight:800;line-height:1.25;min-width:0}
+.mat .nm small{display:block;color:var(--muted);font-weight:600;font-size:.8rem}
+.mat .kb{font-size:.85rem;color:var(--muted);white-space:nowrap}
+.btn.kort{min-height:44px;padding:6px 12px}
+.btn.full{width:100%}
+.tilb{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-weight:800;color:var(--a);font-size:.95rem;min-height:44px}
+.valg{display:flex;align-items:center;gap:14px;text-align:left;background:#fff;border:2px solid var(--line);border-radius:18px;padding:12px 14px;min-height:76px;width:100%}
+.valg:hover,.valg:focus-visible{border-color:var(--a);outline:none}
+.valg .ikon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex:none}
+.valg .ikon svg{width:28px;height:28px}
+.valg b{display:block;font-size:1.08rem;line-height:1.2}
+.valg .t{display:block;color:var(--muted);font-size:.93rem;line-height:1.35;margin-top:2px;font-weight:400}
+.grid3{display:grid;gap:10px;margin-top:8px}
+.chips{margin:12px 0 4px}
+/* sumstripe */
+.sumbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fff;border-top:2px solid var(--line);box-shadow:0 -8px 24px rgba(15,23,42,.12);padding:10px 14px calc(14px + env(safe-area-inset-bottom))}
+.sumin{max-width:560px;margin:0 auto}
+.sumrad{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sumtall{line-height:1.05}.sumtall small{display:block;color:var(--muted);font-weight:700;font-size:.85rem}
+.sumtall b{font-size:2rem;letter-spacing:-.03em}.sumtall b span{font-size:1rem;color:var(--muted);margin-left:3px}
+.sumvarsel{display:none;margin:8px 0 0;padding:8px 12px;border-radius:12px;font-weight:700;font-size:.95rem}
+.sumbar.gul .sumvarsel{display:block;background:#fff4d6;border:2px solid #f0b429}
+.sumbar.rod .sumvarsel{display:block;background:#fdeeee;border:2px solid var(--bad);color:#7a1f1f}
+.sumbar.rod .sumtall b{color:var(--bad)}
+.sumbar.puls{animation:puls .5s}
+@keyframes puls{0%{background:#e7f0ff}100%{background:#fff}}
+/* chat-boblen skal ikke ligge over summen */
+#sb-bubble{bottom:calc(var(--sumh,84px) + 14px)!important}
+html.tk-ark #sb-bubble{display:none!important}
+/* ark */
+.sheetbg{z-index:50}
+.sheet h3{margin:0 0 4px;font-size:1.35rem;line-height:1.2}
+.sheet .per{color:var(--muted);margin:0 0 12px}
+.sheet .per .kil{font-weight:700}
+.steg{display:flex;gap:6px;align-items:center;margin:0 0 10px;color:var(--muted);font-weight:800;font-size:.92rem}
+.steg i{flex:1;height:6px;border-radius:3px;background:var(--line)}.steg i.pa{background:var(--a)}
+.lbl{display:block;font-weight:800;margin:12px 0 4px}
+.felt{display:flex;align-items:center;gap:10px}
+.felt input{flex:1;min-width:0;font:inherit;font-size:1.6rem;font-weight:800;text-align:center;padding:12px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;color:var(--fg)}
+.felt input:focus,.navn input:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+.felt .enh{font-weight:800;color:var(--muted);min-width:78px;line-height:1.2}
+.navn input{width:100%;font:inherit;font-size:1.1rem;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;color:var(--fg)}
+.valgrad{display:flex;gap:8px;margin:0 0 12px}
+.seg{flex:1;border:2px solid var(--line);background:#fff;border-radius:14px;padding:10px 8px;font-weight:800;min-height:48px;line-height:1.2}
+.seg small{font-weight:600}
+.seg[aria-pressed="true"]{background:var(--a);border-color:var(--a);color:#fff}
+.adv{margin:10px 0 0;padding:10px 12px;border-radius:14px;font-weight:700;font-size:.97rem}
+.adv.gul{background:#fff4d6;border:2px solid #f0b429}.adv.rod{background:#fdeeee;border:2px solid var(--bad);color:#7a1f1f}
+.tips{background:#eef4ff;border:2px solid #c9dafc;border-radius:14px;padding:10px 12px;margin:12px 0 0;font-size:.97rem}
+.reg{background:#f9fbff;border:2px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 10px}
+.tall{display:grid;place-items:center}.tall svg{width:min(210px,60vw);height:auto}
+.items{margin:8px 0 12px}
+.items li{display:flex;gap:6px;align-items:center}
+.item{flex:1;width:auto;min-width:0}
+.item .nm{font-weight:800}
+.toast{position:fixed;left:50%;bottom:calc(var(--sumh,84px) + 56px);transform:translateX(-50%);background:#1b2440;color:#fff;padding:10px 16px;border-radius:14px;font-weight:800;z-index:60;display:none;text-align:center;max-width:90%}
+.toast.pa{display:block}
+.eks{font-size:.85rem;color:var(--muted);text-align:center;margin:4px 0 0}
+svg.tab{width:100%;height:auto}
+svg.tab text{font-family:Manrope,system-ui,sans-serif}
+.tomt{color:var(--muted);text-align:center;font-weight:700;margin:10px 0}
+@media (prefers-reduced-motion:reduce){.sumbar.puls{animation:none}}
+/* skanner-kortet vises først når skann.js er lastet */
+/* === Enkel: større og enklere === */
+body{font-size:19px}
+main .cardx>.hjelp{display:none}
+h1{font-size:clamp(2.1rem,9vw,2.6rem)}
+.chip{padding:10px 16px;font-size:1rem;min-height:52px}
+.gruppe{padding:14px;min-height:124px}
+.gruppe .ikon{width:60px;height:60px;border-radius:18px}
+.gruppe .ikon svg{width:36px;height:36px}
+.gruppe b{font-size:1.1rem}
+.mat{padding:12px 14px;min-height:72px;border-radius:18px}
+.btn{padding:14px 20px;min-height:56px;font-size:1.05rem}
+.valg{padding:14px 16px;min-height:92px}
+.sumtall b{font-size:2.4rem}
+.seg{min-height:56px}
+</style>
 <meta name="theme-color" content="#2563eb">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Diabetes">
@@ -238,267 +344,401 @@
   <a class="back" href="/nyttig/diabetes/en/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
   <h1>Your <em>plate.</em></h1>
   <p class="lead">Find out how many grams of carbohydrate are in the food. Search for what you are going to eat, put it on the plate, and see the total. <a href="/nyttig/diabetes/en/manualer/">Manuals for pump and sensor</a> are on a separate page.</p>
-  <p style="margin:14px 0 0;padding:12px 14px;border-radius:12px;background:#fff7e0;border:1px solid #f0d98a;color:#5b4a10;font-size:.9rem;line-height:1.4"><b>Remember:</b> This is a tool, not a final answer. Check important numbers with your diabetes team.</p>
+  <div class="trygg"><b>This is only a tool.</b> The Plate adds up carbohydrate. It does not tell you how much insulin to take. Always ask an adult or your diabetes team.
+    <details><summary>About the numbers and sources</summary><p>The numbers come from <a href="https://www.matvaretabellen.no/" target="_blank" rel="noopener">Matvaretabellen</a> (Norwegian Food Safety Authority) and are averages. The data is used under <a href="https://data.norge.no/nlod/no/2.0" target="_blank" rel="noopener">NLOD 2.0</a>. The Norwegian Food Safety Authority is not behind this site. For food from a packet, the number on the packet is more accurate, and it is best to weigh the food. The Plate is a simple tool for adding up carbohydrate. It is not a medical device, gives no medical advice and does not calculate insulin. Everything you enter stays only on this phone. If you scan an item we do not know and type in the numbers, the barcode, name and number are sent anonymously to us to be checked. Nothing about you is sent.</p><p id="rgKilde">The items in <b>Reinertsengruppen's food table</b> are entered by users and checked by us. The numbers can still be wrong, so always check against the packet. This is not the official Matvaretabellen from the Norwegian Food Safety Authority.</p></details>
+  </div>
   <p class="load" id="load" role="status">Loading the food table …</p>
 
-  <div class="layout">
-    <section class="panel" aria-label="Find food">
-      <h2>1. Find the food</h2>
-      <div class="search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#5b6b82" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
-        <input id="q" type="search" inputmode="search" autocomplete="off" placeholder="Search, e.g. apple or bread" aria-label="Search for food">
-      </div>
-      <div class="chips" role="group" aria-label="Shortcuts">
-        <button class="chip" id="chFav" type="button" aria-pressed="false">Favourites</button>
-        <button class="chip" id="chRec" type="button" aria-pressed="false">Recently used</button>
-        <button class="chip" id="chMine" type="button" aria-pressed="false">My foods</button>
-        <button class="chip" id="chMeal" type="button" aria-pressed="false">My meals</button>
-      </div>
-      <ul class="results" id="results"></ul>
-      <p class="hint" id="hint"></p>
-      <div class="own">
-        <button class="btn ghost" id="ownPack" type="button">Food from a packet</button>
-        <button class="btn ghost" id="ownGram" type="button">I know the grams of carbs</button>
-      </div>
-    </section>
-
-    <section class="panel" aria-label="The Plate">
-      <h2>2. The plate</h2>
-      <div class="plate"><svg id="plateSvg" viewBox="0 0 220 220" role="img" aria-label="Plate with the food you have added"></svg></div>
-      <div class="total"><div class="n" id="tot">0<small>g</small></div><div class="t">carbohydrate in total</div></div>
-      <div class="warn" id="warn" role="alert" hidden><b>That is a lot.</b> Check that you typed the right number. Ask an adult for help.</div>
-      <div class="pump" id="pump">Put food on the plate, and you will see the total carbohydrate.</div>
-      <ul class="items" id="items"></ul>
-      <div class="actions"><button class="btn ghost" id="saveMeal" type="button">Save as meal</button><button class="btn danger" id="clear" type="button">Empty the plate</button></div>
-    </section>
-  </div>
-
+  <section class="panel tk" aria-label="Find the food">
+    <h2>Find the food</h2>
+    <div class="sok"><svg viewBox="0 0 24 24" fill="none" stroke="#5b6b82" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><input id="q" type="search" inputmode="search" autocomplete="off" placeholder="Search, for example apple" aria-label="Search for food"></div>
+    <div class="chips" role="group" aria-label="Shortcuts">
+      <button class="chip" type="button" data-m="fav" aria-pressed="false">Favourites</button>
+      <button class="chip" type="button" data-m="rec" aria-pressed="false">Recently used</button>
+      <button class="chip" type="button" data-m="mine" aria-pressed="false">My foods</button>
+      <button class="chip" type="button" data-m="meal" aria-pressed="false">My meals</button>
+    </div>
+    <div id="innhold"></div>
+    <p class="over" style="margin-top:18px">Do you have the packet, or do you know the number?</p>
+    <div class="grid3">
+      <button class="valg" type="button" data-v="skann" id="valgSkann" hidden><span class="ikon" style="background:#7c3aed22"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 8v8M12 8v8M16 8v8"/></svg></span><span><b>Scan barcode</b><span class="t">The camera reads the barcode. We find the food.</span></span></button>
+      <button class="valg" type="button" data-v="pakke" id="valgPakke"><span class="ikon" style="background:#2563eb22"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4zM4 8l8 4 8-4M12 12v8"/></svg></span><span><b>Read the packet</b><span class="t">Look on the back of the packet. Type the number.</span></span></button>
+      <button class="valg" type="button" data-v="kjent" id="valgKjent"><span class="ikon" style="background:#14b8a622"><svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg></span><span><b>I know the number</b><span class="t">You already know how many grams of carbohydrate it is.</span></span></button>
+    </div>
+  </section>
 
   <div class="actions" id="instWrap" hidden><button class="btn ghost" id="install" type="button">Add to home screen</button></div>
 
-  <p class="fine">
-    The numbers come from <a href="https://www.matvaretabellen.no/" target="_blank" rel="noopener">Matvaretabellen</a> (Norwegian Food Safety Authority) and are averages. The data is used under <a href="https://data.norge.no/nlod/no/2.0" target="_blank" rel="noopener">NLOD 2.0</a>. The Norwegian Food Safety Authority is not behind this site. For food from a packet, the number on the packet is more accurate, and it is best to weigh the food. The Plate is a simple tool for adding up carbohydrate. It is not a medical device, gives no medical advice and does not calculate insulin. Follow the advice you have received from the diabetes team. Everything you enter stays only on this phone.
-  </p>
 </main>
 <div class="sheetbg" id="sbg"><div class="sheet" role="dialog" aria-modal="true" id="sheet"></div></div>
+<div class="sumbar" id="sumbar" role="region" aria-label="Total">
+  <div class="sumin">
+    <div class="sumrad"><div class="sumtall"><small>Total</small><b id="sumn">0<span>g carbohydrate</span></b></div><button class="btn" id="seTall" type="button">See plate</button></div>
+    <div class="sumvarsel" id="sumvarsel" role="alert"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
 
 <footer class="pfoot">Made by Thomas Reinertsen · <a href="/personvern/en/index.html">Privacy</a> · <a href="/opphavsrett/index.html">Copyright</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. All rights reserved.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">This is information and support, not medical advice. Always talk to your diabetes team about your treatment. This site is under construction and may contain errors.</p></footer>
 <script>
 (function(){
-
-  /* ====== Hjelpere ====== */
-  var DATA_URL='https://www.matvaretabellen.no/api/en/foods.json', DATA_URL_NB='https://www.matvaretabellen.no/api/nb/foods.json';
+  'use strict';
+  var T={"grN": ["Bread and grains", "Fruit and berries", "Vegetables", "Milk and yoghurt", "Potato, rice and pasta", "Drinks", "Sweets and snacks", "Meat and fish"], "grK": [["bread", "crispbread", "roll", "oat", "muesli", "flatbread", "toast", "cracker"], ["apple", "banana", "orange", "pear", "grape", "strawberr", "blueberr", "mandarin", "kiwi", "melon"], ["carrot", "cucumber", "broccoli", "corn", "pea", "tomato", "pepper", "cauliflower"], ["milk", "yoghurt", "yogurt", "kefir"], ["potato", "rice", "pasta", "spaghetti", "couscous", "noodle"], ["juice", "soda", "squash", "cola", "cocoa"], ["chocolate", "crisps", "ice cream", "biscuit", "cake", "sweet"], ["chicken", "salmon", "cod", "pork", "beef", "sausage"]], "kMt": "Matvaretabellen", "kPakke": "From a packet", "kGram": "Own value", "kRg": "Reinertsengruppen's food table", "slett": "Delete", "slettNavn": "Delete {0}", "favFjern": "Remove from favourites", "favLegg": "Add to favourites", "hNone": "Found nothing. Try another word, or use “Read the packet” below.", "hFav": "Tap the star by a food to save it here.", "hRec": "The food you used most recently appears here.", "tomSist": "Clear Recently used", "hMine": "Food you read from a packet ends up here, when you choose to remember it.", "hMeal": "Put food on the plate and choose “Save as meal”, and you will find it here again.", "nItems": "{0} items", "alleGr": "All food groups", "ingenTreff": "No results. Use the search.", "utvalg": "This is a selection. Use the search to find more.", "blaGr": "Or browse food groups", "gKarbo": "g carbohydrate", "vRod": "This is probably not right. Do not use the total. Ask an adult for help.", "vGul": "That is a lot. Check the numbers. Ask an adult for help.", "seTall": "See plate", "seTallN": "See plate ({0})", "neiBehold": "No, keep", "perN": "{0} g carbohydrate per 100 {1}", "porsjon": "Portion", "ca": "approx.", "mindre": "Less", "mer": "More", "mengdeG": "Amount in grams", "mengdeMl": "Amount in millilitres", "milliliter": "millilitres", "gram": "grams", "oppdater": "Update", "leggPa": "Add to the plate", "fjern": "Remove", "avbryt": "Cancel", "slettMine": "Delete from My foods", "erDetRiktig": "Is that right?", "over1000": "Over 1000 is a lot for one food.", "lagtPa": "Added to the plate", "slettQ": "Delete “{0}”?", "slettMineT": "The food is removed from My foods.", "slettMineT2": "The food is removed from My foods. It is not removed from the plate.", "jaSlett": "Yes, delete", "slettet": "Deleted", "tallerkenAria": "Plate with the food you have added", "rodH": "This is probably not right.", "rodT": "Do not use the total. Ask an adult for help.", "gulH": "That is a lot.", "gulT": "Check the numbers. Ask an adult for help.", "endreNavn": "Change {0}", "fjernNavn": "Remove {0}", "tomTallerken": "The plate is empty. Add some food first.", "tallerkenH": "Your plate", "karboTilSammen": "carbohydrate in total", "lagreMaaltid": "Save as meal", "tomTallerkenBtn": "Empty the plate", "lukk": "Close", "tomQ": "Empty the plate?", "tomT": "All the food on the plate is removed.", "jaTom": "Yes, empty", "leggForst": "Put food on the plate first.", "maaltidNavnT": "Give the meal a name, for example “Usual breakfast”.", "navn": "Name", "lagre": "Save", "skrivNavn": "Write a name.", "maaltidLagret": "The meal is saved under My meals.", "maaltidPa": "The meal is on the plate", "slettMaaltidT": "The meal is removed from My meals.", "per100g": "per 100 g", "per100ml": "per 100 ml", "tabellAria": "Example of a nutrition table. The row Carbohydrate and the column {0} are highlighted.", "tabNaering": "Nutrition facts", "perPorsjon": "per portion", "tabFett": "Fat", "tabKarbo": "Carbohydrate", "tabProtein": "Protein", "tabSalt": "Salt", "tabEks": "Example. Use the number in the blue column, on the row “Carbohydrate”.", "stegAria": "Step {0} of 3", "stegN": "Step {0} of 3", "finnTallet": "Find the number on the packet", "matEllerDrikke": "Is it food or a drink", "mat": "Food", "drikke": "Drink", "staarPer100g": "says “per 100 g”", "staarPer100ml": "says “per 100 ml”", "skrivTallet": "Type the number from the row “Carbohydrate”", "barePorsjonH": "Does it only say “per portion”?", "barePorsjonT": "Then you cannot use this. Ask an adult for help.", "neste": "Next", "hvorMyeDrikke": "How much will you drink?", "hvorMyeSpise": "How much will you eat?", "skrivMl": "Type the number of millilitres.", "skrivG": "Type the number of grams. If you weigh the food, use the weight.", "mengde": "Amount", "tilbake": "Back", "dutFaar": "This is what you get", "regPakken": "The packet: {0} carbohydrate per 100 {1}.", "regDu": "You will have: {0}.", "regnestykket": "The sum:", "rodPakke": "Do not use the total. Go back and check the numbers. Ask an adult for help.", "hvaHeter": "What is the food called?", "navnEks": "for example Oat biscuits", "huskMaten": "Remember this food for next time", "skrivTall": "Type a number, for example {0}.", "kanIkke": "This cannot be right.", "kanIkkeT": "There cannot be more than 100 g of carbohydrate in 100 {0}. Look at the column “per 100 {0}”.", "sjekkTallet": "Check the number.", "over80": "Is it “per 100 {0}” from the packet? Over 80 is unusual.", "storreEnn0": "Type a number greater than 0.", "skrivFraPakken": "Type the number from the packet (between 0 and 100).", "skrivHvorDrikke": "Type how much you will drink.", "skrivHvorSpise": "Type how much you will eat.", "skrivNavnHusk": "Write a name, so you can find the food again.", "matFraPakke": "Food from a packet", "lagtPaG": "Added to the plate: {0} g", "vCardH3": "I know the number", "kjentT": "Use this when you already know how many grams of carbohydrate are in the <b>whole portion<\/b> you will have. For example from a menu or a recipe.", "ikkePer100": "Not “per 100 g”.", "ikkePer100T": "Here you type the number for everything you will eat.", "gramHele": "Grams of carbohydrate in the whole portion", "hvaErDet": "What is it? (optional)", "kjentEks": "for example Pizza at a café", "sjekkTallDet": "Check the number. Ask an adult for help.", "sjekkTallDet2": "Check the number. Ask an adult for help.", "skrivGramKarbo": "Type the grams of carbohydrate (between 1 and 500).", "karbohydrater": "Carbohydrate", "tomSistQ": "Clear Recently used?", "tomSistT": "The list of food you used recently is removed. Favourites and My foods are kept.", "listeTomt": "The list is cleared", "instH": "Add to home screen", "instT": "Then you open the Plate like a normal app, also without internet.", "instIos": "<b>iPhone (Safari):<\/b> tap the Share button, choose “Add to Home Screen”.", "instAnd": "<b>Android (Chrome):<\/b> tap the menu with three dots, choose “Install app” or “Add to home screen”.", "instNett": "Open the page online at least once first, so it is saved on the phone.", "errParse": "No foods found in the response (keys: {0})", "errLoad": "Could not load the food table right now.", "errLoad2": "You can still use “Read the packet” and “I know the number”.", "trH": "This is only a tool.", "trT": "The Plate adds up carbohydrate. It does not tell you how much insulin to take. Always ask an adult or your diabetes team.", "omK": "About the numbers and sources", "omT1": "The numbers come from <a href=\"https://www.matvaretabellen.no/\" target=\"_blank\" rel=\"noopener\">Matvaretabellen<\/a> (Norwegian Food Safety Authority) and are averages. The data is used under <a href=\"https://data.norge.no/nlod/no/2.0\" target=\"_blank\" rel=\"noopener\">NLOD 2.0<\/a>. The Norwegian Food Safety Authority is not behind this site. For food from a packet, the number on the packet is more accurate, and it is best to weigh the food. The Plate is a simple tool for adding up carbohydrate. It is not a medical device, gives no medical advice and does not calculate insulin. Everything you enter stays only on this phone. If you scan an item we do not know and type in the numbers, the barcode, name and number are sent anonymously to us to be checked. Nothing about you is sent.", "omT2": "The items in <b>Reinertsengruppen's food table<\/b> are entered by users and checked by us. The numbers can still be wrong, so always check against the packet. This is not the official Matvaretabellen from the Norwegian Food Safety Authority.", "loading": "Loading the food table …", "findH": "Find the food", "aFind": "Find the food", "ph": "Search, for example apple", "aSearch": "Search for food", "aChips": "Shortcuts", "cFav": "Favourites", "cRec": "Recently used", "cMine": "My foods", "cMeal": "My meals", "other": "Do you have the packet, or do you know the number?", "vSkannH": "Scan barcode", "vSkannT": "The camera reads the barcode. We find the food.", "vPakkeH": "Read the packet", "vPakkeT": "Look on the back of the packet. Type the number.", "vKjentH": "I know the number", "vKjentT": "You already know how many grams of carbohydrate it is.", "sumLbl": "Total", "aSum": "Total", "install": "Add to home screen"};
+  var EN=(document.documentElement.lang||'no').slice(0,2)==='en';
+  function f(s){var a=arguments;return String(s).replace(/\{(\d)\}/g,function(_,i){return a[+i+1];});}
   var $=function(id){return document.getElementById(id);};
-  function nb(v,d){return Number(v).toLocaleString('en-GB',{maximumFractionDigits:d==null?1:d,minimumFractionDigits:0});}
+  function nb(v,d){return Number(v).toLocaleString(EN?'en-GB':'nb-NO',{maximumFractionDigits:d==null?1:d,minimumFractionDigits:0});}
   function num(v){if(typeof v==='number')return v;if(typeof v==='string'){var n=parseFloat(v.replace(',','.'));return isFinite(n)?n:NaN;}return NaN;}
   function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function arr(x){return Array.isArray(x)?x:[];}
-  function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||'null');localStorage.setItem(k,JSON.stringify(v));}catch(e){}return null;}
-  var COLORS=['#f97316','#2563eb','#14b8a6','#ec4899','#7c3aed','#eab308','#16a34a','#ef4444','#0ea5e9','#a855f7'];
-  function colorOf(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return COLORS[h%COLORS.length];}
   function norm(s){return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+  var mem={};
+  function ls(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||'null');localStorage.setItem(k,JSON.stringify(v));}catch(e){if(v===undefined)return mem[k]===undefined?null:mem[k];mem[k]=v;}return null;}
+  var COL=['#f97316','#2563eb','#14b8a6','#ec4899','#7c3aed','#eab308','#16a34a','#ef4444','#0ea5e9','#a855f7'];
+  function colorOf(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return COL[h%COL.length];}
 
-  /* ====== Matvaretabellen: lese data ====== */
-  var FOODS=[], byId={};
-  function rebuild(){FOODS=mine.map(function(m){return {id:m.id,name:m.name,carbs:m.carbs,ports:[],mine:true,s:norm(m.name)};}).concat(base); byId={}; FOODS.forEach(function(f){byId[f.id]=f;});}
+  /* ===== Matvaretabellen ===== */
+  var DATA_URL=EN?'https://www.matvaretabellen.no/api/en/foods.json':'https://www.matvaretabellen.no/api/nb/foods.json', DATA_URL_NB='https://www.matvaretabellen.no/api/nb/foods.json';
+  var CACHE_KEY=EN?'tk_foods_v1_en':'tk_foods_v1';
+  var REAL=[], TAB=[];
+  var GR=[
+    {id:'brod',c:'#f97316',i:'<path d="M12 21V8M12 12c-3 0-4-2-4-4 3 0 4 2 4 4zm0 0c3 0 4-2 4-4-3 0-4 2-4 4zM12 17c-3 0-4-2-4-4 3 0 4 2 4 4zm0 0c3 0 4-2 4-4-3 0-4 2-4 4zM12 8c-1-1-1-3 0-5 1 2 1 4 0 5z"/>'},
+    {id:'frukt',c:'#ef4444',i:'<path d="M12 8c-5-3-8 1-7 6 1 4 4 7 7 5 3 2 6-1 7-5 1-5-2-9-7-6zM12 8c0-2 1-4 3-5"/>'},
+    {id:'gront',c:'#16a34a',i:'<path d="M5 19l10-10M15 9c2-4 5-5 6-4 1 1 0 4-4 6M15 9c-1-3-3-5-5-5 0 2 1 4 4 5M5 19c-1-3 0-5 2-7"/>'},
+    {id:'melk',c:'#0ea5e9',i:'<path d="M9 3h6v3l2 3v11a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V9l2-3zM7 12h10"/>'},
+    {id:'middag',c:'#eab308',i:'<ellipse cx="12" cy="13" rx="8" ry="6"/><path d="M9 11l1.5 1.5M13 10l1.5 1.5M12 15l1.5 1.5"/>'},
+    {id:'drikke',c:'#14b8a6',i:'<path d="M7 4h10l-1.2 15a1 1 0 0 1-1 1H9.2a1 1 0 0 1-1-1zM7.5 9h9"/>'},
+    {id:'sott',c:'#ec4899',i:'<circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r="1"/><circle cx="14" cy="9" r="1"/><circle cx="14" cy="14" r="1"/><circle cx="9" cy="15" r="1"/>'},
+    {id:'kjott',c:'#7c3aed',i:'<path d="M3 12c4-6 11-6 15 0-4 6-11 6-15 0zM18 12l4-4v8zM8 11.5h.01"/>'}
+  ];
+  GR.forEach(function(g,i){g.n=T.grN[i];g.k=T.grK[i];});
+
   function parseFoods(j){
-    var arr=Array.isArray(j)?j:(j&&(j.foods||j.items||j.data))||null;
-    if(!Array.isArray(arr))return {list:[],keys:j&&typeof j==='object'?Object.keys(j):[]};
+    var a=Array.isArray(j)?j:(j&&(j.foods||j.items||j.data))||null;
+    if(!Array.isArray(a))return {list:[],keys:j&&typeof j==='object'?Object.keys(j):[]};
     var out=[];
-    arr.forEach(function(f){
-      if(!f)return;
-      var name=f.foodName||f.name||f.navn; if(!name)return;
-      var carbs=NaN, cs=f.constituents||f.nutrients;
+    a.forEach(function(x){
+      if(!x)return; var name=x.foodName||x.name||x.navn; if(!name)return;
+      var carbs=NaN, cs=x.constituents||x.nutrients;
       if(Array.isArray(cs)){cs.forEach(function(c){if(c&&(c.nutrientId==='Karbo'||c.id==='Karbo')){carbs=num(c.quantity!=null?c.quantity:c.value);}});}
       else if(cs&&typeof cs==='object'&&cs.Karbo){var k=cs.Karbo;carbs=num(k.quantity!=null?k.quantity:(k.value!=null?k.value:k));}
-      if(!isFinite(carbs)||carbs<0||carbs>100)return;      /* aldri vis tall som ikke gir mening */
-      var ports=[], ps=f.portions;
+      if(!isFinite(carbs)||carbs<0||carbs>100)return;   /* aldri vis tall som ikke gir mening */
+      var ports=[], ps=x.portions;
       if(Array.isArray(ps))ps.forEach(function(p){
         if(!p)return; var pn=p.portionName||p.name, w=p.weight&&typeof p.weight==='object'?num(p.weight.quantity):num(p.weight!=null?p.weight:p.grams);
         if(pn&&isFinite(w)&&w>0&&w<2000)ports.push({n:String(pn),g:w});
       });
-      var id=String(f.foodId||f.id||name);
-      var kw=(Array.isArray(f.searchKeywords)?f.searchKeywords.join(' '):'');
-      out.push({id:id,name:String(name),carbs:carbs,ports:ports,s:norm(name+' '+kw)});
+      var kw=(Array.isArray(x.searchKeywords)?x.searchKeywords.join(' '):'');
+      out.push({id:String(x.foodId||x.id||name),name:String(name),carbs:carbs,ports:ports.slice(0,6),s:norm(name+' '+kw)});
     });
     return {list:out,keys:Object.keys(j||{})};
   }
   function loadFoods(){
-    var c=ls('tk_foods_v1_en');
-    if(c&&c.t&&Date.now()-c.t<30*864e5&&c.d&&c.d.length){return Promise.resolve(c.d);}
-    return fetch(DATA_URL).then(function(r){if(!r.ok)return fetch(DATA_URL_NB);return r;}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(j){
+    var c=ls(CACHE_KEY);
+    if(c&&c.t&&Date.now()-c.t<30*864e5&&c.d&&c.d.length)return Promise.resolve(c.d);
+    var tid=new Promise(function(_,rej){setTimeout(function(){rej(new Error('timeout'));},15000);});
+    var get=fetch(DATA_URL).then(function(r){if(!r.ok&&EN)return fetch(DATA_URL_NB);return r;}).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(j){
       var p=parseFoods(j);
-      if(!p.list.length){var e=new Error('No foods found in the response (keys: '+p.keys.slice(0,6).join(', ')+')');e.parse=true;throw e;}
-      var slim=p.list.map(function(f){return {id:f.id,name:f.name,carbs:f.carbs,ports:f.ports.slice(0,6),s:f.s};});
-      ls('tk_foods_v1_en',{t:Date.now(),d:slim}); return slim;
-    }).catch(function(e){if(c&&c.d&&c.d.length)return c.d;throw e;});
+      if(!p.list.length){var e=new Error(f(T.errParse,p.keys.slice(0,6).join(', ')));e.parse=true;throw e;}
+      ls(CACHE_KEY,{t:Date.now(),d:p.list}); return p.list;
+    });
+    return Promise.race([get,tid]).catch(function(e){if(c&&c.d&&c.d.length)return c.d;throw e;});
   }
 
-  /* ====== Tilstand ====== */
+  /* ===== Tilstand (samme lagringsnavn som før, så lagrede ting beholdes) ===== */
   function okItem(it){return it&&typeof it.name==='string'&&it.name.length<=60&&typeof it.per100==='number'&&typeof it.grams==='number'&&isFinite(it.per100)&&isFinite(it.grams)&&it.per100>=0&&it.per100<=100&&it.grams>0&&it.grams<=3000;}
-  var plate=arr(ls('tk_plate')).filter(okItem).slice(0,60);       /* {id,name,per100,grams,own} */
-  var favs=arr(ls('tk_favs')).filter(function(x){return typeof x==='string';}), recent=arr(ls('tk_recent')).filter(function(x){return typeof x==='string';});
-  var mine=arr(ls('tk_mine')).filter(function(m){return m&&typeof m.id==='string'&&typeof m.name==='string'&&m.name.length<=40&&typeof m.carbs==='number'&&isFinite(m.carbs)&&m.carbs>=0&&m.carbs<=100;}).slice(0,100), base=[];
-  var meals=arr(ls('tk_meals')).filter(function(m){return m&&typeof m.id==='string'&&typeof m.name==='string'&&m.name.length<=40&&Array.isArray(m.items)&&m.items.length&&m.items.every(okItem);}).slice(0,30);
-  var mode='';                          /* '', 'fav', 'rec' */
-
+  var mine=arr(ls('tk_mine')).filter(function(m){return m&&typeof m.id==='string'&&typeof m.name==='string'&&m.name.length<=40&&typeof m.carbs==='number'&&isFinite(m.carbs)&&m.carbs>=0&&m.carbs<=100;}).slice(0,100);
+  function mineHas(id){return mine.some(function(m){return m.id===id;});}
+  /* Eldre lagrede ting mangler kilde og enhet. Fyll inn. */
+  function fixItem(it){
+    var o={id:it.id,name:it.name,per100:it.per100,grams:it.grams};
+    o.src=(it.src==='mt'||it.src==='pakke'||it.src==='gram'||it.src==='rg')?it.src:(it.own==='gram'?'gram':(it.own==='pack'||mineHas(it.id))?'pakke':(String(it.id).indexOf('rg')===0?'rg':'mt'));
+    o.enh=it.enh==='ml'?'ml':'g';
+    return o;
+  }
+  var plate=arr(ls('tk_plate')).filter(okItem).slice(0,60).map(fixItem);
+  var favs=arr(ls('tk_favs')).filter(function(x){return typeof x==='string';});
+  var recent=arr(ls('tk_recent')).filter(function(x){return typeof x==='string';});
+  var meals=arr(ls('tk_meals')).filter(function(m){return m&&typeof m.id==='string'&&typeof m.name==='string'&&m.name.length<=40&&Array.isArray(m.items)&&m.items.length&&m.items.every(okItem);}).slice(0,30).map(function(m){return {id:m.id,name:m.name,items:m.items.map(fixItem)};});
+  var mode='', gid=null, byId={};
+  function own(){return mine.map(function(m){return {id:m.id,name:m.name,carbs:m.carbs,ports:[],s:norm(m.name),src:'pakke',mine:true,enh:m.enh==='ml'?'ml':'g'};});}
+  var OWN=[];
+  function rebuild(){OWN=own();byId={};OWN.concat(REAL,TAB).forEach(function(x){byId[x.id]=x;});}
   function carbsOf(it){return it.per100*it.grams/100;}
-  function savePlate(){ls('tk_plate',plate);}
+  function unitOf(x){return x&&x.enh==='ml'?'ml':'g';}
+  function sum(){var t=0;plate.forEach(function(it){t+=carbsOf(it);});return t;}
+  function kilde(src){return src==='mt'?T.kMt:src==='pakke'?T.kPakke:src==='gram'?T.kGram:src==='rg'?T.kRg:'';}
 
-  /* ====== Søk ====== */
+  /* ===== Søk, grupper, lister ===== */
+  function groupBtn(g){return '<button class="gruppe" type="button" data-g="'+g.id+'"><span class="ikon" style="background:'+g.c+'22"><svg viewBox="0 0 24 24" fill="none" stroke="'+g.c+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+g.i+'<\/svg><\/span><b>'+esc(g.n)+'<\/b><\/button>';}
+  function matRow(x){
+    var fav=favs.indexOf(x.id)>=0;
+    return '<li><button class="mat" type="button" data-id="'+esc(x.id)+'"><span class="dot" style="background:'+colorOf(x.name)+'">'+esc(x.name.charAt(0).toUpperCase())+'<\/span><span class="nm">'+esc(x.name)+'<small>'+esc(kilde(x.src))+'<\/small><\/span><span class="kb">'+nb(x.carbs)+' g/100 '+unitOf(x)+'<\/span><\/button>'+
+      (mode==='mine'&&x.mine?'<button class="btn danger kort" type="button" data-del="'+esc(x.id)+'" aria-label="'+esc(f(T.slettNavn,x.name))+'">'+esc(T.slett)+'<\/button>':
+      '<button class="star" type="button" data-fav="'+esc(x.id)+'" aria-pressed="'+fav+'" aria-label="'+esc(fav?T.favFjern:T.favLegg)+'">★<\/button>')+'<\/li>';
+  }
+  function rank(list,ws,bonus){
+    var res=[];
+    list.forEach(function(x){var ok=true,sc=0;for(var i=0;i<ws.length;i++){var ix=x.s.indexOf(ws[i]);if(ix<0){ok=false;break;}sc+=(ix===0?0:(x.s.charAt(ix-1)===' '?1:3));}if(ok)res.push([sc+x.name.length/100-(bonus&&x.mine?.5:0),x]);});
+    res.sort(function(a,b){return a[0]-b[0];}); return res.map(function(r){return r[1];});
+  }
   function matches(q){
-    q=norm(q).trim(); if(!q)return [];
-    var ws=q.split(/\s+/), res=[];
-    FOODS.forEach(function(f){var ok=true,score=0;for(var i=0;i<ws.length;i++){var ix=f.s.indexOf(ws[i]);if(ix<0){ok=false;break;}score+=(ix===0?0:(f.s.charAt(ix-1)===' '?1:3));}if(ok)res.push([score+f.name.length/100,f]);});
-    res.sort(function(a,b){return a[0]-b[0];});
-    return res.slice(0,40).map(function(x){return x[1];});
+    q=norm(q).trim(); if(!q)return []; var ws=q.split(/\s+/);
+    var out=rank(OWN.concat(REAL),ws,true).slice(0,40);
+    if(TAB.length)out=out.concat(rank(TAB,ws,false).slice(0,15));
+    return out;
   }
-  function foodRow(f){
-    var fav=favs.indexOf(f.id)>=0;
-    return '<li style="display:flex;gap:6px;align-items:center"><button class="food" type="button" data-id="'+esc(f.id)+'"><span class="dotf" style="background:'+colorOf(f.name)+'">'+esc(f.name.charAt(0).toUpperCase())+'</span><span class="nm">'+esc(f.name)+'</span><span class="kb">'+nb(f.carbs)+' g/100 g</span></button><button class="star" type="button" data-fav="'+esc(f.id)+'" aria-pressed="'+fav+'" aria-label="'+(fav?'Remove from favourites':'Add to favourites')+'">★</button></li>';
+  function groupFoods(g){
+    var seen={},out=[];
+    g.k.forEach(function(kw){
+      var nk=norm(kw), l=[];
+      REAL.forEach(function(x){var n=norm(x.name),ix=n.indexOf(nk);if(ix===0||(ix>0&&/[ ,(]/.test(n.charAt(ix-1))))l.push([ix===0?0:1,n.length,x]);});
+      l.sort(function(a,b){return a[0]-b[0]||a[1]-b[1];});
+      l.slice(0,6).forEach(function(r){if(!seen[r[2].id]){seen[r[2].id]=1;out.push(r[2]);}});
+    });
+    return out.slice(0,40);
   }
-  /* Etter at mat er lagt på tallerkenen: tøm søket og skjul listen til brukeren søker igjen */
-  function nullstill(){
-    $('q').value=''; mode='';
-    ['chFav','chRec','chMine','chMeal'].forEach(function(id){$(id).setAttribute('aria-pressed','false');});
-    $('results').innerHTML=''; $('hint').textContent='';
+  function liste(l){return '<ul class="liste">'+l.map(matRow).join('')+'<\/ul>';}
+  function vis(){
+    var q=$('q').value.trim(), h='';
+    if(q){var l=matches(q); h=l.length?liste(l):'<p class="hint">'+esc(T.hNone)+'<\/p>';}
+    else if(mode==='fav'){var l1=favs.map(function(id){return byId[id];}).filter(Boolean);h=l1.length?liste(l1):'<p class="hint">'+esc(T.hFav)+'<\/p>';}
+    else if(mode==='rec'){var l2=recent.map(function(id){return byId[id];}).filter(Boolean);h=l2.length?liste(l2)+'<button class="btn danger full" type="button" id="tomSist" style="margin-top:10px">'+esc(T.tomSist)+'<\/button>':'<p class="hint">'+esc(T.hRec)+'<\/p>';}
+    else if(mode==='mine'){var l3=mine.map(function(m){return byId[m.id];}).filter(Boolean);h=l3.length?liste(l3):'<p class="hint">'+esc(T.hMine)+'<\/p>';}
+    else if(mode==='meal'){h=meals.length?'<ul class="liste">'+meals.map(function(m){var t=0;m.items.forEach(function(it){t+=carbsOf(it);});return '<li><button class="mat" type="button" data-meal="'+esc(m.id)+'"><span class="dot" style="background:#7c3aed">★<\/span><span class="nm">'+esc(m.name)+'<small>'+f(T.nItems,m.items.length)+'<\/small><\/span><span class="kb">'+nb(Math.round(t),0)+' g<\/span><\/button><\/li>';}).join('')+'<\/ul>':'<p class="hint">'+esc(T.hMeal)+'<\/p>';}
+    else if(gid){var g=GR.filter(function(x){return x.id===gid;})[0],fl=groupFoods(g);
+      h='<button class="tilb" type="button" id="tilGr" style="margin:12px 0 4px">‹ '+esc(T.alleGr)+'<\/button><p class="over" style="margin-top:8px">'+esc(g.n)+'<\/p>'+(fl.length?liste(fl):'<p class="hint">'+esc(T.ingenTreff)+'<\/p>')+'<p class="hint liten">'+esc(T.utvalg)+'<\/p>';}
+    else if(REAL.length)h='<p class="over">'+esc(T.blaGr)+'<\/p><div class="grupper">'+GR.map(groupBtn).join('')+'<\/div>';
+    $('innhold').innerHTML=h;
   }
-  function renderResults(){
-    var q=$('q').value, list=[], hint='';
-    /* Søker man, vises listen rett under søkefeltet. Ellers under snarveiene. */
-    var anchor=q.trim()?$('q').parentNode:document.querySelector('.chips');
-    if($('results').previousElementSibling!==anchor&&$('hint').previousElementSibling!==anchor){anchor.after($('results'),$('hint'));}
-    if(q.trim()){list=matches(q); if(!list.length)hint='Found nothing. Try another word, or use “Food from a packet”.';}
-    else if(mode==='fav'){list=favs.map(function(id){return byId[id];}).filter(Boolean); if(!list.length)hint='Tap the star by a food to save it here.';}
-    else if(mode==='meal'){list=[];}
-    else if(mode==='mine'){list=FOODS.filter(function(f){return f.mine;}); if(!list.length)hint='Food you enter from a packet ends up here, when you choose to save it.';}
-    else if(mode==='rec'){list=recent.map(function(id){return byId[id];}).filter(Boolean); if(!list.length)hint='The food you used most recently appears here.';}
-    else hint=FOODS.length?'Type the name of the food in the field above.':'';
-    if(mode==='meal'&&!q.trim()){
-      $('results').innerHTML=meals.map(function(m){var t=0;m.items.forEach(function(it){t+=carbsOf(it);});return '<li><button class="food" type="button" data-meal="'+esc(m.id)+'"><span class="dotf" style="background:#7c3aed">★</span><span class="nm">'+esc(m.name)+'<small style="display:block;color:var(--muted);font-weight:600">'+m.items.length+' items</small></span><span class="kb">'+nb(Math.round(t),0)+' g</span></button></li>';}).join('');
-      $('hint').textContent=meals.length?'':'Put food on the plate and tap “Save as meal”, and you will find it here again.'; return;
-    }
-    $('results').innerHTML=list.map(foodRow).join(''); $('hint').textContent=hint;
-  }
+  function knapper(){Array.prototype.forEach.call(document.querySelectorAll('[data-m]'),function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-m')===mode));});}
+  function setMode(m){mode=(mode===m)?'':m; gid=null; $('q').value=''; knapper(); vis();}
+  function nullstill(){mode='';gid=null;$('q').value='';knapper();vis();}
 
-  /* ====== Tallerken-tegning ====== */
-  function renderPlate(){
-    var tot=0; plate.forEach(function(it){tot+=carbsOf(it);});
-    var svg='<circle cx="110" cy="110" r="104" fill="#fff" stroke="#e3eaf5" stroke-width="3"/><circle cx="110" cy="110" r="84" fill="#f3f7fd" stroke="#e8eef8" stroke-width="2"/>';
-    if(plate.length&&tot>0){
-      var R=62, C=2*Math.PI*R, off=0;
-      plate.forEach(function(it){var f=carbsOf(it)/tot, len=f*C; svg+='<circle cx="110" cy="110" r="'+R+'" fill="none" stroke="'+colorOf(it.name)+'" stroke-width="30" stroke-dasharray="'+Math.max(0,len-1.5).toFixed(2)+' '+(C-Math.max(0,len-1.5)).toFixed(2)+'" stroke-dashoffset="'+(-off).toFixed(2)+'" transform="rotate(-90 110 110)"/>'; off+=len;});
-    } else svg+='<circle cx="110" cy="110" r="62" fill="none" stroke="#e3eaf5" stroke-width="30" stroke-dasharray="6 8"/>';
-    svg+='<text x="110" y="118" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="30" fill="#0f172a">'+(plate.length?nb(Math.round(tot),0):'')+'</text>';
-    $('plateSvg').innerHTML=svg;
-    $('tot').innerHTML=nb(Math.round(tot),0)+'<small>g</small>';
-    var red=tot>300; $('warn').hidden=!(tot>100); $('warn').classList.toggle('red',red); $('warn').innerHTML=red?'<b>This is probably not right.</b> You most likely typed a wrong number. Do not use this total. Ask an adult for help.':'<b>That is a lot.</b> Check that you typed the right number. Ask an adult for help.';
-    $('pump').innerHTML=plate.length?(red?'The total is not shown as a number you can use. Fix the numbers above first.':'Total: <b>'+nb(Math.round(tot),0)+' g</b> carbohydrate. Use the total as you have learned from the diabetes team.'):'Put food on the plate, and you will see the total carbohydrate.';
-    $('items').innerHTML=plate.map(function(it,i){return '<li><button class="item" type="button" data-i="'+i+'"><span class="sw" style="background:'+colorOf(it.name)+'"></span><span class="nm">'+esc(it.name)+'<small>'+nb(it.grams,0)+' g'+(it.own==='gram'?'':' · '+nb(it.per100)+' g carbs per 100 g')+'</small></span><span class="kb">'+nb(carbsOf(it),1)+' g</span></button></li>';}).join('');
-    $('clear').style.display=plate.length?'':'none';
+  /* ===== Sumstripe ===== */
+  function mal(){var s=$('sumbar');document.documentElement.style.setProperty('--sumh',s.offsetHeight+'px');}
+  function oppSum(puls){
+    var t=sum(), s=$('sumbar'), v=$('sumvarsel');
+    $('sumn').innerHTML=nb(Math.round(t),0)+'<span>'+esc(T.gKarbo)+'<\/span>';
+    s.classList.remove('gul','rod');
+    if(t>300){s.classList.add('rod');v.textContent=T.vRod;}
+    else if(t>100){s.classList.add('gul');v.textContent=T.vGul;}
+    $('seTall').textContent=plate.length?f(T.seTallN,plate.length):T.seTall;
+    if(puls){s.classList.remove('puls');void s.offsetWidth;s.classList.add('puls');}
+    mal();
   }
+  function lagrePlate(){ls('tk_plate',plate);oppSum();}
+  function toast(t){var e=$('toast');e.textContent=t;e.classList.add('pa');clearTimeout(toast._t);toast._t=setTimeout(function(){e.classList.remove('pa');},2400);}
 
-  /* ====== Mengde-ark ====== */
+  /* ===== Ark ===== */
   var sbg=$('sbg'), sheet=$('sheet');
-  function closeSheet(){sbg.classList.remove('on');sheet.innerHTML='';}
-  function askYes(title,text,yes,fn){
-    sheet.innerHTML='<h3>'+esc(title)+'</h3><p class="per">'+esc(text)+'</p><div class="row2"><button class="btn danger" id="yes" type="button">'+esc(yes)+'</button><button class="btn ghost" id="no" type="button">No, keep</button></div>';
-    sbg.classList.add('on'); $('no').addEventListener('click',closeSheet); $('yes').addEventListener('click',function(){fn();});
-    setTimeout(function(){var n=$('no');if(n&&n.isConnected)n.focus();},60);
+  function aapne(h){sheet.innerHTML=h;sbg.classList.add('on');document.documentElement.classList.add('tk-ark');$('toast').classList.remove('pa');}
+  function lukk(){sbg.classList.remove('on');sheet.innerHTML='';document.documentElement.classList.remove('tk-ark');}
+  sbg.addEventListener('click',function(e){if(e.target===sbg)lukk();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lukk();});
+  function sporr(tittel,tekst,ja,fn,tilbake){
+    aapne('<h3>'+esc(tittel)+'<\/h3><p class="per">'+esc(tekst)+'<\/p><div class="row2"><button class="btn danger" id="ja" type="button">'+esc(ja)+'<\/button><button class="btn ghost" id="nei" type="button">'+esc(T.neiBehold)+'<\/button><\/div>');
+    $('nei').addEventListener('click',tilbake||lukk); $('ja').addEventListener('click',fn);
   }
-  sbg.addEventListener('click',function(e){if(e.target===sbg)closeSheet();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSheet();});
-  function openAmount(food,idx){
-    var editing=idx!=null, it=editing?plate[idx]:null;
-    var per100=editing?it.per100:food.carbs, name=editing?it.name:food.name, grams=editing?it.grams:100, ports=(food&&food.ports)||[];
-    var html='<h3>'+esc(name)+'</h3><p class="per">'+nb(per100)+' g carbohydrate per 100 g</p>'+
-      '<div class="stepper"><button type="button" id="mn" aria-label="Less">−</button><input id="g" type="number" inputmode="decimal" min="0" max="3000" step="1" aria-label="Amount in grams"><button type="button" id="pl" aria-label="More">+</button></div>';
-    if(ports.length){html+='<div class="port">'+ports.slice(0,6).map(function(p,k){return '<button class="chip" type="button" data-p="'+k+'">'+esc(p.n)+' · ca. '+nb(p.g,0)+' g</button>';}).join('')+'</div>';}
-    html+='<div class="res"><div class="n" id="rv">0<small>g carbs</small></div></div><div class="row2"><button class="btn" id="ok" type="button">'+(editing?'Oppdater':'Add to the plate')+'</button>'+(editing?'<button class="btn danger" id="rm" type="button">Remove</button>':'<button class="btn ghost" id="cn" type="button">Cancel</button>')+'</div>';
-    if(!editing&&food&&food.mine)html+='<button class="btn ghost" id="delm" type="button" style="margin-top:10px;width:100%">Delete from My foods</button>';
-    sheet.innerHTML=html; sbg.classList.add('on');
-    if($('delm'))$('delm').addEventListener('click',function(){askYes('Delete “'+food.name+'»?','The food is removed from My foods.','Yes, delete',function(){mine=mine.filter(function(m){return m.id!==food.id;});ls('tk_mine',mine);favs=favs.filter(function(x){return x!==food.id;});ls('tk_favs',favs);rebuild();renderResults();closeSheet();});});
-    var gi=$('g'); gi.value=grams;
-    function upd(){var v=num(gi.value);if(!isFinite(v)||v<0)v=0;$('rv').innerHTML=nb(per100*v/100,1)+'<small>g carbs</small>';return v;}
-    gi.addEventListener('input',upd);
-    $('mn').addEventListener('click',function(){gi.value=Math.max(0,(num(gi.value)||0)-10);upd();});
-    $('pl').addEventListener('click',function(){gi.value=(num(gi.value)||0)+10;upd();});
-    Array.prototype.forEach.call(sheet.querySelectorAll('[data-p]'),function(b){b.addEventListener('click',function(){gi.value=Math.round(ports[+b.getAttribute('data-p')].g);upd();});});
-    upd(); setTimeout(function(){if(gi.isConnected){gi.focus();gi.select();}},60);
+  function fokus(id){setTimeout(function(){var e=$(id);if(e&&e.isConnected){e.focus();if(e.select&&e.type!=='checkbox')try{e.select();}catch(x){}}},60);}
+
+  /* Mengde (fra søk, fra skanneren, eller endre en matvare på tallerkenen) */
+  function aapneMengde(food,idx){
+    var red=idx!=null, it=red?plate[idx]:null;
+    var per=red?it.per100:food.carbs, navn=red?it.name:food.name, ports=(!red&&food&&food.ports)||[], enh=red?(it.enh==='ml'?'ml':'g'):unitOf(food);
+    var src=red?it.src:(typeof food.src==='string'?food.src:(food.mine?'pakke':'rg'));
+    var erMine=!red&&food&&(food.mine||food.src==='pakke')&&mineHas(food.id);
+    var start=red?it.grams:(ports.length?ports[0].g:100);
+    var h='<h3>'+esc(navn)+'<\/h3><p class="per">'+f(T.perN,nb(per),enh)+' <span class="kil">· '+esc(kilde(src))+'<\/span><\/p>'+
+      (ports.length?'<div class="port" role="group" aria-label="'+esc(T.porsjon)+'">'+ports.slice(0,6).map(function(p,i){return '<button type="button" class="chip" data-p="'+i+'" aria-pressed="'+(i===0)+'">'+esc(p.n)+' · '+esc(T.ca)+' '+nb(p.g,0)+' '+enh+'<\/button>';}).join('')+'<\/div>':'')+
+      '<div class="stepper"><button type="button" id="mn" aria-label="'+esc(T.mindre)+'">−<\/button><input id="gr" type="text" inputmode="decimal" aria-label="'+esc(enh==='ml'?T.mengdeMl:T.mengdeG)+'"><button type="button" id="pl" aria-label="'+esc(T.mer)+'">+<\/button><\/div>'+
+      '<p class="per" style="margin:-4px 0 8px;text-align:center">'+esc(enh==='ml'?T.milliliter:T.gram)+'<\/p><div id="advm"><\/div>'+
+      '<div class="res"><div class="n" id="rv">0<small>'+esc(T.gKarbo)+'<\/small><\/div><\/div>'+
+      '<div class="row2"><button class="btn" id="ok" type="button">'+esc(red?T.oppdater:T.leggPa)+'<\/button>'+(red?'<button class="btn danger" id="rm" type="button">'+esc(T.fjern)+'<\/button>':'<button class="btn ghost" id="av" type="button">'+esc(T.avbryt)+'<\/button>')+'<\/div>'+
+      (erMine?'<button class="btn danger full" id="slett" type="button" style="margin-top:10px">'+esc(T.slettMine)+'<\/button>':'');
+    aapne(h);
+    var gi=$('gr'); gi.value=start;
+    function upd(){var v=num(gi.value);if(!isFinite(v)||v<0)v=0;$('rv').innerHTML=nb(per*v/100,1)+'<small>'+esc(T.gKarbo)+'<\/small>';$('advm').innerHTML=v>1000?'<div class="adv gul"><b>'+esc(T.erDetRiktig)+'<\/b> '+esc(T.over1000)+'<\/div>':'';return v;}
+    gi.addEventListener('input',upd); upd();
+    $('mn').addEventListener('click',function(){gi.value=Math.max(0,(num(gi.value)||0)-5);upd();});
+    $('pl').addEventListener('click',function(){gi.value=(num(gi.value)||0)+5;upd();});
+    Array.prototype.forEach.call(sheet.querySelectorAll('[data-p]'),function(b){b.addEventListener('click',function(){
+      Array.prototype.forEach.call(sheet.querySelectorAll('[data-p]'),function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');gi.value=Math.round(ports[+b.getAttribute('data-p')].g);upd();});});
     $('ok').addEventListener('click',function(){
       var v=upd(); if(!(v>0)){gi.focus();return;}
-      if(editing){plate[idx].grams=v;}
-      else{plate.push({id:food.id,name:name,per100:per100,grams:v}); recent=[food.id].concat(recent.filter(function(x){return x!==food.id;})).slice(0,12); ls('tk_recent',recent);}
-      savePlate(); renderPlate(); closeSheet(); if(!editing)nullstill();
+      if(red){plate[idx].grams=v;lagrePlate();lukk();return;}
+      plate.push({id:food.id,name:navn,per100:per,grams:v,src:src,enh:enh});
+      recent=[food.id].concat(recent.filter(function(x){return x!==food.id;})).slice(0,12);ls('tk_recent',recent);
+      lagrePlate();oppSum(true);lukk();nullstill();toast(T.lagtPa);
     });
-    if(editing)$('rm').addEventListener('click',function(){plate.splice(idx,1);savePlate();renderPlate();closeSheet();});
-    else $('cn').addEventListener('click',closeSheet);
+    if(red)$('rm').addEventListener('click',function(){plate.splice(idx,1);lagrePlate();aapneTallerken();});
+    else $('av').addEventListener('click',lukk);
+    if($('slett'))$('slett').addEventListener('click',function(){sporr(f(T.slettQ,navn),T.slettMineT,T.jaSlett,function(){fjernMine(food.id);lukk();toast(T.slettet);});});
   }
-  function openOwn(kind){
-    var pack=kind==='pack';
-    sheet.innerHTML='<h3>'+(pack?'Food from a packet':'Carbohydrates I know')+'</h3><p class="per">'+(pack?'Enter the number from the packet, and how much you weighed.':'Enter the number of grams of carbohydrate you already know.')+'</p>'+
-      '<label class="field">Name'+(pack?' (for example “Oat biscuit”)':' (optional)')+'<input id="on" type="text" maxlength="40" autocomplete="off"></label>'+
-      (pack?'<div class="per100">Read on the packet: the row <b>“Carbohydrates”</b> under <b>“per 100 g”</b>. Not the “per portion” number.</div><label class="field"><span>Carbohydrates <b>per 100 g</b> (grams)</span><input id="op" placeholder="for example 62.5" type="number" inputmode="decimal" min="0" max="100" step="0.1"></label><label class="field"><span>The amount of food you weighed (grams)</span><input id="og" type="number" inputmode="decimal" min="0" max="3000" step="1"></label>'
-           :'<label class="field">Grams of carbohydrate<input id="og" type="number" inputmode="decimal" min="0" max="500" step="0.5"></label>')+
-      ''+(pack?'<div class="warn" id="pw" hidden><b>Check the number.</b> Is it “per 100 g” from the packet? If it is a lot, you may have typed it wrong.</div><label class="chk"><input id="sv" type="checkbox" checked> Remember this food for next time</label>':'')+'<div class="res"><div class="n" id="rv">0<small>g carbs</small></div></div><div class="row2"><button class="btn" id="ok" type="button">Add to the plate</button><button class="btn ghost" id="cn" type="button">Cancel</button></div>';
-    sbg.classList.add('on');
-    function vals(){var p=pack?num($('op').value):100, g=num($('og').value); if(!isFinite(p)||p<0||p>100)p=NaN; if(!isFinite(g)||g<0)g=NaN; return {p:p,g:g};}
-    function upd(){var v=vals();var r=(isFinite(v.p)&&isFinite(v.g))?v.p*v.g/100:0;$('rv').innerHTML=(r?nb(r,1):'0')+'<small>g carbs</small>';if($('pw'))$('pw').hidden=!(r>60||(isFinite(v.p)&&v.p>80));return v;}
-    Array.prototype.forEach.call(sheet.querySelectorAll('input'),function(i){i.addEventListener('input',upd);});
-    $('cn').addEventListener('click',closeSheet); setTimeout(function(){var t=pack?$('op'):$('og');if(t)t.focus();},60);
-    $('ok').addEventListener('click',function(){
-      var v=upd(); if(!isFinite(v.p)||!isFinite(v.g)||v.g<=0){(pack&&!isFinite(v.p)?$('op'):$('og')).focus();return;}
-      var nm=($('on').value||'').trim()||(pack?'Food from a packet':'Karbohydrater');
-      var id='own';
-      if(pack&&$('sv').checked){
-        if(!($('on').value||'').trim()){$('on').focus();return;}
-        var ex=mine.filter(function(m){return m.name.toLowerCase()===nm.toLowerCase();})[0];
-        if(ex){ex.carbs=v.p;id=ex.id;}else{id='m'+Date.now().toString(36);mine.unshift({id:id,name:nm,carbs:v.p});}
-        mine=mine.slice(0,100); ls('tk_mine',mine); rebuild(); renderResults();
-      }
-      plate.push({id:id,name:nm,per100:v.p,grams:v.g,own:id==='own'?(pack?'pack':'gram'):undefined}); savePlate(); renderPlate(); closeSheet(); nullstill();
-    });
+  function fjernMine(id){
+    mine=mine.filter(function(m){return m.id!==id;});ls('tk_mine',mine);
+    favs=favs.filter(function(x){return x!==id;});ls('tk_favs',favs);
+    recent=recent.filter(function(x){return x!==id;});ls('tk_recent',recent);
+    rebuild();vis();
   }
 
-  function openMealSave(){
-    if(!plate.length)return;
-    sheet.innerHTML='<h3>Save as meal</h3><p class="per">Give the meal a name, for example “Usual breakfast”.</p><label class="field"><span>Name</span><input id="mn2" type="text" maxlength="40" autocomplete="off"></label><div class="row2"><button class="btn" id="ok" type="button">Save</button><button class="btn ghost" id="cn" type="button">Cancel</button></div>';
-    sbg.classList.add('on'); $('cn').addEventListener('click',closeSheet); setTimeout(function(){var e=$('mn2');if(e&&e.isConnected)e.focus();},60);
+  /* Tallerken-ark */
+  function donut(){
+    var t=sum(), s='<circle cx="110" cy="110" r="104" fill="#fff" stroke="#e3eaf5" stroke-width="3"/><circle cx="110" cy="110" r="84" fill="#f3f7fd" stroke="#e8eef8" stroke-width="2"/>';
+    if(plate.length&&t>0){var R=62,C=2*Math.PI*R,off=0;plate.forEach(function(it){var fr=carbsOf(it)/t,len=fr*C;s+='<circle cx="110" cy="110" r="'+R+'" fill="none" stroke="'+colorOf(it.name)+'" stroke-width="30" stroke-dasharray="'+Math.max(0,len-1.5).toFixed(2)+' '+(C-Math.max(0,len-1.5)).toFixed(2)+'" stroke-dashoffset="'+(-off).toFixed(2)+'" transform="rotate(-90 110 110)"/>';off+=len;});}
+    else s+='<circle cx="110" cy="110" r="62" fill="none" stroke="#e3eaf5" stroke-width="30" stroke-dasharray="6 8"/>';
+    s+='<text x="110" y="118" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-weight="800" font-size="30" fill="#0f172a">'+(plate.length?nb(Math.round(t),0):'')+'<\/text>';
+    return '<svg viewBox="0 0 220 220" role="img" aria-label="'+esc(T.tallerkenAria)+'">'+s+'<\/svg>';
+  }
+  function aapneTallerken(){
+    var t=sum();
+    var adv=t>300?'<div class="adv rod"><b>'+esc(T.rodH)+'<\/b> '+esc(T.rodT)+'<\/div>':(t>100?'<div class="adv gul"><b>'+esc(T.gulH)+'<\/b> '+esc(T.gulT)+'<\/div>':'');
+    var it=plate.length?'<ul class="items">'+plate.map(function(x,i){return '<li><button class="item" type="button" data-e="'+i+'" aria-label="'+esc(f(T.endreNavn,x.name))+'"><span class="sw" style="background:'+colorOf(x.name)+'"><\/span><span class="nm">'+esc(x.name)+'<small>'+(x.src==='gram'?esc(kilde('gram')):nb(x.grams,0)+' '+unitOf(x)+' · '+esc(kilde(x.src)))+'<\/small><\/span><span class="kb">'+nb(carbsOf(x),1)+' g<\/span><\/button><button class="btn danger kort" type="button" data-r="'+i+'" aria-label="'+esc(f(T.fjernNavn,x.name))+'">'+esc(T.fjern)+'<\/button><\/li>';}).join('')+'<\/ul>':'<p class="tomt">'+esc(T.tomTallerken)+'<\/p>';
+    aapne('<h3>'+esc(T.tallerkenH)+'<\/h3><div class="tall">'+donut()+'<\/div><p style="text-align:center;margin:0 0 6px"><b style="font-size:2.4rem;letter-spacing:-.03em">'+nb(Math.round(t),0)+'<\/b> g<br><span style="color:var(--muted);font-weight:700">'+esc(T.karboTilSammen)+'<\/span><\/p>'+adv+it+
+      '<div class="row2"><button class="btn ghost" id="lagre" type="button">'+esc(T.lagreMaaltid)+'<\/button><button class="btn danger" id="tom" type="button">'+esc(T.tomTallerkenBtn)+'<\/button><\/div><button class="btn full" id="lk" type="button" style="margin-top:10px">'+esc(T.lukk)+'<\/button>');
+    $('lk').addEventListener('click',lukk);
+    $('lagre').addEventListener('click',aapneLagreMaaltid);
+    $('tom').addEventListener('click',function(){if(!plate.length)return;sporr(T.tomQ,T.tomT,T.jaTom,function(){plate=[];lagrePlate();lukk();},aapneTallerken);});
+    Array.prototype.forEach.call(sheet.querySelectorAll('[data-r]'),function(b){b.addEventListener('click',function(){plate.splice(+b.getAttribute('data-r'),1);lagrePlate();aapneTallerken();});});
+    Array.prototype.forEach.call(sheet.querySelectorAll('[data-e]'),function(b){b.addEventListener('click',function(){var i=+b.getAttribute('data-e');aapneMengde(byId[plate[i].id]||null,i);});});
+  }
+  function aapneLagreMaaltid(){
+    if(!plate.length){toast(T.leggForst);return;}
+    aapne('<h3>'+esc(T.lagreMaaltid)+'<\/h3><p class="per">'+esc(T.maaltidNavnT)+'<\/p><label class="lbl" for="mnm">'+esc(T.navn)+'<\/label><div class="navn"><input id="mnm" type="text" maxlength="40" autocomplete="off"><\/div><div id="adv"><\/div><div class="row2" style="margin-top:14px"><button class="btn" id="ok" type="button">'+esc(T.lagre)+'<\/button><button class="btn ghost" id="cn" type="button">'+esc(T.avbryt)+'<\/button><\/div>');
+    $('cn').addEventListener('click',aapneTallerken); fokus('mnm');
     $('ok').addEventListener('click',function(){
-      var nm=($('mn2').value||'').trim(); if(!nm){$('mn2').focus();return;}
-      var items=plate.map(function(it){return {id:it.id,name:it.name,per100:it.per100,grams:it.grams,own:it.own};});
+      var nm=($('mnm').value||'').trim(); if(!nm){$('adv').innerHTML='<div class="adv gul">'+esc(T.skrivNavn)+'<\/div>';$('mnm').focus();return;}
+      var items=plate.map(function(x){return {id:x.id,name:x.name,per100:x.per100,grams:x.grams,src:x.src,enh:x.enh};});
       var ex=meals.filter(function(m){return m.name.toLowerCase()===nm.toLowerCase();})[0];
-      if(ex){ex.items=items;}else{meals.unshift({id:'ml'+Date.now().toString(36),name:nm,items:items});}
-      meals=meals.slice(0,30); ls('tk_meals',meals); closeSheet(); renderResults();
+      if(ex)ex.items=items;else meals.unshift({id:'ml'+Date.now().toString(36),name:nm,items:items});
+      meals=meals.slice(0,30);ls('tk_meals',meals);lukk();toast(T.maaltidLagret);
     });
   }
-  function openMeal(id){
-    var m=meals.filter(function(x){return x.id===id;})[0]; if(!m)return; var t=0; m.items.forEach(function(it){t+=carbsOf(it);});
-    sheet.innerHTML='<h3>'+esc(m.name)+'</h3><ul class="items" style="margin:0 0 10px">'+m.items.map(function(it){return '<li style="display:flex;justify-content:space-between;gap:10px;padding:6px 0"><span>'+esc(it.name)+' <small style="color:var(--muted)">'+nb(it.grams,0)+' g</small></span><b>'+nb(carbsOf(it),1)+' g</b></li>';}).join('')+'</ul><div class="res"><div class="n">'+nb(Math.round(t),0)+'<small>g carbs</small></div></div><div class="row2"><button class="btn" id="ok" type="button">Add to the plate</button><button class="btn danger" id="rm" type="button">Delete</button></div><button class="btn ghost" id="cn" type="button" style="width:100%;margin-top:10px">Close</button>';
-    sbg.classList.add('on'); $('cn').addEventListener('click',closeSheet);
-    $('ok').addEventListener('click',function(){m.items.forEach(function(it){plate.push({id:it.id,name:it.name,per100:it.per100,grams:it.grams,own:it.own});});savePlate();renderPlate();closeSheet();nullstill();});
-    $('rm').addEventListener('click',function(){askYes('Delete “'+m.name+'»?','The meal is removed from My meals.','Yes, delete',function(){meals=meals.filter(function(x){return x.id!==id;});ls('tk_meals',meals);renderResults();closeSheet();});});
+  function aapneMaaltid(id){
+    var m=meals.filter(function(x){return x.id===id;})[0]; if(!m)return; var t=0;m.items.forEach(function(it){t+=carbsOf(it);});
+    aapne('<h3>'+esc(m.name)+'<\/h3><ul class="items" style="margin:6px 0 10px">'+m.items.map(function(it){return '<li><div class="item" style="cursor:default"><span class="nm">'+esc(it.name)+'<small>'+nb(it.grams,0)+' '+unitOf(it)+'<\/small><\/span><span class="kb">'+nb(carbsOf(it),1)+' g<\/span><\/div><\/li>';}).join('')+'<\/ul><div class="res"><div class="n">'+nb(Math.round(t),0)+'<small>'+esc(T.gKarbo)+'<\/small><\/div><\/div><div class="row2"><button class="btn" id="ok" type="button">'+esc(T.leggPa)+'<\/button><button class="btn danger" id="rm" type="button">'+esc(T.slett)+'<\/button><\/div><button class="btn ghost full" id="cn" type="button" style="margin-top:10px">'+esc(T.lukk)+'<\/button>');
+    $('cn').addEventListener('click',lukk);
+    $('ok').addEventListener('click',function(){m.items.forEach(function(it){plate.push({id:it.id,name:it.name,per100:it.per100,grams:it.grams,src:it.src,enh:it.enh});});lagrePlate();oppSum(true);lukk();nullstill();toast(T.maaltidPa);});
+    $('rm').addEventListener('click',function(){sporr(f(T.slettQ,m.name),T.slettMaaltidT,T.jaSlett,function(){meals=meals.filter(function(x){return x.id!==id;});ls('tk_meals',meals);vis();lukk();},function(){aapneMaaltid(id);});});
   }
 
-  /* ====== Hendelser ====== */
-  $('saveMeal').addEventListener('click',openMealSave);
-  $('chMeal').addEventListener('click',function(){mode=mode==='meal'?'':'meal';$('chMeal').setAttribute('aria-pressed',mode==='meal');$('chFav').setAttribute('aria-pressed','false');$('chRec').setAttribute('aria-pressed','false');$('chMine').setAttribute('aria-pressed','false');$('q').value='';renderResults();});
-  $('q').addEventListener('input',renderResults);
-  $('chFav').addEventListener('click',function(){mode=mode==='fav'?'':'fav';$('chFav').setAttribute('aria-pressed',mode==='fav');$('chRec').setAttribute('aria-pressed','false');$('chMine').setAttribute('aria-pressed','false');$('chMeal').setAttribute('aria-pressed','false');$('q').value='';renderResults();});
-  $('chRec').addEventListener('click',function(){mode=mode==='rec'?'':'rec';$('chRec').setAttribute('aria-pressed',mode==='rec');$('chFav').setAttribute('aria-pressed','false');$('chMine').setAttribute('aria-pressed','false');$('chMeal').setAttribute('aria-pressed','false');$('q').value='';renderResults();});
-  $('chMine').addEventListener('click',function(){mode=mode==='mine'?'':'mine';$('chMine').setAttribute('aria-pressed',mode==='mine');$('chFav').setAttribute('aria-pressed','false');$('chRec').setAttribute('aria-pressed','false');$('chMeal').setAttribute('aria-pressed','false');$('q').value='';renderResults();});
-  $('results').addEventListener('click',function(e){
-    var s=e.target.closest('[data-fav]'); if(s){var id=s.getAttribute('data-fav'),ix=favs.indexOf(id);if(ix>=0)favs.splice(ix,1);else favs.unshift(id);ls('tk_favs',favs);renderResults();return;}
-    var ml=e.target.closest('[data-meal]'); if(ml){openMeal(ml.getAttribute('data-meal'));return;}
-    var b=e.target.closest('[data-id]'); if(b){var f=byId[b.getAttribute('data-id')];if(f)openAmount(f);}
-  });
-  $('items').addEventListener('click',function(e){var b=e.target.closest('[data-i]');if(!b)return;var i=+b.getAttribute('data-i'),it=plate[i];openAmount(byId[it.id]||null,i);});
-  $('clear').addEventListener('click',function(){if(!plate.length)return;askYes('Empty the plate?','All the food on the plate is removed.','Yes, empty',function(){plate=[];savePlate();renderPlate();closeSheet();});});
-  $('ownPack').addEventListener('click',function(){openOwn('pack');});
-  $('ownGram').addEventListener('click',function(){openOwn('gram');});
+  /* ===== Les av pakken: 3 steg, mat eller drikke ===== */
+  function tabell(enh){
+    var kol=enh==='ml'?T.per100ml:T.per100g;
+    return '<svg class="tab" viewBox="0 0 300 196" role="img" aria-label="'+esc(f(T.tabellAria,kol))+'">'+
+      '<rect x="2" y="2" width="296" height="192" rx="14" fill="#fff" stroke="#9aa6b8" stroke-width="3"/><text x="16" y="28" font-size="15" font-weight="800" fill="#0f172a">'+esc(T.tabNaering)+'<\/text>'+
+      '<rect x="156" y="36" width="70" height="146" rx="8" fill="#e6efff" stroke="#2563eb" stroke-width="3"/>'+
+      '<text x="191" y="56" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1d4ed8">'+esc(kol)+'<\/text><text x="263" y="56" text-anchor="middle" font-size="11.5" font-weight="700" fill="#8a97ab">'+esc(T.perPorsjon)+'<\/text>'+
+      '<rect x="8" y="104" width="284" height="28" rx="6" fill="#fff3c4" stroke="#f0b429" stroke-width="2.5"/>'+
+      '<g font-size="13" fill="#0f172a"><text x="16" y="82">'+esc(T.tabFett)+'<\/text><text x="16" y="124" font-weight="800">'+esc(T.tabKarbo)+'<\/text><text x="16" y="152">'+esc(T.tabProtein)+'<\/text><text x="16" y="174">'+esc(T.tabSalt)+'<\/text><\/g>'+
+      '<g font-size="13" text-anchor="middle" fill="#0f172a"><text x="191" y="82">8 g<\/text><text x="191" y="124" font-weight="800" font-size="15">'+esc(nb(62.5)+' g')+'<\/text><text x="191" y="152">9 g<\/text><text x="191" y="174">'+esc(nb(1.1)+' g')+'<\/text><\/g>'+
+      '<g font-size="12.5" text-anchor="middle" fill="#8a97ab"><text x="263" y="82">'+esc(nb(2.4)+' g')+'<\/text><text x="263" y="124">'+esc(nb(18.8)+' g')+'<\/text><text x="263" y="152">'+esc(nb(2.7)+' g')+'<\/text><text x="263" y="174">'+esc(nb(0.3)+' g')+'<\/text><\/g><\/svg><p class="eks">'+esc(T.tabEks)+'<\/p>';
+  }
+  function pakke(){
+    var s={steg:1,enh:'g',p:'',g:'',navn:'',husk:true};
+    function dots(){var h='<div class="steg" aria-label="'+esc(f(T.stegAria,s.steg))+'"><span>'+esc(f(T.stegN,s.steg))+'<\/span>';for(var i=1;i<=3;i++)h+='<i class="'+(i<=s.steg?'pa':'')+'"><\/i>';return h+'<\/div>';}
+    function regn(){var p=num(s.p),g=num(s.g);return(isFinite(p)&&isFinite(g))?p*g/100:NaN;}
+    function tegn(){
+      var e=s.enh, h='';
+      if(s.steg===1){
+        h=dots()+'<h3>'+esc(T.finnTallet)+'<\/h3><div class="valgrad" role="group" aria-label="'+esc(T.matEllerDrikke)+'"><button class="seg" type="button" data-e="g" aria-pressed="'+(e==='g')+'">'+esc(T.mat)+'<br><small>'+esc(T.staarPer100g)+'<\/small><\/button><button class="seg" type="button" data-e="ml" aria-pressed="'+(e==='ml')+'">'+esc(T.drikke)+'<br><small>'+esc(T.staarPer100ml)+'<\/small><\/button><\/div>'+tabell(e)+
+          '<label class="lbl" for="p">'+esc(T.skrivTallet)+'<\/label><div class="felt"><input id="p" type="text" inputmode="decimal" placeholder="'+esc(nb(62.5))+'" value="'+esc(s.p)+'"><span class="enh">'+esc(T.gKarbo)+'<br>'+esc(e==='ml'?T.per100ml:T.per100g)+'<\/span><\/div><div id="adv"><\/div>'+
+          '<div class="tips"><b>'+esc(T.barePorsjonH)+'<\/b> '+esc(f(T.barePorsjonT,e))+'<\/div>'+
+          '<div class="row2" style="margin-top:14px"><button class="btn ghost" id="av" type="button">'+esc(T.avbryt)+'<\/button><button class="btn" id="neste" type="button">'+esc(T.neste)+'<\/button><\/div>';
+      }else if(s.steg===2){
+        h=dots()+'<h3>'+esc(e==='ml'?T.hvorMyeDrikke:T.hvorMyeSpise)+'<\/h3><p class="per">'+esc(e==='ml'?T.skrivMl:T.skrivG)+'<\/p><label class="lbl" for="g">'+esc(T.mengde)+'<\/label><div class="felt"><input id="g" type="text" inputmode="decimal" placeholder="60" value="'+esc(s.g)+'"><span class="enh">'+esc(e==='ml'?T.milliliter:T.gram)+'<\/span><\/div><div id="adv"><\/div>'+
+          '<div class="row2" style="margin-top:14px"><button class="btn ghost" id="tilb" type="button">'+esc(T.tilbake)+'<\/button><button class="btn" id="neste" type="button">'+esc(T.neste)+'<\/button><\/div>';
+      }else{
+        var r=regn();
+        h=dots()+'<h3>'+esc(T.dutFaar)+'<\/h3><div class="res"><div class="n">'+nb(r,1)+'<small>'+esc(T.gKarbo)+'<\/small><\/div><\/div><div class="reg">'+f(T.regPakken,'<b>'+nb(num(s.p),1)+' g<\/b>',e)+'<br>'+f(T.regDu,'<b>'+nb(num(s.g),0)+' '+e+'<\/b>')+'<br>'+esc(T.regnestykket)+' '+nb(num(s.g),0)+' × '+nb(num(s.p),1)+' ÷ 100 = <b>'+nb(r,1)+' g<\/b><\/div>'+
+          (r>300?'<div class="adv rod"><b>'+esc(T.rodH)+'<\/b> '+esc(T.rodPakke)+'<\/div>':(r>60?'<div class="adv gul"><b>'+esc(T.gulH)+'<\/b> '+esc(T.gulT)+'<\/div>':''))+
+          '<label class="lbl" for="nv">'+esc(T.hvaHeter)+'<\/label><div class="navn"><input id="nv" type="text" maxlength="40" placeholder="'+esc(T.navnEks)+'" value="'+esc(s.navn)+'"><\/div><label class="chk"><input id="hk" type="checkbox" '+(s.husk?'checked':'')+'> '+esc(T.huskMaten)+'<\/label><div id="adv"><\/div>'+
+          '<div class="row2" style="margin-top:12px"><button class="btn ghost" id="tilb" type="button">'+esc(T.tilbake)+'<\/button><button class="btn" id="ok" type="button">'+esc(T.leggPa)+'<\/button><\/div>';
+      }
+      aapne(h); bind();
+    }
+    function bind(){
+      var a=$('av');if(a)a.addEventListener('click',lukk);
+      Array.prototype.forEach.call(sheet.querySelectorAll('[data-e]'),function(b){b.addEventListener('click',function(){s.enh=b.getAttribute('data-e');tegn();});});
+      var p=$('p');if(p){p.addEventListener('input',function(){s.p=p.value;var v=num(p.value),m='',u=s.enh;
+        if(p.value&&(!isFinite(v)||v<0))m='<div class="adv rod">'+esc(f(T.skrivTall,nb(62.5)))+'<\/div>';
+        else if(v>100)m='<div class="adv rod"><b>'+esc(T.kanIkke)+'<\/b> '+esc(f(T.kanIkkeT,u))+'<\/div>';
+        else if(v>80)m='<div class="adv gul"><b>'+esc(T.sjekkTallet)+'<\/b> '+esc(f(T.over80,u))+'<\/div>';
+        $('adv').innerHTML=m;});fokus('p');}
+      var g=$('g');if(g){g.addEventListener('input',function(){s.g=g.value;var v=num(g.value),m='';
+        if(g.value&&(!isFinite(v)||v<=0))m='<div class="adv rod">'+esc(T.storreEnn0)+'<\/div>';
+        else if(v>1000)m='<div class="adv gul"><b>'+esc(T.erDetRiktig)+'<\/b> '+esc(T.over1000)+'<\/div>';
+        $('adv').innerHTML=m;});fokus('g');}
+      var n=$('neste');if(n)n.addEventListener('click',function(){
+        if(s.steg===1){var v=num(s.p);if(s.p===''||!(v>=0&&v<=100)){$('p').focus();$('adv').innerHTML='<div class="adv rod">'+esc(T.skrivFraPakken)+'<\/div>';return;}}
+        if(s.steg===2){var w=num(s.g);if(!(w>0&&w<=3000)){$('g').focus();$('adv').innerHTML='<div class="adv rod">'+esc(s.enh==='ml'?T.skrivHvorDrikke:T.skrivHvorSpise)+'<\/div>';return;}}
+        s.steg++;tegn();});
+      var t=$('tilb');if(t)t.addEventListener('click',function(){s.steg--;tegn();});
+      var nv=$('nv');if(nv)nv.addEventListener('input',function(){s.navn=nv.value;});
+      var hk=$('hk');if(hk)hk.addEventListener('change',function(){s.husk=hk.checked;});
+      var ok=$('ok');if(ok)ok.addEventListener('click',function(){
+        var nm=(s.navn||'').trim().slice(0,40);
+        if(s.husk&&!nm){$('nv').focus();$('adv').innerHTML='<div class="adv gul">'+esc(T.skrivNavnHusk)+'<\/div>';return;}
+        var p2=num(s.p),g2=num(s.g),id='own';
+        if(s.husk){
+          var ex=mine.filter(function(m){return m.name.toLowerCase()===nm.toLowerCase();})[0];
+          if(ex){ex.carbs=p2;ex.enh=s.enh;id=ex.id;}else{id='m'+Date.now().toString(36);mine.unshift({id:id,name:nm,carbs:p2,enh:s.enh});}
+          mine=mine.slice(0,100);ls('tk_mine',mine);rebuild();
+          recent=[id].concat(recent.filter(function(x){return x!==id;})).slice(0,12);ls('tk_recent',recent);
+        }
+        plate.push({id:id,name:nm||T.matFraPakke,per100:p2,grams:g2,src:'pakke',enh:s.enh});
+        lagrePlate();oppSum(true);lukk();nullstill();toast(f(T.lagtPaG,nb(p2*g2/100,1)));
+      });
+    }
+    tegn();
+  }
 
-  rebuild(); renderPlate();
-  /* ====== Legg på hjemskjermen ====== */
+  /* ===== Jeg vet allerede tallet ===== */
+  function kjent(){
+    aapne('<h3>'+esc(T.vCardH3)+'<\/h3><p class="per">'+T.kjentT+'<\/p><div class="tips" style="margin-top:0"><b>'+esc(T.ikkePer100)+'<\/b> '+esc(T.ikkePer100T)+'<\/div>'+
+      '<label class="lbl" for="kg">'+esc(T.gramHele)+'<\/label><div class="felt"><input id="kg" type="text" inputmode="decimal" placeholder="45"><span class="enh">'+esc(T.gKarbo)+'<\/span><\/div><div id="adv"><\/div>'+
+      '<label class="lbl" for="kn">'+esc(T.hvaErDet)+'<\/label><div class="navn"><input id="kn" type="text" maxlength="40" placeholder="'+esc(T.kjentEks)+'"><\/div>'+
+      '<div class="row2" style="margin-top:14px"><button class="btn ghost" id="av" type="button">'+esc(T.avbryt)+'<\/button><button class="btn" id="ok" type="button">'+esc(T.leggPa)+'<\/button><\/div>');
+    $('av').addEventListener('click',lukk);var k=$('kg');fokus('kg');
+    k.addEventListener('input',function(){var v=num(k.value),m='';
+      if(k.value&&(!isFinite(v)||v<=0))m='<div class="adv rod">'+esc(T.storreEnn0)+'<\/div>';
+      else if(v>300)m='<div class="adv rod"><b>'+esc(T.rodH)+'<\/b> '+esc(T.sjekkTallDet)+'<\/div>';
+      else if(v>100)m='<div class="adv gul"><b>'+esc(T.gulH)+'<\/b> '+esc(T.sjekkTallDet2)+'<\/div>';
+      $('adv').innerHTML=m;});
+    $('ok').addEventListener('click',function(){var v=num(k.value);if(!(v>0&&v<=500)){k.focus();$('adv').innerHTML='<div class="adv rod">'+esc(T.skrivGramKarbo)+'<\/div>';return;}
+      plate.push({id:'own',name:($('kn').value||'').trim().slice(0,40)||T.karbohydrater,per100:100,grams:v,src:'gram',enh:'g'});
+      lagrePlate();oppSum(true);lukk();nullstill();toast(f(T.lagtPaG,nb(v,1)));});
+  }
+
+  /* ===== Hendelser ===== */
+  $('q').addEventListener('input',function(){mode='';gid=null;knapper();vis();});
+  Array.prototype.forEach.call(document.querySelectorAll('[data-m]'),function(b){b.addEventListener('click',function(){setMode(b.getAttribute('data-m'));});});
+  $('innhold').addEventListener('click',function(e){
+    var st=e.target.closest('[data-fav]');if(st){var id=st.getAttribute('data-fav'),ix=favs.indexOf(id);if(ix>=0)favs.splice(ix,1);else favs.unshift(id);ls('tk_favs',favs);vis();return;}
+    var dl=e.target.closest('[data-del]');if(dl){var did=dl.getAttribute('data-del'),df=byId[did];if(df)sporr(f(T.slettQ,df.name),T.slettMineT2,T.jaSlett,function(){fjernMine(did);lukk();toast(T.slettet);});return;}
+    if(e.target.closest('#tomSist')){sporr(T.tomSistQ,T.tomSistT,T.jaTom,function(){recent=[];ls('tk_recent',recent);vis();lukk();toast(T.listeTomt);});return;}
+    var g=e.target.closest('[data-g]');if(g){gid=g.getAttribute('data-g');vis();return;}
+    if(e.target.closest('#tilGr')){gid=null;vis();return;}
+    var ml=e.target.closest('[data-meal]');if(ml){aapneMaaltid(ml.getAttribute('data-meal'));return;}
+    var m=e.target.closest('[data-id]');if(m){var x=byId[m.getAttribute('data-id')];if(x)aapneMengde(x);}
+  });
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-v]');if(!b)return;var v=b.getAttribute('data-v');if(v==='pakke')pakke();else if(v==='kjent')kjent();});
+  $('seTall').addEventListener('click',aapneTallerken);
+  window.addEventListener('resize',mal);
+
+  /* ===== Åpent grensesnitt for skanneren (skann.js) og mattabellen (mattabell.js). Ikke endre uten å teste dem. ===== */
+  rebuild(); vis(); oppSum();
+  window.RGT={esc:esc,nb:nb,num:num,ls:ls,sheet:sheet,sbg:sbg,closeSheet:lukk,
+    openAmount:function(food,idx){aapneMengde(food,idx);},
+    setTable:function(rows){TAB=arr(rows).map(function(r){return {id:r.id,name:r.name,carbs:r.carbs,ports:[],s:r.s,src:'rg',enh:'g'};});rebuild();vis();},
+    mineGet:function(id){return mineHas(id)&&byId[id]?byId[id]:null;},
+    mineAdd:function(name,carbs){var nm=String(name).slice(0,40),ex=mine.filter(function(m){return m.name.toLowerCase()===nm.toLowerCase();})[0],id;if(ex){ex.carbs=carbs;id=ex.id;}else{id='m'+Date.now().toString(36);mine.unshift({id:id,name:nm,carbs:carbs,enh:'g'});}mine=mine.slice(0,100);ls('tk_mine',mine);rebuild();vis();return id;},
+    addPlate:function(it){var m=mineHas(it.id);if(m){recent=[it.id].concat(recent.filter(function(x){return x!==it.id;})).slice(0,12);ls('tk_recent',recent);}plate.push({id:it.id,name:it.name,per100:it.per100,grams:it.grams,src:m?'pakke':(String(it.id).indexOf('rg')===0?'rg':'pakke'),enh:'g'});lagrePlate();oppSum(true);lukk();nullstill();toast(T.lagtPa);}};
+  document.dispatchEvent(new Event('rgt-klar'));
+
+  /* ===== Legg på hjemskjermen ===== */
   (function(){
     var wrap=$('instWrap'), btn=$('install'); if(!wrap||!btn)return;
     var standalone=false; try{standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;}catch(e){}
@@ -507,17 +747,18 @@
     window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e;});
     btn.addEventListener('click',function(){
       if(deferred){deferred.prompt();deferred=null;return;}
-      sheet.innerHTML='<h3>Add to home screen</h3><p class="per">Then you open The Plate like a normal app, also without internet.</p><p><b>iPhone (Safari):</b> tap the Share button, choose “Add to Home Screen”.</p><p><b>Android (Chrome):</b> tap the menu with three dots, choose “Install app” or “Add to home screen”.</p><p class="per">Open the page online at least once first, and it is saved on the phone.</p><button class="btn ghost" id="cn" type="button" style="width:100%">Close</button>';
-      sbg.classList.add('on'); $('cn').addEventListener('click',closeSheet);
+      aapne('<h3>'+esc(T.instH)+'<\/h3><p class="per">'+esc(T.instT)+'<\/p><p>'+T.instIos+'<\/p><p>'+T.instAnd+'<\/p><p class="per">'+esc(T.instNett)+'<\/p><button class="btn ghost full" id="cn" type="button">'+esc(T.lukk)+'<\/button>');
+      $('cn').addEventListener('click',lukk);
     });
   })();
-  loadFoods().then(function(list){
-    base=list; rebuild();
-    $('load').hidden=true; renderResults();
+
+  loadFoods().then(function(l){
+    REAL=l.map(function(x){return {id:x.id,name:x.name,carbs:x.carbs,ports:x.ports||[],s:x.s,src:'mt',enh:'g'};});
+    rebuild(); $('load').hidden=true; vis();
   }).catch(function(e){
-    base=[]; rebuild(); renderResults();
+    REAL=[]; rebuild(); vis();
     var l=$('load'); l.hidden=false; l.className='load err';
-    l.textContent='Could not load the food table right now. '+(e&&e.parse?e.message+'. ':'')+'You can still use “Food from a packet” and “I know the grams of carbs”.';
+    l.textContent=T.errLoad+' '+(e&&e.parse?e.message+'. ':'')+T.errLoad2;
   });
 })();
 </script>
@@ -533,5 +774,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
 <script src="../enkel.js" defer></script>
 <script src="/nyttig/diabetes/utstyr.js" defer></script>
+<script src="/nyttig/diabetes/mattabell.js" defer></script>
+<script src="/nyttig/diabetes/skann.js" defer></script>
 </body>
 </html>

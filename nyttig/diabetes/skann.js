@@ -169,7 +169,7 @@
   }
 
   function visFunnet(food, kilde) {
-    R.openAmount({ id: food.id, name: food.name, carbs: food.carbs, ports: [], mine: !!food.mine });
+    R.openAmount({ id: food.id, name: food.name, carbs: food.carbs, ports: [], mine: !!food.mine, enh: food.enh === 'ml' ? 'ml' : 'g' });
     var per = R.sheet.querySelector('.per');
     if (per) per.insertAdjacentHTML('afterend', '<p class="per" style="font-size:.85rem;color:#5b4a10;background:#fff7e0;border:1px solid #f0d98a;border-radius:10px;padding:8px 10px">' + R.esc(kilde.trim()) + '</p>');
   }

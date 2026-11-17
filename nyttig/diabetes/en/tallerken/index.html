@@ -716,7 +716,7 @@ svg.tab text{font-family:Manrope,system-ui,sans-serif}
   rebuild(); vis(); oppSum();
   window.RGT={esc:esc,nb:nb,num:num,ls:ls,sheet:sheet,sbg:sbg,closeSheet:lukk,
     openAmount:function(food,idx){aapneMengde(food,idx);},
-    setTable:function(rows){TAB=arr(rows).map(function(r){return {id:r.id,name:r.name,carbs:r.carbs,ports:[],s:r.s,src:'rg',enh:'g'};});rebuild();vis();},
+    setTable:function(rows){TAB=arr(rows).map(function(r){return {id:r.id,name:r.name,carbs:r.carbs,ports:[],s:r.s,src:'rg',enh:r.enh==='ml'?'ml':'g'};});rebuild();vis();},
     mineGet:function(id){return mineHas(id)&&byId[id]?byId[id]:null;},
     mineAdd:function(name,carbs){var nm=String(name).slice(0,40),ex=mine.filter(function(m){return m.name.toLowerCase()===nm.toLowerCase();})[0],id;if(ex){ex.carbs=carbs;id=ex.id;}else{id='m'+Date.now().toString(36);mine.unshift({id:id,name:nm,carbs:carbs,enh:'g'});}mine=mine.slice(0,100);ls('tk_mine',mine);rebuild();vis();return id;},
     addPlate:function(it){var m=mineHas(it.id);if(m){recent=[it.id].concat(recent.filter(function(x){return x!==it.id;})).slice(0,12);ls('tk_recent',recent);}plate.push({id:it.id,name:it.name,per100:it.per100,grams:it.grams,src:m?'pakke':(String(it.id).indexOf('rg')===0?'rg':'pakke'),enh:'g'});lagrePlate();oppSum(true);lukk();nullstill();toast(T.lagtPa);}};

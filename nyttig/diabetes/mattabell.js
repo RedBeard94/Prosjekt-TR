@@ -35,7 +35,7 @@
         var x = a[i];
         if (!x || typeof x[0] !== 'string' || typeof x[1] !== 'string' || typeof x[2] !== 'number') continue;
         if (!(x[2] >= 0 && x[2] <= 100) || !x[1] || x[1].length > 120) continue;
-        var o = { id: 'rg' + x[0], code: x[0], name: x[1], carbs: x[2], src: 1, ports: [], s: norm(x[1]) };
+        var o = { id: 'rg' + x[0], code: x[0], name: x[1], carbs: x[2], src: 1, ports: [], s: norm(x[1]), enh: x[3] === 'ml' ? 'ml' : 'g' };
         rows.push(o); by[x[0]] = o;
       }
       st.rows = rows; st.by = by;
