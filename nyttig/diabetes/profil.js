@@ -30,7 +30,7 @@
     per100: ' g carbohydrate per 100 ', addSel: 'Add selected', addedN: function (n, h) { return n + ' added' + (h ? ', ' + h + ' already existed' : ''); }, fullN: function (n) { return '. ' + n + ' did not fit (max 100).'; }, leadE: 'Here you see what is saved on this phone. Ask an adult to help you if you want to change or delete something.', delTE: 'Ask an adult first. Removes your profile and everything saved on this phone. It cannot be undone.',
     inCode: 'This is in the code', replaceW: 'This <b>replaces</b> what you have saved now on these points. It cannot be undone.', useCode: 'Use the code', moved: 'Done. Everything is moved over.',
     lPump: 'Pump: ', lSen: ', sensor: ', lEnkel: ' (simple version)', lPer: 'Important people: ', lMt: 'My numbers', lNo: 'Notes', lMine: ' own foods', lMeals: ' meals', lFavs: ' favourites',
-    plateSet: 'Plate',
+    plateSet: 'Plate', eqSave: 'Save', eqSaved: 'Saved', eqVer: 'Version', eqVerV: 'Diabetes', eqVerE: 'Diabetes simple', eqToE: 'Switch to simple', eqToV: 'Switch to regular', eqEnd: ' yet. The pages may be misleading for you.', eqPh: 'Choose',
     yes: 'Yes', fromOther: 'From someone else. Not checked.'
   } : {
     none: 'Ikke valgt', other: 'Annen / vet ikke', pump: 'Pumpe', sen: 'Sensor',
@@ -59,11 +59,18 @@
     per100: ' g karbohydrater per 100 ', addSel: 'Legg til valgte', addedN: function (n, h) { return n + ' lagt til' + (h ? ', ' + h + ' fantes fra før' : ''); }, fullN: function (n) { return '. ' + n + ' fikk ikke plass (maks 100).'; }, leadE: 'Her ser du hva som er lagret på denne telefonen. Be en voksen hjelpe deg hvis du skal endre eller slette noe.', delTE: 'Spør en voksen først. Fjerner profilen og alt som er lagret på denne telefonen. Det kan ikke angres.',
     inCode: 'Dette er i koden', replaceW: 'Dette <b>erstatter</b> det du har lagret nå på disse punktene. Det kan ikke angres.', useCode: 'Bruk koden', moved: 'Ferdig. Alt er flyttet over.',
     lPump: 'Pumpe: ', lSen: ', sensor: ', lEnkel: ' (enkel versjon)', lPer: 'Viktige personer: ', lMt: 'Mine tall', lNo: 'Notater', lMine: ' egne matvarer', lMeals: ' måltider', lFavs: ' favoritter',
-    plateSet: 'Tallerken',
+    plateSet: 'Tallerken', eqSave: 'Lagre', eqSaved: 'Lagret', eqVer: 'Versjon', eqVerV: 'Diabetes', eqVerE: 'Diabetes enkel', eqToE: 'Bytt til enkel', eqToV: 'Bytt til vanlig', eqEnd: ' ennå. Sidene kan være misvisende for deg.', eqPh: 'Velg',
     yes: 'Ja', fromOther: 'Fra en annen. Ikke sjekket.'
   };
   var PUMPS = { tslim: 'Tandem t:slim X2', dash: 'Omnipod DASH', o5: 'Omnipod 5', ypso: 'mylife YpsoPump', ypsocam: EN ? 'mylife YpsoPump with CamAPS FX' : 'mylife YpsoPump med CamAPS FX', mm: 'Medtronic MiniMed 780G', solo: 'Accu-Chek Solo' };
   var SENS = { g7: 'Dexcom G7', g6: 'Dexcom G6', libre: 'FreeStyle Libre 3 Plus', simplera: 'Simplera Sync', instinct: 'Instinct', guardian: 'Guardian 4' };
+
+  /* Valg av pumpe og sensor i Min profil. Samme regler og tekster som velgersiden (utstyr.js). */
+  var UT = EN ? {"suit": "Sensor that fits: ", "soonTag": " (coming soon)", "soonH": "Coming soon. ", "soonA": "We have not made the pages for ", "soonE": "You can continue to the simple version, but its pages are made for Tandem pump with Dexcom or Libre 3 Plus sensor, Accu-Chek Solo, Omnipod DASH, mylife YpsoPump, MiniMed 780G with Simplera Sync, Instinct and Guardian 4, or Omnipod 5 with FreeStyle Libre 3 Plus, and may be misleading for you.", "noOther": "other equipment", "N": {"dash": "Omnipod DASH has no automation and is not connected to a sensor. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). You type the sensor value into the pump yourself.", "solo": "Accu-Chek Solo has no automation and is not connected to a sensor. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). You type the sensor value into the pump yourself.", "o5": "Omnipod 5 can be used with Dexcom G6, Dexcom G7, FreeStyle Libre 2 Plus and FreeStyle Libre 3 Plus. Our pages are made for Libre 3 Plus.", "tslim": "Tandem t:slim X2 is used with Dexcom G7, Dexcom G6 and FreeStyle Libre 3 Plus.", "ypso": "mylife YpsoPump has no sensor connection or bolus calculator of its own. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). If you use the CamAPS FX app, choose \"mylife YpsoPump with CamAPS FX\".", "ypsocam": "mylife YpsoPump with the CamAPS FX app controls the pump automatically. Choose the sensor you use (Dexcom G7, Dexcom G6 or FreeStyle Libre 3 Plus). Ask your diabetes team that your combination is supported.", "mm": "MiniMed 780G is used with Simplera Sync, Instinct and Guardian 4. Instinct needs a pump software upgrade first."}, "pump": "Choose pump", "sen": "Choose sensor", "other": "Other / not sure"} : {"suit": "Sensor som passer: ", "soonTag": " (kommer snart)", "soonH": "Kommer snart. ", "soonA": "Vi har ikke laget sidene for ", "soonE": "Du kan gå videre til enkel versjon, men sidene der er laget for Tandem-pumpe med Dexcom- eller Libre 3 Plus-sensor, Accu-Chek Solo, Omnipod DASH, mylife YpsoPump, MiniMed 780G med Simplera Sync, Instinct og Guardian 4, eller Omnipod 5 med FreeStyle Libre 3 Plus, og kan være misvisende for deg.", "noOther": "annet utstyr", "N": {"dash": "Omnipod DASH har ingen automatikk og er ikke koblet til en sensor. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Du legger sensorverdien inn i pumpen selv.", "solo": "Accu-Chek Solo har ingen automatikk og er ikke koblet til en sensor. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Du legger sensorverdien inn i pumpen selv.", "o5": "Omnipod 5 kan brukes med Dexcom G6, Dexcom G7, FreeStyle Libre 2 Plus og FreeStyle Libre 3 Plus. Sidene våre er laget for Libre 3 Plus.", "tslim": "Tandem t:slim X2 brukes med Dexcom G7, Dexcom G6 og FreeStyle Libre 3 Plus.", "ypso": "mylife YpsoPump har ingen sensorkobling eller boluskalkulator selv. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Bruker du appen CamAPS FX, velg «mylife YpsoPump med CamAPS FX».", "ypsocam": "mylife YpsoPump med appen CamAPS FX styrer pumpen automatisk. Velg sensoren du bruker (Dexcom G7, Dexcom G6 eller FreeStyle Libre 3 Plus). Spør diabetesteamet at kombinasjonen din støttes.", "mm": "MiniMed 780G brukes med Simplera Sync, Instinct og Guardian 4. Instinct krever at pumpen oppgraderes først."}, "pump": "Velg pumpe", "sen": "Velg sensor", "other": "Annen / vet ikke"};
+  var SUP = { p: ['tslim', 'mm', 'o5', 'solo', 'dash', 'ypso', 'ypsocam'], s: ['g7', 'g6', 'simplera', 'libre', 'instinct', 'guardian'] };
+  var PAIRS = ['tslim+g7', 'tslim+g6', 'tslim+libre', 'mm+simplera', 'mm+instinct', 'mm+guardian', 'o5+libre', 'solo+g7', 'solo+g6', 'solo+libre', 'dash+g7', 'dash+g6', 'dash+libre', 'ypso+g7', 'ypso+g6', 'ypso+libre', 'ypsocam+g7', 'ypsocam+g6', 'ypsocam+libre'];
+  var SUGG = { tslim: 'g7', o5: 'libre', ypso: 'libre', mm: 'simplera' };
+  var PORD = ['tslim', 'dash', 'o5', 'ypso', 'ypsocam', 'mm', 'solo'], SORD = ['g7', 'g6', 'libre', 'simplera', 'instinct', 'guardian'];
 
   function $(id) { return document.getElementById(id); }
   function esc(x) { return String(x).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -97,13 +104,56 @@
   function draw() {
     var p = g('mn_pump'), se = g('mn_sen'), cam = g('mn_cam') === '1', oth = g('mn_other') === '1';
     var pn = PUMPS[cam && p === 'ypso' ? 'ypsocam' : p] || '', sn = SENS[se] || '';
-    var h = '';
-    if (pn || sn || oth) {
-      h += '<div class="rad"><div><b>' + esc(pn || (oth ? T.other : T.none)) + '</b><span class="s">' + esc(T.pump) + '</span></div></div>';
-      h += '<div class="rad"><div><b>' + esc(sn || (oth && !pn ? T.other : T.none)) + '</b><span class="s">' + esc(T.sen) + '</span></div></div>';
-      h += '<button class="btn danger kort2" id="slUt" type="button">' + esc(T.rmEq) + '</button>';
-    } else h += '<div class="rad tom">' + esc(T.noEq) + '</div>';
+    var h = '', cur = cam && p === 'ypso' ? 'ypsocam' : (p || (oth && !se ? 'annen' : '')), has = !!(pn || sn || oth);
+    function opts(ord, nmap, kind, val) {
+      var o = '<option value="">' + esc(T.eqPh) + '</option>';
+      ord.forEach(function (k) { o += '<option value="' + k + '"' + (val === k ? ' selected' : '') + '>' + esc(nmap[k]) + (SUP[kind].indexOf(k) < 0 ? esc(UT.soonTag) : '') + '</option>'; });
+      return o + '<option value="annen"' + (val === 'annen' ? ' selected' : '') + '>' + esc(T.other) + '</option>';
+    }
+    h += '<label class="fl" for="eqP">' + esc(T.pump) + '</label><select id="eqP">' + opts(PORD, PUMPS, 'p', cur) + '</select>';
+    h += '<label class="fl" for="eqS">' + esc(T.sen) + '</label><select id="eqS">' + opts(SORD, SENS, 's', se || (oth && !p ? 'annen' : '')) + '</select>';
+    h += '<p class="rec" id="eqRec" hidden></p><p class="soon" id="eqSoon" role="status" hidden></p>';
+    h += '<button class="btn full" id="eqSave" type="button">' + esc(T.eqSave) + '</button>';
+    h += '<div class="rad"><div><b>' + esc(ENKEL ? T.eqVerE : T.eqVerV) + '</b><span class="s">' + esc(T.eqVer) + '</span></div><button class="btn ghost kort2" id="eqVerB" type="button">' + esc(ENKEL ? T.eqToV : T.eqToE) + '</button></div>';
+    if (has) h += '<button class="btn danger kort2" id="slUt" type="button">' + esc(T.rmEq) + '</button>';
     $('utstyr').innerHTML = h;
+    var eP = $('eqP'), eS = $('eqS'), eR = $('eqRec'), eO = $('eqSoon'), eB = $('eqSave');
+    function badK(k, v) { return !!v && (v === 'annen' || SUP[k].indexOf(v) < 0); }
+    function eChk() {
+      var pb = badK('p', eP.value), sb = badK('s', eS.value), nm2 = [];
+      if (pb) nm2.push(eP.value === 'annen' ? UT.noOther : PUMPS[eP.value]);
+      if (sb) nm2.push(eS.value === 'annen' ? UT.noOther : SENS[eS.value]);
+      var pairBad = !pb && !sb && eP.value && eS.value && PAIRS.indexOf(eP.value + '+' + eS.value) < 0;
+      if (pairBad) nm2.push(PUMPS[eP.value] + ' + ' + SENS[eS.value]);
+      if (nm2.length && ENKEL) { eO.hidden = false; eO.className = 'soon e'; eO.innerHTML = UT.soonE; }
+      else if (nm2.length) { eO.hidden = false; eO.className = 'soon'; eO.innerHTML = '<b>' + esc(UT.soonH) + '</b>' + esc(UT.soonA) + esc(nm2.join(EN ? ' and ' : ' og ')) + esc(T.eqEnd); }
+      else eO.hidden = true;
+      eB.disabled = !(eP.value || eS.value);
+    }
+    function eRec() {
+      var v = eP.value, t = '';
+      if (SUGG[v]) t = '<b>' + esc(UT.suit + SENS[SUGG[v]]) + '.</b> ';
+      if (UT.N[v]) t += esc(UT.N[v]) + ' ';
+      if (t && v) t += EN ? 'You can change the sensor in the menu.' : 'Du kan bytte sensor i menyen.';
+      eR.hidden = !t; eR.innerHTML = t;
+    }
+    eP.addEventListener('change', function () { var v = eP.value; if (SUGG[v]) eS.value = SUGG[v]; else if (v) eS.value = ''; eRec(); eChk(); });
+    eS.addEventListener('change', eChk);
+    eB.addEventListener('click', function () {
+      var pv = eP.value, sv = eS.value;
+      s('mn_pump', pv && pv !== 'annen' ? (pv === 'ypsocam' ? 'ypso' : pv) : '');
+      s('mn_cam', pv === 'ypsocam' ? '1' : '');
+      s('mn_sen', sv && sv !== 'annen' ? sv : '');
+      s('mn_other', (pv === 'annen' || sv === 'annen') ? '1' : '');
+      draw(); toast(T.eqSaved);
+    });
+    $('eqVerB').addEventListener('click', function () {
+      try { sessionStorage.removeItem('mn_skip'); } catch (e) { }
+      if (ENKEL) { s('mn_ver', null); location.href = '/nyttig/diabetes/' + (EN ? 'en/' : ''); }
+      else { s('mn_ver', 'enkel'); location.href = EN ? '/nyttig/diabetes-simple/' : '/nyttig/diabetes-enkel/'; }
+    });
+    eRec(); eChk();
+    var eqb = $('bytt'); if (eqb) eqb.style.display = 'none';
     if ($('slUt')) $('slUt').addEventListener('click', function () {
       ask(T.rmEqH, esc(T.rmEqT), T.yesRm, function () { ['mn_pump', 'mn_sen', 'mn_cam', 'mn_other', 'mn_ver'].forEach(function (k) { s(k, null); }); close(); draw(); toast(T.removed); });
     });
@@ -153,7 +203,7 @@
   });
 
   /* ---------- Bytt pumpe, sensor eller versjon: bruker velgeren som finnes fra før ---------- */
-  $('bytt').setAttribute('href', '/nyttig/diabetes/' + (EN ? 'en/' : '') + '?velg&retur=' + encodeURIComponent(location.pathname));
+  if ($('bytt')) $('bytt').setAttribute('href', '/nyttig/diabetes/' + (EN ? 'en/' : '') + '?velg&retur=' + encodeURIComponent(location.pathname));
 
   /* ---------- Slett min profil: 10 sekunder hold ---------- */
   function hold(b, ms, fn) {
