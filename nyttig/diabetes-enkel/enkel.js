@@ -14,8 +14,7 @@
 
 
   /* ---------- Samme utseende som enkel-forsiden (kun i enkel-appen) ---------- */
-  var ICONS = {"profil": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#a78bfa,#6d28d9)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21c1-4 4-6 8-6s7 2 8 6\"/></svg></span>", "tallerken": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#60a5fa,#2563eb)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"4.5\"/></svg></span>", "innstillinger": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#818cf8,#4f46e5)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6\"/></svg></span>", "trendpiler": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#f472b6,#be185d)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 16l5-5 4 3 7-8M15 6h5v5\"/></svg></span>", "tallene": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#34d399,#059669)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 7h14M5 12h14M5 17h14M9 4v16\"/></svg></span>", "mat-og-blodsukker": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#fb923c,#c2410c)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 20h18M4 16c3 0 3-9 6-9s2 9 5 9 3-6 5-6\"/></svg></span>"};
-  var HJ = '<b>Dette er bare et hjelpemiddel.</b> Det er ikke fasit. Spør alltid en voksen eller diabetesteamet.';
+  var ICONS = {"tallerken": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#60a5fa,#2563eb)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"4.5\"/></svg></span>", "innstillinger": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#818cf8,#4f46e5)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6\"/></svg></span>", "trendpiler": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#f472b6,#be185d)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 16l5-5 4 3 7-8M15 6h5v5\"/></svg></span>", "tallene": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#34d399,#059669)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 7h14M5 12h14M5 17h14M9 4v16\"/></svg></span>", "mat-og-blodsukker": "<span class=\"icon\" style=\"background:linear-gradient(160deg,#fb923c,#c2410c)\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 20h18M4 16c3 0 3-9 6-9s2 9 5 9 3-6 5-6\"/></svg></span>"};
   function shell() {
     var st = document.createElement('style');
     st.textContent = 'body{background:radial-gradient(circle at 15% 10%,#c7d9ff 0,transparent 45%),radial-gradient(circle at 90% 30%,#ffd9c2 0,transparent 40%),radial-gradient(circle at 30% 95%,#cdeedd 0,transparent 45%),#eef3fb!important}' +
@@ -36,16 +35,15 @@
     var h1 = m.querySelector('h1');
     if (h1 && ICONS[key]) { var hero = document.createElement('div'); hero.className = 'hero'; hero.setAttribute('aria-hidden', 'true'); hero.innerHTML = ICONS[key]; h1.parentNode.insertBefore(hero, h1); }
     var lead = m.querySelector('.lead');
-    if (lead && !m.querySelector('.cardx')) { /* sider med egne kort (Søk mat, Quiz) pakkes ikke inn på nytt */
+    if (lead) {
       var card = document.createElement('div'); card.className = 'cardx';
       var n = lead.nextElementSibling, arr = [];
       while (n) { arr.push(n); n = n.nextElementSibling; }
       lead.after(card); arr.forEach(function (x) { card.appendChild(x); });
       var hj = document.createElement('p'); hj.className = 'hjelp';
-      hj.innerHTML = HJ;
+      hj.innerHTML = '<b>Dette er bare et hjelpemiddel.</b> Det er ikke fasit. Spør alltid en voksen eller diabetesteamet.';
       card.appendChild(hj);
     }
-    else if (lead && !m.querySelector('.hjelp')) { var hj2 = document.createElement('p'); hj2.className = 'hjelp'; hj2.innerHTML = HJ; m.appendChild(hj2); }
   }
 
   function on() { return FORCE || location.hash === '#enkel' || location.hash === '#barn'; }
@@ -179,9 +177,9 @@
     ],
     hide: [['[aria-labelledby="h1c"] .rule', 0], ['[aria-labelledby="h1c"] .note', 0], ['[aria-labelledby="h1c"] .warn', 0], ['[aria-labelledby="h1c"] p.small', 0]]
   };
-  R.profil = { txt: [] };
+  R['vis-til-voksen'] = { txt: [] }; /* Hjelperen: ingen tekstbytte, men samme ramme og hjelpemiddel-boks som de andre sidene */
   var cfg = R[key];
-  if (!cfg) { if (FORCE && key !== 'akutt') shell(); return; } /* Søk mat og Quiz: samme topp som de andre enkel-sidene */
+  if (!cfg) return;
 
   /* ---------- Stil ---------- */
   var st = document.createElement('style');
