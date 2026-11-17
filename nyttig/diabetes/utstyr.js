@@ -163,6 +163,8 @@
   });
   se.addEventListener('click', function () {
     try { sessionStorage.setItem('mn_skip', '1'); } catch (e) { }
+    st('mn_ver', ver() === 'enkel' ? 'enkel' : '');
+    if (ver() === 'enkel') { var u = document.querySelector('input[name="ut-v"][value="enkel"]').getAttribute('data-url'); location.href = u; return; }
     if (RET) { location.href = RET; return; }
     try { if (/[?&]velg/.test(location.search)) history.replaceState(null, '', location.pathname); } catch (e) { }
     closeVk();
