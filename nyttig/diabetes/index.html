@@ -307,6 +307,10 @@
   #velkommen .go{background:linear-gradient(90deg,#2563eb,#7c3aed);color:#fff}#velkommen .go:disabled{background:#cbd5e1;color:#64748b;opacity:1;cursor:not-allowed}
   #velkommen .alt{background:#fff;color:var(--a);border:2px solid #dbe5f5;margin-top:14px}
   #velkommen .vwarn{margin:12px 0 0;text-align:center;background:#fff1ec;border:2px solid #f0a68a;border-radius:14px;padding:12px 14px;color:#6b2a10;font-size:1rem;line-height:1.4}
+  #velkommen .vhp{background:#e8f1ff;border:1.5px solid #b9d0f5;border-radius:16px;padding:12px 14px;color:#1e3a8a;font-size:.95rem;line-height:1.45;margin:0 0 14px}
+  #velkommen .vse{margin-top:14px;border:2px solid #f0a68a;background:#fff1ec;border-radius:16px;padding:8px 10px 12px}
+  #velkommen .vse .alt{margin:0;border:0;background:transparent;min-height:48px}
+  #velkommen .vse .vwarn{margin:0;border:0;background:transparent;padding:0 4px;font-size:.95rem}
   #velkommen .rec{margin:12px 0 0;font-size:.9rem;color:#0f5132;background:#e6f7ee;border-radius:12px;padding:8px 10px;line-height:1.4}
 </style>
 <meta name="theme-color" content="#2563eb">
@@ -341,26 +345,22 @@
     <h2 class="vh">Hjelpemidler for <em>diabetikere.</em></h2>
     <p class="lead">Velg pumpe og sensor, så får du sidene som passer best.</p>
     <p class="vw"><b>Viktig:</b> Denne siden er bare et hjelpemiddel. Du er selv ansvarlig for å sjekke at informasjonen stemmer med det sykehuset og diabetesteamet har bestemt for deg. Diabetes-appene og nettsiden er ikke gjennomgått av helsepersonell ennå. Følg alltid planen fra diabetesteamet.</p>
+    <p class="vhp"><b>Er du helsepersonell?</b> Vi anbefaler vanlig Diabetes, ikke enkel. Du er hjertelig velkommen til å teste enkel også.</p>
     <div class="panel"><h2>Hva bruker du?</h2><p class="small" style="margin:0 0 4px;color:var(--muted)">Lagres bare på denne enheten. Du kan endre det senere.</p>
     <label for="ut-p">Pumpe</label><select id="ut-p"></select>
     <label for="ut-s">Sensor</label><select id="ut-s"></select>
     <p class="rec" id="ut-rec" hidden></p>
     <fieldset><legend>Hvilken versjon vil du ha?</legend>
-    <label class="vo"><input type="radio" name="ut-v" value="vanlig" checked><div><b>Diabetes</b><span>Alt: Tallerken, sjekkliste, pilene, tallene, mat, manualer, video og mer.</span></div></label>
-    <label class="vo e"><input type="radio" name="ut-v" value="enkel" data-url="/nyttig/diabetes-enkel/"><div><b>Diabetes enkel</b><span>Bare det viktigste, med store knapper. Akutt-hjelp, quiz, søk mat og egne numre. Passer for barn.</span></div></label></fieldset>
+    <label class="vo"><input type="radio" name="ut-v" value="vanlig" checked><div><b>Diabetes</b><span>Alt: Tallerken, sjekklister, pilene, forklaringer, søk mat, lær mer, manualer for pumper, nyttig info, rettigheter og støtte. Du kan også søke i hele siden.</span></div></label>
+    <label class="vo e"><input type="radio" name="ut-v" value="enkel" data-url="/nyttig/diabetes-enkel/"><div><b>Diabetes enkel</b><span>Kun det viktigste. Passer for barn og ungdom.</span></div></label></fieldset>
     
     <button class="vb go" id="ut-go" type="button" disabled>Fortsett</button></div>
-    <button class="vb alt" id="ut-se" type="button">Bare se meg rundt</button>
-    <p class="vwarn" role="note"><span aria-hidden="true">⚠️</span> <b>Uten valg kan sidene være misvisende for deg.</b></p>
+    <div class="vse"><button class="vb alt" id="ut-se" type="button">Fortsett uten å velge</button>
+    <p class="vwarn" role="note"><span aria-hidden="true">⚠️</span> <b>Uten valg kan sidene være misvisende for deg.</b></p></div>
   </section>
 
   <h1>Hjelpemidler for <em>diabetikere.</em></h1>
   <p class="lead">Enkle verktøy og nyttige lenker for deg med diabetes, og for familien rundt. Velg hva du trenger.</p>
-  <div class="snar" id="snar">
-  <a class="sos" href="akutt/index.html"><b>Akutt?</b><span>Lavt eller høyt blodsukker. Hva gjør du?</span><span class="ch" aria-hidden="true">›</span></a>
-  <a class="vip" href="info/index.html"><b>Nødnumre og legevakt</b><span>113 og 116 117</span><span class="ch" aria-hidden="true">›</span></a>
-  <span id="vips"><a class="vip" href="profil/index.html"><b>Viktig person</b><span>Legg inn et nummer</span><span class="ch" aria-hidden="true">›</span></a></span>
-  </div>
   <div class="sokbox" role="search">
     <svg class="lupe" viewBox="0 0 24 24" fill="none" stroke="#5b6b82" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
     <input id="sok" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" placeholder="Søk i alt om diabetes" aria-label="Søk i alle diabetessidene" aria-controls="sokres">
@@ -390,6 +390,7 @@
     </div>
     <h2 class="grp">Hjelp og støtte</h2>
     <div class="rows">
+      <a class="row" href="akutt/index.html"><span class="ic" style="background:#fde8e8"><svg viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></span><span class="tx"><b>Akutt eller nødtilfelle</b><span>Lavt eller høyt blodsukker. Nødnumre 113 og 116 117.</span></span><span class="ch" aria-hidden="true">›</span></a>
       <a class="row" href="rettigheter/index.html"><span class="ic" style="background:#fdeaf3"><svg viewBox="0 0 24 24" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg></span><span class="tx"><b>Rettigheter og støtte</b><span>Støtte fra NAV og Helfo.</span></span><span class="ch" aria-hidden="true">›</span></a>
       <a class="row" href="info/index.html"><span class="ic" style="background:#dcf7f1"><svg viewBox="0 0 24 24" fill="none" stroke="#0f9e8a" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></span><span class="tx"><b>Nyttig informasjon</b><span>Kontakter og nødnummer.</span></span><span class="ch" aria-hidden="true">›</span></a>
     </div>
@@ -399,8 +400,8 @@
       <h2>Legg Diabetes på hjemskjermen</h2>
       <p>Velg hvilken versjon du vil ha. Du kan ha begge. De er to egne apper. Sidene virker også uten nett etter at du har åpnet dem én gang.</p>
       <div class="dp-two">
-        <div class="dp-opt"><div class="dp-top"><img src="icon-192.png" alt="" width="64" height="64"><b>Diabetes</b></div><p>Alt: Tallerken, sjekkliste, pilene, tallene, mat, manualer, video og mer.</p><button class="btn" type="button" id="install">Legg på hjemskjermen</button></div>
-        <div class="dp-opt e"><div class="dp-top"><img src="../diabetes-enkel/icon-192.png" alt="" width="64" height="64"><b>Diabetes enkel</b></div><p>Bare det viktigste, med store knapper. Akutt-hjelp, quiz, søk mat og egne numre. Passer for barn.</p><a class="btn" href="../diabetes-enkel/index.html">Åpne enkel versjon</a></div>
+        <div class="dp-opt"><div class="dp-top"><img src="icon-192.png" alt="" width="64" height="64"><b>Diabetes</b></div><p>Alt: Tallerken, sjekklister, pilene, forklaringer, søk mat, lær mer, manualer for pumper, nyttig info, rettigheter og støtte. Du kan også søke i hele siden.</p><button class="btn" type="button" id="install">Legg på hjemskjermen</button></div>
+        <div class="dp-opt e"><div class="dp-top"><img src="../diabetes-enkel/icon-192.png" alt="" width="64" height="64"><b>Diabetes enkel</b></div><p>Kun det viktigste. Passer for barn og ungdom.</p><a class="btn" href="../diabetes-enkel/index.html">Åpne enkel versjon</a></div>
       </div>
       <ol>
         <li><b>iPhone:</b> trykk på Del-knappen i Safari, og velg «Legg til på Hjem-skjerm».</li>
@@ -518,26 +519,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
   input.addEventListener('keydown',function(e){if(e.key==='Escape'&&input.value){input.value='';x.hidden=true;sok('');}});
   res.addEventListener('click',function(e){var b=e.target.closest('button[data-q]');if(b){input.value=b.getAttribute('data-q');x.hidden=false;sok(input.value);input.focus();}});
   if(location.hash==='#sok') input.focus();
-})();
-</script>
-<script>
-(function(){
-  function fmt(t){var d=t.replace(/\D/g,'');return (d.length===8&&t.indexOf('+')<0)?d.replace(/(\d{3})(\d{2})(\d{3})/,'$1 $2 $3'):t;}
-  var box=document.getElementById('vips'),snar=document.getElementById('snar');if(!box)return;
-  try{
-    var l=JSON.parse(localStorage.getItem('rg-vip-liste')||'null');
-    if(!Array.isArray(l)){var o=JSON.parse(localStorage.getItem('rg-vip')||'null');l=[o&&o.t?o:null,null];}
-    l=l.filter(function(v){return v&&v.t;}).slice(0,2);
-    if(!l.length)return;
-    box.innerHTML='';
-    l.forEach(function(v){
-      var a=document.createElement('a');a.className='vip';a.href='tel:'+v.t.replace(/[^\d+]/g,'');
-      var b=document.createElement('b');b.textContent=v.n||'Viktig person';
-      var s=document.createElement('span');s.className='nr';s.textContent=fmt(v.t);
-      var c=document.createElement('span');c.className='ch';c.setAttribute('aria-hidden','true');c.textContent='\u260E';
-      a.appendChild(b);a.appendChild(s);a.appendChild(c);box.appendChild(a);});
-    if(l.length>1)snar.classList.add('tre');
-  }catch(e){}
 })();
 </script>
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
