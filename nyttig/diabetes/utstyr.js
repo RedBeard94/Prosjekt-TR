@@ -134,7 +134,7 @@
     if (nm2.length && enk) { soon.hidden = false; soon.style.background = '#e8f1ff'; soon.style.color = '#1e3a8a'; soon.style.border = '0'; soon.innerHTML = T.soonE; }
     else if (nm2.length) { soon.hidden = false; soon.style.background = '#fff1ec'; soon.style.border = '1.5px solid #f0a68a'; soon.style.color = '#6b2a10'; soon.innerHTML = '<b>' + T.soonH + '</b>' + T.soonA + nm2.join(EN ? ' and ' : ' og ') + T.soonB; }
     else { soon.hidden = true; }
-    go.disabled = !(ps.value || ss.value || enk) || ((pb || sb || pairBad) && !enk);
+    go.disabled = !(ps.value || ss.value) || ((pb || sb || pairBad) && !enk);
   }
   var rv = document.querySelectorAll('input[name="ut-v"]'); for (var ri = 0; ri < rv.length; ri++) rv[ri].addEventListener('change', chk);
   function recDraw() {
