@@ -130,6 +130,7 @@
     h += '<p class="rec" id="eqRec" hidden></p><p class="soon" id="eqSoon" role="status" hidden></p>';
     h += '<button class="btn full" id="eqSave" type="button">' + esc(T.eqSave) + '</button>';
     h += '<div class="rad"><div><b>' + esc(ENKEL ? T.eqVerE : T.eqVerV) + '</b><span class="s">' + esc(T.eqVer) + '</span></div><button class="btn ghost kort2" id="eqVerB" type="button">' + esc(ENKEL ? T.eqToV : T.eqToE) + '</button></div>';
+    if (!ENKEL) h += '<p class="per" style="margin-top:4px">' + esc(EN ? 'PIN to return from simple: ' : 'Pinkode for å gå tilbake: ') + '<b>4625</b></p>';
     if (has) h += '<button class="btn danger kort2" id="slUt" type="button">' + esc(T.rmEq) + '</button>';
     $('utstyr').innerHTML = h;
     var eP = $('eqP'), eS = $('eqS'), eR = $('eqRec'), eO = $('eqSoon'), eB = $('eqSave');
