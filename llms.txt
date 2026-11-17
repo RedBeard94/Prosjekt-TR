@@ -13,6 +13,7 @@
 - [Akutt: lavt og høyt blodsukker](https://reinertsengruppen.no/nyttig/diabetes/akutt/)
 - [Rettigheter og støtte](https://reinertsengruppen.no/nyttig/diabetes/rettigheter/)
 - [Min profil](https://reinertsengruppen.no/nyttig/diabetes/profil/): se, endre, flytt og slett det som er lagret på telefonen
+- [Personvern i Hjelpemidler for diabetikere](https://reinertsengruppen.no/nyttig/diabetes/personvern/): hva som lagres på telefonen, hva som sendes, og dine rettigheter
 
 ## English
 - [Start page](https://reinertsengruppen.no/nyttig/diabetes/en/)
@@ -21,6 +22,7 @@
 - [Food and blood sugar](https://reinertsengruppen.no/nyttig/diabetes/en/mat-og-blodsukker/)
 - [Manuals](https://reinertsengruppen.no/nyttig/diabetes/en/manualer/)
 - [My profile](https://reinertsengruppen.no/nyttig/diabetes/en/profil/): see, change, move and delete what is saved on the phone
+- [Privacy in Tools for people with diabetes](https://reinertsengruppen.no/nyttig/diabetes/en/personvern/): what is saved on the phone, what is sent, and your rights
 
 ## Merk
 - Siden gir generell informasjon og regner ikke ut doser.

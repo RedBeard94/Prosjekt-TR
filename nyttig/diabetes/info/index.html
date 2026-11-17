@@ -11,14 +11,14 @@
 <meta name="copyright" content="© 2026 Reinertsengruppen">
 <meta name="rg-origin" content="rg-2026-10-nyttig-diabetes-info-46b4">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nyttig informasjon – Reinertsengruppen</title>
-<meta name="description" content="Gode sider, kontakter og nødnummer for diabetes.">
+<title>Gode sider – Reinertsengruppen</title>
+<meta name="description" content="Gode sider om diabetes.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Reinertsengruppen">
 <meta property="og:locale" content="nb_NO">
 <meta property="og:url" content="https://reinertsengruppen.no/nyttig/diabetes/info/">
-<meta property="og:title" content="Nyttig informasjon – Reinertsengruppen">
-<meta property="og:description" content="Gode sider, kontakter og nødnummer for diabetes.">
+<meta property="og:title" content="Gode sider – Reinertsengruppen">
+<meta property="og:description" content="Gode sider om diabetes.">
 <meta property="og:image" content="https://reinertsengruppen.no/bilder/delingsbilde-diabetes.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -142,6 +142,17 @@
   .lnk{display:flex;flex-direction:column;gap:2px;padding:14px 16px;margin:10px 0 0;border:2px solid var(--line);border-radius:16px;background:#f9fbff;color:var(--fg);text-decoration:none;min-height:56px}
   .lnk:hover,.lnk:focus-visible{border-color:var(--a);outline:none}
   .lnk b{font-weight:800}.lnk span{color:var(--muted);font-size:.92rem}
+  .gh{font-size:1.05rem;font-weight:800;padding:10px 14px;border-radius:12px;margin:22px 0 10px}
+  .gh:first-of-type{margin-top:4px}
+  .gr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .gr .lnk{margin:0;background:#fff;border-width:1.5px;min-height:0}
+  .gr .lnk b{font-size:1rem;line-height:1.3}
+  @media (max-width:480px){.gr{grid-template-columns:1fr}}
+  .gr .lnk{min-width:0;overflow-wrap:anywhere}
+  .gb .gh{background:#e8f1ff;color:#1e3a8a}.gb .lnk{border-color:#b9d0f5}
+  .gg .gh{background:#e8f5ea;color:#14532d}.gg .lnk{border-color:#a9d6b0}
+  .gy .gh{background:#fff3df;color:#78350f}.gy .lnk{border-color:#f0c98a}
+  .gw{font-size:.95rem;margin:0 0 10px;color:#78350f}
   .note{background:#fff8e6;border:1px solid #f3dca0;border-radius:16px;padding:14px 16px;margin:16px 0 0;font-size:.95rem}
   .kontakt label{display:block;font-weight:700;margin:10px 0 0}
   .kontakt input,.kontakt textarea{width:100%;font:inherit;font-size:1.05rem;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#f9fbff;margin-top:4px}
@@ -243,44 +254,51 @@
 
 <main data-rg="rg-2026-10-nyttig-diabetes-info-46b4">
   <a class="back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
-  <h1>Nyttig <em>informasjon.</em></h1>
-  <p class="lead">Gode sider å starte med, og plass til dine egne notater.</p>
-  <section class="panel" style="margin-bottom:20px" aria-label="Når det haster">
-    <h2>Når det haster</h2>
-    <a class="lnk" href="tel:116117"><b>Legevakt: 116 117</b><span>Ved sykdom som ikke kan vente til dagtid</span></a>
-    <a class="lnk" href="tel:113"><b>Nødnummer: 113</b><span>Ved alvorlig akutt sykdom</span></a>
-    <p class="note">Snakk med diabetesteamet om hva dere skal gjøre ved lavt og høyt blodsukker, og skriv det ned i feltet under.</p>
-  </section>
-  <section class="panel" style="margin-bottom:20px" aria-label="Viktige personer">
-    <h2>Viktige personer</h2>
-    <p class="small" style="margin:0 0 12px">Dine egne numre ligger nå i Min profil. Der kan du legge inn, endre og fjerne dem.</p>
-    <a class="btn" href="../profil/index.html">Åpne Min profil</a>
-  </section>
-  <section class="panel" aria-label="Nyttige sider">
-    <h2>Gode sider</h2>
-    <a class="lnk" href="https://www.diabetes.no/" target="_blank" rel="noopener"><b>Diabetesforbundet</b><span>Informasjon og støtte for deg med diabetes og familien</span></a>
-    <a class="lnk" href="https://www.diabetes.no/globalassets/om-diabetes/barn/skole-og-barnehage/hefte_min-skolehverdag-med-diabetes---brosjyre.pdf" target="_blank" rel="noopener"><b>Min skolehverdag med diabetes</b><span>Hefte (PDF) fra Diabetesforbundet</span></a>
-    <a class="lnk" href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/type-1-diabetes" target="_blank" rel="noopener"><b>Type 1-diabetes (NHI)</b><span>Norsk helseinformatikk, om sykdommen</span></a>
+  <h1>Gode <em>sider.</em></h1>
+  <p class="lead">Gode sider å starte med. Lenkene åpner andre nettsteder.</p>
+  <section class="panel" aria-label="Gode sider">
+    <div class="gb"><h2 class="gh">1. Diabetesforbundet</h2>
+      <div class="gr">
+        <a class="lnk" href="https://www.diabetes.no/" target="_blank" rel="noopener" aria-label="diabetes.no – Åpner et annet nettsted"><b>diabetes.no</b><span>Hovedsiden. Fakta, kosthold, kurs, nyheter.</span></a>
+        <a class="lnk" href="https://www.diabetes.no/globalassets/om-diabetes/barn/skole-og-barnehage/hefte_min-skolehverdag-med-diabetes---brosjyre.pdf" target="_blank" rel="noopener" aria-label="Min skolehverdag med diabetes – Åpner et annet nettsted"><b>Min skolehverdag med diabetes</b><span>Hefte (PDF) om skole og barnehage.</span></a>
+        <a class="lnk" href="https://www.diabetes.no/globalassets/om-diabetes/barn/foreldreveiledning.pdf" target="_blank" rel="noopener" aria-label="Foreldreveiledning – Åpner et annet nettsted"><b>Foreldreveiledning</b><span>Hefte (PDF) om samspill mellom barn og foreldre.</span></a>
+        <a class="lnk" href="https://www.diabeteslinjen.no/" target="_blank" rel="noopener" aria-label="Diabeteslinjen – Åpner et annet nettsted"><b>Diabeteslinjen</b><span>Ring, chat eller e-post. Tlf 815 21 948.</span></a>
+        <a class="lnk" href="https://www.diabetes.no/" target="_blank" rel="noopener" aria-label="Kurs på nett – Åpner et annet nettsted"><b>Kurs på nett</b><span>Nettkurs finner du på diabetes.no.</span></a>
+      </div></div>
+    <div class="gg"><h2 class="gh">2. Helse og myndigheter</h2>
+      <div class="gr">
+        <a class="lnk" href="https://www.helsenorge.no/sykdom/diabetes/" target="_blank" rel="noopener" aria-label="Helsenorge – Åpner et annet nettsted"><b>Helsenorge</b><span>Type 1, type 2, føling, fotsår, førerkort.</span></a>
+        <a class="lnk" href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/type-1-diabetes" target="_blank" rel="noopener" aria-label="NHI: Diabetes type 1 – Åpner et annet nettsted"><b>NHI: Diabetes type 1</b><span>Helseleksikon om sykdommen.</span></a>
+        <a class="lnk" href="https://www.fhi.no/he/folkehelserapporten/ikke-smittsomme/diabetes/" target="_blank" rel="noopener" aria-label="FHI: Diabetes i Norge – Åpner et annet nettsted"><b>FHI: Diabetes i Norge</b><span>Tall og fakta om diabetes.</span></a>
+        <a class="lnk" href="https://www.helsedirektoratet.no/retningslinjer/diabetes" target="_blank" rel="noopener" aria-label="Helsedirektoratet – Åpner et annet nettsted"><b>Helsedirektoratet</b><span>Nasjonal retningslinje. Mest for helsepersonell.</span></a>
+        <a class="lnk" href="https://www.ung.no/" target="_blank" rel="noopener" aria-label="ung.no – Åpner et annet nettsted"><b>ung.no</b><span>Spørsmål og svar for unge.</span></a>
+        <a class="lnk" href="https://www.helsebiblioteket.no/" target="_blank" rel="noopener" aria-label="Helsebiblioteket – Åpner et annet nettsted"><b>Helsebiblioteket</b><span>Pasientinformasjon og fagstoff.</span></a>
+      </div></div>
+    <div class="gg"><h2 class="gh">3. Mat og kosthold</h2>
+      <div class="gr">
+        <a class="lnk" href="https://www.matvaretabellen.no/" target="_blank" rel="noopener" aria-label="Matvaretabellen – Åpner et annet nettsted"><b>Matvaretabellen</b><span>Offisiell tabell fra Mattilsynet. Ikke vår egen mattabell.</span></a>
+        <a class="lnk" href="https://nhi.no/kosthold/forebyggende-kost-og-sykdom/kostrad-ved-diabetes" target="_blank" rel="noopener" aria-label="NHI: Kostråd ved diabetes – Åpner et annet nettsted"><b>NHI: Kostråd ved diabetes</b><span>Bygger på Helsedirektoratets råd.</span></a>
+        <a class="lnk" href="https://www.diabetes.no/kosthold/hva-inneholder-maten/sotningsstoff/oversiktstabell-sotningsstoff/" target="_blank" rel="noopener" aria-label="Diabetesforbundet: Søtningsstoff – Åpner et annet nettsted"><b>Diabetesforbundet: Søtningsstoff</b><span>Tabell over søtningsstoff.</span></a>
+        <a class="lnk" href="https://www.diabetikersenter.no/" target="_blank" rel="noopener" aria-label="Norsk Diabetikersenter – Åpner et annet nettsted"><b>Norsk Diabetikersenter</b><span>Kurs om karbohydrattelling.</span></a>
+      </div></div>
+    <div class="gg"><h2 class="gh">4. Registre og tall</h2>
+      <div class="gr">
+        <a class="lnk" href="https://www.noklus.no/" target="_blank" rel="noopener" aria-label="Norsk diabetesregister for voksne – Åpner et annet nettsted"><b>Norsk diabetesregister for voksne</b><span>Drives av Noklus.</span></a>
+        <a class="lnk" href="https://www.barnediabetes.no/" target="_blank" rel="noopener" aria-label="Barnediabetesregisteret – Åpner et annet nettsted"><b>Barnediabetesregisteret</b><span>Tall om barn og unge.</span></a>
+        <a class="lnk" href="https://www.regjeringen.no/contentassets/7c73a85f0e0546f8a1c5b845f555b22b/no/pdfs/nasjonal-diabetesplan.pdf" target="_blank" rel="noopener" aria-label="Nasjonal diabetesplan 2025–2029 – Åpner et annet nettsted"><b>Nasjonal diabetesplan 2025–2029</b><span>Regjeringens plan (PDF).</span></a>
+      </div></div>
+    <div class="gy"><h2 class="gh">5. Sjekk selv først</h2>
+      <p class="gw">Disse er ikke fra helsemyndighetene og er ikke sjekket av helsepersonell. Sjekk selv før du bruker dem.</p>
+      <div class="gr">
+        <a class="lnk" href="https://www.matoppskrift.no/sider/Diasok.asp" target="_blank" rel="noopener" aria-label="Matoppskrift.no – Åpner et annet nettsted"><b>Matoppskrift.no</b><span>Gammel privat side. Artikkelen er fra 2003.</span></a>
+        <a class="lnk" href="https://www.klikk.no/helse/kosthold/mat/kostrad-3362576" target="_blank" rel="noopener" aria-label="Klikk.no – Åpner et annet nettsted"><b>Klikk.no</b><span>Nettavis. Ikke fra helsemyndighetene.</span></a>
+      </div></div>
     <p class="note">Jeg har ikke skrevet noen medisinske råd selv. Følg rådene du har fått av diabetesteamet.</p>
-  </section>
-  <section class="panel kontakt" style="margin-top:20px" aria-label="Mine telefonnumre">
-    <h2>Mine kontakter</h2>
-    <p class="small" style="margin:0">Skriv inn det du vil ha lett tilgjengelig, for eksempel diabetessykepleier og hvem du ringer ved spørsmål. Det lagres bare på denne telefonen.</p>
-    <label for="k1">Diabetessykepleier / poliklinikk</label><textarea id="k1" rows="2" maxlength="300"></textarea>
-    <label for="k2">Andre notater</label><textarea id="k2" rows="3" maxlength="500"></textarea>
   </section>
   <p class="foot">Siden eier ingen av veiledningene. Merkenavn tilhører produsentene. Siden er ikke tilknyttet eller godkjent av produsentene. Ved akutt sykdom, ring legevakt 116 117, eller 113 i nødsituasjon. Denne siden erstatter ikke opplæring og råd fra diabetesteamet.</p>
 </main>
 
-<footer class="pfoot">Laget av Thomas Reinertsen · <a href="../../../personvern/index.html">Personvern</a> · <a href="../../../opphavsrett/index.html">Opphavsrett</a> · <a href="../tilbakemelding/index.html">Tilbakemelding</a> · <a href="../nytt/index.html">Hva er nytt</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. Alle rettigheter forbeholdt.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">Dette er informasjon og hjelp, ikke medisinsk rådgivning. Snakk alltid med diabetesteamet ditt om behandlingen din. Siden er under oppbygging, og det kan ligge feil her.</p></footer>
-<script>
-(function(){
-
-  var $=function(id){return document.getElementById(id);};
-  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-  ['k1','k2'].forEach(function(id){var e=document.getElementById(id);if(!e)return;try{e.value=localStorage.getItem('mn_'+id)||'';}catch(x){}e.addEventListener('input',function(){try{localStorage.setItem('mn_'+id,e.value);}catch(x){}});});
-})();
-</script>
+<footer class="pfoot">Laget av Thomas Reinertsen · <a href="/nyttig/diabetes/personvern/">Personvern</a> · <a href="../../../opphavsrett/index.html">Opphavsrett</a> · <a href="../tilbakemelding/index.html">Tilbakemelding</a> · <a href="../nytt/index.html">Hva er nytt</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. Alle rettigheter forbeholdt.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">Dette er informasjon og hjelp, ikke medisinsk rådgivning. Snakk alltid med diabetesteamet ditt om behandlingen din. Siden er under oppbygging, og det kan ligge feil her.</p></footer>
 <script>
 (function(){var b=document.querySelector('.ddb'),m=document.querySelector('.ddm');if(!b||!m)return;
 function set(o){b.setAttribute('aria-expanded',o);m.hidden=!o;}

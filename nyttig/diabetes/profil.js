@@ -10,9 +10,9 @@
     noP: 'No name', addP: '+ Add person ', edit: 'Edit', rm: 'Remove', rmPH: 'Remove ', rmPT: 'The number is removed from this phone.',
     perH: 'Edit person', perHn: 'Add person', perT: 'Write a short name, for example Mum. The number stays on this phone.', name: 'Name', tel: 'Phone number', save: 'Save', cancel: 'Cancel',
     errName: 'Write a name.', errTel: 'Write a phone number with digits only (at least 8).', saved: 'Saved', removed: 'Removed', noSave: 'Could not save. Check that the browser allows storage.',
-    mt: 'My numbers', mtSaved: 'Numbers from your team are saved', nothing: 'Nothing saved', notes: 'Notes', notesSaved: 'Saved in “Useful information”', plate: 'Plate',
+    mt: 'My numbers', mtSaved: 'Numbers from your team are saved', nothing: 'Nothing saved', notes: 'Notes', notesSaved: 'Saved under “My contacts”', plate: 'Plate',
     nMine: ' own foods', nMeals: ' meals', nFavs: ' favourites', nRecent: ' recently used', del: 'Delete',
-    delMtH: 'Delete My numbers?', delMtT: 'The numbers you entered from your team are removed.', delNoH: 'Delete the notes?', delNoT: 'The notes in “Useful information” are removed.',
+    delMtH: 'Delete My numbers?', delMtT: 'The numbers you entered from your team are removed.', delNoH: 'Delete the notes?', delNoT: 'The notes in “My contacts” are removed.',
     delTkH: 'Delete the Plate data?', delTkT: 'Favourites, recently used, own foods, meals and what is on the plate are removed.', yesDel: 'Yes, delete', no: 'No, keep', deleted: 'Deleted',
     mineN0: 'You have no own foods saved.', mineN: function (n) { return 'You have ' + n + ' own food' + (n === 1 ? '' : 's') + ' saved. Only these are removed.'; },
     mineNone: 'You have no own foods to delete', delMineH: 'Delete my foods?', delMineT: function (n) { return 'You have ' + n + ' own food' + (n === 1 ? '' : 's') + ' from packs and the food table. They are removed. Everything else stays: pump, sensor, numbers, My numbers, favourites and meals.'; }, minesDel: 'My foods are deleted',
@@ -30,7 +30,7 @@
     per100: ' g carbohydrate per 100 ', addSel: 'Add selected', addedN: function (n, h) { return n + ' added' + (h ? ', ' + h + ' already existed' : ''); }, fullN: function (n) { return '. ' + n + ' did not fit (max 100).'; }, leadE: 'Here you see what is saved on this phone. Ask an adult to help you if you want to change or delete something.', delTE: 'Ask an adult first. Removes your profile and everything saved on this phone. It cannot be undone.',
     inCode: 'This is in the code', replaceW: 'This <b>replaces</b> what you have saved now on these points. It cannot be undone.', useCode: 'Use the code', moved: 'Done. Everything is moved over.',
     lPump: 'Pump: ', lSen: ', sensor: ', lEnkel: ' (simple version)', lPer: 'Important people: ', lMt: 'My numbers', lNo: 'Notes', lMine: ' own foods', lMeals: ' meals', lFavs: ' favourites',
-    plateSet: 'Plate', eqSave: 'Save', eqSaved: 'Saved', eqVer: 'Version', eqVerV: 'Diabetes', eqVerE: 'Diabetes simple', eqToE: 'Switch to simple', eqToV: 'Switch to regular', eqEnd: ' yet. The pages may be misleading for you.', eqPh: 'Choose',
+    plateSet: 'Plate', eqSave: 'Save', eqSaved: 'Saved', eqVer: 'Version', eqVerV: 'Diabetes', eqVerE: 'Diabetes simple', eqToE: 'Switch to simple', eqToV: 'Switch to regular', pinH: 'Enter PIN', pinT: 'You need the PIN to leave Diabetes simple.', pinOk: 'Continue', pinBad: 'Wrong PIN. Try again.', pinPh: '4 digits', eqEnd: ' yet. The pages may be misleading for you.', eqPh: 'Choose',
     yes: 'Yes', fromOther: 'From someone else. Not checked.'
   } : {
     none: 'Ikke valgt', other: 'Annen / vet ikke', pump: 'Pumpe', sen: 'Sensor',
@@ -38,10 +38,10 @@
     noP: 'Uten navn', addP: '+ Legg til person ', edit: 'Endre', rm: 'Fjern', rmPH: 'Fjerne ', rmPT: 'Nummeret fjernes fra denne telefonen.',
     perH: 'Endre person', perHn: 'Legg til person', perT: 'Skriv et kort navn, for eksempel Mamma. Nummeret blir bare på denne telefonen.', name: 'Navn', tel: 'Telefonnummer', save: 'Lagre', cancel: 'Avbryt',
     errName: 'Skriv et navn.', errTel: 'Skriv et telefonnummer med bare tall (minst 8).', saved: 'Lagret', removed: 'Fjernet', noSave: 'Kunne ikke lagre. Sjekk at nettleseren tillater lagring.',
-    mt: 'Mine tall', mtSaved: 'Tall fra teamet er lagret', nothing: 'Ingenting lagret', notes: 'Notater', notesSaved: 'Lagret i «Nyttig informasjon»', plate: 'Tallerken',
+    mt: 'Mine tall', mtSaved: 'Tall fra teamet er lagret', nothing: 'Ingenting lagret', notes: 'Notater', notesSaved: 'Lagret under «Mine kontakter»', plate: 'Tallerken',
     nMine: ' mine matvarer', nMeals: ' måltider', nFavs: ' favoritter', nRecent: ' sist brukt',
     del: 'Slett',
-    delMtH: 'Slette Mine tall?', delMtT: 'Tallene du har skrevet inn fra teamet fjernes.', delNoH: 'Slette notatene?', delNoT: 'Notatene i «Nyttig informasjon» fjernes.',
+    delMtH: 'Slette Mine tall?', delMtT: 'Tallene du har skrevet inn fra teamet fjernes.', delNoH: 'Slette notatene?', delNoT: 'Notatene i «Mine kontakter» fjernes.',
     delTkH: 'Slette Tallerken-dataene?', delTkT: 'Favoritter, Sist brukt, Mine matvarer, måltider og det som ligger på tallerkenen fjernes.', yesDel: 'Ja, slett', no: 'Nei, behold', deleted: 'Slettet',
     mineN0: 'Du har ingen egne matvarer lagret.', mineN: function (n) { return 'Du har ' + n + ' egne matvarer lagret. Bare disse fjernes.'; },
     mineNone: 'Du har ingen egne matvarer å slette', delMineH: 'Slette mine matvarer?', delMineT: function (n) { return 'Du har ' + n + ' egne matvarer fra pakker og mattabellen. De fjernes. Alt annet beholdes: pumpe, sensor, numre, Mine tall, favoritter og måltider.'; }, minesDel: 'Mine matvarer er slettet',
@@ -59,7 +59,7 @@
     per100: ' g karbohydrater per 100 ', addSel: 'Legg til valgte', addedN: function (n, h) { return n + ' lagt til' + (h ? ', ' + h + ' fantes fra før' : ''); }, fullN: function (n) { return '. ' + n + ' fikk ikke plass (maks 100).'; }, leadE: 'Her ser du hva som er lagret på denne telefonen. Be en voksen hjelpe deg hvis du skal endre eller slette noe.', delTE: 'Spør en voksen først. Fjerner profilen og alt som er lagret på denne telefonen. Det kan ikke angres.',
     inCode: 'Dette er i koden', replaceW: 'Dette <b>erstatter</b> det du har lagret nå på disse punktene. Det kan ikke angres.', useCode: 'Bruk koden', moved: 'Ferdig. Alt er flyttet over.',
     lPump: 'Pumpe: ', lSen: ', sensor: ', lEnkel: ' (enkel versjon)', lPer: 'Viktige personer: ', lMt: 'Mine tall', lNo: 'Notater', lMine: ' egne matvarer', lMeals: ' måltider', lFavs: ' favoritter',
-    plateSet: 'Tallerken', eqSave: 'Lagre', eqSaved: 'Lagret', eqVer: 'Versjon', eqVerV: 'Diabetes', eqVerE: 'Diabetes enkel', eqToE: 'Bytt til enkel', eqToV: 'Bytt til vanlig', eqEnd: ' ennå. Sidene kan være misvisende for deg.', eqPh: 'Velg',
+    plateSet: 'Tallerken', eqSave: 'Lagre', eqSaved: 'Lagret', eqVer: 'Versjon', eqVerV: 'Diabetes', eqVerE: 'Diabetes enkel', eqToE: 'Bytt til enkel', eqToV: 'Bytt til vanlig', pinH: 'Skriv pinkode', pinT: 'Du trenger pinkoden for å gå ut av Diabetes enkel.', pinOk: 'Fortsett', pinBad: 'Feil pinkode. Prøv igjen.', pinPh: '4 siffer', eqEnd: ' ennå. Sidene kan være misvisende for deg.', eqPh: 'Velg',
     yes: 'Ja', fromOther: 'Fra en annen. Ikke sjekket.'
   };
   var PUMPS = { tslim: 'Tandem t:slim X2', dash: 'Omnipod DASH', o5: 'Omnipod 5', ypso: 'mylife YpsoPump', ypsocam: EN ? 'mylife YpsoPump with CamAPS FX' : 'mylife YpsoPump med CamAPS FX', mm: 'Medtronic MiniMed 780G', solo: 'Accu-Chek Solo' };
@@ -100,10 +100,25 @@
     $('nei').addEventListener('click', close); $('ja').addEventListener('click', fn);
   }
 
+  /* ---------- Pinkode for å gå ut av enkel (barnesikring, ikke ekte sikkerhet) ---------- */
+  var PIN = '4625';
+  function pinAsk(fn) {
+    open('<h3>' + esc(T.pinH) + '</h3><p class="per">' + esc(T.pinT) + '</p><input id="pinI" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="' + esc(T.pinPh) + '" aria-label="' + esc(T.pinH) + '" style="width:100%;font:inherit;font-size:1.4rem;letter-spacing:.4em;text-align:center;padding:12px;border:2px solid var(--line);border-radius:14px;margin:0 0 8px"><p class="per" id="pinE" role="alert" style="color:var(--bad);min-height:1.4em;margin:0 0 8px"></p><div class="row2"><button class="btn" id="pinOk" type="button">' + esc(T.pinOk) + '</button><button class="btn ghost" id="nei" type="button">' + esc(T.no) + '</button></div>');
+    var i = $('pinI');
+    function go() { if (i.value === PIN) { close(); fn(); } else { $('pinE').textContent = T.pinBad; i.value = ''; i.focus(); } }
+    i.addEventListener('input', function () { i.value = i.value.replace(/\D/g, ''); $('pinE').textContent = ''; });
+    i.addEventListener('keydown', function (e) { if (e.key === 'Enter') go(); });
+    $('pinOk').addEventListener('click', go); $('nei').addEventListener('click', close);
+  }
+
   /* ---------- Tegn siden ---------- */
-  function draw() {
+  var eqDirty = false;
+  function loadNotes() { ['k1', 'k2'].forEach(function (id) { var e = $(id), v = g('mn_' + id) || ''; if (e && e.value !== v) e.value = v; }); }
+  function draw(keepEq) {
+    if (!keepEq) eqDirty = false;
     var p = g('mn_pump'), se = g('mn_sen'), cam = g('mn_cam') === '1', oth = g('mn_other') === '1';
     var pn = PUMPS[cam && p === 'ypso' ? 'ypsocam' : p] || '', sn = SENS[se] || '';
+    if (!($('eqP') && eqDirty)) {
     var h = '', cur = cam && p === 'ypso' ? 'ypsocam' : (p || (oth && !se ? 'annen' : '')), has = !!(pn || sn || oth);
     function opts(ord, nmap, kind, val) {
       var o = '<option value="">' + esc(T.eqPh) + '</option>';
@@ -137,8 +152,8 @@
       if (t && v) t += EN ? 'You can change the sensor in the menu.' : 'Du kan bytte sensor i menyen.';
       eR.hidden = !t; eR.innerHTML = t;
     }
-    eP.addEventListener('change', function () { var v = eP.value; if (SUGG[v]) eS.value = SUGG[v]; else if (v) eS.value = ''; eRec(); eChk(); });
-    eS.addEventListener('change', eChk);
+    eP.addEventListener('change', function () { eqDirty = true; var v = eP.value; if (SUGG[v]) eS.value = SUGG[v]; else if (v) eS.value = ''; eRec(); eChk(); });
+    eS.addEventListener('change', function () { eqDirty = true; eChk(); });
     eB.addEventListener('click', function () {
       var pv = eP.value, sv = eS.value;
       s('mn_pump', pv && pv !== 'annen' ? (pv === 'ypsocam' ? 'ypso' : pv) : '');
@@ -148,15 +163,21 @@
       draw(); toast(T.eqSaved);
     });
     $('eqVerB').addEventListener('click', function () {
-      try { sessionStorage.removeItem('mn_skip'); } catch (e) { }
-      if (ENKEL) { s('mn_ver', null); location.href = '/nyttig/diabetes/' + (EN ? 'en/' : ''); }
-      else { s('mn_ver', 'enkel'); location.href = EN ? '/nyttig/diabetes-simple/' : '/nyttig/diabetes-enkel/'; }
+      function bytt() {
+        try { sessionStorage.removeItem('mn_skip'); } catch (e) { }
+        if (ENKEL) { s('mn_ver', null); location.href = '/nyttig/diabetes/' + (EN ? 'en/' : ''); }
+        else { s('mn_ver', 'enkel'); location.href = EN ? '/nyttig/diabetes-simple/' : '/nyttig/diabetes-enkel/'; }
+      }
+      if (ENKEL) pinAsk(bytt); else bytt();
     });
     eRec(); eChk();
     var eqb = $('bytt'); if (eqb) eqb.style.display = 'none';
     if ($('slUt')) $('slUt').addEventListener('click', function () {
-      ask(T.rmEqH, esc(T.rmEqT), T.yesRm, function () { ['mn_pump', 'mn_sen', 'mn_cam', 'mn_other', 'mn_ver'].forEach(function (k) { s(k, null); }); close(); draw(); toast(T.removed); });
+      function fjern() { ask(T.rmEqH, esc(T.rmEqT), T.yesRm, function () { ['mn_pump', 'mn_sen', 'mn_cam', 'mn_other', 'mn_ver'].forEach(function (k) { s(k, null); }); close(); draw(); toast(T.removed); }); }
+      if (ENKEL) pinAsk(fjern); else fjern();
     });
+    }
+    loadNotes();
     var v = vip();
     $('pers').innerHTML = [0, 1].map(function (i) {
       return v[i] ?
@@ -201,6 +222,9 @@
     var n = cnt('tk_mine'); if (!n) { toast(T.mineNone); return; }
     ask(T.delMineH, esc(T.delMineT(n)), T.yesDel, function () { s('tk_mine', null); close(); draw(); toast(T.minesDel); });
   });
+
+  var ntT = 0;
+  ['k1', 'k2'].forEach(function (id) { var e = $(id); if (!e) return; e.addEventListener('input', function () { s('mn_' + id, e.value); clearTimeout(ntT); ntT = setTimeout(function () { draw(true); }, 500); }); });
 
   /* ---------- Bytt pumpe, sensor eller versjon: bruker velgeren som finnes fra før ---------- */
   if ($('bytt')) $('bytt').setAttribute('href', '/nyttig/diabetes/' + (EN ? 'en/' : '') + '?velg&retur=' + encodeURIComponent(location.pathname));
@@ -387,7 +411,7 @@
     $('av').addEventListener('click', close);
     $('go').addEventListener('click', function () {
       var okAll = true;
-      if (d.u) ['mn_pump', 'mn_sen', 'mn_cam', 'mn_other', 'mn_ver'].forEach(function (k) { okAll = s(k, d.u[k] || null) && okAll; });
+      if (d.u) ['mn_pump', 'mn_sen', 'mn_cam', 'mn_other', 'mn_ver'].forEach(function (k) { if (ENKEL && k === 'mn_ver') return; okAll = s(k, d.u[k] || null) && okAll; });
       if (d.p) okAll = vipSave(d.p) && okAll;
       if (d.t) okAll = s('rg-diabetes-innstillinger', JSON.stringify(d.t)) && okAll;
       if (d.k) { okAll = s('mn_k1', d.k.k1 || null) && okAll; okAll = s('mn_k2', d.k.k2 || null) && okAll; }
