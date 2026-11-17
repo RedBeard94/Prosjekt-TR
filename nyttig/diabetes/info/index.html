@@ -244,36 +244,17 @@
 <main data-rg="rg-2026-10-nyttig-diabetes-info-46b4">
   <a class="back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes</a>
   <h1>Nyttig <em>informasjon.</em></h1>
-  <p class="lead">Gode sider å starte med, og plass til dine egne telefonnumre.</p>
+  <p class="lead">Gode sider å starte med, og plass til dine egne notater.</p>
   <section class="panel" style="margin-bottom:20px" aria-label="Når det haster">
     <h2>Når det haster</h2>
     <a class="lnk" href="tel:116117"><b>Legevakt: 116 117</b><span>Ved sykdom som ikke kan vente til dagtid</span></a>
     <a class="lnk" href="tel:113"><b>Nødnummer: 113</b><span>Ved alvorlig akutt sykdom</span></a>
     <p class="note">Snakk med diabetesteamet om hva dere skal gjøre ved lavt og høyt blodsukker, og skriv det ned i feltet under.</p>
   </section>
-  <section class="panel vipf" id="viktig" aria-labelledby="hv" style="margin-bottom:20px">
-    <h2 id="hv">Viktige personer</h2>
-    <p class="small" style="margin:0 0 8px">Legg inn opptil to du kan ringe raskt, for eksempel mamma og pappa eller diabetessykepleier. Nummerne lagres bare på denne enheten og sendes ikke noe sted. De vises i de blå stripene på diabetes-forsiden.</p>
-    <div class="slot" data-i="0">
-      <div class="vis" hidden><div class="kompakt"><div class="tx"><b class="vn"></b><span class="vt"></span></div><button class="btn g endre" type="button">Endre</button><button class="btn g fjern" type="button">Fjern</button></div></div>
-      <div class="skjema">
-        <h3>Person 1</h3>
-        <label for="vnm0">Navn</label><input id="vnm0" class="inm" maxlength="40" autocomplete="off" placeholder="Mamma">
-        <label for="vtl0">Telefonnummer</label><input id="vtl0" class="itl" type="tel" inputmode="tel" maxlength="20" autocomplete="off" placeholder="000 00 000">
-        <div class="r"><button class="btn lag" type="button">Lagre</button></div>
-        <p class="small stat" role="status" style="margin:10px 0 0"></p>
-      </div>
-    </div>
-    <div class="slot" data-i="1">
-      <div class="vis" hidden><div class="kompakt"><div class="tx"><b class="vn"></b><span class="vt"></span></div><button class="btn g endre" type="button">Endre</button><button class="btn g fjern" type="button">Fjern</button></div></div>
-      <div class="skjema">
-        <h3>Person 2</h3>
-        <label for="vnm1">Navn</label><input id="vnm1" class="inm" maxlength="40" autocomplete="off" placeholder="Pappa">
-        <label for="vtl1">Telefonnummer</label><input id="vtl1" class="itl" type="tel" inputmode="tel" maxlength="20" autocomplete="off" placeholder="000 00 000">
-        <div class="r"><button class="btn lag" type="button">Lagre</button></div>
-        <p class="small stat" role="status" style="margin:10px 0 0"></p>
-      </div>
-    </div>
+  <section class="panel" style="margin-bottom:20px" aria-label="Viktige personer">
+    <h2>Viktige personer</h2>
+    <p class="small" style="margin:0 0 12px">Dine egne numre ligger nå i Min profil. Der kan du legge inn, endre og fjerne dem.</p>
+    <a class="btn" href="../profil/index.html">Åpne Min profil</a>
   </section>
   <section class="panel" aria-label="Nyttige sider">
     <h2>Gode sider</h2>
@@ -308,28 +289,7 @@ document.addEventListener('click',function(e){if(!m.hidden&&!m.contains(e.target
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}});
 })();
 </script>
-<script>
-(function(){
-  var K='rg-vip-liste',slots=document.querySelectorAll('.vipf .slot');if(!slots.length)return;
-  function load(){try{var l=JSON.parse(localStorage.getItem(K)||'null');if(Array.isArray(l))return [l[0]||null,l[1]||null];var o=JSON.parse(localStorage.getItem('rg-vip')||'null');return [o&&o.t?o:null,null];}catch(e){return [null,null];}}
-  function fmt(t){var d=t.replace(/\D/g,'');return (d.length===8&&t.indexOf('+')<0)?d.replace(/(\d{3})(\d{2})(\d{3})/,'$1 $2 $3'):t;}
-  function save(l){try{localStorage.setItem(K,JSON.stringify(l));return true;}catch(e){return false;}}
-  var data=load();
-  function draw(i){var sl=slots[i],v=data[i];sl.querySelector('.vis').hidden=!v;sl.querySelector('.skjema').hidden=!!v;
-    if(v){sl.querySelector('.vn').textContent=v.n||'Viktig person';sl.querySelector('.vt').textContent=fmt(v.t);}
-    else{sl.querySelector('.inm').value='';sl.querySelector('.itl').value='';}}
-  slots.forEach(function(sl,i){
-    draw(i);
-    sl.querySelector('.lag').addEventListener('click',function(){
-      var st=sl.querySelector('.stat'),t=sl.querySelector('.itl').value.replace(/[^\d+ ]/g,'').trim();
-      if(t.replace(/\D/g,'').length<8){st.textContent='Nummeret ser for kort ut. Sjekk det og prøv igjen.';return;}
-      data[i]={n:sl.querySelector('.inm').value.trim(),t:fmt(t)};
-      if(save(data)){st.textContent='';draw(i);}else{st.textContent='Kunne ikke lagre. Sjekk at nettleseren tillater lagring.';}});
-    sl.querySelector('.endre').addEventListener('click',function(){var v=data[i]||{};sl.querySelector('.vis').hidden=true;sl.querySelector('.skjema').hidden=false;sl.querySelector('.inm').value=v.n||'';sl.querySelector('.itl').value=v.t||'';sl.querySelector('.itl').focus();});
-    sl.querySelector('.fjern').addEventListener('click',function(){data[i]=null;save(data);draw(i);});
-  });
-})();
-</script>
+
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
 <script src="/nyttig/diabetes/sporsmal/bot.js" defer></script>

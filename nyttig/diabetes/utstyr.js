@@ -114,6 +114,9 @@
 
   /* ---- Velkomst og forside ---- */
   var vk = $('velkommen'); if (!vk) return;
+  /* Kommer du fra Min profil (?velg&retur=...), går du tilbake dit etter valget. Bare profil-sidene er tillatt. */
+  var RET = ''; try { var rm = location.search.match(/[?&]retur=([^&]+)/); if (rm) { var rp = decodeURIComponent(rm[1]); if (/^\/nyttig\/(diabetes|diabetes-enkel|diabetes-simple)\/(en\/)?profil\/(index\.html)?$/.test(rp)) RET = rp; } } catch (e) { }
+  var PROF = EN ? '/nyttig/diabetes/en/profil/' : '/nyttig/diabetes/profil/';
   var ps = $('ut-p'), ss = $('ut-s'), rec = $('ut-rec'), go = $('ut-go'), se = $('ut-se'), note = null;
   function fill(el, ph, a, kind) { var h = '<option value="">' + ph + '</option>'; for (var i = 0; i < a.length; i++) h += '<option value="' + a[i][0] + '">' + a[i][1] + (SUP[kind].indexOf(a[i][0]) < 0 ? T.soonTag : '') + '</option>'; el.innerHTML = h + '<option value="annen">' + T.other + '</option>'; }
   fill(ps, T.pump, PUMPS, 'p'); fill(ss, T.sen, SENS, 's');
@@ -154,11 +157,13 @@
     st('mn_ver', ver() === 'enkel' ? 'enkel' : '');
     try { sessionStorage.removeItem('mn_skip'); } catch (e) { }
     if (ver() === 'enkel') { var u = document.querySelector('input[name="ut-v"][value="enkel"]').getAttribute('data-url'); location.href = u; return; }
+    if (RET) { location.href = PROF; return; }
     try { if (/[?&]velg/.test(location.search)) history.replaceState(null, '', location.pathname); } catch (e) { }
     closeVk();
   });
   se.addEventListener('click', function () {
     try { sessionStorage.setItem('mn_skip', '1'); } catch (e) { }
+    if (RET) { location.href = RET; return; }
     try { if (/[?&]velg/.test(location.search)) history.replaceState(null, '', location.pathname); } catch (e) { }
     closeVk();
   });
