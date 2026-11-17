@@ -216,8 +216,14 @@
   /* ====== Knapp og navnesøk ====== */
   function init() {
     R = window.RGT;
+    var kort = $('valgSkann');
+    if (kort) {
+      /* Ny Tallerken: kortet ligger i siden, men vises først når skanneren er klar */
+      kort.hidden = false;
+      kort.addEventListener('click', openScan);
+    }
     var own = document.querySelector('.own');
-    if (own && !$('scanBtn')) {
+    if (!kort && own && !$('scanBtn')) {
       var b = document.createElement('button');
       b.className = 'btn'; b.id = 'scanBtn'; b.type = 'button'; b.textContent = T.btn;
       own.insertBefore(b, own.firstChild);
