@@ -27,10 +27,29 @@ textarea{width:100%;border:2px solid var(--line);border-radius:12px;padding:12px
 small,.small{color:var(--muted)}
 .foot{font-size:14px;color:var(--muted);margin-top:18px}
 </style>
+<style id="rg-topp">
+/* Samme topp, skrift og tilbake-knapp som de andre diabetes-sidene */
+@font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/manrope-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/manrope-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/manrope-latin-800-normal.woff2) format("woff2")}
+body{font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif}
+.rgtopp{position:sticky;top:0;z-index:10;background:rgba(246,249,255,.86);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid #e3eaf5}
+.rgtopp .bar{max-width:1040px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.rgtopp .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#0f172a}
+.rgtopp .brand svg{height:42px;width:auto;display:block}
+@media(max-width:560px){.rgtopp .brand svg{height:32px}}
+.rgback{display:inline-flex;align-items:center;gap:8px;margin:14px 0 6px;padding:8px 16px 8px 12px;border:2px solid #e3eaf5;border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(37,99,235,.10);font-size:.95rem;font-weight:700;color:#2563eb;text-decoration:none;min-height:44px}
+.rgback svg{width:18px;height:18px;flex:none}
+.rgback:hover{background:#eef4ff;border-color:#bcd0f7}
+h1{font-weight:800;letter-spacing:-.03em}
+body{padding:0}main{padding:0 18px 18px}
+</style>
 </head>
 <body>
+<header class="rgtopp"><div class="bar"><a class="brand" href="/nyttig/diabetes/" aria-label="Diabetes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-hidden="true" focusable="false"><defs><linearGradient id="dgb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><rect width="192" height="192" rx="40" fill="url(#dgb)"/><path d="M96 26C96 26 52 74 52 108a44 44 0 0 0 88 0C140 74 96 26 96 26z" fill="#fff"/><g fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M72 122l16-14 12 8 24-26"/><path d="M116 90h12v12"/></g></svg><span style="font-weight:800;font-size:1.08rem;letter-spacing:-.01em">Diabetes</span></a></div></header>
+<script>/* Kommer du fra Diabetes enkel, går logoen tilbake dit */if(/[?&]fra=enkel/.test(location.search)){var rgb=document.querySelector(".rgtopp .brand");if(rgb)rgb.href="/nyttig/diabetes-enkel/";}</script>
 <main>
-<a id="bk" href="/nyttig/diabetes/">&larr; Tilbake</a>
+<a class="rgback" id="bk" href="/nyttig/diabetes/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Tilbake</a>
 <h1>Fant du svaret?</h1>
 <p>Dette tar under ett minutt. Det hjelper oss å lage bedre svar.</p>
 <p class="note"><b>Ikke skriv navn eller helseopplysninger.</b> Skriv bare hva du lette etter. Svaret sendes til oss på e-post via en skjematjeneste som kan se teknisk informasjon som IP-adresse. Se <a href="/nyttig/diabetes/personvern/">personvern</a>.</p>

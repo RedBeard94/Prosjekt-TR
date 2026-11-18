@@ -179,6 +179,7 @@
     hide: [['[aria-labelledby="h1c"] .rule', 0], ['[aria-labelledby="h1c"] .note', 0], ['[aria-labelledby="h1c"] .warn', 0], ['[aria-labelledby="h1c"] p.small', 0]]
   };
   R.profil = { txt: [] };
+  R['vis-til-voksen'] = { txt: [] }; /* The helper: no text swap, but the same frame and help box as the other pages */
   var cfg = R[key];
   if (!cfg) { if (FORCE && key !== 'akutt') shell(); return; } /* Søk mat og Quiz: samme topp som de andre enkel-sidene */
 

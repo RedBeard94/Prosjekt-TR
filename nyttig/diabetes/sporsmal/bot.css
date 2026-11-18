@@ -30,3 +30,13 @@
 #sb-f button{min-height:44px;padding:0 16px;border:0;border-radius:12px;background:var(--sb-ac);color:var(--sb-on-ac);font-size:16px;cursor:pointer}
 @media (prefers-reduced-motion:no-preference){#sb-panel.sb-open{animation:sbin .15s ease-out}@keyframes sbin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
 @media print{#sb-root{display:none}}
+
+/* Boblen skal ikke dekke innhold */
+html.sb-luft body{padding-bottom:88px}
+#sb-bubble{transition:transform .25s ease,opacity .25s ease}
+#sb-bubble.sb-hide{transform:translateY(96px);opacity:0;pointer-events:none}
+/* Som vanlig knapp i siden (enkel-forsiden) */
+#sb-bubble.sb-inline{position:static;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin:12px 0 0;padding:0 18px;border:0;border-radius:16px;background:#2563eb;color:#fff;font:800 1.05rem system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;box-shadow:0 4px 12px rgba(37,99,235,.25)}
+#sb-bubble.sb-inline span{font-size:1.3rem;line-height:1}
+#sb-bubble.sb-inline:focus-visible{outline:3px solid #7c3aed;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){#sb-bubble{transition:none}}

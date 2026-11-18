@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html data-enkel="1" lang="en">
+<head>
+<meta name="robots" content="noindex">
+<script>if(!location.hash)try{history.replaceState(null,"","#enkel")}catch(e){}</script>
+<meta charset="utf-8">
+<!--
+  © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no
+  All rights reserved. Copying without written permission is not allowed.
+  Opprinnelsesmerke: rg-2026-11-nyttig-diabetes-simple-vis-til-voksen
+-->
+<meta name="author" content="Thomas Reinertsen, Reinertsengruppen">
+<meta name="copyright" content="© 2026 Reinertsengruppen">
+<meta name="rg-origin" content="rg-2026-11-nyttig-diabetes-simple-vis-til-voksen">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The helper – Diabetes simple – Reinertsengruppen</title>
+<meta name="description" content="Short information about type 1 diabetes for teachers, coaches, grandparents and other adults who look after a child with diabetes.">
+<style>
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:200;font-display:swap;src:url(../../../fonts/manrope-latin-200-normal.woff2) format("woff2");}
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:400;font-display:swap;src:url(../../../fonts/manrope-latin-400-normal.woff2) format("woff2");}
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:600;font-display:swap;src:url(../../../fonts/manrope-latin-600-normal.woff2) format("woff2");}
+  @font-face{font-family:"Manrope";font-style:normal;font-weight:800;font-display:swap;src:url(../../../fonts/manrope-latin-800-normal.woff2) format("woff2");}
+  :root{--ink:#14263f;--text:#2b3a4f;--muted:#5d6b7e;--line:#dde4ee;--navy:#1e3a5f;--a:#1d4ed8;--red:#b91c1c;--bg:#f6f9ff;--fg:#0f172a;}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden;}
+  body::before,body::after{content:"";position:fixed;border-radius:50%;filter:blur(90px);opacity:.5;z-index:-1;}
+  body::before{width:55vmax;height:55vmax;background:#cfe0ff;top:-22vmax;right:-18vmax;}
+  body::after{width:45vmax;height:45vmax;background:#c8f2ea;bottom:-20vmax;left:-15vmax;}
+
+  header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(246,249,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  .bar{max-width:1040px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--fg);}
+  .brand svg{height:42px;width:auto;display:block;overflow:visible;}
+  .apptilbake{display:none;align-items:center;gap:6px;padding:8px 14px 8px 8px;min-height:44px;color:var(--a);font-weight:800;font-size:1.05rem;text-decoration:none;}
+  .apptilbake svg{width:18px;height:18px;flex:none;}
+  @media(display-mode:standalone){.brand{display:none;}.apptilbake{display:inline-flex;}.bar{justify-content:space-between;}}
+  @media(max-width:420px){.brand span{display:none;}}
+  @media(max-width:560px){.bar{flex-wrap:nowrap;gap:8px;}.brand svg{height:32px;}}
+
+  main{max-width:1040px;margin:0 auto;padding:26px 20px 24px;}
+  .back{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:8px 16px 8px 12px;border:2px solid var(--line);border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(37,99,235,.10);font-size:.95rem;font-weight:700;color:var(--a);text-decoration:none;}
+  .back svg{width:18px;height:18px;flex:none;}
+  @media(display-mode:standalone){main .back{display:none;}}
+
+  .eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;text-align:center;}
+  h1{font-size:clamp(2rem,8vw,2.6rem);line-height:1.1;margin:0 0 8px;letter-spacing:-.03em;font-weight:800;color:var(--ink);text-align:center;}
+  .lead{color:var(--muted);font-size:1.02rem;margin:0 auto 6px;max-width:520px;text-align:center;}
+
+  /* Flate kort */
+  .cd{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:0 0 12px;max-width:720px;margin-left:auto;margin-right:auto;}
+  .cd.lav{border-left:4px solid var(--red);}
+  .cd h2{margin:0 0 10px;font-size:1.12rem;line-height:1.3;letter-spacing:-.01em;font-weight:800;color:var(--ink);scroll-margin-top:84px;}
+  .cd h2 .nr{color:var(--muted);font-weight:600;margin-right:6px;}
+  .cd p{margin:0 0 10px;font-size:1rem;line-height:1.6;color:var(--text);}
+  .cd p:last-child{margin-bottom:0;}
+
+  /* Innhold */
+  .toc h2{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;}
+  .toc ol{list-style:none;margin:0;padding:0;}
+  .toc li{border-top:1px solid var(--line);}
+  .toc li:first-child{border-top:0;}
+  .toc a{display:flex;gap:12px;padding:11px 2px;min-height:44px;align-items:center;color:var(--ink);font-weight:800;text-decoration:none;font-size:1rem;}
+  .toc a span{color:var(--muted);font-weight:600;min-width:16px;}
+
+  /* Underoverskrift */
+  .sub{margin:18px 0 8px;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-bottom:6px;border-bottom:1px solid var(--line);}
+  ul.pl{margin:0;padding-left:20px;display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;}
+  ul.pl li{font-size:.98rem;}
+  @media(max-width:380px){ul.pl{grid-template-columns:1fr;}}
+
+  /* Steg */
+  .st{display:flex;gap:12px;align-items:flex-start;margin:0 0 14px;}
+  .st:last-child{margin-bottom:0;}
+  .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.95rem;margin-top:1px;}
+  .st b{display:block;font-size:1.02rem;line-height:1.35;color:var(--ink);}
+  .st p{margin:2px 0 0;color:var(--text);font-size:.96rem;line-height:1.45;}
+
+  /* Merknad og Husk */
+  .note{border-left:4px solid #93b4e8;background:#f3f7fd;border-radius:6px 12px 12px 6px;padding:11px 14px;margin:12px 0 0;font-size:.97rem;}
+  .husk{border-left:4px solid #d9a21b;background:#fffaeb;border-radius:6px 12px 12px 6px;padding:11px 14px;margin:14px 0 0;font-size:.97rem;line-height:1.5;}
+  .husk b{color:#7a4a05;}
+  .husk a{color:var(--red);font-weight:800;}
+
+  /* Akutt-lenke */
+  .akutt{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:2px solid var(--red);border-radius:14px;padding:15px 18px;min-height:56px;color:var(--red);font-weight:800;font-size:1.05rem;text-decoration:none;margin:0 auto 12px;max-width:720px;}
+  .akutt svg{width:20px;height:20px;flex:none;}
+
+  /* Kilder (utenfor kortet) */
+  .kilder{max-width:720px;margin:6px auto 0;padding:0 26px 8px;color:var(--muted);font-size:.88rem;}
+  .kilder h2{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px;}
+  .kilder ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;}
+  .kilder a{color:var(--a);font-weight:600;}
+  .kilder p{margin:12px 0 0;line-height:1.5;}
+
+  .pfoot{max-width:1040px;margin:0 auto;padding:6px 20px 36px;color:var(--muted);font-size:.9rem;}
+  .pfoot a{color:var(--muted);}
+
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}html{scroll-behavior:auto;}}
+</style>
+<link rel="icon" href="/bilder/ikon/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/bilder/ikon/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/bilder/ikon/apple-touch-icon.png">
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="apptilbake" href="../index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Back
+    </a>
+    <a class="brand" href="/nyttig/diabetes-simple/" aria-label="Diabetes simple">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="dgb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+        <rect width="192" height="192" rx="40" fill="url(#dgb)"/>
+        <path d="M96 26C96 26 52 74 52 108a44 44 0 0 0 88 0C140 74 96 26 96 26z" fill="#fff"/>
+        <g fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M72 122l16-14 12 8 24-26"/><path d="M116 90h12v12"/></g>
+      </svg>
+      <span style="font-weight:800;font-size:1.08rem;letter-spacing:-.01em">Diabetes simple</span>
+    </a>
+  </div>
+</header>
+
+<main data-rg="rg-2026-11-nyttig-diabetes-simple-vis-til-voksen">
+  <a class="back" href="../index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Diabetes
+  </a>
+  <p class="eyebrow">Information for adults</p>
+  <h1>The helper</h1>
+  <p class="lead">Short facts about type 1 diabetes for teachers, coaches, grandparents and other adults who look after a child with diabetes. The child and the parents know the situation best.</p>
+
+  <nav class="cd toc" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#s-hva"><span>1</span>What is type 1 diabetes?</a></li>
+      <li><a href="#s-lav"><span>2</span>Low blood sugar</a></li>
+      <li><a href="#s-pumpe"><span>3</span>Pump and sensor</a></li>
+      <li><a href="#s-mat"><span>4</span>Food and drink</a></li>
+      <li><a href="#s-akt"><span>5</span>Activity</a></li>
+    </ol>
+  </nav>
+
+  <section class="cd" aria-labelledby="s-hva">
+    <h2 id="s-hva"><span class="nr">1</span>What is type 1 diabetes?</h2>
+    <p>Type 1 diabetes is a lifelong illness. The body does not make insulin. Insulin is needed for the body to use sugar as energy.</p>
+    <p>The child gets insulin from a pump or a pen. The illness is not contagious. It is not caused by eating too much sugar.</p>
+  </section>
+
+  <section class="cd lav" aria-labelledby="s-lav">
+    <h2 id="s-lav"><span class="nr">2</span>Low blood sugar</h2>
+    <p>Blood sugar can drop quickly. The child then needs help right away.</p>
+
+    <div class="sub">Signs</div>
+    <ul class="pl">
+      <li>Sweating</li>
+      <li>Shaking</li>
+      <li>Pale skin</li>
+      <li>Hunger</li>
+      <li>Restless or irritable</li>
+      <li>Tired or absent</li>
+    </ul>
+
+    <div class="sub">What to do</div>
+    <div class="st"><div class="n" aria-hidden="true">1</div><div><b>Give fast carbohydrates</b><p>For example glucose tablets, juice or squash (not diet).</p></div></div>
+    <div class="st"><div class="n" aria-hidden="true">2</div><div><b>Wait 10 to 15 minutes</b><p>Keep the child calm, and keep an eye on them.</p></div></div>
+    <div class="st"><div class="n" aria-hidden="true">3</div><div><b>Give some food afterwards</b><p>For example a slice of bread or crispbread.</p></div></div>
+    <div class="st"><div class="n" aria-hidden="true">4</div><div><b>Tell the parents</b><p>The phone number is in the child's bag.</p></div></div>
+
+    <div class="husk"><b>Remember!</b> If the child is unconscious or having seizures: do not give food or drink. <a href="../akutt/index.html">See Emergency</a>.</div>
+  </section>
+
+  <section class="cd" aria-labelledby="s-pumpe">
+    <h2 id="s-pumpe"><span class="nr">3</span>Pump and sensor</h2>
+    <p>Many children use an insulin pump and a glucose sensor. The equipment can beep or vibrate. That is normal.</p>
+    <div class="note"><b>If it beeps:</b> Ask the child what it means. If you are unsure, contact the parents.</div>
+  </section>
+
+  <section class="cd" aria-labelledby="s-mat">
+    <h2 id="s-mat"><span class="nr">4</span>Food and drink</h2>
+    <p>Children with diabetes can eat the same as other children. The child keeps track of what they eat.</p>
+    <div class="husk"><b>Remember!</b> The child must always be allowed to eat. Do not skip meals.</div>
+  </section>
+
+  <section class="cd" aria-labelledby="s-akt">
+    <h2 id="s-akt"><span class="nr">5</span>Activity</h2>
+    <p>During PE, swimming and trips, the child may need extra food. The parents usually tell you in advance.</p>
+    <div class="note"><b>Agree with the parents</b> on what to do before the activity.</div>
+  </section>
+
+  <a class="akutt" href="../akutt/index.html">
+    <span>Emergency: see guidance</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+  </a>
+</main>
+
+<section class="kilder" aria-labelledby="h-kilder">
+  <h2 id="h-kilder">Sources (in Norwegian)</h2>
+  <ul>
+    <li><a href="https://www.diabetes.no/globalassets/om-diabetes/barn/skole-og-barnehage/hefte_min-skolehverdag-med-diabetes---brosjyre.pdf" target="_blank" rel="noopener">Diabetesforbundet – My school day with diabetes (PDF)</a></li>
+    <li><a href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/type-1-diabetes" target="_blank" rel="noopener">NHI.no – Diabetes type 1</a></li>
+    <li><a href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/lavt-blodsukker-hypoglykemi-ved-diabetes" target="_blank" rel="noopener">NHI.no – Low blood sugar in diabetes</a></li>
+    <li><a href="https://kvalitet.sshf.no/docs/pub/dok34525.htm" target="_blank" rel="noopener">Sørlandet Hospital – What is type 1 diabetes?</a></li>
+    <li><a href="https://kvalitet.sshf.no/docs/pub/dok34520.htm" target="_blank" rel="noopener">Sørlandet Hospital – Diabetes at school and kindergarten</a></li>
+  </ul>
+  <p>General information, not medical advice. Always follow the plan from the child's diabetes team.</p>
+</section>
+
+<footer class="pfoot">
+  Made by Thomas Reinertsen · <a href="/nyttig/diabetes/en/personvern/?fra=simple">Privacy</a> · <a href="/opphavsrett/index.html?fra=simple">Copyright</a>
+  <div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. All rights reserved.</div>
+  <p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">This is information and support, not medical advice. Always talk to your diabetes team about your treatment. The content has not been reviewed by health professionals yet. This site is under construction and may contain errors.</p>
+</footer>
+
+<script src="../enkel.js" defer></script>
+<!--telle--><script src="/telle.js" defer></script><!--/telle-->
+</body>
+</html>

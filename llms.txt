@@ -1,29 +1,49 @@
-# Diabetes – Reinertsengruppen
+# Reinertsengruppen
 
-> Gratis norsk nettside for personer med diabetes type 1 og pårørende. Forklarer trendpiler, insulinpumpe, sensor, automatikk, karbohydrater og blodsukker, med kilder fra produsentenes manualer og norske kilder. Laget av Thomas Reinertsen (privat, ikke en klinikk). Ikke gjennomgått av helsepersonell ennå. Ikke medisinsk rådgivning: følg alltid planen fra diabetesteamet.
+> Små, gratis verktøy som er lette å bruke, laget av Thomas Reinertsen i Kristiansand (privat, ikke en klinikk). Den største delen er Hjelpemidler for diabetikere: gratis norsk nettside for personer med diabetes type 1 og pårørende. Den forklarer trendpiler, insulinpumpe, sensor, automatikk, karbohydrater og blodsukker, med kilder fra produsentenes manualer og norske kilder. Diabetes-sidene er ikke gjennomgått av helsepersonell ennå. Ikke medisinsk rådgivning: følg alltid planen fra diabetesteamet.
 
-## Hovedsider (norsk)
+## Reinertsengruppen
+- [Forsiden](https://reinertsengruppen.no/): om oss, hva vi har laget og kontakt
+- [Nyttig](https://reinertsengruppen.no/nyttig/): oversikt over apper og hjelpemidler
+- [Apper](https://reinertsengruppen.no/nyttig/apper/): sider som kan legges på hjemskjermen
+- [Fyrene langs Sørlandskysten](https://reinertsengruppen.no/nyttig/fyret/): vær, sjø og tidevann ved ti fyr, fra Meteorologisk institutt og Kartverket
+- [Været på Flekkerøya](https://reinertsengruppen.no/nyttig/fyret/flekkeroya/): vær og sjø på Flekkerøya akkurat nå
+- [Hjelpemidler](https://reinertsengruppen.no/nyttig/hjelpemidler/): enkle verktøy og nyttige lenker
+- [Sponsorer](https://reinertsengruppen.no/sponsorer/)
+- [Personvern](https://reinertsengruppen.no/personvern/) og [Opphavsrett](https://reinertsengruppen.no/opphavsrett/)
+
+## Hjelpemidler for diabetikere (norsk)
 - [Forsiden](https://reinertsengruppen.no/nyttig/diabetes/): oversikt og valg av pumpe og sensor
+- [Tallerkenen](https://reinertsengruppen.no/nyttig/diabetes/tallerken/): legg mat på en tallerken og se summen av karbohydrat. Bruker Matvaretabellen og Reinertsengruppen sin mattabell (ikke den offisielle Matvaretabellen)
+- [Søk mat](https://reinertsengruppen.no/nyttig/diabetes/vare/): søk etter mat, karbohydrat og pris
 - [Trendpiler og automatikk](https://reinertsengruppen.no/nyttig/diabetes/trendpiler/): hva pilene betyr, Control-IQ, Basal-IQ, Omnipod 5, MiniMed 780G, CamAPS FX
 - [Slik henger tallene sammen](https://reinertsengruppen.no/nyttig/diabetes/tallene/): karbohydratforhold, korreksjonsfaktor, målverdi, aktivt insulin
 - [Mat og blodsukker](https://reinertsengruppen.no/nyttig/diabetes/mat-og-blodsukker/): karbohydrater, fett, protein
 - [Manualer](https://reinertsengruppen.no/nyttig/diabetes/manualer/): lenker til brukerveiledninger for pumper og sensorer
 - [Innstillinger og sjekkliste](https://reinertsengruppen.no/nyttig/diabetes/innstillinger/)
-- [Spørsmål og svar](https://reinertsengruppen.no/nyttig/diabetes/sporsmal/)
-- [Akutt: lavt og høyt blodsukker](https://reinertsengruppen.no/nyttig/diabetes/akutt/)
-- [Rettigheter og støtte](https://reinertsengruppen.no/nyttig/diabetes/rettigheter/)
+- [Akutt: lavt og høyt blodsukker](https://reinertsengruppen.no/nyttig/diabetes/akutt/): hva du gjør, med kilder
+- [Quiz](https://reinertsengruppen.no/nyttig/diabetes/quiz/): 20 spørsmål om det du har lært
+- [Gode sider](https://reinertsengruppen.no/nyttig/diabetes/info/): lenker til Diabetesforbundet, helsemyndigheter og andre
+- [Sykdom, reise og fest](https://reinertsengruppen.no/nyttig/diabetes/nyttig-info/): det som er greit å vite i tillegg
+- [Rettigheter og støtte](https://reinertsengruppen.no/nyttig/diabetes/rettigheter/): NAV, Helfo og annen støtte
+- [Spørsmål og svar](https://reinertsengruppen.no/nyttig/diabetes/sporsmal/): korte svar og en svarbot (bare norsk)
 - [Min profil](https://reinertsengruppen.no/nyttig/diabetes/profil/): se, endre, flytt og slett det som er lagret på telefonen
 - [Personvern i Hjelpemidler for diabetikere](https://reinertsengruppen.no/nyttig/diabetes/personvern/): hva som lagres på telefonen, hva som sendes, og dine rettigheter
 
 ## English
 - [Start page](https://reinertsengruppen.no/nyttig/diabetes/en/)
+- [The plate](https://reinertsengruppen.no/nyttig/diabetes/en/tallerken/): add food to a plate and see the total carbohydrate
+- [Search food](https://reinertsengruppen.no/nyttig/diabetes/en/vare/)
 - [Trend arrows and automation](https://reinertsengruppen.no/nyttig/diabetes/en/trendpiler/)
 - [How the numbers fit together](https://reinertsengruppen.no/nyttig/diabetes/en/tallene/)
 - [Food and blood sugar](https://reinertsengruppen.no/nyttig/diabetes/en/mat-og-blodsukker/)
 - [Manuals](https://reinertsengruppen.no/nyttig/diabetes/en/manualer/)
+- [Emergency: low and high blood sugar](https://reinertsengruppen.no/nyttig/diabetes/en/akutt/)
+- [Quiz](https://reinertsengruppen.no/nyttig/diabetes/en/quiz/)
+- [Rights and support](https://reinertsengruppen.no/nyttig/diabetes/en/rettigheter/)
 - [My profile](https://reinertsengruppen.no/nyttig/diabetes/en/profil/): see, change, move and delete what is saved on the phone
 - [Privacy in Tools for people with diabetes](https://reinertsengruppen.no/nyttig/diabetes/en/personvern/): what is saved on the phone, what is sent, and your rights
 
 ## Merk
-- Siden gir generell informasjon og regner ikke ut doser.
+- Diabetes-sidene gir generell informasjon og regner ikke ut doser.
 - Støttede pumper: Tandem t:slim X2, Omnipod DASH, Omnipod 5, mylife YpsoPump (også med CamAPS FX), Medtronic MiniMed 780G, Accu-Chek Solo.

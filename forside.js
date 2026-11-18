@@ -117,6 +117,10 @@
     }
   }
   window.addEventListener('hashchange', sponsingValgt);
+  /* Virker også når man trykker på knappen flere ganger (da endres ikke adressen) */
+  document.querySelectorAll('a[href="#kontakt-sponsing"]').forEach(function (a) {
+    a.addEventListener('click', function () { if (location.hash === '#kontakt-sponsing') sponsingValgt(); });
+  });
   sponsingValgt();
 
   /* ---------- Besøkstall på hjelpemidlene ----------

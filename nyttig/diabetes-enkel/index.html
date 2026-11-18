@@ -50,14 +50,16 @@ h1{font-size:1.9rem;line-height:1.1;margin:8px 0 4px;font-weight:200;text-align:
 <a class="app" href="tallene/index.html"><span class="icon" style="background:linear-gradient(160deg,#34d399,#059669)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14M9 4v16"/></svg></span><span class="lb">Tallene</span></a>
 <a class="app" href="mat-og-blodsukker/index.html"><span class="icon" style="background:linear-gradient(160deg,#fb923c,#c2410c)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M4 16c3 0 3-9 6-9s2 9 5 9 3-6 5-6"/></svg></span><span class="lb">Mat</span></a>
 <a class="app" href="quiz/index.html"><span class="icon" style="background:linear-gradient(160deg,#fbbf24,#f97316)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9a3 3 0 1 1 4.5 2.6c-1 .6-1.5 1.2-1.5 2.4"/><circle cx="12" cy="17.5" r=".6" fill="#fff"/><circle cx="12" cy="12" r="10"/></svg></span><span class="lb">Quiz</span></a>
-<a class="app" href="vis-til-voksen/index.html" aria-label="Hjelperen. Informasjon til lærere, trenere og andre voksne."><span class="icon" style="background:linear-gradient(160deg,#2dd4bf,#0f766e)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span><span class="lb">Hjelperen</span></a>
-<span class="app" aria-disabled="true" aria-label="Kommer snart." style="opacity:.5"><span class="icon" style="background:#e2e8f0;border:2px dashed #94a3b8;box-shadow:none"></span><span class="lb">Kommer snart</span></span>
+<a class="app" href="vis-til-voksen/index.html" aria-label="Hjelperen. Informasjon til lærere, trenere og andre voksne."><span class="icon" style="background:linear-gradient(160deg,#2dd4bf,#0f766e)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2z"/><path d="M22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"/></svg></span><span class="lb">Hjelperen</span></a>
+<a class="app" href="profil/index.html" aria-label="Min profil."><span class="icon" style="background:linear-gradient(160deg,#a78bfa,#6d28d9)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><span class="lb">Min profil</span></a>
 <a class="app" href="akutt/index.html" aria-label="Akutt. Trykk for å se hva du gjør."><span class="icon" style="background:linear-gradient(160deg,#ef4444,#b91c1c)"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M6 12h3l1.5-3 3 6 1.5-3H18" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lb">Akutt</span></a>
 <span id="vips" style="display:contents"></span>
 </div>
-<button class="hold vpill" type="button" data-hold="5000" data-href="../diabetes/index.html?velg" aria-label="Bytt pumpe, sensor eller versjon. Hold inne i 5 sekunder."><i class="fill"></i><span>🔒 Bytt pumpe, sensor eller versjon · hold inne 5 sek</span></button>
+<button class="hold vpill" type="button" data-hold="5000" data-pin="1" data-href="../diabetes/index.html?velg" aria-label="Bytt pumpe, sensor eller versjon. Hold inne i 5 sekunder."><i class="fill"></i><span>🔒 Bytt pumpe, sensor eller versjon · hold inne 5 sek</span></button>
 <p class="small" style="background:#fff7e0;border:1px solid #f1d98a;border-radius:14px;padding:10px 12px;color:#5b4300"><b>Dette er bare et hjelpemiddel.</b> Spør alltid en voksen eller diabetesteamet.</p>
+<div id="sb-slot"></div>
 <p class="small">Trykk på en tom rute for å legge til nummer. Hold inne et nummer i 5 sekunder for å endre det.</p>
+<p class="small">Innholdet er ikke gjennomgått av helsepersonell ennå.</p>
 </main>
 <div class="ov" id="ov" role="alertdialog" aria-modal="true" aria-labelledby="ovh" hidden><h2 id="ovh">Ringer 113 om</h2><div class="cnt" id="cnt" aria-live="polite">5</div><p><b>Er du eller noen andre i nød?</b><br>Da skal du ringe. 113 er ambulanse.</p><p class="sm">Trykket du ved et uhell? Trykk Avbryt.</p><button class="av" id="av" type="button">AVBRYT</button><button class="nu" id="nu" type="button">Ring nå</button></div>
 <div class="nd" id="nd" hidden><div class="nbox" role="dialog" aria-modal="true"></div></div>
@@ -67,6 +69,15 @@ var t=document.getElementById('t'),tm;function toast(m){t.textContent=m;t.classL
 var PH='<svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg>';
 /* Numre: de samme som i vanlig versjon (Nyttig informasjon > Viktige personer). Tom rute: trykk for å legge til. Rute med nummer: trykk ringer, hold 5 sek for å endre. */
 var K='rg-vip-liste',box=document.getElementById('vips'),dlg=document.getElementById('nd'),dbox=dlg.querySelector('.nbox');
+/* Pinkode før man kan bytte pumpe, sensor eller versjon (samme kode som i Min profil: 4625) */
+window.rgPin=function(href){var old=document.activeElement;
+  dbox.innerHTML='<h2>Skriv pinkode</h2><p>Du trenger pinkoden for å bytte pumpe, sensor eller versjon.</p><label for="pk">Pinkode</label><input id="pk" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="4 tall" style="font-size:1.4rem;letter-spacing:.4em;text-align:center"><div class="err" id="pe" role="alert"></div><div class="nb"><button type="button" class="go" id="pok">Fortsett</button><button type="button" class="no" id="pav">Avbryt</button></div>';
+  dlg.hidden=false;var i=dbox.querySelector('#pk');i.focus();
+  function close(){dlg.hidden=true;try{old&&old.focus&&old.focus()}catch(e){}}
+  function ok(){if(i.value==='4625'){dlg.hidden=true;location.href=href}else{dbox.querySelector('#pe').textContent='Feil pinkode. Prøv igjen.';i.value='';i.focus()}}
+  i.addEventListener('input',function(){i.value=i.value.replace(/\D/g,'');dbox.querySelector('#pe').textContent=''});
+  i.addEventListener('keydown',function(e){if(e.key==='Enter')ok();if(e.key==='Escape')close()});
+  dbox.querySelector('#pok').onclick=ok;dbox.querySelector('#pav').onclick=close;};
 function load(){try{var l=JSON.parse(localStorage.getItem(K)||'null');if(!Array.isArray(l)){var o=JSON.parse(localStorage.getItem('rg-vip')||'null');l=[o&&o.t?o:null,null]}
   return [0,1].map(function(i){var v=l[i];return v&&v.t&&String(v.t).replace(/[^\d+]/g,'')?v:null})}catch(e){return [null,null]}}
 function save(l){try{localStorage.setItem(K,JSON.stringify(l));return true}catch(e){toast('Kunne ikke lagre på denne telefonen.');return false}}
@@ -109,7 +120,7 @@ document.getElementById('nu').addEventListener('click',function(){endSos(true)})
 document.addEventListener('visibilitychange',function(){if(document.hidden&&!ov.hidden){clearInterval(ci);ov.hidden=true}});
 document.querySelectorAll('.hold').forEach(function(b){var f=b.querySelector('.fill'),d=+b.dataset.hold,st=0,raf=0,done=0;
 function stop(){cancelAnimationFrame(raf);if(!done){f.style.transition='height .15s';f.style.height='0'}st=0}
-function go(){done=1;if(b.dataset.sos)startSos();else if(b.dataset.href)location.href=b.dataset.href;setTimeout(function(){done=0;f.style.height='0'},1200)}
+function go(){done=1;if(b.dataset.sos)startSos();else if(b.dataset.href){if(b.dataset.pin&&window.rgPin)window.rgPin(b.dataset.href);else location.href=b.dataset.href}setTimeout(function(){done=0;f.style.height='0'},1200)}
 function tick(){var p=Math.min(1,(performance.now()-st)/d);f.style.transition='none';f.style.height=p*100+'%';if(p>=1)go();else raf=requestAnimationFrame(tick)}
 function begin(){if(done||st)return;st=performance.now();raf=requestAnimationFrame(tick)}
 function end(){if(st&&!done){if(performance.now()-st<d)toast('Hold litt lenger inne');stop()}}

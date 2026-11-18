@@ -165,14 +165,22 @@ function ask(raw){var t=norm(raw);
 function open(){panel.classList.add("sb-open");bub.style.display="none";inp.focus()}
 function close(){panel.classList.remove("sb-open");bub.style.display="";bub.focus()}
 function build(){
- var l=document.createElement("link");l.rel="stylesheet";l.href=BASE+"bot.css?v=2";document.head.appendChild(l);
+ var l=document.createElement("link");l.rel="stylesheet";l.href=BASE+"bot.css?v=3";document.head.appendChild(l);
  root=document.createElement("div");root.id="sb-root";
  root.innerHTML='<button type="button" id="sb-bubble" aria-label="Åpne spørsmålsboten">\ud83d\udcac</button>'+
  '<section id="sb-panel" role="dialog" aria-label="Spørsmål og svar om diabetes"><div class="sb-hd"><b>Spør om diabetes</b><button type="button" id="sb-min" aria-label="Minimer">\u2013</button></div>'+
  (NOTICE?'<div class="sb-warn">'+esc(NOTICE)+'</div>':'')+
  '<div id="sb-log" aria-live="polite"></div><form id="sb-f" autocomplete="off"><input id="sb-q" type="text" placeholder="Skriv spørsmålet ditt" aria-label="Spørsmål"><button type="submit">Send</button></form></section>';
  document.body.appendChild(root);
- log=root.querySelector("#sb-log");panel=root.querySelector("#sb-panel");bub=root.querySelector("#sb-bubble");inp=root.querySelector("#sb-q");
+ /* Boblen skal ikke dekke innhold: */
+ /* 1) Finnes en plass til den i siden (#sb-slot), blir den en vanlig knapp der. */
+ var slot=document.getElementById("sb-slot");
+ if(slot){var b0=root.querySelector("#sb-bubble");b0.className="sb-inline";b0.innerHTML='<span aria-hidden="true">\ud83d\udcac</span> Spør om diabetes';slot.appendChild(b0);}
+ /* 2) Ellers: luft nederst på siden, og boblen gjemmer seg når du blar nedover. */
+ else{document.documentElement.classList.add("sb-luft");
+  var ly=window.scrollY||0;window.addEventListener("scroll",function(){var y=window.scrollY||0,bb=root.querySelector("#sb-bubble");if(!bb)return;
+   if(y>ly+6&&y>60)bb.classList.add("sb-hide");else if(y<ly-6||y<=60)bb.classList.remove("sb-hide");ly=y;},{passive:true});}
+ log=root.querySelector("#sb-log");panel=root.querySelector("#sb-panel");bub=document.getElementById("sb-bubble");inp=root.querySelector("#sb-q");
  log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b){var e=QA[+b.getAttribute("data-i")];add("sb-me",esc(e.q));show(e)}});
  root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){add("sb-bot","Skriv et spørsmål først");return}add("sb-me",esc(v));inp.value="";ask(v)});
  bub.addEventListener("click",open);root.querySelector("#sb-min").addEventListener("click",close);
