@@ -1,5 +1,5 @@
 /* Enkel service worker for Diabetes-sidene: lagrer siden og filene på telefonen, så den åpner uten nett. */
-var CACHE = 'diabetes-enkel-v37';
+var CACHE = 'diabetes-enkel-v39';
 var FILES = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-192.png", "icon-maskable-512.png", "apple-touch-icon.png", "enkel.js", "/nyttig/diabetes/utstyr.js", "tallerken/index.html", "innstillinger/index.html", "trendpiler/index.html", "tallene/index.html", "akutt/index.html", "vis-til-voksen/index.html", "quiz/index.html", "vare/index.html", "mat-og-blodsukker/index.html", "../../fonts/manrope-latin-200-normal.woff2", "../../fonts/manrope-latin-400-normal.woff2", "../../fonts/manrope-latin-600-normal.woff2", "../../fonts/manrope-latin-800-normal.woff2", "profil/index.html", "/nyttig/diabetes/profil.js", "/nyttig/diabetes/qrcode.min.js", "/nyttig/diabetes/mattabell.js", "/nyttig/diabetes/skann.js"];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
