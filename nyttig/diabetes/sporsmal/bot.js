@@ -65,8 +65,8 @@ var QA=[{"g":"Om appen","q":"Hvordan sletter jeg det som er lagret?","k":["slett
 {"g":"Tall og pumpe","q":"Hva er sjekklisten før bolus?","k":["sjekkliste","før bolus"],"a":"Fire spørsmål. Er sensorverdien stabil? Er det aktivt insulin? Hva skal spises, og når? Stemmer karbohydratene? Siden regner ikke ut doser.","l":["Åpne siden","/nyttig/diabetes/innstillinger/"]},
 {"g":"Tall og pumpe","q":"Regner siden ut insulin?","k":["regner ut","hvor mye insulin","hvor mange enheter","doser","dosering"],"a":"Nei. Siden regner ikke ut doser og gir ingen medisinske råd. Pumpen regner ut etter tallene du har fått fra diabetesteamet.","l":["Åpne siden","/nyttig/diabetes/innstillinger/"]},
 {"g":"Ord","q":"Hva er HbA1c?","k":["hba1c","langtidssukker"],"a":"Langtidssukker. En blodprøve som viser hvordan blodsukkeret har vært de siste ukene."},
-{"g":"Ord","q":"Hva er ketoner?","k":["keton"],"a":"Stoffer kroppen lager når den mangler insulin. De kan måles i urin. Mange ketoner sammen med syke tegn er farlig.","l":["Åpne siden","/nyttig/diabetes/akutt/"]},
-{"g":"Akutt","q":"Hva gjør jeg ved høyt blodsukker?","k":["høyt blodsukker","for høyt","høy verdi"],"a":"Åpne Akutt-siden. Mål blodsukker og ketoner hvis du har utstyr. Følg planen fra diabetesteamet. Blir det ikke bedre, ring legevakt 116 117.","l":["Åpne siden","/nyttig/diabetes/akutt/"],"u":1},
+{"g":"Ord","q":"Hva er ketoner?","k":["keton"],"a":"Stoffer kroppen lager når den mangler insulin. De kan måles i blod eller urin. Mange ketoner sammen med faretegn er farlig. Ring 113 med en gang ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust.","l":["Åpne siden","/nyttig/diabetes/akutt/"]},
+{"g":"Akutt","q":"Hva gjør jeg ved høyt blodsukker?","k":["høyt blodsukker","for høyt","høy verdi"],"a":"Høyt blodsukker skjer av og til, og det går som regel fint når du følger planen. Det viktigste er hvor raskt det stiger, og om du har ketoner. Mål blodsukker og ketoner hvis du har utstyr. Følg planen fra diabetesteamet. Der står det hva du skal gjøre med insulin. Ikke ta insulin på gjetting. Drikk vann uten sukker, og sjekk igjen etter litt tid. Blir det ikke bedre, ring legevakt 116 117. Ring 113 med en gang ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust, eller magesmerter med stor tørste eller slapphet.","l":["Åpne siden","/nyttig/diabetes/akutt/"],"u":1},
 {"g":"Sykdom og reise","q":"Hva gjør vi når barnet er sykt?","k":["syk","sykt","oppkast","diaré","feber","syke","sykdom"],"a":"Stopp aldri insulinet. Mål oftere enn vanlig. Mål ketoner. Sørg for nok å drikke. Ring sykehuset tidlig. Be diabetesteamet om en skriftlig plan for sykdom.","l":["Åpne siden","/nyttig/diabetes/nyttig-info/"],"u":1},
 {"g":"Sykdom og reise","q":"Hva bør jeg tenke på ved flyreise?","k":["fly","flyreise","reise","utland","røntgen","flyet","flyplass","ferie","spania","sydenferie"],"a":"Ha insulin og utstyr i håndbagasjen, i originalemballasjen. Ta med legeerklæring på engelsk. Ikke send pumpe eller sensor gjennom røntgen. Produsentene har ulike råd. Sjekk manualen.","l":["Åpne siden","/nyttig/diabetes/nyttig-info/"],"man":1},
 {"g":"Sykdom og reise","q":"Hva gjør alkohol med blodsukkeret?","k":["alkohol","øl","drikke alkohol","vin"],"a":"Alkohol kan senke blodsukkeret. Lavt blodsukker er vanskeligere å merke. Si fra til dem du er sammen med hva de skal se etter. Snakk med diabetesteamet om hva som gjelder for deg.","l":["Åpne siden","/nyttig/diabetes/nyttig-info/"]},
@@ -164,9 +164,49 @@ var busy=0;function think(fn){var r=document.createElement("div");r.className="s
  setTimeout(function(){r.remove();busy=0;fn()},matchMedia("(prefers-reduced-motion: reduce)").matches?150:650);}
 function show(e,extra){add("sb-bot"+(e.u?" sb-red":""),body(e,true)+(extra||""));}
 function menu(){var order=["Mat","Tall og pumpe","Om diabetes","Ord","Akutt","Sykdom og reise","Hverdag","Om appen","Manualer","Støtte"],h="";order.forEach(function(g){var any=false;QA.forEach(function(e,i){if(e.g!==g)return;if(!any){h+='<div class="sb-g">'+g+'</div>';any=true}h+='<button type="button" class="sb-b" data-i="'+i+'">'+esc(e.q)+'</button>'})});add("sb-bot",h);}
+/* ===== Blodsukkertall: Cat spør om tallet og sier om det er lavt, greit eller høyt =====
+   Grenser (generelle, planen fra diabetesteamet gjelder alltid):
+   under 4 lavt (NHI) · 4–10 vanlig mål (Helsedirektoratet, NHI) · 10–14 litt høyt
+   14 eller mer høyt, mål ketoner (NHI, SSHF) · 18 eller mer veldig høyt (NHI). Ingen doser. */
+var pend=null;
+var OPP=/på vei opp|stiger|går opp|øker|pil(?:a|en)? (?:rett )?opp|rett opp|skyter opp/,NED=/på vei ned|synker|faller|går ned|pil(?:a|en)? (?:rett )?ned|rett ned|stuper/;
+var TILSTAND=/(?:jeg er|er|ligger|blir|føler meg) (?:veldig |litt |for |så )?(?:høy|lav)\b|har føling|føler meg rar|på vei (?:opp|ned)|stiger|synker|faller|pil(?:a|en)? (?:rett )?(?:opp|ned)|rett (?:opp|ned)/;
+var KONTEKST=/blodsukker|sukkeret|mmol|sensor|pumpe|måler|stikk|finger|jeg er på|er på|ligger på|viser|høy|lav|føling|på vei|stiger|synker|faller|pil/;
+function dir(t){return OPP.test(t)?"opp":NED.test(t)?"ned":null}
+function num(raw){var r=" "+raw.toLowerCase()+" ";
+ if(/\bhi\b|\bhigh\b/.test(r))return 99;if(/\blo\b|\blow\b/.test(r))return -1;
+ var re=/(^|[^\d,.])(\d{1,3}(?:[.,]\d{1,2})?)(?![\d])/g,m;
+ while((m=re.exec(r))){var etter=r.slice(m.index+m[0].length);
+  if(/^\s*(?:år|kg|kilo|gram|g\b|%|min|minutter|timer|time\b|t\b|dager|uker|cm|stk|enheter|e\b|ie\b|kl|:)/.test(etter))continue;
+  if(/kl\.?\s*$|klokka\s*$/.test(r.slice(0,m.index+m[1].length)))continue;
+  return parseFloat(m[2].replace(",","."));}
+ return null;}
+function fmt(n){return String(Math.round(n*10)/10).replace(".",",")}
+var PLAN=" Planen din kan ha egne grenser. Planen fra diabetesteamet gjelder.";
+var AKL='<a class="sb-lnk" href="'+(ENK?"/nyttig/diabetes-enkel/akutt/":AK)+'">Åpne Akutt-siden</a>';
+function svarTall(n,d){
+ if(n===99)return["sb-bot sb-red","<b>HI betyr at tallet er for høyt til at sensoren kan vise det.</b> Mål i fingeren og mål ketoner nå hvis du har utstyr. Følg planen fra diabetesteamet. Ikke ta insulin på gjetting. Ring diabetesteamet eller legevakt 116 117.<br><b>Ring 113 med en gang</b> ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust."+AKL];
+ if(n===-1)return["sb-bot sb-red","<b>LO betyr at tallet er for lavt til at sensoren kan vise det.</b> Ta raske karbohydrater nå, så mye som står i planen din. Ikke vær alene. Ring en voksen eller noen som kan hjelpe deg med en gang.<br><b>Bevisstløs eller kramper: ring 113.</b>"+AKL];
+ if(n<1||n>35)return["sb-bot",esc(fmt(n))+" ser rart ut. Skriv tallet i mmol/L, for eksempel 8,5.",1];
+ var N="<b>"+esc(fmt(n));
+ if(n<4)return["sb-bot sb-red",N+" er lavt.</b> Ta raske karbohydrater nå, så mye som står i planen din. Vent 10–15 minutter og mål igjen."+
+  (d==="ned"?"<br><b>Går pilen rett ned:</b> ikke vær alene. Ring en voksen eller noen som kan hjelpe deg med en gang. Blir det ikke bedre, ring legevakt 116 117.":"")+
+  "<br><b>Bevisstløs eller kramper: ring 113.</b>"+AKL];
+ if(n<6&&d==="ned")return["sb-bot",N+" er innenfor målet nå, men pilen går ned.</b> Det kan bli lavt snart. Ha raske karbohydrater klare, følg planen din, og mål igjen om litt."+PLAN];
+ if(n<=10)return["sb-bot",N+" er innenfor det mange har som mål</b> (ca. 4–10)."+(d?" Pilen viser at det "+(d==="opp"?"stiger":"synker")+". Følg med, og sjekk igjen om litt.":" Følg med på pilen.")+PLAN];
+ if(n<14)return["sb-bot",N+" er litt høyt.</b>"+(d==="opp"?" Pilen viser at det stiger.":"")+" Følg planen fra diabetesteamet, og sjekk igjen etter litt tid. Stiger det til 14 eller mer, mål ketoner hvis du har utstyr."+PLAN];
+ if(n<18)return["sb-bot sb-red",N+" er høyt.</b>"+(d==="opp"?" Pilen viser at det stiger.":"")+" Mål ketoner hvis du har utstyr. Følg planen fra diabetesteamet. Ikke ta insulin på gjetting. Drikk vann uten sukker, og sjekk igjen etter litt tid. Blir det ikke bedre, ring legevakt 116 117.<br><b>Ring 113 med en gang</b> ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust."+PLAN+AKL];
+ return["sb-bot sb-red",N+" er veldig høyt.</b> Mål ketoner nå hvis du har utstyr, og følg planen fra diabetesteamet. Ikke ta insulin på gjetting. Er det fortsatt over 18 neste gang du måler, ring diabetesteamet eller legevakt 116 117.<br><b>Ring 113 med en gang</b> ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust."+PLAN+AKL];}
+function lavNaa(raw){var n=num(raw);return n!==null&&(n===-1||(n>=1&&n<4))&&(pend||KONTEKST.test(norm(raw))||/^\s*[\d.,]+\s*(mmol)?\s*$/i.test(raw))}
+function tall(raw){var t=norm(raw),n=num(raw),d=dir(t);
+ if(pend){if(n!==null){var r=svarTall(n,d||pend.d);if(!r[2])pend=null;add(r[0],r[1]);return true}pend=null;return false}
+ if(n!==null&&(KONTEKST.test(t)||/^\s*[\d.,]+\s*(mmol(\/l)?)?\s*$/i.test(raw))&&!/hva er|hvor mange gram|karbo|gram/.test(t)){var r2=svarTall(n,d);if(r2[2])pend={d:d};add(r2[0],r2[1]);return true}
+ if(n===null&&TILSTAND.test(t)){pend={d:d};add("sb-bot","Hvilket tall ser du på pumpen eller sensoren? Eller har du tatt stikk i fingeren? Skriv bare tallet, for eksempel 8,5.");return true}
+ return false;}
 function ask(raw){var t=norm(raw);
- if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){menu();return}
- var d=danger(raw);if(d){show(d);return}
+ if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=null;menu();return}
+ var d=danger(raw);if(d){pend=null;show(d);return}
+ if(tall(raw))return;
  var r=rank(raw);if(!r.length){add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>');return}
  var alt=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return'<button type="button" class="sb-b" data-i="'+x.i+'">Mente du: '+esc(QA[x.i].q)+'</button>'}).join("");
  show(QA[r[0].i],alt?'<div class="sb-g">Mente du noe annet?</div>'+alt:"");}
@@ -190,7 +230,7 @@ function build(){
    if(y>ly+6&&y>60)bb.classList.add("sb-hide");else if(y<ly-6||y<=60)bb.classList.remove("sb-hide");ly=y;},{passive:true});}
  log=root.querySelector("#sb-log");panel=root.querySelector("#sb-panel");bub=document.getElementById("sb-bubble");inp=root.querySelector("#sb-q");
  log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy){var e=QA[+b.getAttribute("data-i")];add("sb-me",esc(e.q));think(function(){show(e)})}});
- root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){add("sb-bot","Skriv et spørsmål først");return}if(busy)return;add("sb-me",esc(v));inp.value="";if(danger(v))ask(v);else think(function(){ask(v)})});
+ root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){add("sb-bot","Skriv et spørsmål først");return}if(busy)return;add("sb-me",esc(v));inp.value="";if(danger(v)||lavNaa(v))ask(v);else think(function(){ask(v)})});
  bub.addEventListener("click",open);root.querySelector("#sb-min").addEventListener("click",close);
  panel.addEventListener("keydown",function(ev){if(ev.key==="Escape")close()});
  add("sb-bot",esc(HELLO));

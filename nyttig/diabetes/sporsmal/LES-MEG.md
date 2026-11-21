@@ -30,3 +30,10 @@ Boten har fått et ansikt: Cat, en tegnet figur fra filmen om diabetes.
 - Toppen av chatten sier «Svarbot. Cat er en tegnet figur.», så ingen tror at en ekte person svarer.
 - Ved fare-ord (for eksempel bevisstløs eller kramper) kommer svaret med en gang, uten «Cat tenker».
 - Vil du fjerne Cat: slett de to bildene og bytt `av(...)` i `bot.js` tilbake til 💬.
+
+## Blodsukkertall (Cat spør om tallet)
+- Skriver noen «jeg er høy», «lav», «stiger», «synker», «på vei opp/ned» eller «føling» uten tall, spør Cat om tallet.
+- Med tall (for eksempel «jeg er på 14») svarer Cat med en gang: under 4 lavt, 4–10 vanlig mål, 10–14 litt høyt, 14 eller mer høyt, 18 eller mer veldig høyt. «HI» og «LO» fra sensoren forstås også.
+- Kilder for grensene: NHI (lavt under 4, kontroller oftere over 14, kontakt ved to verdier over 18), Helsedirektoratet (mål 4–7 før mat og under 10 etter), SSHF (ketoner ved høyt over tid).
+- Lavt tall gir svar med en gang (uten «Cat tenker»). Svarene gir aldri doser. Teksten ligger i `svarTall()` i `bot.js`.
+- Disse svarene bør sjekkes av diabetessykepleier før merkingen tas bort.
