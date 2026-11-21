@@ -119,7 +119,7 @@ var MAN={"g7": {"n": "Dexcom G7", "l": [["Slik setter du på sensoren (video)", 
 function manLinks(ids){var h="";ids.forEach(function(id){var d=MAN[id];if(!d)return;h+='<div class="sb-g">Manual: '+esc(d.n)+'</div>';d.l.forEach(function(k){h+='<a class="sb-ml" target="_blank" rel="noopener" href="'+k[1]+'">'+esc(k[0])+'</a>'})});if(h)h+='<a class="sb-ml" href="/nyttig/diabetes/sporsmal/tilbakemelding/">Virker ikke en lenke? Gi oss beskjed</a>';return h}
 function chosen(){var r=[];try{var p=localStorage.getItem("mn_pump"),s=localStorage.getItem("mn_sen");if(p&&MAN[p])r.push(p);if(s&&MAN[s])r.push(s)}catch(e){}return r}
 var DANGER=["bevisstløs","bevisstlos","kramper","besvimt","besvimer","forvirret","kaster opp om"];
-var HELLO="Hei. Skriv spørsmålet ditt under. Du kan alltid skrive: Hva kan jeg spørre om?";
+var HELLO="Hei, jeg er Cat! Skriv spørsmålet ditt under. Du kan alltid skrive: Hva kan jeg spørre om?";
 var NONE="Det vet jeg ikke. Spør diabetesteamet eller fastlegen din. Er det akutt, ring 113. Du kan alltid skrive: Hva kan jeg spørre om?";
 var IMG={
 tabell:'<svg viewBox="0 0 300 294" width="100%" style="max-width:300px" role="img" aria-label="Næringstabell fra en pakke med to kolonner: per 100 gram og per porsjon på 175 gram. Tallet for karbohydrat i kolonnen per 100 gram er ringet inn."><rect x="1" y="1" width="298" height="268" rx="10" fill="#ece8df" stroke="#8a8478" stroke-width="2"/><rect x="4" y="134" width="292" height="25" fill="#fde68a"/><g fill="#1f2937" font-family="Arial,Helvetica,sans-serif"><text x="12" y="24" font-size="13" font-weight="700">NÆRINGSINNHOLD</text><text x="12" y="43" font-size="13" font-weight="700">kokt ris</text><text x="198" y="43" font-size="13" font-weight="700" text-anchor="end">Per 100 g</text><text x="288" y="24" font-size="13" font-weight="700" text-anchor="end">Per porsjon</text><text x="288" y="43" font-size="13" font-weight="700" text-anchor="end">(175 g)</text><line x1="4" y1="59" x2="296" y2="59" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="76" font-size="12.5" font-weight="700">Energi (kJ/kcal)</text><text x="198" y="76" font-size="12.5" font-weight="700" text-anchor="end">540/128</text><text x="288" y="76" font-size="12.5" font-weight="700" text-anchor="end">945/224</text><line x1="4" y1="84" x2="296" y2="84" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="101" font-size="12.5" font-weight="700">Fett</text><text x="198" y="101" font-size="12.5" font-weight="700" text-anchor="end">0,5 g</text><text x="288" y="101" font-size="12.5" font-weight="700" text-anchor="end">0,9 g</text><line x1="4" y1="109" x2="296" y2="109" stroke="#b8b3a8" stroke-width="1"/><text x="24" y="126" font-size="11">hvorav mettet fett</text><text x="198" y="126" font-size="11" text-anchor="end">0,1 g</text><text x="288" y="126" font-size="11" text-anchor="end">0,2 g</text><line x1="4" y1="134" x2="296" y2="134" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="151" font-size="12.5" font-weight="700">Karbohydrat</text><text x="198" y="151" font-size="12.5" font-weight="700" text-anchor="end">25 g</text><text x="288" y="151" font-size="12.5" font-weight="700" text-anchor="end">44 g</text><line x1="4" y1="159" x2="296" y2="159" stroke="#b8b3a8" stroke-width="1"/><text x="24" y="176" font-size="11">hvorav sukkerarter</text><text x="198" y="176" font-size="11" text-anchor="end">0,6 g</text><text x="288" y="176" font-size="11" text-anchor="end">1,1 g</text><line x1="4" y1="184" x2="296" y2="184" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="201" font-size="12.5" font-weight="700">Kostfiber</text><text x="198" y="201" font-size="12.5" font-weight="700" text-anchor="end">1,5 g</text><text x="288" y="201" font-size="12.5" font-weight="700" text-anchor="end">2,6 g</text><line x1="4" y1="209" x2="296" y2="209" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="226" font-size="12.5" font-weight="700">Protein</text><text x="198" y="226" font-size="12.5" font-weight="700" text-anchor="end">4,5 g</text><text x="288" y="226" font-size="12.5" font-weight="700" text-anchor="end">7,9 g</text><line x1="4" y1="234" x2="296" y2="234" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="251" font-size="12.5" font-weight="700">Salt</text><text x="198" y="251" font-size="12.5" font-weight="700" text-anchor="end">0,3 g</text><text x="288" y="251" font-size="12.5" font-weight="700" text-anchor="end">0,5 g</text></g><rect x="128" y="52" width="78" height="210" rx="8" fill="none" stroke="#16a34a" stroke-width="3" stroke-dasharray="6 4"/><ellipse cx="182" cy="146" rx="28" ry="14" fill="none" stroke="#dc2626" stroke-width="3"/><text x="150" y="288" font-size="13" font-weight="700" text-anchor="middle" fill="#166534" font-family="Arial,Helvetica,sans-serif">▲ Les tallet her: per 100 g</text></svg>',
@@ -153,7 +153,15 @@ function rank(raw){var t=norm(raw);
 function danger(raw){var t=norm(raw);for(var i=0;i<DANGER.length;i++)if(t.indexOf(DANGER[i])>-1)return QA.filter(function(e){return e.q.indexOf("Når ringer jeg 113")===0})[0];return null;}
 function match(raw){var d=danger(raw);if(d)return d;var r=rank(raw);return r.length?QA[r[0].i]:null;}
 var root,log,panel,bub,inp;
-function add(cls,html){var d=document.createElement("div");d.className="sb-m "+cls;d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+/* Cat: tegnet figur som er ansiktet til boten. Bildene ligger i denne mappen. */
+var AV=BASE+"cat.webp",AVT=BASE+"cat-tenker.webp";
+function av(t,c){return '<img class="'+(c||"sb-av")+'" src="'+(t?AVT:AV)+'" alt="" width="32" height="32" decoding="async">'}
+function add(cls,html){var d=document.createElement("div");d.className="sb-m "+cls;d.innerHTML=html;
+ if(/^sb-bot/.test(cls)){var r=document.createElement("div");r.className="sb-row";r.innerHTML=av(0);r.appendChild(d);log.appendChild(r)}else log.appendChild(d);
+ log.scrollTop=log.scrollHeight;return d;}
+/* «Cat tenker …» et lite øyeblikk før svaret kommer */
+var busy=0;function think(fn){var r=document.createElement("div");r.className="sb-row sb-think";r.setAttribute("aria-hidden","true");r.innerHTML=av(1)+'<span>Cat tenker …</span>';log.appendChild(r);log.scrollTop=log.scrollHeight;busy=1;
+ setTimeout(function(){r.remove();busy=0;fn()},matchMedia("(prefers-reduced-motion: reduce)").matches?150:650);}
 function show(e,extra){add("sb-bot"+(e.u?" sb-red":""),body(e,true)+(extra||""));}
 function menu(){var order=["Mat","Tall og pumpe","Om diabetes","Ord","Akutt","Sykdom og reise","Hverdag","Om appen","Manualer","Støtte"],h="";order.forEach(function(g){var any=false;QA.forEach(function(e,i){if(e.g!==g)return;if(!any){h+='<div class="sb-g">'+g+'</div>';any=true}h+='<button type="button" class="sb-b" data-i="'+i+'">'+esc(e.q)+'</button>'})});add("sb-bot",h);}
 function ask(raw){var t=norm(raw);
@@ -165,24 +173,24 @@ function ask(raw){var t=norm(raw);
 function open(){panel.classList.add("sb-open");bub.style.display="none";inp.focus()}
 function close(){panel.classList.remove("sb-open");bub.style.display="";bub.focus()}
 function build(){
- var l=document.createElement("link");l.rel="stylesheet";l.href=BASE+"bot.css?v=3";document.head.appendChild(l);
+ var l=document.createElement("link");l.rel="stylesheet";l.href=BASE+"bot.css?v=4";document.head.appendChild(l);
  root=document.createElement("div");root.id="sb-root";
- root.innerHTML='<button type="button" id="sb-bubble" aria-label="Åpne spørsmålsboten">\ud83d\udcac</button>'+
- '<section id="sb-panel" role="dialog" aria-label="Spørsmål og svar om diabetes"><div class="sb-hd"><b>Spør om diabetes</b><button type="button" id="sb-min" aria-label="Minimer">\u2013</button></div>'+
+ root.innerHTML='<button type="button" id="sb-bubble" aria-label="Åpne svarboten Cat">'+av(0,"sb-bav")+'<span class="sb-dot" aria-hidden="true">Spør</span></button>'+
+ '<section id="sb-panel" role="dialog" aria-label="Spør Cat. Spørsmål og svar om diabetes"><div class="sb-hd">'+av(0,"sb-hav")+'<div class="sb-ht"><b>Spør Cat</b><small>Svarbot. Cat er en tegnet figur.</small></div><button type="button" id="sb-min" aria-label="Minimer">\u2013</button></div>'+
  (NOTICE?'<div class="sb-warn">'+esc(NOTICE)+'</div>':'')+
  '<div id="sb-log" aria-live="polite"></div><form id="sb-f" autocomplete="off"><input id="sb-q" type="text" placeholder="Skriv spørsmålet ditt" aria-label="Spørsmål"><button type="submit">Send</button></form></section>';
  document.body.appendChild(root);
  /* Boblen skal ikke dekke innhold: */
  /* 1) Finnes en plass til den i siden (#sb-slot), blir den en vanlig knapp der. */
  var slot=document.getElementById("sb-slot");
- if(slot){var b0=root.querySelector("#sb-bubble");b0.className="sb-inline";b0.innerHTML='<span aria-hidden="true">\ud83d\udcac</span> Spør om diabetes';slot.appendChild(b0);}
+ if(slot){var b0=root.querySelector("#sb-bubble");b0.className="sb-inline";b0.innerHTML=av(1,"sb-iav")+' Spør Cat om diabetes';slot.appendChild(b0);}
  /* 2) Ellers: luft nederst på siden, og boblen gjemmer seg når du blar nedover. */
  else{document.documentElement.classList.add("sb-luft");
   var ly=window.scrollY||0;window.addEventListener("scroll",function(){var y=window.scrollY||0,bb=root.querySelector("#sb-bubble");if(!bb)return;
    if(y>ly+6&&y>60)bb.classList.add("sb-hide");else if(y<ly-6||y<=60)bb.classList.remove("sb-hide");ly=y;},{passive:true});}
  log=root.querySelector("#sb-log");panel=root.querySelector("#sb-panel");bub=document.getElementById("sb-bubble");inp=root.querySelector("#sb-q");
- log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b){var e=QA[+b.getAttribute("data-i")];add("sb-me",esc(e.q));show(e)}});
- root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){add("sb-bot","Skriv et spørsmål først");return}add("sb-me",esc(v));inp.value="";ask(v)});
+ log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy){var e=QA[+b.getAttribute("data-i")];add("sb-me",esc(e.q));think(function(){show(e)})}});
+ root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){add("sb-bot","Skriv et spørsmål først");return}if(busy)return;add("sb-me",esc(v));inp.value="";if(danger(v))ask(v);else think(function(){ask(v)})});
  bub.addEventListener("click",open);root.querySelector("#sb-min").addEventListener("click",close);
  panel.addEventListener("keydown",function(ev){if(ev.key==="Escape")close()});
  add("sb-bot",esc(HELLO));

@@ -40,3 +40,18 @@ html.sb-luft body{padding-bottom:88px}
 #sb-bubble.sb-inline span{font-size:1.3rem;line-height:1}
 #sb-bubble.sb-inline:focus-visible{outline:3px solid #7c3aed;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){#sb-bubble{transition:none}}
+
+/* Cat: ansiktet til boten (bildene cat.webp og cat-tenker.webp i denne mappen) */
+#sb-bubble:not(.sb-inline){background:#2563eb;border:3px solid #fff;overflow:visible}
+#sb-bubble .sb-bav{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;background:#e8f0ff}
+#sb-bubble .sb-dot{position:absolute;right:-6px;top:-8px;background:#fff;color:#1d4ed8;border:2px solid #2563eb;border-radius:10px;font:700 12px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;padding:1px 6px}
+.sb-hav{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#e8f0ff;flex:none}
+.sb-ht{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.sb-ht b{font-size:17px}
+.sb-ht small{font-size:12px;color:var(--sb-mut)}
+.sb-row{display:flex;gap:6px;align-items:flex-end;align-self:flex-start;max-width:100%}
+.sb-row .sb-m{max-width:calc(100% - 38px)}
+.sb-av{width:32px;height:32px;border-radius:50%;object-fit:cover;background:#e8f0ff;flex:none}
+.sb-think span{font-size:14px;font-style:italic;color:var(--sb-mut);padding:0 0 6px}
+#sb-bubble.sb-inline .sb-iav{width:56px;height:56px;border-radius:50%;object-fit:cover;background:#e8f0ff;border:3px solid #fff;flex:none}
+#sb-bubble.sb-inline{min-height:70px;gap:12px}

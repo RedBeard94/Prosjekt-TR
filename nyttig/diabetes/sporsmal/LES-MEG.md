@@ -22,3 +22,11 @@ Står øverst i `bot.js` (`var NOTICE`). Gjør den tom først når diabetessykep
 ## Å huske
 - Lenkene til manualer ligger kopiert i `bot.js` (`var MAN`). Flytter produsentene en fil, må lenken rettes her.
 - Boten finner svar ved å lete etter nøkkelord. Den gir aldri doser og finner ikke på svar.
+
+## Cat
+Boten har fått et ansikt: Cat, en tegnet figur fra filmen om diabetes.
+- `cat.webp`: Cat smiler (boblen, toppen av chatten og ved svarene).
+- `cat-tenker.webp`: Cat tenker (vises et lite øyeblikk før svaret kommer, og på knappen «Spør Cat om diabetes» på forsiden i Diabetes enkel).
+- Toppen av chatten sier «Svarbot. Cat er en tegnet figur.», så ingen tror at en ekte person svarer.
+- Ved fare-ord (for eksempel bevisstløs eller kramper) kommer svaret med en gang, uten «Cat tenker».
+- Vil du fjerne Cat: slett de to bildene og bytt `av(...)` i `bot.js` tilbake til 💬.
