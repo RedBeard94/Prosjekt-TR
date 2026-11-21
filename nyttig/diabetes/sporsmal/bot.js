@@ -168,10 +168,10 @@ function menu(){var order=["Mat","Tall og pumpe","Om diabetes","Ord","Akutt","Sy
    Grenser (generelle, planen fra diabetesteamet gjelder alltid):
    under 4 lavt (NHI) · 4–10 vanlig mål (Helsedirektoratet, NHI) · 10–14 litt høyt
    14 eller mer høyt, mål ketoner (NHI, SSHF) · 18 eller mer veldig høyt (NHI). Ingen doser. */
-var pend=null;
+var pend=null,soft=null;
 var OPP=/på vei opp|stiger|går opp|øker|pil(?:a|en)? (?:rett )?opp|rett opp|skyter opp/,NED=/på vei ned|synker|faller|går ned|pil(?:a|en)? (?:rett )?ned|rett ned|stuper/;
 var TILSTAND=/(?:jeg er|er|ligger|blir|føler meg) (?:veldig |litt |for |så )?(?:høy|lav)\b|har føling|føler meg rar|på vei (?:opp|ned)|stiger|synker|faller|pil(?:a|en)? (?:rett )?(?:opp|ned)|rett (?:opp|ned)/;
-var KONTEKST=/blodsukker|sukkeret|mmol|sensor|pumpe|måler|stikk|finger|jeg er på|er på|ligger på|viser|høy|lav|føling|på vei|stiger|synker|faller|pil/;
+var KONTEKST=/blodsukker|sukkeret|mmol|sensor|pumpe|måler|stikk|finger|jeg er på|er på|ligger på|viser|sier|står|nå er|den er|høy|lav|føling|på vei|stiger|synker|faller|pil/;
 function dir(t){return OPP.test(t)?"opp":NED.test(t)?"ned":null}
 function num(raw){var r=" "+raw.toLowerCase()+" ";
  if(/\bhi\b|\bhigh\b/.test(r))return 99;if(/\blo\b|\blow\b/.test(r))return -1;
@@ -183,6 +183,7 @@ function num(raw){var r=" "+raw.toLowerCase()+" ";
  return null;}
 function fmt(n){return String(Math.round(n*10)/10).replace(".",",")}
 var PLAN=" Planen din kan ha egne grenser. Planen fra diabetesteamet gjelder.";
+var NYTT='<div class="sb-g">Skrev du feil, eller har tallet endret seg? Skriv det nye tallet med en gang.</div>';
 var AKL='<a class="sb-lnk" href="'+(ENK?"/nyttig/diabetes-enkel/akutt/":AK)+'">Åpne Akutt-siden</a>';
 function svarTall(n,d){
  if(n===99)return["sb-bot sb-red","<b>HI betyr at tallet er for høyt til at sensoren kan vise det.</b> Mål i fingeren og mål ketoner nå hvis du har utstyr. Følg planen fra diabetesteamet. Ikke ta insulin på gjetting. Ring diabetesteamet eller legevakt 116 117.<br><b>Ring 113 med en gang</b> ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust."+AKL];
@@ -197,16 +198,18 @@ function svarTall(n,d){
  if(n<14)return["sb-bot",N+" er litt høyt.</b>"+(d==="opp"?" Pilen viser at det stiger.":"")+" Følg planen fra diabetesteamet, og sjekk igjen etter litt tid. Stiger det til 14 eller mer, mål ketoner hvis du har utstyr."+PLAN];
  if(n<18)return["sb-bot sb-red",N+" er høyt.</b>"+(d==="opp"?" Pilen viser at det stiger.":"")+" Mål ketoner hvis du har utstyr. Følg planen fra diabetesteamet. Ikke ta insulin på gjetting. Drikk vann uten sukker, og sjekk igjen etter litt tid. Blir det ikke bedre, ring legevakt 116 117.<br><b>Ring 113 med en gang</b> ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust."+PLAN+AKL];
  return["sb-bot sb-red",N+" er veldig høyt.</b> Mål ketoner nå hvis du har utstyr, og følg planen fra diabetesteamet. Ikke ta insulin på gjetting. Er det fortsatt over 18 neste gang du måler, ring diabetesteamet eller legevakt 116 117.<br><b>Ring 113 med en gang</b> ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust."+PLAN+AKL];}
-function lavNaa(raw){var n=num(raw);return n!==null&&(n===-1||(n>=1&&n<4))&&(pend||KONTEKST.test(norm(raw))||/^\s*[\d.,]+\s*(mmol)?\s*$/i.test(raw))}
+function lavNaa(raw){var n=num(raw);return n!==null&&(n===-1||(n>=1&&n<4))&&(pend||soft||KONTEKST.test(norm(raw))||/^\s*[\d.,]+\s*(mmol)?\s*$/i.test(raw))}
 function tall(raw){var t=norm(raw),n=num(raw),d=dir(t);
- if(pend){if(n!==null){var r=svarTall(n,d||pend.d);if(!r[2])pend=null;add(r[0],r[1]);return true}pend=null;return false}
- if(n!==null&&(KONTEKST.test(t)||/^\s*[\d.,]+\s*(mmol(\/l)?)?\s*$/i.test(raw))&&!/hva er|hvor mange gram|karbo|gram/.test(t)){var r2=svarTall(n,d);if(r2[2])pend={d:d};add(r2[0],r2[1]);return true}
- if(n===null&&TILSTAND.test(t)){pend={d:d};add("sb-bot","Hvilket tall ser du på pumpen eller sensoren? Eller har du tatt stikk i fingeren? Skriv bare tallet, for eksempel 8,5.");return true}
+ function gi(r,dd){if(r[2]){pend={d:dd};soft=null;add(r[0],r[1])}else{pend=null;soft={d:dd};add(r[0],r[1]+NYTT)}return true}
+ if(pend){if(n!==null)return gi(svarTall(n,d||pend.d),d||pend.d);pend=null;return false}
+ if(soft&&n!==null&&!/hva er|hvor mange|gram|karbo/.test(t))return gi(svarTall(n,d||soft.d),d||soft.d);
+ if(n!==null&&(KONTEKST.test(t)||/^\s*[\d.,]+\s*(mmol(\/l)?)?\s*$/i.test(raw))&&!/hva er|hvor mange gram|karbo|gram/.test(t))return gi(svarTall(n,d),d);
+ if(n===null&&TILSTAND.test(t)){pend={d:d};soft=null;add("sb-bot","Hvilket tall ser du på pumpen eller sensoren? Eller har du tatt stikk i fingeren? Skriv bare tallet, for eksempel 8,5.");return true}
  return false;}
 function ask(raw){var t=norm(raw);
- if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=null;menu();return}
- var d=danger(raw);if(d){pend=null;show(d);return}
- if(tall(raw))return;
+ if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=soft=null;menu();return}
+ var d=danger(raw);if(d){pend=soft=null;show(d);return}
+ if(tall(raw))return;soft=null;
  var r=rank(raw);if(!r.length){add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>');return}
  var alt=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return'<button type="button" class="sb-b" data-i="'+x.i+'">Mente du: '+esc(QA[x.i].q)+'</button>'}).join("");
  show(QA[r[0].i],alt?'<div class="sb-g">Mente du noe annet?</div>'+alt:"");}
