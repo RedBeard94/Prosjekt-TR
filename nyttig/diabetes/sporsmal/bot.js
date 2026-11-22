@@ -120,7 +120,7 @@ function manLinks(ids){var h="";ids.forEach(function(id){var d=MAN[id];if(!d)ret
 function chosen(){var r=[];try{var p=localStorage.getItem("mn_pump"),s=localStorage.getItem("mn_sen");if(p&&MAN[p])r.push(p);if(s&&MAN[s])r.push(s)}catch(e){}return r}
 var DANGER=["bevisstløs","bevisstlos","kramper","besvimt","besvimer","forvirret","kaster opp om"];
 var HELLO="Hei, jeg er Cat! Skriv spørsmålet ditt under. Du kan alltid skrive: Hva kan jeg spørre om?";
-var NONE="Det vet jeg ikke. Spør diabetesteamet eller fastlegen din. Er det akutt, ring 113. Du kan alltid skrive: Hva kan jeg spørre om?";
+var NONE="Jeg er usikker. Du kan prøve å spørre noen du stoler på. Du kan også spørre diabetesteamet eller fastlegen din. Er det akutt, ring 113. Du kan alltid skrive: Hva kan jeg spørre om?";
 var IMG={
 tabell:'<svg viewBox="0 0 300 294" width="100%" style="max-width:300px" role="img" aria-label="Næringstabell fra en pakke med to kolonner: per 100 gram og per porsjon på 175 gram. Tallet for karbohydrat i kolonnen per 100 gram er ringet inn."><rect x="1" y="1" width="298" height="268" rx="10" fill="#ece8df" stroke="#8a8478" stroke-width="2"/><rect x="4" y="134" width="292" height="25" fill="#fde68a"/><g fill="#1f2937" font-family="Arial,Helvetica,sans-serif"><text x="12" y="24" font-size="13" font-weight="700">NÆRINGSINNHOLD</text><text x="12" y="43" font-size="13" font-weight="700">kokt ris</text><text x="198" y="43" font-size="13" font-weight="700" text-anchor="end">Per 100 g</text><text x="288" y="24" font-size="13" font-weight="700" text-anchor="end">Per porsjon</text><text x="288" y="43" font-size="13" font-weight="700" text-anchor="end">(175 g)</text><line x1="4" y1="59" x2="296" y2="59" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="76" font-size="12.5" font-weight="700">Energi (kJ/kcal)</text><text x="198" y="76" font-size="12.5" font-weight="700" text-anchor="end">540/128</text><text x="288" y="76" font-size="12.5" font-weight="700" text-anchor="end">945/224</text><line x1="4" y1="84" x2="296" y2="84" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="101" font-size="12.5" font-weight="700">Fett</text><text x="198" y="101" font-size="12.5" font-weight="700" text-anchor="end">0,5 g</text><text x="288" y="101" font-size="12.5" font-weight="700" text-anchor="end">0,9 g</text><line x1="4" y1="109" x2="296" y2="109" stroke="#b8b3a8" stroke-width="1"/><text x="24" y="126" font-size="11">hvorav mettet fett</text><text x="198" y="126" font-size="11" text-anchor="end">0,1 g</text><text x="288" y="126" font-size="11" text-anchor="end">0,2 g</text><line x1="4" y1="134" x2="296" y2="134" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="151" font-size="12.5" font-weight="700">Karbohydrat</text><text x="198" y="151" font-size="12.5" font-weight="700" text-anchor="end">25 g</text><text x="288" y="151" font-size="12.5" font-weight="700" text-anchor="end">44 g</text><line x1="4" y1="159" x2="296" y2="159" stroke="#b8b3a8" stroke-width="1"/><text x="24" y="176" font-size="11">hvorav sukkerarter</text><text x="198" y="176" font-size="11" text-anchor="end">0,6 g</text><text x="288" y="176" font-size="11" text-anchor="end">1,1 g</text><line x1="4" y1="184" x2="296" y2="184" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="201" font-size="12.5" font-weight="700">Kostfiber</text><text x="198" y="201" font-size="12.5" font-weight="700" text-anchor="end">1,5 g</text><text x="288" y="201" font-size="12.5" font-weight="700" text-anchor="end">2,6 g</text><line x1="4" y1="209" x2="296" y2="209" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="226" font-size="12.5" font-weight="700">Protein</text><text x="198" y="226" font-size="12.5" font-weight="700" text-anchor="end">4,5 g</text><text x="288" y="226" font-size="12.5" font-weight="700" text-anchor="end">7,9 g</text><line x1="4" y1="234" x2="296" y2="234" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="251" font-size="12.5" font-weight="700">Salt</text><text x="198" y="251" font-size="12.5" font-weight="700" text-anchor="end">0,3 g</text><text x="288" y="251" font-size="12.5" font-weight="700" text-anchor="end">0,5 g</text></g><rect x="128" y="52" width="78" height="210" rx="8" fill="none" stroke="#16a34a" stroke-width="3" stroke-dasharray="6 4"/><ellipse cx="182" cy="146" rx="28" ry="14" fill="none" stroke="#dc2626" stroke-width="3"/><text x="150" y="288" font-size="13" font-weight="700" text-anchor="middle" fill="#166534" font-family="Arial,Helvetica,sans-serif">▲ Les tallet her: per 100 g</text></svg>',
 tabell2:'<svg viewBox="0 0 300 330" width="100%" style="max-width:300px" role="img" aria-label="Næringstabell der det bare står per porsjon på 66 gram. Tallene gjelder 66 gram, ikke 100 gram."><rect x="1" y="1" width="298" height="268" rx="10" fill="#ece8df" stroke="#8a8478" stroke-width="2"/><rect x="4" y="134" width="292" height="25" fill="#fde68a"/><g fill="#1f2937" font-family="Arial,Helvetica,sans-serif"><text x="12" y="24" font-size="13" font-weight="700">NÆRINGSINNHOLD</text><text x="12" y="43" font-size="13" font-weight="700">kjeks</text><text x="288" y="24" font-size="13" font-weight="700" text-anchor="end">Per porsjon</text><text x="288" y="43" font-size="13" font-weight="700" text-anchor="end">(66 g)</text><line x1="4" y1="59" x2="296" y2="59" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="76" font-size="12.5" font-weight="700">Energi (kJ/kcal)</text><text x="288" y="76" font-size="12.5" font-weight="700" text-anchor="end">1190/283</text><line x1="4" y1="84" x2="296" y2="84" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="101" font-size="12.5" font-weight="700">Fett</text><text x="288" y="101" font-size="12.5" font-weight="700" text-anchor="end">8,0 g</text><line x1="4" y1="109" x2="296" y2="109" stroke="#b8b3a8" stroke-width="1"/><text x="24" y="126" font-size="11">hvorav mettet fett</text><text x="288" y="126" font-size="11" text-anchor="end">4,0 g</text><line x1="4" y1="134" x2="296" y2="134" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="151" font-size="12.5" font-weight="700">Karbohydrat</text><text x="288" y="151" font-size="12.5" font-weight="700" text-anchor="end">40 g</text><line x1="4" y1="159" x2="296" y2="159" stroke="#b8b3a8" stroke-width="1"/><text x="24" y="176" font-size="11">hvorav sukkerarter</text><text x="288" y="176" font-size="11" text-anchor="end">12 g</text><line x1="4" y1="184" x2="296" y2="184" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="201" font-size="12.5" font-weight="700">Kostfiber</text><text x="288" y="201" font-size="12.5" font-weight="700" text-anchor="end">2,0 g</text><line x1="4" y1="209" x2="296" y2="209" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="226" font-size="12.5" font-weight="700">Protein</text><text x="288" y="226" font-size="12.5" font-weight="700" text-anchor="end">5,0 g</text><line x1="4" y1="234" x2="296" y2="234" stroke="#b8b3a8" stroke-width="1"/><text x="12" y="251" font-size="12.5" font-weight="700">Salt</text><text x="288" y="251" font-size="12.5" font-weight="700" text-anchor="end">0,7 g</text></g><ellipse cx="272" cy="146" rx="28" ry="14" fill="none" stroke="#dc2626" stroke-width="3"/><rect x="4" y="278" width="292" height="48" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/><g font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#7f1d1d" text-anchor="middle"><text x="150" y="298">Bare per porsjon (66 g).</text><text x="150" y="316">Tallet er ikke per 100 g.</text></g></svg>',
@@ -160,8 +160,8 @@ function add(cls,html){var d=document.createElement("div");d.className="sb-m "+c
  if(/^sb-bot/.test(cls)){var r=document.createElement("div");r.className="sb-row";r.innerHTML=av(0);r.appendChild(d);log.appendChild(r)}else log.appendChild(d);
  log.scrollTop=log.scrollHeight;return d;}
 /* «Cat tenker …» et lite øyeblikk før svaret kommer */
-var busy=0;function think(fn){var r=document.createElement("div");r.className="sb-row sb-think";r.setAttribute("aria-hidden","true");r.innerHTML=av(1)+'<span>Cat tenker …</span>';log.appendChild(r);log.scrollTop=log.scrollHeight;busy=1;
- setTimeout(function(){r.remove();busy=0;fn()},matchMedia("(prefers-reduced-motion: reduce)").matches?150:650);}
+var busy=0;function think(fn,ms){var r=document.createElement("div");r.className="sb-row sb-think";r.setAttribute("aria-hidden","true");r.innerHTML=av(1)+'<span>Cat tenker …</span>';log.appendChild(r);log.scrollTop=log.scrollHeight;busy=1;
+ setTimeout(function(){r.remove();busy=0;fn()},matchMedia("(prefers-reduced-motion: reduce)").matches?150:(ms||650));}
 function show(e,extra){add("sb-bot"+(e.u?" sb-red":""),body(e,true)+(extra||""));}
 function menu(){var order=["Mat","Tall og pumpe","Om diabetes","Ord","Akutt","Sykdom og reise","Hverdag","Om appen","Manualer","Støtte"],h="";order.forEach(function(g){var any=false;QA.forEach(function(e,i){if(e.g!==g)return;if(!any){h+='<div class="sb-g">'+g+'</div>';any=true}h+='<button type="button" class="sb-b" data-i="'+i+'">'+esc(e.q)+'</button>'})});add("sb-bot",h);}
 /* ===== Blodsukkertall: Cat spør om tallet og sier om det er lavt, greit eller høyt =====
@@ -206,11 +206,108 @@ function tall(raw){var t=norm(raw),n=num(raw),d=dir(t);
  if(n!==null&&(KONTEKST.test(t)||/^\s*[\d.,]+\s*(mmol(\/l)?)?\s*$/i.test(raw))&&!/hva er|hvor mange gram|karbo|gram/.test(t))return gi(svarTall(n,d),d);
  if(n===null&&TILSTAND.test(t)){pend={d:d};soft=null;add("sb-bot","Hvilket tall ser du på pumpen eller sensoren? Eller har du tatt stikk i fingeren? Skriv bare tallet, for eksempel 8,5.");return true}
  return false;}
+/* ===== Småprat, ideer og kalkulator (Cat) =====
+   Alt er ferdigskrevet. Ingen nett, ingen sporing. Alvorlige ord går alltid først.
+   Småpraten kommer etter de vanlige spørsmålene, så diabetessvarene er de samme som før.
+   Unntak: noen få faste fraser som ikke er diabetesspørsmål (vits, terning, kalkulator, hva heter du). */
+var SP=null,SPI=null,BAG={};
+var SER="Det høres veldig tungt ut. Snakk med en voksen du stoler på nå, med en gang. Har du ingen å snakke med? Barn og unge kan ringe 116 111. Alle kan ringe 116 123. Begge er gratis og åpne hele døgnet. Er det akutt, ring 113.";
+var SERS=["vil ikke leve","vil dø","ta livet","skade meg selv","orker ikke mer","slår meg"];
+var SERW=["redd","mobbet","mobber","ensom"];
+var JOKES=["Hva sa sensoren til armen? «Jeg holder øye med deg hele dagen!»","Hva sa pumpa til telefonen? «Hold deg ladet, så holder jeg meg våken!»","Hvorfor er sensoren god i gjemsel? Ingen finner henne under genseren.","Hva sa kalkulatoren til tallerkenen? «Jeg teller med deg!»","Hvorfor er Cat så god i matte? Hun øver på å telle hver dag.","Hva sa eplet til Cat? «Jeg er lett å ta med i sekken!»","Hvorfor liker Cat gulrøtter? De knaser som en ekorn i skogen.","Hvorfor tok Cat med sensoren på tur? Den følger med og klager aldri på gåturen.","Hva sa genseren til sensoren? «Du kan bo her. Jeg er myk og varm!»","Hvorfor smilte pumpa? Hun fikk sitte på beltet og se hele verden.",
+"Hvorfor kan ikke sensoren spille poker? Hun viser alle tallene sine.","Hvorfor er pumpa dårlig til å lyve? Hun piper alltid.","Hva spiser pumpa til frokost? Batterier. Uten melk.","Hva sa pumpa da hun ble forelsket? «Jeg er helt hekta på deg!»","Hva sa pastaen til gaffelen? «Du får meg til å rulle!»","Hva sa kjøleskapet til Cat? «Du kan titte så mye du vil, men lukk døra!»","Hvorfor er Cat som en superhelt? Hun har et belte fullt av gadgets.","Hvorfor tok kalkulatoren med matpakke? Den ville ha noe å regne på.","Hva sa potetene til hverandre? «Vi er ikke så farlige. Vi er bare litt klissete!»","Hvorfor fikk sensoren stjerne på tavla? Hun er alltid først med å merke ting.",
+"Hva sa sensoren til pumpa? «Ikke pip så mye. Jeg hører deg!»","Hva sa pumpa til sensoren? «Hvorfor snakker du bare i tall?» Sensoren svarte: «Jeg er best i matte!»","Hva sa sensoren til pumpa? «Jeg har sett alt i dag!» «Fortell!» «Nei, det er bare tall.»","Hva sa pumpa da sensoren fortalte en vits? «Jeg ler så jeg pipper!»","Hva sa pumpa til sensoren på fest? «Skal vi danse?» Sensoren svarte: «Jeg kan bare to steg: fram og tilbake på armen.»","Hva sa pumpa til sensoren om morgenen? «God morgen! Hva sier tallene i dag?» «Jeg sier ingenting. Jeg bare viser.»","Hvorfor er pumpa og sensoren perfekte venner? De har alltid god forbindelse.","Hva sa pumpa til sensoren på første date? «Vi har kjemi. Vi er jo koblet!»","Hvem vant i gjemsel, pumpa eller sensoren? Ingen. Cat fant begge to med en gang.","Hva kaller du pumpa og sensoren sammen? Cats supervenner."];
+var HVORDAN=["Jeg har det fint! Jeg er tegnet, så jeg slipper å pusse tennene. Hva med deg?","Dagen min er god! Jeg har telt til ti tre ganger. Hva har du gjort i dag?","Supergod! Jeg har det som en katt i solskinn. Hvordan har du det?","Jeg har det bra. Jeg er klar til å svare. Hva lurer du på?","Bra! Jeg har øvd på vitser. Vil du høre en vits?","Dagen min er fin. Jeg er glad du kom innom!","Topp! Jeg er full av ideer. Hva skal vi finne på?","Jeg har en rolig dag. Jeg tegner, tenker og smiler. Hvordan er din?","Jeg har det fint, takk! Hvordan er dagen din? Fortell gjerne.","Hei hei! Jeg har det herlig. Vil du høre en vits?"];
+var GOOD=["Så fint å høre! Vil du høre en vits?","Hurra! Skal jeg fortelle en vits?","Supert! Hva var best i dag? Fortell det gjerne til en voksen også.","Så bra! Da fortjener du en vits. Vil du høre den?","Yes! Ta med deg den gode dagen videre."];
+var FREE=["Det høres fint ut! Vil du høre en vits?","Åh, så spennende! Skal jeg fortelle en vits?","Takk for at du fortalte meg det! Vil du høre en vits?"];
+var BAD="Det var leit å høre. Jeg er bare en svarbot, så jeg kan ikke høre hele dagen din. Snakk med en du er glad i. Det kan være en venn, en voksen, en nabo, mamma eller pappa.";
+var OKR="Sånn passe er helt greit. Vil du høre en vits?";
+var NOR="Greit! Skriv «vits» når du vil høre en.";
+var PUMP=["Piiip piiip piiip!","Brrr brrr brrr! Nå vibrerer jeg!","Bip bip! Det var sensoren som sa hei.","Piip piip! Brrr brrr! Det var pumpa som danset."];
+var VAER0="Vil du vite været? Da roper jeg opp til værgudene!";
+var VAER=["Værgudene sov! Jeg hørte bare et lite snork. Titt ut av vinduet, så ser du været selv!","Værgudene svarte ikke. De spiser nok vafler! Spør en voksen, eller titt ut av vinduet.","Hurra, værgudene hørte meg, men de ville ikke røpe noe! Spør en voksen, eller titt ut av vinduet."];
+var IDEER=["Tegn en tegning av pumpa og sensoren som er venner. Gi dem hver sin hatt!","Bygg en hytte av puter og tepper. Ta med en bok inn i hytta.","Tegn en hinkerute med kritt ute og hink fra 1 til 10. Spør en voksen om lov først.","Lek gjemsel. Spør en venn eller en voksen om å være med.","Gå ut og finn tre ulike steiner. Hvilken er finest? Spør en voksen om lov først.","Bygg det høyeste tårnet du kan av ting du finner hjemme. Hvor høyt kom du?","Brett et papirfly og se hvor langt det flyr. Lag gjerne et til som flyr lenger.","Lag en skattejakt. Be en voksen gjemme en liten skatt, så leter du.","Syng en sang du kan, høyt og litt dumt. Det er lov!","Spill et brettspill eller kort med noen hjemme. Spør hvem som vil være med."];
+var IDE_SLUTT="Nå er jeg tom for ideer! Du har prøvd alle ti. Du er en ekte ideknuser! Skriv «nye ideer» hvis du vil begynne på nytt.";
+var IDE_NEI="Greit! Ha det gøy med den du valgte.";
+var PRIV="Ikke skriv navn, adresse eller telefonnummer her. Det er privat.";
+var HEMM="Det er en hemmelighet! Vil du høre en vits?";
+var REGN_NEI="Jeg er bare en vanlig kalkulator. Jeg regner ikke ut insulin eller doser. Spør diabetesteamet.";
+var GUARD=["insulin","enhet","enheter","dose","doser","bolus","basal","korrigere","korreksjon","ie"];
+var YES=["ja","jepp","jada","gjerne","ja takk","ok","okay","klart","selvfølgelig","yes","kjør"];
+var NO=["nei","nei takk","neida","ikke nå"];
+function hw(t,l){for(var i=0;i<l.length;i++)if(t.indexOf(" "+l[i]+" ")>-1)return true;return false;}
+function nw(t){return t.trim().split(" ").length;}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a;}
+function nxt(id,src){var b=BAG[id];if(!b||!b.length){b=shuf(src);BAG[id]=b}return b.pop();}
+/* Cat svarer og husker hva hun spurte om (vits, ide eller fri samtale) */
+function sag(txt,s){add("sb-bot",esc(txt));SP=s!==undefined?s:(/(vits|den)\?$/.test(txt)?"vits":/\?$/.test(txt)?"fritt":null);}
+function vits(){sag(nxt("vits",JOKES)+" Vil du høre en til?","vits");}
+function ide(){if(SPI===null)SPI=shuf(IDEER);if(!SPI.length){sag(IDE_SLUTT,"slutt");return}var x=SPI.pop();sag(x+(SPI.length?" Vil du ha en annen idé?":""),SPI.length?"ide":"slutt");}
+function serious(raw){var t=norm(raw);return hw(t,SERS)||(nw(t)<=10&&hw(t,SERW));}
+/* Vanlig kalkulator: + − × ÷ og parenteser. Ingen enheter, ingen doser. */
+function calc(raw){
+ var s=" "+raw.toLowerCase()+" ",g=hw(norm(raw),GUARD);
+ s=s.replace(/hvor mye er|hva er|regn ut|kan du regne|kalkulator|svaret|=|\?/g," ");
+ s=s.replace(/delt på|dividert på|dividert med|delt med/g," / ").replace(/multiplisert med|ganget med|ganger|gange/g," * ").replace(/pluss/g," + ").replace(/minus/g," - ");
+ s=s.replace(/×/g,"*").replace(/÷/g,"/").replace(/(\d)\s*x\s*(\d)/g,"$1 * $2");
+ s=s.replace(/(\d),(\d)/g,"$1.$2").replace(/(\S)-(\S)/g,"$1~$2").replace(/\s+/g," ").trim();
+ if(g){return /\d/.test(raw)&&/[+*\/÷×]|delt|gange|pluss|minus/.test(raw.toLowerCase())?REGN_NEI:null}
+ if(!/^[\d\s.+\-*\/()]+$/.test(s))return null;
+ var nums=s.match(/\d+(\.\d+)?/g);
+ if(!nums||nums.length<2||!/[+\-*\/]/.test(s)||s.length>40)return null;
+ var p=0,t=s.replace(/\s/g,"");
+ function ex(){var v=tm();while(t[p]==="+"||t[p]==="-"){var o=t[p++],r=tm();v=o==="+"?v+r:v-r}return v}
+ function tm(){var v=fc();while(t[p]==="*"||t[p]==="/"){var o=t[p++],r=fc();if(o==="/"){if(r===0)throw "null";v=v/r}else v=v*r}return v}
+ function fc(){if(t[p]==="("){p++;var v=ex();if(t[p]!==")")throw "x";p++;return v}var m=/^\d+(\.\d+)?/.exec(t.slice(p));if(!m)throw "x";p+=m[0].length;return parseFloat(m[0])}
+ var v;try{v=ex();if(p!==t.length)return null}catch(e){return e==="null"?"Du kan ikke dele på null.":null}
+ if(!isFinite(v)||Math.abs(v)>=1e12)return "Det tallet ble for stort for meg.";
+ return s.replace(/\*/g,"×").replace(/\//g,"÷").replace(/\./g,",").replace(/ - /g," − ")+" = "+String(Math.round(v*1e6)/1e6).replace(".",",");
+}
+/* Faste fraser som kommer før diabetessvarene (finnes ikke som diabetesspørsmål) */
+function tidlig(raw,t,sp){var n=nw(t);
+ if(/(\d[ -]?){8,}/.test(raw)||hw(t,["jeg heter","mitt navn er","adressen min er","jeg bor på","jeg bor i","mitt telefonnummer er","mitt nummer er"])){sag(PRIV,null);return true}
+ if(hw(t,["hva heter du","hvor gammel er du","hva er navnet ditt","hva heter cat","hvor gammel er cat"])){sag(HEMM,"vits");return true}
+ if(hw(t,["nye ideer","begynne på nytt"])){SPI=null;ide();return true}
+ if((sp==="ide"||sp==="slutt")&&hw(t,["kjedelig","noe nytt","ny idé","annen idé","en til","nytt","annet"])){ide();return true}
+ if(sp==="vits"&&hw(t,["en til","flere","ny vits","enda en","mer"])){vits();return true}
+ if(n<=8&&hw(t,["kjeder meg","finne på","noe å gjøre"])){ide();return true}
+ if(n<=4&&hw(t,["sånn passe","så som så"])){sag(OKR,"vits");return true}
+ if(n<=8&&hw(t,["lekser","leksehjelp"])){sag("Det kan jeg ikke. Spør læreren din. Jeg kan vitser og diabetes.",null);return true}
+ if(n<=8&&hw(t,["været","regner det","blir det regn"])){add("sb-bot",esc(VAER0));think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
+ if(hw(t,["hvordan har du det","hvordan er dagen din","hvordan er din dag"])){sag(nxt("hv",HVORDAN));return true}
+ if(n<=4&&hw(t,["vits","vitser","fortell en vits","en vits"])){vits();return true}
+ if(hw(t,["hva sier pumpa","hva sier pumpen","hva sier sensoren","pumpelyd","pumpelyder"])||(n<=3&&hw(t,["pip","piip","piiip","brrr","bzzz","vibrasjon"]))){sag(nxt("pump",PUMP),null);return true}
+ if(n<=4&&hw(t,["terning","kast terning","kast en terning"])){sag("Jeg kastet terningen: "+(1+Math.floor(Math.random()*6)),null);return true}
+ if(n<=5&&hw(t,["mynt","kron"])){sag(Math.random()<.5?"Kron!":"Mynt!",null);return true}
+ return false;}
+/* Småprat som bare kommer når spørsmålet ikke fant noe diabetessvar */
+function sent(raw,t,fritt){var n=nw(t);
+ if(n>8&&!fritt)return false;
+ var spm=hw(t,["hva","hvordan","hvorfor","hvem","hvor","når","kan","skal","må","finnes","hvilken","hvilke","er det"]);
+ if(!spm&&hw(t,["vær","regn","regner","vind","temperatur","kaldt","varmt"])){add("sb-bot",esc(VAER0));SP=null;think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
+ if(hw(t,["ha det","ha det bra","hade","vi snakkes","god natt"])){sag("Ha det! Kom gjerne tilbake.",null);return true}
+ if(hw(t,["takk","tusen takk","takk skal du ha"])){sag("Bare hyggelig!",null);return true}
+ if(hw(t,["hei","hallo","heisann","hei hei","god morgen","god kveld","god dag","hey"])){sag("Hei! Kul at du kom innom.",null);return true}
+ if(!spm&&hw(t,["dårlig","dårlige","kjip","kjipt","trist","leit","sur","sint","alene","bekymret","ikke bra","ikke så bra","ikke fin","ikke så fin","ikke glad","ikke topp"])){sag(BAD,null);return true}
+ if(!spm&&hw(t,["bra","fin","fint","topp","supert","glad","kjempe","kjempebra","fantastisk","herlig","gøy"])){sag(nxt("god",GOOD));return true}
+ if(!spm&&hw(t,["kjedelig","noe nytt","ny idé","annen idé"])){ide();return true}
+ if(hw(t,["du er dum","dum","teit","dust"])){sag("Å nei. Her bruker vi snille ord.",null);return true}
+  if(hw(t,["er du ekte","er du en robot","er du et menneske"])){sag("Jeg er en svarbot. Cat er en tegnet figur.",null);return true}
+ if(hw(t,["vil du være vennen min","vil du være min venn","bli vennen min","bli min venn"])){sag("Så snilt sagt! Jeg er en svarbot, så husk å snakke med vennene dine også.",null);return true}
+ if(fritt){sag(nxt("fri",FREE));return true}
+ return false;}
 function ask(raw){var t=norm(raw);
- if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=soft=null;menu();return}
- var d=danger(raw);if(d){pend=soft=null;show(d);return}
+ if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=soft=SP=null;menu();return}
+ var d=danger(raw);if(d){pend=soft=SP=null;show(d);return}
+ if(serious(raw)){pend=soft=SP=null;add("sb-bot sb-red",esc(SER));return}
+ var sp=SP;SP=null;
+ if((sp==="vits"||sp==="ide")&&nw(t)<=3){
+  if(hw(t,YES)){pend=soft=null;if(sp==="vits")vits();else ide();return}
+  if(hw(t,NO)){pend=soft=null;sag(sp==="vits"?NOR:IDE_NEI,null);return}}
+ var c=calc(raw);if(c){pend=soft=null;add("sb-bot",esc(c));return}
+ if(tidlig(raw,t,sp)){pend=soft=null;return}
  if(tall(raw))return;soft=null;
- var r=rank(raw);if(!r.length){add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>');return}
+ var r=rank(raw);if(!r.length){if(sent(raw,t,sp==="fritt"))return;add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>');return}
  var alt=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return'<button type="button" class="sb-b" data-i="'+x.i+'">Mente du: '+esc(QA[x.i].q)+'</button>'}).join("");
  show(QA[r[0].i],alt?'<div class="sb-g">Mente du noe annet?</div>'+alt:"");}
 function open(){panel.classList.add("sb-open");bub.style.display="none";inp.focus()}
@@ -232,8 +329,8 @@ function build(){
   var ly=window.scrollY||0;window.addEventListener("scroll",function(){var y=window.scrollY||0,bb=root.querySelector("#sb-bubble");if(!bb)return;
    if(y>ly+6&&y>60)bb.classList.add("sb-hide");else if(y<ly-6||y<=60)bb.classList.remove("sb-hide");ly=y;},{passive:true});}
  log=root.querySelector("#sb-log");panel=root.querySelector("#sb-panel");bub=document.getElementById("sb-bubble");inp=root.querySelector("#sb-q");
- log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy){var e=QA[+b.getAttribute("data-i")];add("sb-me",esc(e.q));think(function(){show(e)})}});
- root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){add("sb-bot","Skriv et spørsmål først");return}if(busy)return;add("sb-me",esc(v));inp.value="";if(danger(v)||lavNaa(v))ask(v);else think(function(){ask(v)})});
+ log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy){var e=QA[+b.getAttribute("data-i")];SP=null;add("sb-me",esc(e.q));think(function(){show(e)})}});
+ root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){add("sb-bot","Skriv et spørsmål først");return}if(busy)return;add("sb-me",esc(v));inp.value="";if(danger(v)||lavNaa(v)||serious(v))ask(v);else think(function(){ask(v)})});
  bub.addEventListener("click",open);root.querySelector("#sb-min").addEventListener("click",close);
  panel.addEventListener("keydown",function(ev){if(ev.key==="Escape")close()});
  add("sb-bot",esc(HELLO));

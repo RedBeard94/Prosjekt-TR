@@ -37,3 +37,15 @@ Boten har fått et ansikt: Cat, en tegnet figur fra filmen om diabetes.
 - Kilder for grensene: NHI (lavt under 4, kontroller oftere over 14, kontakt ved to verdier over 18), Helsedirektoratet (mål 4–7 før mat og under 10 etter), SSHF (ketoner ved høyt over tid).
 - Lavt tall gir svar med en gang (uten «Cat tenker»). Svarene gir aldri doser. Teksten ligger i `svarTall()` i `bot.js`.
 - Disse svarene bør sjekkes av diabetessykepleier før merkingen tas bort.
+
+## Småprat, ideer og kalkulator (Cat)
+Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen nett, ingen sporing.
+- Rekkefølgen i `ask()`: meny, fare-ord, alvorlige ord, ja/nei til Cats eget spørsmål, kalkulator, noen faste fraser, blodsukkertall, de vanlige spørsmålene, småprat, «Jeg er usikker».
+- De vanlige diabetessvarene er testet mot den gamle koden: ingen er endret. Småpraten (hei, takk, god dag, dårlig dag, vær osv.) kommer bare når boten ellers ikke fant noe svar, og ikke når meldingen er et spørsmål («hva», «hvordan» osv.).
+- Faste fraser som kommer før de vanlige svarene: vits, hvordan har du det, hva heter du, terning, mynt, pumpelyder, «jeg kjeder meg», «sånn passe», lekser, været og navn/adresse/telefonnummer.
+- Vitser (30), «hvordan har du det» (10), gode svar, pumpelyder og 10 ideer ligger som lister (`JOKES`, `HVORDAN`, `GOOD`, `PUMP`, `IDEER`). Cat blander dem og gjentar ikke før alle er brukt. Når alle 10 ideene er brukt, sier hun at hun er tom for ideer. «Nye ideer» starter på nytt.
+- Navn og alder: Cat sier at det er en hemmelighet. Ingen alder, ingen navn.
+- Vær: Cat roper på værgudene og sier at de ikke svarte. Ingen nettlenker, fordi ikke alle barn får bruke nett.
+- Alvorlige ord (`SERS`, `SERW`): svaret kommer med en gang, uten «Cat tenker», uten vits og uten «Fant du ikke svaret?». Teksten (`SER`) nevner 116 111 (Alarmtelefonen for barn og unge), 116 123 (Mental Helse) og 113. Begge numrene er sjekket mot offentlige kilder 22. november 2026. Ordlisten blir aldri perfekt.
+- Kalkulatoren (`calc`) regner + − × ÷ og parenteser, som en vanlig kalkulator. Står det enheter, insulin, dose, bolus, basal eller korreksjon i regnestykket, regner hun ikke, og sender til diabetesteamet. Siden har ingen doseberegner.
+- Disse tekstene bør leses av diabetessykepleier før merkingen «Ikke godkjent av helsepersonell ennå» tas bort, særlig de alvorlige svarene og kalkulator-sperren.
