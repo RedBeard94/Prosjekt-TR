@@ -60,3 +60,10 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - Kallenavn: «kall meg …» eller «kallenavn». Maks to ord, ingen tall. Cat ber om kallenavn, ikke ekte navn.
 - Latter: «haha», «hehe», «lol», «kult», «morsomt», «den var god» og ler-ansikter gir et vennlig svar og tilbud om en ny vits.
 - Personvern-siden har fått et avsnitt om dette. Teksten bør leses av noen som kjenner personvern for barn før merkingen «Ikke godkjent» fjernes.
+
+## «Mente du», «Er du sikker?» og korte svar
+- Variablene `LAST`, `ALT` og `LK` i `bot.js` husker hva Cat sa sist (qa, vits, vær, kalkulator eller småprat). De lagres ikke.
+- «Vet ikke» eller «Ja» rett etter et svar med «Mente du noe annet?» viser det første forslaget, med teksten «Da viser jeg det jeg tror du mente:». «Nei» gir et vennlig svar. Svarene på spørsmålene er ikke endret.
+- «Er du sikker?», «Sikker?» og «Sikker på at du ikke vet det?» svarer ut fra det Cat sa sist. Etter et diabetessvar sier Cat at hun ikke er lege. Hun skal aldri bekrefte et diabetessvar med «Helt sikker!».
+- «Ja», «nei», «ok», «greit» og «vet ikke» uten sammenheng gir et vennlig svar (i `sent()`).
+- Svaret på «Er noe mat forbudt?» starter ikke lenger med «Nei» (kunne leses som «du får ikke spise godteri»).

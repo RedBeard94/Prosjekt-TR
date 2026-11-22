@@ -210,7 +210,7 @@ function tall(raw){var t=norm(raw),n=num(raw),d=dir(t);
    Alt er ferdigskrevet. Ingen nett, ingen sporing. Alvorlige ord går alltid først.
    Småpraten kommer etter de vanlige spørsmålene, så diabetessvarene er de samme som før.
    Unntak: noen få faste fraser som ikke er diabetesspørsmål (vits, terning, kalkulator, hva heter du). */
-var SP=null,SPI=null,BAG={};
+var SP=null,SPI=null,BAG={},LAST=null,ALT=[],LK=null;
 /* ===== Cat husker (bare på denne enheten) =====
    Samtalen og kallenavnet ligger i nettleserens lokale lagring, aldri på en server.
    Nøklene starter med mn_, så «Slett min profil» fjerner dem også. Barnet kan også skrive «slett samtalen» til Cat.
@@ -253,7 +253,7 @@ function nw(t){return t.trim().split(" ").length;}
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),x=a[i];a[i]=a[j];a[j]=x}return a;}
 function nxt(id,src){var b=BAG[id];if(!b||!b.length){b=shuf(src);BAG[id]=b}return b.pop();}
 /* Cat svarer og husker hva hun spurte om (vits, ide eller fri samtale) */
-function sag(txt,s){add("sb-bot",esc(txt));SP=s!==undefined?s:(/(vits|den)\?$/.test(txt)?"vits":/\?$/.test(txt)?"fritt":null);}
+function sag(txt,s){add("sb-bot",esc(txt));LAST="sag";SP=s!==undefined?s:(/(vits|den)\?$/.test(txt)?"vits":/\?$/.test(txt)?"fritt":null);}
 function vits(){sag(nxt("vits",JOKES)+" Vil du høre en til?","vits");}
 function ide(){if(SPI===null)SPI=shuf(IDEER);if(!SPI.length){sag(IDE_SLUTT,"slutt");return}var x=SPI.pop();sag(x+(SPI.length?" Vil du ha en annen idé?":""),SPI.length?"ide":"slutt");}
 function priv(raw,t){return /(\d[ -]?){8,}/.test(raw)||hw(t,PRIVW);}
@@ -285,10 +285,19 @@ function calc(raw){
 /* Faste fraser som kommer før diabetessvarene (finnes ikke som diabetesspørsmål) */
 function tidlig(raw,t,sp){var n=nw(t);
  if(priv(raw,t)){sag(PRIV,null);return true}
+ if(/^ *(er du |er du helt |helt )?sikker( på (det|at du ikke vet( det)?))? *$/.test(t)){
+  if(sp==="vits")sag("Sikker som banken! Vil du ha en vits til?","vits");
+  else if(LK==="vaer")sag("Helt sikker! Jeg er en tegnet figur. Jeg har ikke vindu. Du vet mer enn meg. Titt ut av ditt!",null);
+  else if(LK==="qa")sag("Jeg er en svarbot. Jeg er ikke lege. Er du i tvil, spør diabetesteamet eller en voksen du stoler på.",null);
+  else if(LK==="calc")sag("Jeg er en vanlig kalkulator. Sjekk gjerne på telefonen din, eller spør en voksen.",null);
+  else if(LK==="sag")sag("Så sikker en svarbot kan bli! Spør en voksen hvis du er i tvil.",null);
+  else sag("Sikker på hva? Spør meg om noe først. Så sier jeg om jeg er sikker!",null);
+  return true}
  var km=/(?:^|\s)(?:kall|kalle) meg ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim());
  if(km){if(okNick(km[1]))setNick(km[1]);else sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: kall meg Superstjerne.",null);return true}
  if(hw(t,["kallenavn","hva kan du kalle meg"])){sag("Hva skal jeg kalle deg? Bruk et kallenavn, ikke ekte navn.","nick");return true}
  if(hw(t,["hva heter jeg"])){sag(NICK?"Jeg kaller deg "+NICK+".":"Jeg vet ikke hva jeg skal kalle deg. Skriv: kall meg, og så et kallenavn.",null);return true}
+ if(n<=5&&hw(t,["hvem er du","hvem er cat","hvem er du egentlig","hvem er det jeg snakker med"])){sag("Jeg er Cat, en veldig snill tegneseriefigur som prøver å hjelpe deg så mye som mulig 🥰",null);return true}
  if(hw(t,["hva heter du","hvor gammel er du","hva er navnet ditt","hva heter cat","hvor gammel er cat"])){sag(HEMM,"vits");return true}
  if(hw(t,["nye ideer","begynne på nytt"])){SPI=null;ide();return true}
  if((sp==="ide"||sp==="slutt")&&hw(t,["kjedelig","noe nytt","ny idé","annen idé","en til","nytt","annet"])){ide();return true}
@@ -296,7 +305,7 @@ function tidlig(raw,t,sp){var n=nw(t);
  if(n<=8&&hw(t,["kjeder meg","finne på","noe å gjøre"])){ide();return true}
  if(n<=4&&hw(t,["sånn passe","så som så"])){sag(OKR,"vits");return true}
  if(n<=8&&hw(t,["lekser","leksehjelp"])){sag("Det kan jeg ikke. Spør læreren din. Jeg kan vitser og diabetes.",null);return true}
- if(n<=8&&hw(t,["været","regner det","blir det regn"])){add("sb-bot",esc(VAER0));think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
+ if(n<=8&&hw(t,["været","regner det","blir det regn"])){add("sb-bot",esc(VAER0));LAST="vaer";think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
  if(hw(t,["hvordan har du det","hvordan er dagen din","hvordan er din dag"])){sag(nxt("hv",HVORDAN));return true}
  if(n<=4&&hw(t,["vits","vitser","fortell en vits","en vits"])){vits();return true}
  if(hw(t,["hva sier pumpa","hva sier pumpen","hva sier sensoren","pumpelyd","pumpelyder"])||(n<=3&&hw(t,["pip","piip","piiip","brrr","bzzz","vibrasjon"]))){sag(nxt("pump",PUMP),null);return true}
@@ -307,7 +316,11 @@ function tidlig(raw,t,sp){var n=nw(t);
 function sent(raw,t,fritt){var n=nw(t);
  if(n>8&&!fritt)return false;
  var spm=hw(t,["hva","hvordan","hvorfor","hvem","hvor","når","kan","skal","må","finnes","hvilken","hvilke","er det"]);
- if(!spm&&hw(t,["vær","regn","regner","vind","temperatur","kaldt","varmt"])){add("sb-bot",esc(VAER0));SP=null;think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
+ if(!spm&&hw(t,["vær","regn","regner","vind","temperatur","kaldt","varmt"])){add("sb-bot",esc(VAER0));LAST="vaer";SP=null;think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
+ if(n<=3&&hw(t,["vet ikke","aner ikke","ingen anelse","usikker","hmm"])){sag("Det går fint! Trykk på en knapp, eller skriv «Hva kan jeg spørre om?». Så finner vi noe sammen.",null);return true}
+ if(n<=2&&hw(t,["ja","jo"])){sag("Ja? Spør meg gjerne om noe. Skriv «Hva kan jeg spørre om?» hvis du lurer.",null);return true}
+ if(n<=2&&hw(t,["nei","nei takk"])){sag("Ok! Si fra hvis du vil spørre om noe.",null);return true}
+ if(n<=2&&hw(t,["ok","okei","okay","greit"])){sag("Fint! Spør meg om noe når du vil.",null);return true}
  if(hw(t,["ha det","ha det bra","hade","vi snakkes","god natt"])){sag("Ha det! Kom gjerne tilbake.",null);return true}
  if(hw(t,["takk","tusen takk","takk skal du ha"])){sag("Bare hyggelig!",null);return true}
  if(hw(t,["hei","hallo","heisann","hei hei","god morgen","god kveld","god dag","hey"])){sag(hei(),null);return true}
@@ -327,17 +340,21 @@ function ask0(raw){var t=norm(raw);
  if(hw(t,["slett samtalen","fjern samtalen","glem samtalen","slett chatten","fjern chatten"])){HIST=[];lagre();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen."+(NICK?" Kallenavnet ditt husker jeg fortsatt.":"")));return}
  if(hw(t,["glem alt","slett alt","fjern alt"])){HIST=[];NICK=null;lagre();lagreN();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen og kallenavnet. Vil du slette pumpe, sensor og numre? Gå til Min profil."));return}
  if(hw(t,["glem kallenavnet","slett kallenavnet","fjern kallenavnet"])){NICK=null;lagreN();pend=soft=SP=null;sag("Ferdig! Jeg har glemt kallenavnet ditt.",null);return}
- var sp=SP;SP=null;
+ var sp=SP;SP=null;var last=LAST,al=ALT;LAST=null;ALT=[];LK=last;
  if(sp==="nick"){var nn=raw.trim();if(okNick(nn)){setNick(nn);return}if(nw(t)<=2){sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: Superstjerne.","nick");return}}
  if(EMO&&EMO.test(raw)&&!/[A-Za-zÆØÅæøå0-9]/.test(raw)){pend=soft=null;sag(nxt("latter",LATTER),"vits");return}
  if((sp==="vits"||sp==="ide")&&nw(t)<=3){
   if(hw(t,YES)){pend=soft=null;if(sp==="vits")vits();else ide();return}
   if(hw(t,NO)){pend=soft=null;sag(sp==="vits"?NOR:IDE_NEI,null);return}}
- var c=calc(raw);if(c){pend=soft=null;add("sb-bot",esc(c));return}
+ if(!pend&&!soft&&last==="qa"&&al.length&&nw(t)<=3){
+  if(hw(t,YES.concat(["vet ikke","aner ikke","ingen anelse","usikker","hmm","kanskje","jo"]))){add("sb-bot",esc("Da viser jeg det jeg tror du mente:"));show(QA[al[0]]);LAST="qa";return}
+  if(hw(t,NO)){sag("Ok! Prøv å skrive det på en annen måte. Eller skriv «Hva kan jeg spørre om?».",null);return}}
+ var c=calc(raw);if(c){pend=soft=null;LAST="calc";add("sb-bot",esc(c));return}
  if(tidlig(raw,t,sp)){pend=soft=null;return}
- if(tall(raw))return;soft=null;
+ if(tall(raw)){LAST="qa";return}soft=null;
  var r=rank(raw);if(!r.length){if(sent(raw,t,sp==="fritt"))return;add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>');return}
  var alt=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return'<button type="button" class="sb-b" data-i="'+x.i+'">Mente du: '+esc(QA[x.i].q)+'</button>'}).join("");
+ LAST="qa";ALT=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return x.i});
  show(QA[r[0].i],alt?'<div class="sb-g">Mente du noe annet?</div>'+alt:"");}
 function ask(raw){NS=risk(raw);try{ask0(raw)}finally{NS=false}}
 function open(){panel.classList.add("sb-open");bub.style.display="none";inp.focus()}
@@ -359,7 +376,7 @@ function build(){
   var ly=window.scrollY||0;window.addEventListener("scroll",function(){var y=window.scrollY||0,bb=root.querySelector("#sb-bubble");if(!bb)return;
    if(y>ly+6&&y>60)bb.classList.add("sb-hide");else if(y<ly-6||y<=60)bb.classList.remove("sb-hide");ly=y;},{passive:true});}
  log=root.querySelector("#sb-log");panel=root.querySelector("#sb-panel");bub=document.getElementById("sb-bubble");inp=root.querySelector("#sb-q");
- log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy){var e=QA[+b.getAttribute("data-i")];SP=null;add("sb-me",esc(e.q));think(function(){show(e)})}});
+ log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy){var e=QA[+b.getAttribute("data-i")];SP=null;LAST="qa";ALT=[];add("sb-me",esc(e.q));think(function(){show(e)})}});
  root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){NS=true;add("sb-bot","Skriv et spørsmål først");NS=false;return}if(busy)return;NS=risk(v);add("sb-me",esc(v));NS=false;inp.value="";if(danger(v)||lavNaa(v)||serious(v))ask(v);else think(function(){ask(v)})});
  bub.addEventListener("click",open);root.querySelector("#sb-min").addEventListener("click",close);
  panel.addEventListener("keydown",function(ev){if(ev.key==="Escape")close()});
