@@ -264,9 +264,12 @@ function hasBad(raw){var s=String(raw).toLowerCase().replace(/[0@]/g,"o").replac
  for(var i=0;i<tk.length;i++){var c=cl(tk[i]);for(var k=0;k<BADW.length;k++){var w=cl(BADW[k]);if(w.length>=5?c.indexOf(w)>-1:c===w)return true}
   if(/kuk|faen/.test(c)||/fuck|shit|bitch/.test(tk[i]))return true}
  return false;}
+(function(){if(NICK&&hasBad(NICK)){NICK=null;lagreN()}var n=HIST.length;HIST=HIST.filter(function(x){return !hasBad(x[1])});if(HIST.length!==n)lagre()})();
 var BADNICK="Det navnet passer ikke her 😅 Prøv noe gøy i stedet, som Superstjerne, Turbo eller Pizzabiten.";
 var EKTE="Du burde ikke bruke det ekte navnet ditt her. Har du ikke et gøy kallenavn jeg kan bruke? Kanskje Superstjerne, Turbo eller Pizzabiten? Jeg har glemt det navnet nå.";
 var HJELP="Jeg kan svare på spørsmål om diabetes, fortelle vitser, regne, kaste terning og gi ideer. Her er det du kan spørre om:";
+var SIKKER=["Sikker som en sensor med full batteri! 😄 Sjekk gjerne på telefonen din også.","Jeg har regnet på fingrene og tærne. Det ble det samme hver gang! 🤣","Hundre prosent! Tall er min greie. Prøv et til!"];
+var IMORGEN=["Jeg skal sitte her og vente på deg igjen. Jeg gleder meg allerede! 🥰","Jeg skal øve på vitser. Vil du høre en nå?","Planen min er å bli enda bedre til å svare. Og kanskje lage en ny vits! 😄"];
 var IDAG=["I dag skal jeg hjelpe så mange som mulig 🥰","I dag skal jeg svare på spørsmål og fortelle vitser.","Jeg skal sitte her og vente på deg. Det er jobben min, og jeg liker den."];
 var HVEM="Du kan spørre diabetesteamet ditt. Ring dem når du lurer på noe. Nummeret finner du hos teamet eller på Helsenorge. Du kan også spørre fastlegen din, eller en voksen du stoler på, for eksempel mamma eller pappa. Vil du ha lenker til ting her på siden?";
 var HVEM_B='<button type="button" class="sb-b" data-yn="ja">Ja, vis meg</button><button type="button" class="sb-b" data-yn="nei">Nei takk</button>';
@@ -326,6 +329,7 @@ function tidlig(raw,t,sp){var n=nw(t);
   var ix=Math.floor(Math.random()*DU_ER.length);sag(DU_ER[ix],ix===2?"insv":"ins");return true}
  if(/^ *(hva kan du( gjøre| hjelpe( meg| oss)? med)?|hva kan cat( gjøre)?|hva gjør du|hva er du god til) *$/.test(t)){add("sb-bot",esc(HJELP));LAST="sag";menu();return true}
  if(/^ *hva tenker du på( i dag| nå| akkurat nå)? *$/.test(t)){sag("Jeg tenker på vitser og tall. Og på hva du lurer på. Hva tenker du på?",null);SP="fritt";return true}
+ if(/^ *hva (skal|gjør|driver) du( gjøre| med)? i (morgen|kveld|helgen|natt) *$/.test(t)||/^ *hva skal du i (morgen|kveld|helgen) *$/.test(t)){sag(nxt("imorgen",IMORGEN),null);return true}
  if(/^ *hva (skal|gjør|driver) du( gjøre| med)? i dag *$/.test(t)||/^ *hva skal du i dag *$/.test(t)){sag(nxt("idag",IDAG),null);return true}
  if(/^ *(har du )?hatt en (fin|god|bra) dag *$/.test(t)){sag(nxt("hv",HVORDAN));return true}
  if(n<=12&&!hw(t,["ikke","aldri"])&&((hw(t,["selv"])&&hw(t,["byttet","bytta","skiftet","satt","satte","tapet","tapa","teipet","teipa","festet","festa","kittet","kitta","klistret","limt","limte","tok","tatt","målte","målt","stakk","stukket"])&&hw(t,["sensor","sensoren","pumpe","pumpa","pumpen","kanyle","kanylen","slangen","nålen","blodsukkeret","fingerstikk","fingerstikket","infusjonssettet","setet"]))||hw(t,["gi meg en ros","ros meg","kan jeg få en ros","jeg vil ha en ros","jeg er stolt av meg selv","jeg er stolt"]))){sag(nxt("ros",ROS),null);return true}
@@ -339,7 +343,7 @@ function tidlig(raw,t,sp){var n=nw(t);
   if(sp==="vits")sag("Sikker som banken! Vil du ha en vits til?","vits");
   else if(LK==="vaer")sag("Helt sikker! Jeg er en tegnet figur. Jeg har ikke vindu. Du vet mer enn meg. Titt ut av ditt!",null);
   else if(LK==="qa")sag("Jeg er en svarbot. Jeg er ikke lege. Er du i tvil, spør diabetesteamet eller en voksen du stoler på.",null);
-  else if(LK==="calc")sag("Jeg er en vanlig kalkulator. Sjekk gjerne på telefonen din, eller spør en voksen.",null);
+  else if(LK==="calc")sag(nxt("sikker",SIKKER),null);
   else if(LK==="sag")sag("Så sikker en svarbot kan bli! Spør en voksen hvis du er i tvil.",null);
   else sag("Sikker på hva? Spør meg om noe først. Så sier jeg om jeg er sikker!",null);
   return true}

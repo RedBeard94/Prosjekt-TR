@@ -98,3 +98,9 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - «Visste du at?» / «Fakta» / «Fortell et faktum»: 8 korte fakta (`FAKTA`), tilfeldig rekkefølge, «Vil du høre en til?» med ja/nei.
 - Kilder for faktaene: Diabetesforbundet (type 1 skyldes ikke mat), NHI (bukspyttkjertelen og insulin, hjernen bruker glukose, kunstig bukspyttkjertel), Helsedirektoratet (pumpa gir insulin hver time hele døgnet), Abbott og Dexcom (sensoren måler under huden), sundhed.dk (insulin som nøkkel), lex.dk (insulin kan ikke tas som tablett), Dagbladet/Diabetesforbundet (over 25 000 med type 1 i Norge; Diabetesforbundet oppgir ca. 30 000 i 2019).
 - Faktaene bør leses av diabetessykepleier før merkingen «Ikke godkjent av helsepersonell ennå» fjernes.
+
+## Rettinger (22. november, sent)
+- «Hva er kallenavnet mitt?», «Hva kaller du meg?», «Husker du kallenavnet mitt?», «Hvem er jeg?» svares nå (kallenavnet, eller hvordan en lager ett).
+- Lagrede kallenavn og gamle meldinger med grove ord fjernes når siden åpnes (fra før ordfilteret kom).
+- «Sikker?» etter et regnestykke har 3 lekne svar (`SIKKER`).
+- «Hva skal du gjøre i morgen/i kveld/i helgen?» har 3 svar (`IMORGEN`). Før traff den reisesvaret ved en feil.
