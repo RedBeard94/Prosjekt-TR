@@ -104,3 +104,14 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - Lagrede kallenavn og gamle meldinger med grove ord fjernes når siden åpnes (fra før ordfilteret kom).
 - «Sikker?» etter et regnestykke har 3 lekne svar (`SIKKER`).
 - «Hva skal du gjøre i morgen/i kveld/i helgen?» har 3 svar (`IMORGEN`). Før traff den reisesvaret ved en feil.
+
+## Stor Cat-runde (23. november)
+- Trygge svar uten råd: «Jeg har fått diabetes», «Er det farlig?», «Hjelp», «lagt inn for … men spiste bare …», «Jeg er på 10 og skal legge meg», sulten/tørst/trøtt, vondt i magen, «Ingen forstår meg», «Jeg skammer meg», «Alle ser på meg», «Vondt å stikke». Disse lagres ikke i samtalen.
+- Nye lekne svar: «Bombesikker/100 %», 2–5 vitser (over 5 gir et morsomt svar), gåter (5 stk.), «Har du venner?» (navn gjentas ikke og lagres ikke), God natt/Sov godt, Elsker deg/Glad i deg, favorittfarge/-mat, hvor bor du, synge, danse, historie, bursdag, klokka/datoen.
+- Bading, leir/gym/overnatting og «hvordan forklarer jeg diabetes til venner» har egne myke svar. Bading viser valgt manual eller knapp til Manualer.
+- «Kan du glemme det også?» rett etter at samtalen er slettet, glemmer kallenavnet.
+- «20 gang 6» regnes ut. «Hvor mange enheter trenger jeg?» har et mykere svar.
+- «en voksen du stoler på» er byttet til «en du stoler på» overalt.
+- Bør leses av diabetessykepleier/psykolog: NYDIAG, FARLIG, LAGTM, LEGGM, VENNM, bading-tekstene og «Jeg skammer meg»/«Ingen forstår meg».
+- «Hvilken pumpe bruker jeg?» svarer: «Jeg har registrert at du bruker … Stemmer det?» (fra Min profil).
+- sw.js er satt til diabetes-v92.

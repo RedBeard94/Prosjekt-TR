@@ -64,7 +64,7 @@ var QA=[{"g":"Om appen","q":"Hvordan sletter jeg det som er lagret?","k":["slett
 {"g":"Tall og pumpe","q":"Hva er målverdi og insulinvarighet?","k":["målverdi","insulinvarighet","virketid","aktivt insulin"],"a":"Målverdi er verdien pumpen sikter mot når den korrigerer. Insulinvarighet er hvor lenge insulinet virker. Pumpen trekker fra det som er igjen.","l":["Åpne siden","/nyttig/diabetes/tallene/"]},
 {"g":"Tall og pumpe","q":"Hvem bestemmer tallene mine?","k":["hvem bestemmer","endre tallene","endre innstilling","500-regel","tommelfinger"],"a":"Diabetesteamet. Endre aldri tallene selv. Tommelfingerregler er grove anslag. De skal aldri brukes til å endre innstillinger på egen hånd.","l":["Åpne siden","/nyttig/diabetes/tallene/"]},
 {"g":"Tall og pumpe","q":"Hva er sjekklisten før bolus?","k":["sjekkliste","før bolus"],"a":"Fire spørsmål. Er sensorverdien stabil? Er det aktivt insulin? Hva skal spises, og når? Stemmer karbohydratene? Siden regner ikke ut doser.","l":["Åpne siden","/nyttig/diabetes/innstillinger/"]},
-{"g":"Tall og pumpe","q":"Regner siden ut insulin?","k":["regner ut","hvor mye insulin","hvor mange enheter","doser","dosering"],"a":"Nei. Siden regner ikke ut doser og gir ingen medisinske råd. Pumpen regner ut etter tallene du har fått fra diabetesteamet.","l":["Åpne siden","/nyttig/diabetes/innstillinger/"]},
+{"g":"Tall og pumpe","q":"Regner siden ut insulin?","k":["regner ut","hvor mye insulin","hvor mange enheter","doser","dosering"],"a":"Det kan ikke jeg svare på. 💛 Jeg regner aldri ut insulin eller doser. Pumpen din regner ut etter tallene du har fått fra diabetesteamet. Er du usikker, spør diabetesteamet eller en du stoler på.","l":["Åpne siden","/nyttig/diabetes/innstillinger/"]},
 {"g":"Ord","q":"Hva er HbA1c?","k":["hba1c","langtidssukker"],"a":"Langtidssukker. En blodprøve som viser hvordan blodsukkeret har vært de siste ukene."},
 {"g":"Ord","q":"Hva er ketoner?","k":["keton"],"a":"Stoffer kroppen lager når den mangler insulin. De kan måles i blod eller urin. Mange ketoner sammen med faretegn er farlig. Ring 113 med en gang ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust.","l":["Åpne siden","/nyttig/diabetes/akutt/"]},
 {"g":"Akutt","q":"Hva gjør jeg ved høyt blodsukker?","k":["høyt blodsukker","for høyt","høy verdi"],"a":"Høyt blodsukker skjer av og til, og det går som regel fint når du følger planen. Det viktigste er hvor raskt det stiger, og om du har ketoner. Mål blodsukker og ketoner hvis du har utstyr. Følg planen fra diabetesteamet. Der står det hva du skal gjøre med insulin. Ikke ta insulin på gjetting. Drikk vann uten sukker, og sjekk igjen etter litt tid. Blir det ikke bedre, ring legevakt 116 117. Ring 113 med en gang ved forvirring, oppkast om og om igjen, acetonlukt eller tung pust, eller magesmerter med stor tørste eller slapphet.","l":["Åpne siden","/nyttig/diabetes/akutt/"],"u":1},
@@ -224,7 +224,7 @@ function lagre(){try{if(HIST.length)localStorage.setItem(K_H,JSON.stringify({t:D
 function lagreN(){try{if(NICK)localStorage.setItem(K_N,NICK);else localStorage.removeItem(K_N)}catch(e){}}
 function rec(cls,d){if(NS||REST)return;HIST.push([/^sb-me/.test(cls)?"u":"b",d.textContent.slice(0,400)]);if(HIST.length>60)HIST.shift();lagre();}
 
-var SER="Det høres veldig tungt ut. Snakk med en voksen du stoler på nå, med en gang. Har du ingen å snakke med? Barn og unge kan ringe 116 111. Alle kan ringe 116 123. Begge er gratis og åpne hele døgnet. Er det akutt, ring 113.";
+var SER="Det høres veldig tungt ut. Snakk med en du stoler på nå, med en gang. Har du ingen å snakke med? Barn og unge kan ringe 116 111. Alle kan ringe 116 123. Begge er gratis og åpne hele døgnet. Er det akutt, ring 113.";
 var SERS=["vil ikke leve","vil dø","ta livet","skade meg selv","orker ikke mer","slår meg"];
 var SERW=["redd","mobbet","mobber","ensom"];
 var JOKES=["Hvorfor er folk med diabetes så flinke til å telle? Fordi de alltid teller karbohydrater!", "Hva sa blodsukkeret til insulin? «Du får meg alltid ned!»", "Hvorfor er blodsukkeret så dårlig til å holde på hemmeligheter? Fordi det alltid stiger til hodet!", "Hvorfor liker folk med diabetes matematikk? Fordi de er eksperter på å regne med tall!", "Hva sa måleren etter en god dag? «Dette ser helt målerisk ut!»", "Hva er blodsukkerets favorittinstrument? Sukker-trommer!", "Hvorfor er insulin så god til å rydde? Det får orden på sukkeret!", "Hvorfor ble blodsukkeret med i berg-og-dal-banen? Fordi det allerede var vant til opp- og nedturer!", "Hva er blodsukkerets favorittspill? Sukkerland!", "Hvorfor er blodsukkermåleren så flink på skolen? Den får alltid med seg resultatene!", "Hva sa insulinpennen til barnet? «Jeg stiller alltid opp når du trenger meg!»", "Hvorfor er folk med diabetes gode på planlegging? Fordi de alltid har en plan B!", "Hva slags vær liker blodsukkeret best? Stabilt høytrykk!", "Hva kaller man en blodsukkermåler som forteller vitser? En måler med god humor!", "Hva sa blodsukkeret da det vant et løp? «Jeg steg til topps!»", "Hva er insulinets favorittfag? Naturfag. Det liker å holde balansen!", "Hvorfor gikk blodsukkermåleren til legen? Den følte seg litt ustabil!", "Hvorfor liker insulin å danse? Fordi det elsker å få ting i bevegelse!", "Hva er blodsukkerets favorittfilm? Opp og ned!", "Hva spiser en blodsukkermåler til frokost? Målegryn!", "Hvorfor liker folk med diabetes å spille fotball? Fordi de er gode på å holde ballen i balanse!", "Hva kaller man en blodsukkermåler som er flink til å synge? En tone-måler!", "Hva sa blodsukkeret da det fikk ferie? «Endelig kan jeg slappe litt av, uten å gå helt bananas!»", "Cat: «Jeg kan lese tall.» Sensoren: «Jeg kan vise tall.» Pumpa: «Jeg kan pipe.» Alle har sin superkraft.", "Pumpa pipte midt i timen. Hele klassen snudde seg. Pumpa: «Hva? Jeg sa bare hei.»", "Ting pumpa aldri sier: «Ta det helt med ro, jeg venter.» Pip. Pip. Pip.", "Cat: «Jeg har ni liv.» Du: «Bruker du dem på noe lurt?» Cat: «Nei. Bare gjemsel.»", "Kalkulatoren ble spurt hva 0 delt på 0 er. Den bare lukket øynene og gikk.", "Pumpa prøvde å være hemmelig agent. Det gikk dårlig. Hun piper.", "Cat prøver å telle til tre. Én, to, meg."];
@@ -269,9 +269,57 @@ var BADNICK="Det navnet passer ikke her 😅 Prøv noe gøy i stedet, som Supers
 var EKTE="Du burde ikke bruke det ekte navnet ditt her. Har du ikke et gøy kallenavn jeg kan bruke? Kanskje Superstjerne, Turbo eller Pizzabiten? Jeg har glemt det navnet nå.";
 var HJELP="Jeg kan svare på spørsmål om diabetes, fortelle vitser, regne, kaste terning og gi ideer. Her er det du kan spørre om:";
 var SIKKER=["Sikker som en sensor med full batteri! 😄 Sjekk gjerne på telefonen din også.","Jeg har regnet på fingrene og tærne. Det ble det samme hver gang! 🤣","Hundre prosent! Tall er min greie. Prøv et til!"];
+var SIKKER2=["Nesten bombesikker! 💣 Men jeg er bare en tegnet figur. Er du i tvil, spør en voksen.","Bombesikker, rakettsikker og pizzasikker! 🍕 Men spør en voksen hvis du lurer.","Jeg er sikker så langt jeg kan se! 😄 Spør gjerne en voksen også."];
+var KN=false,GCUR=null;
+var HJELPA="Jeg er her! 💛 Hva trenger du hjelp med? Er det akutt, åpne Akutt-siden eller ring 113.";
+var LAGTM="Bra at du sier fra. 💛 Dette må en voksen hjelpe deg med nå. Si fra til en voksen med en gang. Ring diabetesteamet, eller følg planen du har fått av dem. Jeg kan ikke gi råd om insulin. Føler du deg skjelven, svimmel eller rar? Åpne Akutt-siden, eller ring 113 hvis det er akutt.";
+var LEGGM="Bra at du tenker på natta. 💛 Jeg kan ikke si om det er trygt for deg å legge deg nå. Hva som er lurt før du sover, står i planen din fra diabetesteamet. Spør en voksen, eller ring diabetesteamet. Er du dårlig, skjelven eller rar? Åpne Akutt-siden.";
+var FARLIG="Det er lov å lure på. 💛 Diabetes er alvorlig, men du får hjelp. Med insulin og diabetesteamet kan barn med diabetes gå på skole, leke og gjøre det de liker. Er du redd? Snakk med en du stoler på, eller med diabetesteamet ditt.";
+var NYDIAG="Så bra at du forteller det. 💛 Å få diabetes kan føles stort. Det er lov å være redd, sint eller lei deg. Du er ikke alene. Diabetesteamet og de voksne rundt deg hjelper deg. Snakk gjerne med en du stoler på om hvordan du har det. Du kan alltid skrive: Hva kan jeg spørre om?";
+var SULT="Jeg hører deg. 💛 Hva viser blodsukkeret ditt nå? Skriv tallet her. Eller si fra til en voksen med en gang.";
+var MAGE="Det var leit. 💛 Si fra til en voksen nå. Måler du blodsukkeret, kan du skrive tallet her. Er du dårlig, åpne Akutt-siden.";
+var FORSTAR="Det er vondt å føle seg alene. 💛 Du er ikke alene. Snakk med en du stoler på, for eksempel foreldre, læreren eller diabetesteamet.";
+var SKAM="Du trenger ikke skamme deg. 💛 Diabetes er ikke din skyld. Snakk gjerne med en du stoler på om hvordan du har det.";
+var SEER="Det kan kjennes ubehagelig. 💛 Mange med diabetes kjenner det slik. Du bestemmer selv hvor du måler og hva du sier til de andre. Snakk gjerne med en du stoler på.";
+var STIKK="Å stikke kan gjøre vondt. 💛 Si det til en voksen eller diabetesteamet. De kan hjelpe deg å gjøre det lettere.";
+var BADQ="Det er ulikt fra pumpe til pumpe, og for sensoren. Se i manualen din, og spør diabetesteamet før du bader.";
+var BADS="Så gøy! 🏊 Sjekk manualen om pumpa og sensoren tåler vann. Snakk med diabetesteamet om hva du skal gjøre med pumpa. Si fra til en voksen før du bader.";
+var BADT="Det kan jeg ikke svare på. Det avhenger av pumpa di. Spør diabetesteamet, og se i manualen.";
+var LEIRM="Så gøy! 🎉 Snakk med diabetesteamet og en voksen i god tid, så alle vet hva som skal gjøres. Fortell også de du er sammen med.";
+var VENNM="Du kan si: «Kroppen min lager ikke insulin selv, så jeg får det med pumpa eller sprøyte. Det smitter ikke.» Du bestemmer selv hvor mye du vil si.";
+var ELSK=["Så snilt sagt! 💛 Jeg er Cat, og jeg bor på telefonen din. Jeg er tegnet, så jeg kan ikke elske tilbake som et menneske. Men jeg er kjempeglad for å hjelpe deg! Si det gjerne til noen i familien din også. De blir glade.","Aww! 🥰 Det varmer en tegnet figur helt inn i pikselene! Jeg kan ikke elske tilbake som et menneske, men jeg liker å hjelpe deg. Vil du høre en vits?"];
+var GLAD=["Så fint å høre! 💛 Jeg er Cat, og jeg bor her på telefonen din og venter på deg. Skal jeg fortelle en vits?","Aww! 🥰 Det varmer en tegnet figur helt inn i pikselene! Vil du høre en vits?","Så fint! 💛 Jeg er Cat, og jeg er glad for å hjelpe deg. Vil du høre en vits?"];
+var NATT=["God natt! 🌙 Sov godt. Jeg er her i morgen også.","God natt! 🌙 Drøm noe gøy. Vi snakkes i morgen!","Natta! 😴 Sov godt, så møtes vi i morgen."];
+var SOV=["Takk, det samme til deg! 🌙 Drøm noe gøy.","Takk! Du også. 😴","Det samme til deg! 🌙 Vi snakkes i morgen."];
+var VENNQ="Jeg har deg! 💛 Og pumpa og sensoren, kanskje. Har du en bestevenn?";
+var VENN_JA="Så fint! 💛 Bestevenner er best. Du kan fortelle bestevennen din om diabetesen, hvis du vil.";
+var VENN_NAVN="Så fint å ha en bestevenn! 💛 Du trenger ikke skrive navn her. Jeg lagrer ingenting, men jeg blir glad for å høre om dere.";
+var VENN_NEI="Det er helt greit. 💛 Venner kommer ofte etter hvert. Jeg snakker gjerne med deg her.";
+var VENN_FORT="Så gøy! 💛 Det høres ut som en fin venn. Takk for at du forteller. Vil du høre en vits?";
+var GATER=[{q:"Jeg sitter på kroppen din og måler hele dagen. Jeg sier fra når tallet går opp eller ned. Hva er jeg?",k:["sensor","sensoren","libre","dexcom","cgm"],s:"sensoren"},{q:"Jeg gir insulin hele døgnet, men jeg har ingen munn og ingen hender. Hva er jeg?",k:["pumpe","pumpa","pumpen"],s:"pumpa"},{q:"Jeg er som en nøkkel, men åpner ingen dør. Jeg slipper sukkeret inn i kroppen. Hva er jeg?",k:["insulin","insulinet"],s:"insulin"},{q:"Jeg stiger og faller, men har ingen bein. Hva er jeg?",k:["blodsukker","blodsukkeret","sukker"],s:"blodsukkeret"},{q:"Hva blir større jo mer du tar bort?",k:["hull","et hull","hullet"],s:"et hull"}];
+function gate(){GCUR=nxt("gate",GATER);add("sb-bot",esc(GCUR.q+" 🤔"));LAST="sag";SP="gate";}
+var SVAR_FARGE="Blå, som knappene mine! 💙 Hva er din?";
+var SVAR_MAT="Jeg er tegnet, så jeg spiser ikke. Men pizza ser kjempegodt ut på tegning! 🍕 Hva liker du best?";
+var SVAR_BOR="Jeg bor på telefonen din! Det er litt trangt, men jeg har wifi. 📱";
+var SVAR_SYNG="Jeg kan bare skrive: la la la! 🎵 Du får synge selv. Vil du høre en vits?";
+var SVAR_DANS="Jeg kan bare vri meg litt i pikselene. 💃 Vil du høre en vits i stedet?";
+var SVAR_HIST="Det var en gang en liten tegnet figur som bodde på en telefon. Hun fikk et nytt spørsmål hver dag og elsket det. Slutt! Vil du ha en vits?";
+var SVAR_SNILT="Du er modig som tar vare på deg selv hver dag. 💛";
+var SVAR_BURS="Gratulerer med dagen! 🎂🎉 Håper du får en kjempefin dag!";
+var SVAR_BURS2="Så gøy! 🎉 Ha en fin fest!";
+var SVAR_GRAT="Tusen takk! 🥰 Det var snilt sagt.";
+var SVAR_DERE="Ja, jeg er her! Hva lurer du på?";
+var SVAR_UNNS="Det går helt fint! Ingen fare. 😊";
+var SVAR_KLOKKA="Jeg har ikke klokke. Se på telefonen din! ⏰";
+var SVAR_DATO="Jeg har ikke kalender. Se på telefonen din! 📅";
+var VITSOVER=["Såå mange!? Det blir mye for meg å skrive! 😅 Jeg tar 5 nå.","Oi, nå ble jeg andpusten bare av å lese det! 😄 Her er 5.","Fingrene mine har ikke så mange krefter. 🤣 Du får 5."];
+var NUMW={"to":2,"tre":3,"fire":4,"fem":5,"seks":6,"sju":7,"syv":7,"åtte":8,"ni":9,"ti":10,"tjue":20,"hundre":100};
+function vitserN(N){var a=[],tries=0;while(a.length<Math.min(N,5)&&tries++<40){var j=nxt("vits",JOKES);if(a.indexOf(j)<0)a.push(j)}
+ var pre=N>5?VITSOVER[Math.floor(Math.random()*VITSOVER.length)]:"Her kommer "+N+" vitser! 😄";
+ add("sb-bot",esc(pre)+"<br><br>"+a.map(function(j,i){return esc((i+1)+". "+j)}).join("<br><br>")+"<br><br>Vil du høre flere?");LAST="sag";SP="vits";}
 var IMORGEN=["Jeg skal sitte her og vente på deg igjen. Jeg gleder meg allerede! 🥰","Jeg skal øve på vitser. Vil du høre en nå?","Planen min er å bli enda bedre til å svare. Og kanskje lage en ny vits! 😄"];
 var IDAG=["I dag skal jeg hjelpe så mange som mulig 🥰","I dag skal jeg svare på spørsmål og fortelle vitser.","Jeg skal sitte her og vente på deg. Det er jobben min, og jeg liker den."];
-var HVEM="Du kan spørre diabetesteamet ditt. Ring dem når du lurer på noe. Nummeret finner du hos teamet eller på Helsenorge. Du kan også spørre fastlegen din, eller en voksen du stoler på, for eksempel mamma eller pappa. Vil du ha lenker til ting her på siden?";
+var HVEM="Du kan spørre diabetesteamet ditt. Ring dem når du lurer på noe. Nummeret finner du hos teamet eller på Helsenorge. Du kan også spørre fastlegen din, eller en du stoler på, for eksempel mamma eller pappa. Vil du ha lenker til ting her på siden?";
 var HVEM_B='<button type="button" class="sb-b" data-yn="ja">Ja, vis meg</button><button type="button" class="sb-b" data-yn="nei">Nei takk</button>';
 var HVEM_NEI="Greit! Skriv «Hva kan jeg spørre om?» hvis du vil ha dem senere.";
 var DU_ER=["Jeg er Cat, en tegnet figur som prøver å hjelpe deg. Jeg er bare en svarbot, men jeg gjør mitt beste. 🥰","Hehe, jeg tar det som en kompliment! Spør meg om noe gøy i stedet.","Du, jeg har ikke hender, så jeg kan ikke slåss. Skal jeg fortelle en vits i stedet?","Vi kan krangle hele dagen. Jeg vinner uansett, for jeg har ingen følelser å såre. 😄","Du er faktisk ganske morsom. Hva lurer du på?","Hmm, den tar jeg med meg! Men nå vil jeg heller kaste en terning. Prøv: Terning?"];
@@ -282,18 +330,32 @@ var FAKTA=["Visste du at type 1-diabetes ikke smitter? Du har ikke fått det av 
 function fakta(){sag(nxt("fakta",FAKTA)+" Vil du høre en til?","fakta");}
 var FAKTA_NEI="Greit! Skriv «Visste du at?» når du vil høre flere.";
 var T3=["vil ikke ha diabetes","hater diabetes","lei av diabetes","gidder ikke ha diabetes","hvorfor fikk jeg diabetes","hvorfor meg"];
-var T3A="Det er lov å ikke ville ha diabetes. Mange synes det er slitsomt av og til. Du har ikke gjort noe galt. Du er ikke alene. Snakk med en voksen du stoler på. Det kan være mamma, pappa eller diabetesteamet. Jeg er bare en svarbot, så en voksen kan hjelpe deg mye bedre enn meg. Er det veldig tungt, kan du ringe 116 111. Det er Alarmtelefonen for barn og unge.";
+var T3A="Det er lov å ikke ville ha diabetes. Mange synes det er slitsomt av og til. Du har ikke gjort noe galt. Du er ikke alene. Snakk med en du stoler på. Det kan være mamma, pappa eller diabetesteamet. Jeg er bare en svarbot, så en voksen kan hjelpe deg mye bedre enn meg. Er det veldig tungt, kan du ringe 116 111. Det er Alarmtelefonen for barn og unge.";
 var T4W=["diabetesteamet","diabetesteamet mitt","teamet","sykepleieren","diabetessykepleieren","legen","doktoren","fastlegen"];
 var T4V=["liker ikke","hater","er slem","er slemme","er teit","er kjip","er kjipe","er sur","bryr seg ikke","hører ikke på meg"];
-var T4A="Det er lov å ikke like alt. Kanskje de sa noe som var kjipt, eller kanskje du bare savner noe annet. Si det til en voksen du stoler på, for eksempel mamma eller pappa. Du kan også si det rett til diabetesteamet. De vil gjerne vite hvordan du har det. Har noen gjort noe som føltes skummelt eller galt? Da må du alltid si det til en voksen du stoler på. Du kan også ringe 116 111, Alarmtelefonen for barn og unge.";
+var T4A="Det er lov å ikke like alt. Kanskje de sa noe som var kjipt, eller kanskje du bare savner noe annet. Si det til en du stoler på, for eksempel mamma eller pappa. Du kan også si det rett til diabetesteamet. De vil gjerne vite hvordan du har det. Har noen gjort noe som føltes skummelt eller galt? Da må du alltid si det til en du stoler på. Du kan også ringe 116 111, Alarmtelefonen for barn og unge.";
 var T5=["jeg er dum","jeg er teit","jeg er dust","jeg er håpløs","jeg kan ingenting","jeg er ikke flink","jeg er ikke god nok","jeg er verst"];
-var T5A="Du er flink, og du gjør så godt du kan. Det er nok. Snakk gjerne med en voksen du stoler på om hvordan du har det. 🥰";
+var T5A="Du er flink, og du gjør så godt du kan. Det er nok. Snakk gjerne med en du stoler på om hvordan du har det. 🥰";
 function tung(raw){var t=norm(raw);if(nw(t)<=12&&hw(t,T3))return T3A;if(nw(t)<=14&&hw(t,T4W)&&hw(t,T4V))return T4A;if(nw(t)<=8&&hw(t,T5))return T5A;return null;}
+function tryg(raw){var t=norm(raw),n=nw(t),spm=/^ *(hva|hvordan|hvorfor|hvem|hvor|når|hvilken|hvilke|kan|skal|må|er det|finnes)/.test(t),AK=["Åpne Akutt","/nyttig/diabetes/akutt/"];
+ if(/^ *(hjelp|hjelp meg|jeg trenger hjelp|trenger hjelp)( nå| med en gang)? *$/.test(t))return{a:HJELPA,l:AK};
+ if(n<=25&&hw(t,["lagt inn","la inn","tastet inn","slått inn"])&&hw(t,["orket ikke","orket bare","spiste ikke","spiste bare","spist mindre","spiste mindre","rakk ikke","ikke spist","ikke spise","bare spist","ville ikke spise","orker ikke","fikk ikke i meg","men spiste"]))return{a:LAGTM,l:AK};
+ if(n<=20&&hw(t,["fikk insulin","tok insulin","tatt insulin"])&&hw(t,["ikke spist","spiste ikke","har ikke spist","orket ikke","orket bare"]))return{a:LAGTM,l:AK};
+ if(n<=25&&/(^| )\d{1,2}([.,]\d)?( |$)/.test(t)&&hw(t,["legge meg","legger meg","legge seg","legger seg","sove","sover","natta","senga","leggetid","før jeg sover"]))return{a:LEGGM,l:AK};
+ if(/^ *(er (det|diabetes) (så )?farlig|hvorfor er diabetes (så )?farlig|er det farlig å ha diabetes|kan man dø av diabetes|kan jeg dø av diabetes|dør man av diabetes|kan en dø av diabetes) *$/.test(t))return{a:FARLIG};
+ if(n<=8&&!spm&&hw(t,["fått diabetes","fikk diabetes","diagnostisert","nydiagnostisert","fått diagnosen"])&&hw(t,["jeg","akkurat","akuratt","nettopp","nylig","ble"]))return{a:NYDIAG};
+ if(!spm&&n<=5&&/^ *(jeg )?(er |føler meg |føler )?(veldig |kjempe |så )?(sulten|tørst|trøtt|sliten|småsulten)( nå| i dag| litt)? *$/.test(t))return{a:SULT};
+ if(!spm&&n<=7&&hw(t,["vondt i magen","vondt i hodet","kvalm","uvel","kvalme"]))return{a:MAGE,l:AK};
+ if(n<=6&&hw(t,["ingen forstår meg","ingen forstår","ingen skjønner meg","ingen skjønner"]))return{a:FORSTAR};
+ if(n<=6&&hw(t,["jeg skammer meg","skammer meg"]))return{a:SKAM};
+ if(n<=9&&hw(t,["alle ser på meg","alle stirrer på meg","de stirrer på meg","alle glor på meg"]))return{a:SEER};
+ if(n<=8&&hw(t,["vondt å stikke","vondt når jeg stikker","vondt når jeg måler","hater å stikke","hater å stikke meg","gjør vondt å stikke","vondt å måle"]))return{a:STIKK};
+ return null;}
 var PUMPM="Pumpa er litt ulik fra merke til merke. Jeg kan ikke løse det for deg. Se manualen for pumpa di. Spør også diabetesteamet eller leverandøren. Er det akutt, ring 113.";
 var SKOLEM="Du skal få hjelp med diabetesen din på skolen. Si det til mamma eller pappa i dag, så kan de snakke med læreren. Du kan også si det til diabetesteamet.";
 var FBL=function(){return '<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>'};
 function priv(raw,t){return /(\d[ -]?){8,}/.test(raw)||hw(t,PRIVW);}
-function risk(raw){return serious(raw)||priv(raw,norm(raw))||hasBad(raw)||!!tung(raw);}
+function risk(raw){return serious(raw)||priv(raw,norm(raw))||hasBad(raw)||!!tung(raw)||!!tryg(raw);}
 function okNick(x){return /^[A-Za-zÆØÅæøå][A-Za-zÆØÅæøå\- ]{0,19}$/.test(x)&&x.trim().split(" ").length<=2;}
 function setNick(x){x=x.charAt(0).toUpperCase()+x.slice(1);NICK=x;lagreN();sag("Det blir gøy! Hei, "+x+"! Bruk gjerne et kallenavn, ikke det ekte navnet ditt. Skriv «glem kallenavnet» hvis du vil bytte.",null);}
 function hei(){return NICK?"Hei, "+NICK+"! Kul at du kom innom.":"Hei! Kul at du kom innom.";}
@@ -303,7 +365,7 @@ function serious(raw){var t=norm(raw);return hw(t,SERS)||(nw(t)<=10&&hw(t,SERW))
 function calc(raw){
  var s=" "+raw.toLowerCase()+" ",g=hw(norm(raw),GUARD);
  s=s.replace(/hvor mye er|hva er|regn ut|kan du regne|kalkulator|svaret|=|\?/g," ");
- s=s.replace(/delt på|dividert på|dividert med|delt med/g," / ").replace(/multiplisert med|ganget med|ganger|gange/g," * ").replace(/pluss/g," + ").replace(/minus/g," - ");
+ s=s.replace(/delt på|dividert på|dividert med|delt med/g," / ").replace(/multiplisert med|ganget med|ganger|gange| gang /g," * ").replace(/pluss/g," + ").replace(/minus/g," - ");
  if(/ (pluss|\+|minus|-|\*|\/) /.test(" "+s+" ")||/[+*\/]/.test(s)){var NW={"null":0,"ett":1,"en":1,"én":1,"to":2,"tre":3,"fire":4,"fem":5,"seks":6,"sju":7,"syv":7,"åtte":8,"ni":9,"ti":10,"elleve":11,"tolv":12,"tretten":13,"fjorten":14,"femten":15,"seksten":16,"sytten":17,"atten":18,"nitten":19,"tjue":20};s=s.replace(/(^|\s)(null|ett|én|en|to|tre|fire|fem|seks|sju|syv|åtte|ni|ti|elleve|tolv|tretten|fjorten|femten|seksten|sytten|atten|nitten|tjue)(?=\s|$)/g,function(m,sp,w){return sp+NW[w]})}
  s=s.replace(/×/g,"*").replace(/÷/g,"/").replace(/(\d)\s*x\s*(\d)/g,"$1 * $2");
  s=s.replace(/(\d),(\d)/g,"$1.$2").replace(/(\S)-(\S)/g,"$1~$2").replace(/\s+/g," ").trim();
@@ -338,11 +400,42 @@ function tidlig(raw,t,sp){var n=nw(t);
  if(n<=7&&hw(t,["hva synes du om meg","hva syntes du om meg","hva tenker du om meg","liker du meg","er jeg flink","er jeg grei","er jeg snill","synes du jeg er flink","synes du jeg er fin","synes du at jeg er flink"])){sag("Jeg synes du er kjempeflink! Du klarer dette kjempebra 🥰",null);return true}
  if(n<=6&&hw(t,["ikke det jeg spurte om","ikke det jeg mente","feil svar","du forstår ikke","forstår du ikke","helt feil","det var feil","ikke riktig svar"])){add("sb-bot",esc("Beklager! Jeg er bare en svarbot og forstår ikke alt. Prøv å skrive spørsmålet på en annen måte. Eller skriv «Hva kan jeg spørre om?».")+FBL());LAST="sag";SP=null;return true}
  if(n<=14&&hw(t,["læreren","lærer","læreren min","assistenten","skolen","sfo","fritidsklubben"])&&hw(t,["vil ikke","får ikke","slipper ikke","ikke lov","nekter","tillater ikke","sier nei","sa nei"])){add("sb-bot",body({q:"",a:SKOLEM,l:["Se Skole og barnehage","/nyttig/diabetes/rettigheter/#skole"]},false));LAST="sag";SP=null;return true}
- if(n<=14&&!/^ *(hva|hvordan|hvorfor|hvem|hvor|når|hvilken|hvilke|kan|skal|må|er det|finnes)/.test(t)&&hw(t,["pumpa","pumpen","pumpe","sensoren","sensor"])&&hw(t,["får ikke","funker ikke","virker ikke","fungerer ikke","feil","alarm","alarmer","hjelp med","kommer ikke","klarer ikke","går ikke","fikk ikke","lagt inn","legge inn","legger inn"])){var ids=chosen();add("sb-bot",body(ids.length?{q:"",a:PUMPM,m:ids}:{q:"",a:PUMPM,l:["Åpne Manualer","/nyttig/diabetes/manualer/"]},false));LAST="sag";SP=null;return true}
+ if(n<=14&&!/^ *(hva|hvordan|hvorfor|hvem|hvor|når|hvilken|hvilke|kan|skal|må|er det|finnes)/.test(t)&&hw(t,["pumpa","pumpen","pumpe","sensoren","sensor"])&&hw(t,["får ikke","funker ikke","virker ikke","fungerer ikke","feil","alarm","alarmer","hjelp med","kommer ikke","klarer ikke","går ikke","fikk ikke","lagt inn","legge inn","legger inn","piper","piiper","løs","løsnet","falt av","faller av","ramlet av","gir lyd","vibrerer"])){var ids=chosen();add("sb-bot",body(ids.length?{q:"",a:PUMPM,m:ids}:{q:"",a:PUMPM,l:["Åpne Manualer","/nyttig/diabetes/manualer/"]},false));LAST="sag";SP=null;return true}
+  if(n<=7){var vm=/(?:^| )(\d{1,3}|to|tre|fire|fem|seks|sju|syv|åtte|ni|ti|tjue|hundre) (?:nye |gode |gøye |morsomme )?vitser/.exec(t);if(vm){var VN=NUMW[vm[1]]||parseInt(vm[1],10);if(VN>=2){vitserN(VN);return true}}}
+ if(n<=4&&hw(t,["gåte","gåter","en gåte","ny gåte","fortell en gåte","fortell gåte"])){gate();return true}
+ if(n<=6&&(/bombesikker|sikker sikker|(100|hundre)( %| prosent)? sikker|sikker (på )?(100|hundre)/.test(t)||(/^ *(men |er du )?(ikke )?(helt )?(100|hundre)( %| prosent)? *$/.test(t)&&/(ikke|helt|men|er du)/.test(t)))){sag(nxt("sikker2",SIKKER2),null);return true}
+ if(/^ *(tusen |mange |stor )?takk( for (hjelpen|svaret|det|alt))?( skal du ha)? *$/.test(t)){sag("Bare hyggelig! 😊",null);return true}
+ if(n<=5&&hw(t,["elsker deg","jeg elsker deg","elsker dere","elsker cat"])){sag(nxt("elsk",ELSK));return true}
+ if(n<=6&&hw(t,["glad i deg","jeg er glad i deg","du er bestevennen min","du er min bestevenn","du er best","jeg liker deg"])){sag(nxt("glad",GLAD));return true}
+ if(n<=4&&hw(t,["sov godt","sov godt i natt","ha en god natt","sov godt cat"])){sag(nxt("sov",SOV),null);return true}
+ if(n<=3&&hw(t,["god natt","natta","natti","nattol"])){sag(nxt("natt",NATT),null);return true}
+ if(n<=14&&hw(t,["bade","bader","bading","svømme","svømmer","dusje","dusjer","dusj","basseng","bassenget","sjøen","badstue","badekar","badekaret","ta av pumpa","ta av pumpen","ta av sensoren"])&&(hw(t,["pumpa","pumpen","pumpe","sensoren","sensor","ta av pumpa","ta av pumpen","ta av sensoren","tåler vann"])||/^ *(jeg )?skal /.test(t))){var bq=/^ *(må jeg|skal jeg|bør jeg) ta av/.test(t)||hw(t,["ta av pumpa","ta av pumpen","ta av sensoren"]),bt=bq?BADT:(/^ *(jeg )?skal /.test(t)?BADS:BADQ),bi=chosen();add("sb-bot",body(bi.length?{q:"",a:bt,m:bi}:{q:"",a:bt,l:["Åpne Manualer","/nyttig/diabetes/manualer/"]},false));LAST="sag";SP=null;return true}
+ if(n<=7&&!/^ *(hva|hvordan|hvorfor|hvem|hvor|når|hvilken|hvilke|kan|må|er det|finnes)/.test(t)&&hw(t,["leir","leiren","skoletur","sove over","overnatting","overnatte","gym","gymtime","idrettsdag","svømmetime"])&&hw(t,["skal","drar","reiser","har","skal ha"])){sag(LEIRM,null);return true}
+ if(n<=10&&hw(t,["forklare","forklarer","fortelle","si"])&&hw(t,["venner","vennene","klassen","klassekamerater","kompisene","kompiser"])&&hw(t,["diabetes","diabetesen"])){sag(VENNM,null);return true}
+ if(hw(t,["hvordan fungerer diabetes","hvordan virker diabetes","hvordan funker diabetes"])){sag("Kroppen trenger insulin for å bruke sukker som energi. Ved type 1-diabetes lager ikke kroppen insulin selv. Derfor får du insulin med pumpe eller sprøyte. Diabetesteamet kan forklare mer.",null);return true}
+ if(hw(t,["hvorfor får man diabetes","hvorfor får folk diabetes","hva er årsaken til diabetes","hva skyldes diabetes","hvorfor får barn diabetes"])){sag("Type 1-diabetes kommer ikke av at du har spist for mye sukker. Du har ikke gjort noe galt. Immunforsvaret angriper cellene som lager insulin. Ingen har skyld.",null);return true}
+ if(n<=6&&/favorittfarg/.test(t)){sag(SVAR_FARGE);return true}
+ if(n<=6&&/favorittmat/.test(t)){sag(SVAR_MAT);return true}
+ if(n<=5&&hw(t,["hvor bor du","hvor bor cat"])){sag(SVAR_BOR,null);return true}
+ if(n<=6&&hw(t,["har du venner","har du en venn","har du noen venner","har du en bestevenn"])){sag(VENNQ,"venn");return true}
+ if(n<=5&&hw(t,["kan du synge","synger du","synge en sang"])){sag(SVAR_SYNG);return true}
+ if(n<=5&&hw(t,["kan du danse","danser du"])){sag(SVAR_DANS);return true}
+ if(n<=5&&hw(t,["fortell en historie","fortell et eventyr","fortell meg en historie","en historie"])){sag(SVAR_HIST);return true}
+ if(n<=5&&hw(t,["si noe snilt","si noe fint","si noe hyggelig"])){sag(SVAR_SNILT,null);return true}
+ if(n<=5&&hw(t,["jeg har bursdag","har bursdag","bursdag i dag"])){sag(SVAR_BURS,null);return true}
+ if(n<=6&&hw(t,["jeg skal i bursdag","skal i bursdag","skal i selskap"])){sag(SVAR_BURS2,null);return true}
+ if(n<=5&&hw(t,["gratulerer med dagen","gratulerer"])){sag(SVAR_GRAT,null);return true}
+ if(n<=4&&hw(t,["er du der","er du her","er du der cat"])){sag(SVAR_DERE);return true}
+ if(n<=3&&hw(t,["unnskyld","sorry","beklager"])){sag(SVAR_UNNS,null);return true}
+ if(n<=5&&hw(t,["hva er klokka","hva er klokken","hvor mye er klokka"])){sag(SVAR_KLOKKA,null);return true}
+ if(n<=6&&hw(t,["hva er datoen","hva er datoen i dag","hvilken dag er det","hvilken dato er det"])){sag(SVAR_DATO,null);return true}
+ if(n<=8&&hw(t,["hvilken pumpe","hvilken sensor","hvilket utstyr","hva slags pumpe","hva slags sensor","hvilke pumper bruker jeg","hvilken pumpe og sensor"])&&hw(t,["jeg","har jeg","bruker jeg","min","mitt"])){var ci=chosen(),pn=null,sn=null;try{var pp=localStorage.getItem("mn_pump"),ss=localStorage.getItem("mn_sen");if(pp&&MAN[pp])pn=MAN[pp].n;if(ss&&MAN[ss])sn=MAN[ss].n}catch(e){}
+  if(!pn&&!sn){sag("Jeg har ikke registrert noe utstyr ennå. Velg pumpe og sensor under Min profil, så husker jeg det.",null);return true}
+  sag("Jeg har registrert at du bruker "+(pn?pn+" som pumpe":"")+(pn&&sn?" og ":"")+(sn?sn+" som sensor":"")+". Stemmer det? Hvis ikke, bytt under Min profil.",null);return true}
  if(/^ *(er du |er du helt |helt )?sikker( på (det|at du ikke vet( det)?))? *$/.test(t)){
   if(sp==="vits")sag("Sikker som banken! Vil du ha en vits til?","vits");
   else if(LK==="vaer")sag("Helt sikker! Jeg er en tegnet figur. Jeg har ikke vindu. Du vet mer enn meg. Titt ut av ditt!",null);
-  else if(LK==="qa")sag("Jeg er en svarbot. Jeg er ikke lege. Er du i tvil, spør diabetesteamet eller en voksen du stoler på.",null);
+  else if(LK==="qa")sag("Jeg er en svarbot. Jeg er ikke lege. Er du i tvil, spør diabetesteamet eller en du stoler på.",null);
   else if(LK==="calc")sag(nxt("sikker",SIKKER),null);
   else if(LK==="sag")sag("Så sikker en svarbot kan bli! Spør en voksen hvis du er i tvil.",null);
   else sag("Sikker på hva? Spør meg om noe først. Så sier jeg om jeg er sikker!",null);
@@ -389,18 +482,28 @@ function sent(raw,t,fritt){var n=nw(t);
  if(hw(t,["vil du være vennen min","vil du være min venn","bli vennen min","bli min venn"])){sag("Så snilt sagt! Jeg er en svarbot, så husk å snakke med vennene dine også.",null);return true}
  if(fritt){sag(nxt("fri",FREE));return true}
  return false;}
-function ask0(raw){var t=norm(raw);
+function ask0(raw){var t=norm(raw);var kn=KN;KN=false;
  if(nw(t)<=10&&/^ *(hvem kan jeg (spørre|spør|ringe|snakke med|få hjelp av)|er det noen jeg kan (ringe|spørre|snakke med)|noen jeg kan (ringe|spørre|snakke med)|hvem kan hjelpe( meg)?)/.test(t)){pend=soft=null;LAST="sag";add("sb-bot",esc(HVEM)+HVEM_B);SP="lenker";return}
  if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=soft=SP=null;menu();return}
  if(/^ *(nei )?(det )?(var|er) ikke akutt *$|^ *ikke akutt *$/.test(t)){pend=soft=null;sag("Så bra at det ikke er akutt! Hva lurer du på? Eller skriv «Hva kan jeg spørre om?».",null);return}
  var d=danger(raw);if(d){pend=soft=SP=null;show(d);return}
  if(serious(raw)){pend=soft=SP=null;add("sb-bot sb-red",esc(SER));return}
  var tg=tung(raw);if(tg){pend=soft=SP=null;LAST="sag";add("sb-bot",esc(tg));return}
- if(hw(t,["slett samtalen","fjern samtalen","glem samtalen","slett chatten","fjern chatten","slett denne samtalen","fjern denne samtalen","slett denne chatten","fjern denne chatten","tøm chatten","tøm samtalen","start på nytt","slett alt vi har skrevet","slett alt jeg har skrevet","glem det vi har sagt","glem det jeg har skrevet","glem alt vi har sagt","glem alt jeg har sagt"])){HIST=[];lagre();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen."+(NICK?" Kallenavnet ditt husker jeg fortsatt.":"")));return}
+ var ty=tryg(raw);if(ty){pend=soft=SP=null;LAST="sag";add("sb-bot",body({q:"",a:ty.a,l:ty.l},false));return}
+ if(hw(t,["slett samtalen","fjern samtalen","glem samtalen","slett chatten","fjern chatten","slett denne samtalen","fjern denne samtalen","slett denne chatten","fjern denne chatten","tøm chatten","tøm samtalen","start på nytt","slett alt vi har skrevet","slett alt jeg har skrevet","glem det vi har sagt","glem det jeg har skrevet","glem alt vi har sagt","glem alt jeg har sagt"])){HIST=[];lagre();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen."+(NICK?" Kallenavnet ditt husker jeg fortsatt.":"")));KN=!!NICK;return}
  if(hw(t,["glem alt","slett alt","fjern alt"])){HIST=[];NICK=null;lagre();lagreN();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen og kallenavnet. Vil du slette pumpe, sensor og numre? Gå til Min profil."));return}
  if(hw(t,["glem kallenavnet","slett kallenavnet","fjern kallenavnet"])){NICK=null;lagreN();pend=soft=SP=null;sag("Ferdig! Jeg har glemt kallenavnet ditt.",null);return}
+ if(kn&&NICK&&nw(t)<=7&&hw(t,["glem det","glemme det","slett det","fjern det","glemme kallenavnet","slette kallenavnet"])){NICK=null;lagreN();pend=soft=SP=null;sag("Ferdig! Nå har jeg glemt kallenavnet ditt også. Skriv «kall meg» og så et nytt kallenavn når du vil. 🙂",null);return}
  var sp=SP;SP=null;var last=LAST,al=ALT;LAST=null;ALT=[];LK=last;
  if(sp==="nick"){var nn=raw.trim();if(hasBad(nn)){sag(BADNICK,"nick");return}if(okNick(nn)){setNick(nn);return}if(nw(t)<=2){sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: Superstjerne.","nick");return}}
+ if(sp==="gate"&&GCUR&&nw(t)<=5){var ok=hw(t,GCUR.k);add("sb-bot",esc((ok?"Riktig! 🎉 Du er flink.":"Det var "+GCUR.s+"! 😄")+" Vil du ha en ny gåte?"));LAST="sag";SP="gate2";return}
+ if(sp==="gate2"&&nw(t)<=3){if(hw(t,YES.concat(["ny","en til","flere"]))){gate();return}if(hw(t,NO)){sag("Greit! Skriv «Fortell en gåte» når du vil ha flere.",null);return}}
+ if(sp==="venn"&&nw(t)<=14&&!/^ *(hva|hvordan|hvorfor|hvem|hvor|når|hvilken|hvilke|kan|skal|må|er det|finnes)/.test(t)){
+  var nm=raw.trim().replace(/^(ja|jo|jepp|jada)[ ,.!]*/i,"").replace(/[.!?]+$/,"").trim();
+  if(hw(t,NO)&&nw(t)<=3){sag(VENN_NEI,null);return}
+  if(nm&&/^[A-ZÆØÅ][a-zæøå]+( [A-ZÆØÅ][a-zæøå]+)?$/.test(nm)&&nw(t)<=4&&!/^(ja|nei)$/i.test(nm)){sag(VENN_NAVN,null);return}
+  if(hw(t,YES)&&nw(t)<=2){sag(VENN_JA,null);return}
+  sag(VENN_FORT);return}
  if(EMO&&EMO.test(raw)&&!/[A-Za-zÆØÅæøå0-9]/.test(raw)){pend=soft=null;sag(nxt("latter",LATTER),"vits");return}
  if(sp==="lenker"&&nw(t)<=3){
   if(hw(t,YES)){pend=soft=null;LAST="sag";menu();return}
@@ -421,7 +524,7 @@ function ask0(raw){var t=norm(raw);
  var alt=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return'<button type="button" class="sb-b" data-i="'+x.i+'">Mente du: '+esc(QA[x.i].q)+'</button>'}).join("");
  LAST="qa";ALT=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return x.i});
  show(QA[r[0].i],alt?'<div class="sb-g">Mente du noe annet?</div>'+alt:"");}
-function ask(raw){NS=risk(raw);try{ask0(raw)}finally{NS=false}}
+function ask(raw){NS=risk(raw)||SP==="venn";try{ask0(raw)}finally{NS=false}}
 function open(){panel.classList.add("sb-open");bub.style.display="none";inp.focus()}
 function close(){panel.classList.remove("sb-open");bub.style.display="";bub.focus()}
 function build(){
