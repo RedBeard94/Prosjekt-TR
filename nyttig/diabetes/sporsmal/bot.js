@@ -37,7 +37,7 @@ var QA=[{"g":"Om appen","q":"Hvordan sletter jeg det som er lagret?","k":["slett
 {"g":"Om appen","q":"Hvordan gir jeg tilbakemelding?","k":["tilbakemelding","gi beskjed","feil på siden","rette feil","forslag","savner"],"a":"Trykk på «Tilbakemelding» nederst på siden. Det tar rundt fem minutter. Du trenger ikke svare på alt. Ikke skriv navn, e-post eller sykdomsdetaljer om deg eller barnet.","l":["Åpne Tilbakemelding","/nyttig/diabetes/tilbakemelding/"]},
 {"g":"Ord","q":"Hva betyr mg/dl og mmol/L?","k":["mg/dl","mmol","mg dl","amerikansk","utland blodsukker"],"a":"Det er to måter å oppgi blodsukker på. Norge bruker mmol/L. Noen land bruker mg/dl. Del tallet i mg/dl på 18, så får du mmol/L."},
 {"g":"Støtte","q":"Hvilken støtte kan vi få fra NAV og Helfo?","k":["nav ","støtte","grunnstønad","hjelpestønad","omsorgsdager","pleiepenger","helfo","pasientreiser","penger"],"a":"Det finnes ordninger fra NAV og Helfo. NAV har blant annet hjelpestønad, ekstra omsorgsdager og pleiepenger for sykt barn. Helfo kan dekke en del av utgiftene til forbruksmateriell. Pasientreiser dekker reiseutgifter til behandling. NAV og Helfo avgjør hva du har rett på. Spør også sosionomen på sykehuset.","l":["Åpne Rettigheter","/nyttig/diabetes/rettigheter/"]},
-{"g":"Hverdag","q":"Hva må skolen eller barnehagen vite?","k":["skole","barnehage","sfo","lærer","assistent"],"a":"Diabetesforbundet har hefter om dette: «Min skolehverdag med diabetes» og «Min barnehagehverdag med diabetes». Foreldrene lærer opp de voksne og lager en plan for føling. Barnehagen bør ha én fast voksen med ansvar. Ha følingsmat der, for eksempel juice eller druesukker. Snakk med diabetesteamet om planen.","l":["Åpne Rettigheter","/nyttig/diabetes/rettigheter/"]},
+{"g":"Hverdag","q":"Hva må skolen eller barnehagen vite?","k":["skole","barnehage","sfo","lærer","assistent"],"a":"Diabetesforbundet har hefter om dette: «Min skolehverdag med diabetes» og «Min barnehagehverdag med diabetes». Foreldrene lærer opp de voksne og lager en plan for føling. Barnehagen bør ha én fast voksen med ansvar. Ha følingsmat der, for eksempel juice eller druesukker. Snakk med diabetesteamet om planen.","l":["Se Skole og barnehage","/nyttig/diabetes/rettigheter/#skole"]},
 {"g":"Om diabetes","q":"Hva er type 1-diabetes?","k":["type 1","hva er diabetes","sykdommen"],"a":"Type 1-diabetes er en sykdom der immunforsvaret angriper cellene som lager insulin. Den er livslang, og man trenger insulin hver dag."},
 {"g":"Om diabetes","q":"Hva er forskjellen på type 1 og type 2?","k":["type 2","forskjell på type","type 1 og type 2"],"a":"Ved type 1 angriper immunforsvaret cellene som lager insulin. Ved type 2 virker insulinet dårlig, og kroppen lager ikke nok. Ikke alle med type 2 trenger insulin. Denne siden handler mest om pumpe og sensor."},
 {"g":"Om diabetes","q":"Er diabetes arvelig?","k":["arvelig","arver","arv ","gener","i familien"],"a":"Type 1 er sjelden arvelig. Type 2 er vanligere i noen familier. Mange gener og andre ting spiller inn. Spør diabetesteamet hvis du lurer på din egen familie."},
@@ -256,10 +256,37 @@ function nxt(id,src){var b=BAG[id];if(!b||!b.length){b=shuf(src);BAG[id]=b}retur
 function sag(txt,s){add("sb-bot",esc(txt));LAST="sag";SP=s!==undefined?s:(/(vits|den)\?$/.test(txt)?"vits":/\?$/.test(txt)?"fritt":null);}
 function vits(){sag(nxt("vits",JOKES)+" Vil du høre en til?","vits");}
 function ide(){if(SPI===null)SPI=shuf(IDEER);if(!SPI.length){sag(IDE_SLUTT,"slutt");return}var x=SPI.pop();sag(x+(SPI.length?" Vil du ha en annen idé?":""),SPI.length?"ide":"slutt");}
+var BADW=["penis","pikk","kuk","fitte","fitta","tiss","ræv","rasshøl","dritt","faen","helvete","satan","jævla","jævel","hore","hora","whore","fuck","shit","bitch","dick","cock","pussy","asshole","nigger","neger","retard","mongo","spasser","idiot","dum","teit","dust","hitler","nazi","sex","porno","naken","vagina","orgasme","homo"];
+function hasBad(raw){var s=String(raw).toLowerCase().replace(/[0@]/g,"o").replace(/[1!|]/g,"i").replace(/3/g,"e").replace(/4/g,"a").replace(/[5$]/g,"s");
+ function cl(x){return x.replace(/(.)\1+/g,"$1")}
+ var tk=s.split(/[^a-zæøå]+/).filter(Boolean);
+ for(var i=0;i<tk.length;i++){var c=cl(tk[i]);for(var k=0;k<BADW.length;k++){var w=cl(BADW[k]);if(w.length>=5?c.indexOf(w)>-1:c===w)return true}}
+ return false;}
+var BADNICK="Det navnet passer ikke her 😅 Prøv noe gøy i stedet, som Superstjerne, Turbo eller Pizzabiten.";
+var EKTE="Du burde ikke bruke det ekte navnet ditt her. Har du ikke et gøy kallenavn jeg kan bruke? Kanskje Superstjerne, Turbo eller Pizzabiten? Jeg har glemt det navnet nå.";
+var HJELP="Jeg kan svare på spørsmål om diabetes, fortelle vitser, regne, kaste terning og gi ideer. Her er det du kan spørre om:";
+var IDAG=["I dag skal jeg hjelpe så mange som mulig 🥰","I dag skal jeg svare på spørsmål og fortelle vitser.","Jeg skal sitte her og vente på deg. Det er jobben min, og jeg liker den."];
+var HVEM="Du kan spørre diabetesteamet ditt. Ring dem når du lurer på noe. Nummeret finner du hos teamet eller på Helsenorge. Du kan også spørre fastlegen din, eller en voksen du stoler på, for eksempel mamma eller pappa. Vil du ha lenker til ting her på siden?";
+var HVEM_B='<button type="button" class="sb-b" data-yn="ja">Ja, vis meg</button><button type="button" class="sb-b" data-yn="nei">Nei takk</button>';
+var HVEM_NEI="Greit! Skriv «Hva kan jeg spørre om?» hvis du vil ha dem senere.";
+var DU_ER=["Jeg er Cat, en tegnet figur som prøver å hjelpe deg. Jeg er bare en svarbot, men jeg gjør mitt beste. 🥰","Hehe, jeg tar det som en kompliment! Spør meg om noe gøy i stedet.","Du, jeg har ikke hender, så jeg kan ikke slåss. Skal jeg fortelle en vits i stedet?","Vi kan krangle hele dagen. Jeg vinner uansett, for jeg har ingen følelser å såre. 😄","Du er faktisk ganske morsom. Hva lurer du på?","Hmm, den tar jeg med meg! Men nå vil jeg heller kaste en terning. Prøv: Terning?"];
+var DU_PAUSE="Nå tar jeg en pause fra dette. Skriv «Hva kan jeg spørre om?» når du vil ha noe gøy.";
+var INSN=0;
+var T3=["vil ikke ha diabetes","hater diabetes","lei av diabetes","gidder ikke ha diabetes","hvorfor fikk jeg diabetes","hvorfor meg"];
+var T3A="Det er lov å ikke ville ha diabetes. Mange synes det er slitsomt av og til. Du har ikke gjort noe galt. Du er ikke alene. Snakk med en voksen du stoler på. Det kan være mamma, pappa eller diabetesteamet. Jeg er bare en svarbot, så en voksen kan hjelpe deg mye bedre enn meg. Er det veldig tungt, kan du ringe 116 111. Det er Alarmtelefonen for barn og unge.";
+var T4W=["diabetesteamet","diabetesteamet mitt","teamet","sykepleieren","diabetessykepleieren","legen","doktoren","fastlegen"];
+var T4V=["liker ikke","hater","er slem","er slemme","er teit","er kjip","er kjipe","er sur","bryr seg ikke","hører ikke på meg"];
+var T4A="Det er lov å ikke like alt. Kanskje de sa noe som var kjipt, eller kanskje du bare savner noe annet. Si det til en voksen du stoler på, for eksempel mamma eller pappa. Du kan også si det rett til diabetesteamet. De vil gjerne vite hvordan du har det. Har noen gjort noe som føltes skummelt eller galt? Da må du alltid si det til en voksen du stoler på. Du kan også ringe 116 111, Alarmtelefonen for barn og unge.";
+var T5=["jeg er dum","jeg er teit","jeg er dust","jeg er håpløs","jeg kan ingenting","jeg er ikke flink","jeg er ikke god nok","jeg er verst"];
+var T5A="Du er flink, og du gjør så godt du kan. Det er nok. Snakk gjerne med en voksen du stoler på om hvordan du har det. 🥰";
+function tung(raw){var t=norm(raw);if(nw(t)<=12&&hw(t,T3))return T3A;if(nw(t)<=14&&hw(t,T4W)&&hw(t,T4V))return T4A;if(nw(t)<=8&&hw(t,T5))return T5A;return null;}
+var PUMPM="Pumpa er litt ulik fra merke til merke. Jeg kan ikke løse det for deg. Se manualen for pumpa di. Spør også diabetesteamet eller leverandøren. Er det akutt, ring 113.";
+var SKOLEM="Du skal få hjelp med diabetesen din på skolen. Si det til mamma eller pappa i dag, så kan de snakke med læreren. Du kan også si det til diabetesteamet.";
+var FBL=function(){return '<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>'};
 function priv(raw,t){return /(\d[ -]?){8,}/.test(raw)||hw(t,PRIVW);}
-function risk(raw){return serious(raw)||priv(raw,norm(raw));}
+function risk(raw){return serious(raw)||priv(raw,norm(raw))||hasBad(raw)||!!tung(raw);}
 function okNick(x){return /^[A-Za-zÆØÅæøå][A-Za-zÆØÅæøå\- ]{0,19}$/.test(x)&&x.trim().split(" ").length<=2;}
-function setNick(x){x=x.charAt(0).toUpperCase()+x.slice(1);NICK=x;lagreN();sag("Det blir gøy! Hei, "+x+"! Skriv «glem kallenavnet» hvis du vil bytte.",null);}
+function setNick(x){x=x.charAt(0).toUpperCase()+x.slice(1);NICK=x;lagreN();sag("Det blir gøy! Hei, "+x+"! Bruk gjerne et kallenavn, ikke det ekte navnet ditt. Skriv «glem kallenavnet» hvis du vil bytte.",null);}
 function hei(){return NICK?"Hei, "+NICK+"! Kul at du kom innom.":"Hei! Kul at du kom innom.";}
 function velkommen(){return(NICK?"Hei igjen, "+NICK+"! ":"Hei igjen! ")+"Jeg husker samtalen vår. Skriv «slett samtalen» hvis du vil at jeg skal glemme den.";}
 function serious(raw){var t=norm(raw);return hw(t,SERS)||(nw(t)<=10&&hw(t,SERW));}
@@ -268,6 +295,7 @@ function calc(raw){
  var s=" "+raw.toLowerCase()+" ",g=hw(norm(raw),GUARD);
  s=s.replace(/hvor mye er|hva er|regn ut|kan du regne|kalkulator|svaret|=|\?/g," ");
  s=s.replace(/delt på|dividert på|dividert med|delt med/g," / ").replace(/multiplisert med|ganget med|ganger|gange/g," * ").replace(/pluss/g," + ").replace(/minus/g," - ");
+ if(/ (pluss|\+|minus|-|\*|\/) /.test(" "+s+" ")||/[+*\/]/.test(s)){var NW={"null":0,"ett":1,"en":1,"én":1,"to":2,"tre":3,"fire":4,"fem":5,"seks":6,"sju":7,"syv":7,"åtte":8,"ni":9,"ti":10,"elleve":11,"tolv":12,"tretten":13,"fjorten":14,"femten":15,"seksten":16,"sytten":17,"atten":18,"nitten":19,"tjue":20};s=s.replace(/(^|\s)(null|ett|én|en|to|tre|fire|fem|seks|sju|syv|åtte|ni|ti|elleve|tolv|tretten|fjorten|femten|seksten|sytten|atten|nitten|tjue)(?=\s|$)/g,function(m,sp,w){return sp+NW[w]})}
  s=s.replace(/×/g,"*").replace(/÷/g,"/").replace(/(\d)\s*x\s*(\d)/g,"$1 * $2");
  s=s.replace(/(\d),(\d)/g,"$1.$2").replace(/(\S)-(\S)/g,"$1~$2").replace(/\s+/g," ").trim();
  if(g){return /\d/.test(raw)&&/[+*\/÷×]|delt|gange|pluss|minus/.test(raw.toLowerCase())?REGN_NEI:null}
@@ -285,6 +313,19 @@ function calc(raw){
 /* Faste fraser som kommer før diabetessvarene (finnes ikke som diabetesspørsmål) */
 function tidlig(raw,t,sp){var n=nw(t);
  if(priv(raw,t)){sag(PRIV,null);return true}
+ if(hasBad(raw)){if(/kall|kallenavn|navn/.test(t)){sag(BADNICK,"nick");return true}}
+ if(n<=7&&hw(t,["mitt ekte navn","det er navnet mitt","navnet mitt er ekte","mitt virkelige navn","mitt riktige navn","det var mitt ekte navn"])){NICK=null;lagreN();sag(EKTE,"nick");return true}
+ if((sp==="ins"||sp==="insv")&&n<=6&&(/^ *((nei|jo|selv|det|er|du|også|å|da)\s*)+$/.test(t)||hasBad(raw))){INSN++;
+  if(INSN>3){INSN=3;sag(DU_PAUSE,"ins");return true}
+  var ix=Math.floor(Math.random()*DU_ER.length);sag(DU_ER[ix],ix===2?"insv":"ins");return true}
+ if(/^ *(hva kan du( gjøre| hjelpe( meg| oss)? med)?|hva kan cat( gjøre)?|hva gjør du|hva er du god til) *$/.test(t)){add("sb-bot",esc(HJELP));LAST="sag";menu();return true}
+ if(/^ *hva tenker du på( i dag| nå| akkurat nå)? *$/.test(t)){sag("Jeg tenker på vitser og tall. Og på hva du lurer på. Hva tenker du på?",null);SP="fritt";return true}
+ if(/^ *hva (skal|gjør|driver) du( gjøre| med)? i dag *$/.test(t)||/^ *hva skal du i dag *$/.test(t)){sag(nxt("idag",IDAG),null);return true}
+ if(/^ *(har du )?hatt en (fin|god|bra) dag *$/.test(t)){sag(nxt("hv",HVORDAN));return true}
+ if(n<=7&&hw(t,["hva synes du om meg","hva syntes du om meg","hva tenker du om meg","liker du meg","er jeg flink","er jeg grei","er jeg snill","synes du jeg er flink","synes du jeg er fin","synes du at jeg er flink"])){sag("Jeg synes du er kjempeflink! Du klarer dette kjempebra 🥰",null);return true}
+ if(n<=6&&hw(t,["ikke det jeg spurte om","ikke det jeg mente","feil svar","du forstår ikke","forstår du ikke","helt feil","det var feil","ikke riktig svar"])){add("sb-bot",esc("Beklager! Jeg er bare en svarbot og forstår ikke alt. Prøv å skrive spørsmålet på en annen måte. Eller skriv «Hva kan jeg spørre om?».")+FBL());LAST="sag";SP=null;return true}
+ if(n<=14&&hw(t,["læreren","lærer","læreren min","assistenten","skolen","sfo","fritidsklubben"])&&hw(t,["vil ikke","får ikke","slipper ikke","ikke lov","nekter","tillater ikke","sier nei","sa nei"])){add("sb-bot",body({q:"",a:SKOLEM,l:["Se Skole og barnehage","/nyttig/diabetes/rettigheter/#skole"]},false));LAST="sag";SP=null;return true}
+ if(n<=14&&!/^ *(hva|hvordan|hvorfor|hvem|hvor|når|hvilken|hvilke|kan|skal|må|er det|finnes)/.test(t)&&hw(t,["pumpa","pumpen","pumpe","sensoren","sensor"])&&hw(t,["får ikke","funker ikke","virker ikke","fungerer ikke","feil","alarm","alarmer","hjelp med","kommer ikke","klarer ikke","går ikke","fikk ikke","lagt inn","legge inn","legger inn"])){var ids=chosen();add("sb-bot",body(ids.length?{q:"",a:PUMPM,m:ids}:{q:"",a:PUMPM,l:["Åpne Manualer","/nyttig/diabetes/manualer/"]},false));LAST="sag";SP=null;return true}
  if(/^ *(er du |er du helt |helt )?sikker( på (det|at du ikke vet( det)?))? *$/.test(t)){
   if(sp==="vits")sag("Sikker som banken! Vil du ha en vits til?","vits");
   else if(LK==="vaer")sag("Helt sikker! Jeg er en tegnet figur. Jeg har ikke vindu. Du vet mer enn meg. Titt ut av ditt!",null);
@@ -293,8 +334,8 @@ function tidlig(raw,t,sp){var n=nw(t);
   else if(LK==="sag")sag("Så sikker en svarbot kan bli! Spør en voksen hvis du er i tvil.",null);
   else sag("Sikker på hva? Spør meg om noe først. Så sier jeg om jeg er sikker!",null);
   return true}
- var km=/(?:^|\s)(?:kall|kalle) meg ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim());
- if(km){if(okNick(km[1]))setNick(km[1]);else sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: kall meg Superstjerne.",null);return true}
+ var km=/(?:^|\s)(?:kall|kalle) meg ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim())||/(?:^|\s)(?:bytt|endre|skift|sett)\s+kallenavn(?:et)?(?:\s+mitt)?\s+til\s+([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim())||/(?:^|\s)kallenavnet mitt er ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim());
+ if(km){if(hasBad(km[1]))sag(BADNICK,"nick");else if(okNick(km[1]))setNick(km[1]);else sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: kall meg Superstjerne.",null);return true}
  if(hw(t,["kallenavn","hva kan du kalle meg"])){sag("Hva skal jeg kalle deg? Bruk et kallenavn, ikke ekte navn.","nick");return true}
  if(hw(t,["hva heter jeg"])){sag(NICK?"Jeg kaller deg "+NICK+".":"Jeg vet ikke hva jeg skal kalle deg. Skriv: kall meg, og så et kallenavn.",null);return true}
  if(n<=5&&hw(t,["hvem er du","hvem er cat","hvem er du egentlig","hvem er det jeg snakker med"])){sag("Jeg er Cat, en veldig snill tegneseriefigur som prøver å hjelpe deg så mye som mulig 🥰",null);return true}
@@ -303,13 +344,14 @@ function tidlig(raw,t,sp){var n=nw(t);
  if((sp==="ide"||sp==="slutt")&&hw(t,["kjedelig","noe nytt","ny idé","annen idé","en til","nytt","annet"])){ide();return true}
  if(sp==="vits"&&hw(t,["en til","flere","ny vits","enda en","mer"])){vits();return true}
  if(n<=8&&hw(t,["kjeder meg","finne på","noe å gjøre"])){ide();return true}
+ if(n<=6&&hw(t,["noen ideer","noen gøye ideer","noen gode ideer","har du ideer","gøye ideer","morsomme ideer"])){ide();return true}
  if(n<=4&&hw(t,["sånn passe","så som så"])){sag(OKR,"vits");return true}
  if(n<=8&&hw(t,["lekser","leksehjelp"])){sag("Det kan jeg ikke. Spør læreren din. Jeg kan vitser og diabetes.",null);return true}
  if(n<=8&&hw(t,["været","regner det","blir det regn"])){add("sb-bot",esc(VAER0));LAST="vaer";think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
  if(hw(t,["hvordan har du det","hvordan er dagen din","hvordan er din dag"])){sag(nxt("hv",HVORDAN));return true}
  if(n<=4&&hw(t,["vits","vitser","fortell en vits","en vits"])){vits();return true}
  if(hw(t,["hva sier pumpa","hva sier pumpen","hva sier sensoren","pumpelyd","pumpelyder"])||(n<=3&&hw(t,["pip","piip","piiip","brrr","bzzz","vibrasjon"]))){sag(nxt("pump",PUMP),null);return true}
- if(n<=4&&hw(t,["terning","kast terning","kast en terning"])){sag("Jeg kastet terningen: "+(1+Math.floor(Math.random()*6)),null);return true}
+ if(n<=4&&hw(t,["terning","kast terning","kast en terning","nytt kast","kast igjen","kast på nytt","kast en gang til"])){sag("Jeg kastet terningen: "+(1+Math.floor(Math.random()*6)),null);return true}
  if(n<=5&&hw(t,["mynt","kron"])){sag(Math.random()<.5?"Kron!":"Mynt!",null);return true}
  return false;}
 /* Småprat som bare kommer når spørsmålet ikke fant noe diabetessvar */
@@ -326,26 +368,36 @@ function sent(raw,t,fritt){var n=nw(t);
  if(hw(t,["hei","hallo","heisann","hei hei","god morgen","god kveld","god dag","hey"])){sag(hei(),null);return true}
  if(!spm&&(/(^| )(ha|he|hi){2,}h?( |$)/.test(t)||hw(t,["morsomt","morsom","den var god","god en","kult","wow","tøft","genialt","nice","lol","god vits","bra vits"]))){sag(nxt("latter",LATTER),"vits");return true}
  if(!spm&&hw(t,["dårlig","dårlige","kjip","kjipt","trist","leit","sur","sint","alene","bekymret","ikke bra","ikke så bra","ikke fin","ikke så fin","ikke glad","ikke topp"])){sag(BAD,null);return true}
- if(!spm&&hw(t,["bra","fin","fint","topp","supert","glad","kjempe","kjempebra","fantastisk","herlig","gøy"])){sag(nxt("god",GOOD));return true}
+ if(!spm&&hw(t,["ikke","aldri"])&&hw(t,["bra","fin","fint","topp","supert","glad","kjempe","kjempebra","fantastisk","herlig","gøy","god","godt","flott"])){sag(BAD,null);return true}
+ if(!spm&&hw(t,["bra","fin","fint","topp","supert","glad","kjempe","kjempebra","fantastisk","herlig","gøy","godt","deilig"])){sag(nxt("god",GOOD));return true}
  if(!spm&&hw(t,["kjedelig","noe nytt","ny idé","annen idé"])){ide();return true}
- if(hw(t,["du er dum","dum","teit","dust"])){sag("Å nei. Her bruker vi snille ord.",null);return true}
+ if(hw(t,["du er dum","dum","teit","dust"])){INSN=1;sag("Å nei. Her bruker vi snille ord.","ins");return true}
   if(hw(t,["er du ekte","er du en robot","er du et menneske"])){sag("Jeg er en svarbot. Cat er en tegnet figur.",null);return true}
  if(hw(t,["vil du være vennen min","vil du være min venn","bli vennen min","bli min venn"])){sag("Så snilt sagt! Jeg er en svarbot, så husk å snakke med vennene dine også.",null);return true}
  if(fritt){sag(nxt("fri",FREE));return true}
  return false;}
 function ask0(raw){var t=norm(raw);
+ if(nw(t)<=10&&/^ *(hvem kan jeg (spørre|spør|ringe|snakke med|få hjelp av)|er det noen jeg kan (ringe|spørre|snakke med)|noen jeg kan (ringe|spørre|snakke med)|hvem kan hjelpe( meg)?)/.test(t)){pend=soft=null;LAST="sag";add("sb-bot",esc(HVEM)+HVEM_B);SP="lenker";return}
  if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=soft=SP=null;menu();return}
+ if(/^ *(nei )?(det )?(var|er) ikke akutt *$|^ *ikke akutt *$/.test(t)){pend=soft=null;sag("Så bra at det ikke er akutt! Hva lurer du på? Eller skriv «Hva kan jeg spørre om?».",null);return}
  var d=danger(raw);if(d){pend=soft=SP=null;show(d);return}
  if(serious(raw)){pend=soft=SP=null;add("sb-bot sb-red",esc(SER));return}
- if(hw(t,["slett samtalen","fjern samtalen","glem samtalen","slett chatten","fjern chatten"])){HIST=[];lagre();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen."+(NICK?" Kallenavnet ditt husker jeg fortsatt.":"")));return}
+ var tg=tung(raw);if(tg){pend=soft=SP=null;LAST="sag";add("sb-bot",esc(tg));return}
+ if(hw(t,["slett samtalen","fjern samtalen","glem samtalen","slett chatten","fjern chatten","slett denne samtalen","fjern denne samtalen","slett denne chatten","fjern denne chatten","tøm chatten","tøm samtalen","start på nytt","slett alt vi har skrevet","slett alt jeg har skrevet","glem det vi har sagt","glem det jeg har skrevet","glem alt vi har sagt","glem alt jeg har sagt"])){HIST=[];lagre();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen."+(NICK?" Kallenavnet ditt husker jeg fortsatt.":"")));return}
  if(hw(t,["glem alt","slett alt","fjern alt"])){HIST=[];NICK=null;lagre();lagreN();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen og kallenavnet. Vil du slette pumpe, sensor og numre? Gå til Min profil."));return}
  if(hw(t,["glem kallenavnet","slett kallenavnet","fjern kallenavnet"])){NICK=null;lagreN();pend=soft=SP=null;sag("Ferdig! Jeg har glemt kallenavnet ditt.",null);return}
  var sp=SP;SP=null;var last=LAST,al=ALT;LAST=null;ALT=[];LK=last;
- if(sp==="nick"){var nn=raw.trim();if(okNick(nn)){setNick(nn);return}if(nw(t)<=2){sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: Superstjerne.","nick");return}}
+ if(sp==="nick"){var nn=raw.trim();if(hasBad(nn)){sag(BADNICK,"nick");return}if(okNick(nn)){setNick(nn);return}if(nw(t)<=2){sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: Superstjerne.","nick");return}}
  if(EMO&&EMO.test(raw)&&!/[A-Za-zÆØÅæøå0-9]/.test(raw)){pend=soft=null;sag(nxt("latter",LATTER),"vits");return}
- if((sp==="vits"||sp==="ide")&&nw(t)<=3){
-  if(hw(t,YES)){pend=soft=null;if(sp==="vits")vits();else ide();return}
-  if(hw(t,NO)){pend=soft=null;sag(sp==="vits"?NOR:IDE_NEI,null);return}}
+ if(sp==="lenker"&&nw(t)<=3){
+  if(hw(t,YES)){pend=soft=null;LAST="sag";menu();return}
+  if(hw(t,NO)){pend=soft=null;sag(HVEM_NEI,null);return}}
+ if(!sp&&/^ *((noen )?(andre|flere)( svar)?|noe annet|noen andre svar) *$/.test(t)){pend=soft=null;
+  if(last==="qa"&&al.length){add("sb-bot",esc("Her er et annet svar som kan passe:"));show(QA[al[0]]);LAST="qa";ALT=al.slice(1);return}
+  sag("Jeg har ikke flere der. Prøv å spørre på en annen måte, eller skriv «Hva kan jeg spørre om?».",null);return}
+ if((sp==="vits"||sp==="ide"||sp==="insv")&&nw(t)<=3){
+  if(hw(t,YES)){pend=soft=null;if(sp==="vits"||sp==="insv")vits();else ide();return}
+  if(hw(t,NO)){pend=soft=null;sag(sp==="vits"||sp==="insv"?NOR:IDE_NEI,null);return}}
  if(!pend&&!soft&&last==="qa"&&al.length&&nw(t)<=3){
   if(hw(t,YES.concat(["vet ikke","aner ikke","ingen anelse","usikker","hmm","kanskje","jo"]))){add("sb-bot",esc("Da viser jeg det jeg tror du mente:"));show(QA[al[0]]);LAST="qa";return}
   if(hw(t,NO)){sag("Ok! Prøv å skrive det på en annen måte. Eller skriv «Hva kan jeg spørre om?».",null);return}}
@@ -376,8 +428,8 @@ function build(){
   var ly=window.scrollY||0;window.addEventListener("scroll",function(){var y=window.scrollY||0,bb=root.querySelector("#sb-bubble");if(!bb)return;
    if(y>ly+6&&y>60)bb.classList.add("sb-hide");else if(y<ly-6||y<=60)bb.classList.remove("sb-hide");ly=y;},{passive:true});}
  log=root.querySelector("#sb-log");panel=root.querySelector("#sb-panel");bub=document.getElementById("sb-bubble");inp=root.querySelector("#sb-q");
- log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy){var e=QA[+b.getAttribute("data-i")];SP=null;LAST="qa";ALT=[];add("sb-me",esc(e.q));think(function(){show(e)})}});
- root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){NS=true;add("sb-bot","Skriv et spørsmål først");NS=false;return}if(busy)return;NS=risk(v);add("sb-me",esc(v));NS=false;inp.value="";if(danger(v)||lavNaa(v)||serious(v))ask(v);else think(function(){ask(v)})});
+ log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy&&b.getAttribute("data-yn")){var yn=b.getAttribute("data-yn");add("sb-me",esc(yn==="ja"?"Ja, vis meg":"Nei takk"));think(function(){ask(yn)});return}if(b&&!busy){var e=QA[+b.getAttribute("data-i")];SP=null;LAST="qa";ALT=[];add("sb-me",esc(e.q));think(function(){show(e)})}});
+ root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){NS=true;add("sb-bot","Skriv et spørsmål først");NS=false;return}if(busy)return;NS=risk(v);add("sb-me",esc(v));NS=false;inp.value="";if(danger(v)||lavNaa(v)||serious(v)||tung(v))ask(v);else think(function(){ask(v)})});
  bub.addEventListener("click",open);root.querySelector("#sb-min").addEventListener("click",close);
  panel.addEventListener("keydown",function(ev){if(ev.key==="Escape")close()});
  if(HIST.length){REST=true;HIST.forEach(function(x){add(x[0]==="u"?"sb-me":"sb-bot",esc(x[1]));log.lastChild.style.opacity=".65"});REST=false;NS=true;add("sb-bot",esc(velkommen()));NS=false}

@@ -79,3 +79,16 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - Bevisst tatt ut: vitser om godteri og snacks, «det ligger i genene», «gode tall» og «sukkerklump».
 - Vits nr 11 (insulinpennen «stiller alltid opp når du trenger meg») kan leses som at insulin tas når som helst. Be diabetessykepleier vurdere den.
 - Alle vitsene bør leses av diabetessykepleier før merkingen «Ikke godkjent av helsepersonell ennå» fjernes.
+
+## Runde 22. november (kveld): småprat, trygghet og kallenavn
+- Nye fraser: «Hvem kan jeg spørre/ringe?» (svar + «Vil du ha lenker?» med knappene Ja/Nei), «Hva kan du gjøre/hjelpe med?» (intro + meny), «Hva tenker du på i dag?», «Hva skal du i dag?», «Hatt en fin dag?», «Hva synes du om meg?», «Noen andre?», «Var ikke det jeg spurte om» (med lenke til tilbakemelding), «Var ikke akutt» (rolig svar), «Har du noen gøye ideer?».
+- Negasjon: «Jeg har ikke hatt en fin dag», «ikke bra», «ikke så godt» osv. gir trøstesvaret, ikke «Supert!».
+- Cat regner med tallord 0–20 («fem pluss fem») og forstår «Nytt kast» / «Kast igjen».
+- Kallenavn: «Bytt kallenavn til …», «Kallenavnet mitt er …». Listen `BADW` i `bot.js` (ca. 40 ord) blokkerer grove ord, også med tall og gjentatte bokstaver. Legg til flere ord der ved behov. Meldinger med disse ordene lagres ikke. Sier barnet «Det var mitt ekte navn», glemmer Cat navnet og ber om et kallenavn. Ved nytt kallenavn minner Cat om å ikke bruke ekte navn.
+- «Slett denne samtalen», «Tøm chatten», «Start på nytt» m.fl. sletter samtalen.
+- Når Cat nettopp har sagt «Her bruker vi snille ord», svarer hun lekent på «Jo du er» / «Nei du» (6 svar), og tar pause etter tre runder. Cat sier aldri at noen er dumme, og bruker ikke ordene dum/teit/idiot i egne svar.
+- «Jeg er dum»/«Jeg er teit» (om seg selv) gir et snilt svar. Lagres ikke.
+- Tunge svar (lagres ikke, svarer uten pause): «Jeg vil ikke ha diabetes» og lignende, og «Jeg liker ikke diabetesteamet mitt» og lignende. Begge bør leses av diabetessykepleier eller psykolog før merkingen «Ikke godkjent av helsepersonell ennå» fjernes.
+- Pumpa/sensoren funker ikke (utsagn, ikke spørsmål): Cat henviser til manualen (valgt pumpe/sensor i Min profil, ellers knapp til Manualer) og diabetesteamet. Ingen doseråd.
+- Skole: «Læreren vil ikke gi meg pause» gir et mykt svar uten påstander om rettigheter, og knapp til Skole og barnehage. `rettigheter/index.html` har fått `id="skole"` på den overskriften. Svaret «Hva må skolen vite?» lenker dit.
+- Ikke endret: diabetessvarene, QA-listen (111) og akutt-/farevarslene.
