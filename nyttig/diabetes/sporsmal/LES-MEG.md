@@ -114,4 +114,5 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - «en voksen du stoler på» er byttet til «en du stoler på» overalt.
 - Bør leses av diabetessykepleier/psykolog: NYDIAG, FARLIG, LAGTM, LEGGM, VENNM, bading-tekstene og «Jeg skammer meg»/«Ingen forstår meg».
 - «Hvilken pumpe bruker jeg?» svarer: «Jeg har registrert at du bruker … Stemmer det?» (fra Min profil).
+- «Jeg hater deg» får et snilt svar og en oppfølging (ja/nei/forklaring/unnskyld), lagres ikke. «Hvorfor er du usikker?», «Hva kan de/diabetesteamet hjelpe med?» og «Hva er insulin?» har egne svar.
 - sw.js er satt til diabetes-v92.
