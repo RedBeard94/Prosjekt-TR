@@ -1,3 +1,4 @@
+/* © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no · Alle rettigheter forbeholdt. */
 /* Min profil: viser, endrer, flytter og sletter det som er lagret på denne enheten (localStorage).
    Brukes av Diabetes og Diabetes enkel (norsk og engelsk). Ingenting sendes til noen server. */
 (function () {

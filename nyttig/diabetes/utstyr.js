@@ -1,3 +1,4 @@
+/* © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no · Alle rettigheter forbeholdt. */
 /* Ditt utstyr: velg pumpe og sensor. Lagres bare på denne enheten (localStorage). Deles med Manualer. */
 (function () {
   var EN = document.documentElement.lang === 'en';

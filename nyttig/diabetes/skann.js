@@ -1,3 +1,4 @@
+/* © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no · Alle rettigheter forbeholdt. */
 /* Skann strekkode på tallerkenen.
    - Kameraet leser strekkoden på telefonen din. Ingen bilder lagres eller sendes.
    - Varen slås opp i Reinertsengruppen sin mattabell (mattabell.js). Oppslaget skjer på enheten.

@@ -1,3 +1,4 @@
+/* © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no · Alle rettigheter forbeholdt. */
 /* Spørsmålsbot for diabetessidene (Reinertsengruppen).
    Alt som hører til boten ligger i denne mappen: /nyttig/diabetes/sporsmal/
    Slett mappen (og linjen som laster bot.js, hvis den er lagt inn) for å fjerne boten helt.
@@ -260,7 +261,8 @@ var BADW=["penis","pikk","kuk","fitte","fitta","tiss","ræv","rasshøl","dritt",
 function hasBad(raw){var s=String(raw).toLowerCase().replace(/[0@]/g,"o").replace(/[1!|]/g,"i").replace(/3/g,"e").replace(/4/g,"a").replace(/[5$]/g,"s");
  function cl(x){return x.replace(/(.)\1+/g,"$1")}
  var tk=s.split(/[^a-zæøå]+/).filter(Boolean);
- for(var i=0;i<tk.length;i++){var c=cl(tk[i]);for(var k=0;k<BADW.length;k++){var w=cl(BADW[k]);if(w.length>=5?c.indexOf(w)>-1:c===w)return true}}
+ for(var i=0;i<tk.length;i++){var c=cl(tk[i]);for(var k=0;k<BADW.length;k++){var w=cl(BADW[k]);if(w.length>=5?c.indexOf(w)>-1:c===w)return true}
+  if(/kuk|faen/.test(c)||/fuck|shit|bitch/.test(tk[i]))return true}
  return false;}
 var BADNICK="Det navnet passer ikke her 😅 Prøv noe gøy i stedet, som Superstjerne, Turbo eller Pizzabiten.";
 var EKTE="Du burde ikke bruke det ekte navnet ditt her. Har du ikke et gøy kallenavn jeg kan bruke? Kanskje Superstjerne, Turbo eller Pizzabiten? Jeg har glemt det navnet nå.";
@@ -272,6 +274,10 @@ var HVEM_NEI="Greit! Skriv «Hva kan jeg spørre om?» hvis du vil ha dem senere
 var DU_ER=["Jeg er Cat, en tegnet figur som prøver å hjelpe deg. Jeg er bare en svarbot, men jeg gjør mitt beste. 🥰","Hehe, jeg tar det som en kompliment! Spør meg om noe gøy i stedet.","Du, jeg har ikke hender, så jeg kan ikke slåss. Skal jeg fortelle en vits i stedet?","Vi kan krangle hele dagen. Jeg vinner uansett, for jeg har ingen følelser å såre. 😄","Du er faktisk ganske morsom. Hva lurer du på?","Hmm, den tar jeg med meg! Men nå vil jeg heller kaste en terning. Prøv: Terning?"];
 var DU_PAUSE="Nå tar jeg en pause fra dette. Skriv «Hva kan jeg spørre om?» når du vil ha noe gøy.";
 var INSN=0;
+var ROS=["Wow, så flink du er! Det krever mot, og du klarte det. 🥰","Det er en stor ting å gjøre selv. Jeg er imponert!","Bra jobba! Hver gang du gjør det, blir du litt flinkere.","Du er sterk og modig. Fortell det gjerne til en voksen også, så kan de juble sammen med deg. 🥰","Hurra for deg! Du tok ansvar for diabetesen din i dag. Det er stort!"];
+var FAKTA=["Visste du at type 1-diabetes ikke smitter? Du har ikke fått det av mat eller sukker. Det er ingen sin skyld.","Visste du at insulin lages i bukspyttkjertelen? Ved type 1-diabetes lager den lite eller ingen insulin. Derfor får du insulin fra pumpa eller pennen.","Visste du at insulin er som en nøkkel? Den åpner dørene til cellene dine, så sukkeret kan komme inn og gi deg energi.","Visste du at sensoren ikke måler i selve blodet? Den måler sukker i væsken rett under huden.","Visste du at pumpa gir deg litt insulin hele døgnet? Den jobber også mens du sover.","Visste du at hjernen din bruker sukker som drivstoff? Den får det hele tiden fra blodet.","Visste du at over 25 000 personer i Norge har type 1-diabetes? Du er ikke alene.","Visste du at insulin ikke kan være en tablett? Mavesyren ødelegger det. Derfor får du det under huden."];
+function fakta(){sag(nxt("fakta",FAKTA)+" Vil du høre en til?","fakta");}
+var FAKTA_NEI="Greit! Skriv «Visste du at?» når du vil høre flere.";
 var T3=["vil ikke ha diabetes","hater diabetes","lei av diabetes","gidder ikke ha diabetes","hvorfor fikk jeg diabetes","hvorfor meg"];
 var T3A="Det er lov å ikke ville ha diabetes. Mange synes det er slitsomt av og til. Du har ikke gjort noe galt. Du er ikke alene. Snakk med en voksen du stoler på. Det kan være mamma, pappa eller diabetesteamet. Jeg er bare en svarbot, så en voksen kan hjelpe deg mye bedre enn meg. Er det veldig tungt, kan du ringe 116 111. Det er Alarmtelefonen for barn og unge.";
 var T4W=["diabetesteamet","diabetesteamet mitt","teamet","sykepleieren","diabetessykepleieren","legen","doktoren","fastlegen"];
@@ -322,6 +328,9 @@ function tidlig(raw,t,sp){var n=nw(t);
  if(/^ *hva tenker du på( i dag| nå| akkurat nå)? *$/.test(t)){sag("Jeg tenker på vitser og tall. Og på hva du lurer på. Hva tenker du på?",null);SP="fritt";return true}
  if(/^ *hva (skal|gjør|driver) du( gjøre| med)? i dag *$/.test(t)||/^ *hva skal du i dag *$/.test(t)){sag(nxt("idag",IDAG),null);return true}
  if(/^ *(har du )?hatt en (fin|god|bra) dag *$/.test(t)){sag(nxt("hv",HVORDAN));return true}
+ if(n<=12&&!hw(t,["ikke","aldri"])&&((hw(t,["selv"])&&hw(t,["byttet","bytta","skiftet","satt","satte","tapet","tapa","teipet","teipa","festet","festa","kittet","kitta","klistret","limt","limte","tok","tatt","målte","målt","stakk","stukket"])&&hw(t,["sensor","sensoren","pumpe","pumpa","pumpen","kanyle","kanylen","slangen","nålen","blodsukkeret","fingerstikk","fingerstikket","infusjonssettet","setet"]))||hw(t,["gi meg en ros","ros meg","kan jeg få en ros","jeg vil ha en ros","jeg er stolt av meg selv","jeg er stolt"]))){sag(nxt("ros",ROS),null);return true}
+ if((n<=5&&hw(t,["visste du at","visste du","et faktum","fun fact","fortell noe gøy","fortell noe spennende","fortell et faktum","fortell meg et faktum"]))||/^ *fakta *$/.test(t)){fakta();return true}
+ if(sp==="fakta"&&hw(t,["en til","flere","enda en","mer","ny"])){fakta();return true}
  if(n<=7&&hw(t,["hva synes du om meg","hva syntes du om meg","hva tenker du om meg","liker du meg","er jeg flink","er jeg grei","er jeg snill","synes du jeg er flink","synes du jeg er fin","synes du at jeg er flink"])){sag("Jeg synes du er kjempeflink! Du klarer dette kjempebra 🥰",null);return true}
  if(n<=6&&hw(t,["ikke det jeg spurte om","ikke det jeg mente","feil svar","du forstår ikke","forstår du ikke","helt feil","det var feil","ikke riktig svar"])){add("sb-bot",esc("Beklager! Jeg er bare en svarbot og forstår ikke alt. Prøv å skrive spørsmålet på en annen måte. Eller skriv «Hva kan jeg spørre om?».")+FBL());LAST="sag";SP=null;return true}
  if(n<=14&&hw(t,["læreren","lærer","læreren min","assistenten","skolen","sfo","fritidsklubben"])&&hw(t,["vil ikke","får ikke","slipper ikke","ikke lov","nekter","tillater ikke","sier nei","sa nei"])){add("sb-bot",body({q:"",a:SKOLEM,l:["Se Skole og barnehage","/nyttig/diabetes/rettigheter/#skole"]},false));LAST="sag";SP=null;return true}
@@ -395,9 +404,9 @@ function ask0(raw){var t=norm(raw);
  if(!sp&&/^ *((noen )?(andre|flere)( svar)?|noe annet|noen andre svar) *$/.test(t)){pend=soft=null;
   if(last==="qa"&&al.length){add("sb-bot",esc("Her er et annet svar som kan passe:"));show(QA[al[0]]);LAST="qa";ALT=al.slice(1);return}
   sag("Jeg har ikke flere der. Prøv å spørre på en annen måte, eller skriv «Hva kan jeg spørre om?».",null);return}
- if((sp==="vits"||sp==="ide"||sp==="insv")&&nw(t)<=3){
-  if(hw(t,YES)){pend=soft=null;if(sp==="vits"||sp==="insv")vits();else ide();return}
-  if(hw(t,NO)){pend=soft=null;sag(sp==="vits"||sp==="insv"?NOR:IDE_NEI,null);return}}
+ if((sp==="vits"||sp==="ide"||sp==="insv"||sp==="fakta")&&nw(t)<=3){
+  if(hw(t,YES)){pend=soft=null;if(sp==="vits"||sp==="insv")vits();else if(sp==="fakta")fakta();else ide();return}
+  if(hw(t,NO)){pend=soft=null;sag(sp==="vits"||sp==="insv"?NOR:(sp==="fakta"?FAKTA_NEI:IDE_NEI),null);return}}
  if(!pend&&!soft&&last==="qa"&&al.length&&nw(t)<=3){
   if(hw(t,YES.concat(["vet ikke","aner ikke","ingen anelse","usikker","hmm","kanskje","jo"]))){add("sb-bot",esc("Da viser jeg det jeg tror du mente:"));show(QA[al[0]]);LAST="qa";return}
   if(hw(t,NO)){sag("Ok! Prøv å skrive det på en annen måte. Eller skriv «Hva kan jeg spørre om?».",null);return}}

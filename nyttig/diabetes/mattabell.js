@@ -1,3 +1,4 @@
+/* © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no · Alle rettigheter forbeholdt. */
 /* Reinertsengruppen sin mattabell: den godkjente listen over varer, hentet fra vår egen postkasse.
    Brukes av tallerkenen og av «Søk mat». Strekkoden du skanner eller søker etter sendes aldri noe sted.
    Oppslaget skjer på enheten din, i listen som er lastet ned. */

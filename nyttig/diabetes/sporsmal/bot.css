@@ -1,3 +1,4 @@
+/* © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no · Alle rettigheter forbeholdt. */
 /* Utseende for spørsmålsboten. Hører bare til boten i denne mappen. */
 #sb-root{--sb-bg:#fff;--sb-tx:#14213d;--sb-mut:#5b6b85;--sb-ln:#dbe3ef;--sb-ac:#2563eb;--sb-on-ac:#fff;--sb-link:#1d4ed8;--sb-red:#fdecec;--sb-redb:#e08a8a;--sb-redt:#7a1111;--sb-warn:#fff6df;--sb-warnb:#f0cf7a;--sb-warnt:#3b2f06;color-scheme:light}
 #sb-root,#sb-root *{box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:normal;text-transform:none}

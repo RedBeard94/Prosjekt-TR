@@ -92,3 +92,9 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - Pumpa/sensoren funker ikke (utsagn, ikke spørsmål): Cat henviser til manualen (valgt pumpe/sensor i Min profil, ellers knapp til Manualer) og diabetesteamet. Ingen doseråd.
 - Skole: «Læreren vil ikke gi meg pause» gir et mykt svar uten påstander om rettigheter, og knapp til Skole og barnehage. `rettigheter/index.html` har fått `id="skole"` på den overskriften. Svaret «Hva må skolen vite?» lenker dit.
 - Ikke endret: diabetessvarene, QA-listen (111) og akutt-/farevarslene.
+
+## Ros og «Visste du at?» (22. november, kveld)
+- Ros: når barnet skriver at det har gjort noe selv (byttet/satt/tapet/festet sensor, pumpe, kanyle, tok blodsukkeret) eller «Gi meg en ros», «Ros meg», «Jeg er stolt av meg selv», svarer Cat med en av 5 roser (`ROS` i `bot.js`). Rosen gjelder innsatsen. Cat sier aldri at det ble gjort riktig. Meldinger med «ikke»/«aldri» utløser ikke ros.
+- «Visste du at?» / «Fakta» / «Fortell et faktum»: 8 korte fakta (`FAKTA`), tilfeldig rekkefølge, «Vil du høre en til?» med ja/nei.
+- Kilder for faktaene: Diabetesforbundet (type 1 skyldes ikke mat), NHI (bukspyttkjertelen og insulin, hjernen bruker glukose, kunstig bukspyttkjertel), Helsedirektoratet (pumpa gir insulin hver time hele døgnet), Abbott og Dexcom (sensoren måler under huden), sundhed.dk (insulin som nøkkel), lex.dk (insulin kan ikke tas som tablett), Dagbladet/Diabetesforbundet (over 25 000 med type 1 i Norge; Diabetesforbundet oppgir ca. 30 000 i 2019).
+- Faktaene bør leses av diabetessykepleier før merkingen «Ikke godkjent av helsepersonell ennå» fjernes.
