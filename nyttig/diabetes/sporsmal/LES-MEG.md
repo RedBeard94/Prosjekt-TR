@@ -49,3 +49,14 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - Alvorlige ord (`SERS`, `SERW`): svaret kommer med en gang, uten «Cat tenker», uten vits og uten «Fant du ikke svaret?». Teksten (`SER`) nevner 116 111 (Alarmtelefonen for barn og unge), 116 123 (Mental Helse) og 113. Begge numrene er sjekket mot offentlige kilder 22. november 2026. Ordlisten blir aldri perfekt.
 - Kalkulatoren (`calc`) regner + − × ÷ og parenteser, som en vanlig kalkulator. Står det enheter, insulin, dose, bolus, basal eller korreksjon i regnestykket, regner hun ikke, og sender til diabetesteamet. Siden har ingen doseberegner.
 - Disse tekstene bør leses av diabetessykepleier før merkingen «Ikke godkjent av helsepersonell ennå» tas bort, særlig de alvorlige svarene og kalkulator-sperren.
+
+## Cat husker (samtale og kallenavn)
+- Ligger i `bot.js`, øverst i blokken «Cat husker». Alt lagres bare i nettleserens lokale lagring på enheten, aldri på en server.
+- Nøklene heter `mn_cat_samtale` og `mn_cat_kallenavn`. De starter med `mn_`, så «Slett min profil» i Min profil fjerner dem også (profil.js sletter alle nøkler som starter med `mn_`). Fjerner du `mn_` fra navnene, slutter den sletting å virke.
+- Samtalen (maks 60 meldinger, tekst bare) slettes av seg selv 7 dager etter siste bruk (`DAGER`). Kallenavnet blir liggende til barnet sletter det.
+- Slette: skriv «slett samtalen» (kallenavnet blir), «glem kallenavnet» eller «glem alt» (begge deler). Det er ingen knapp, med vilje.
+- Lagres aldri: alvorlige meldinger (`SERS`/`SERW`), og meldinger med «jeg heter», adresse eller telefonnummer (`PRIVW`), og Cats svar på dem.
+- Gamle meldinger vises litt lysere når Cat åpnes igjen, uten lenker og knapper (bare tekst).
+- Kallenavn: «kall meg …» eller «kallenavn». Maks to ord, ingen tall. Cat ber om kallenavn, ikke ekte navn.
+- Latter: «haha», «hehe», «lol», «kult», «morsomt», «den var god» og ler-ansikter gir et vennlig svar og tilbud om en ny vits.
+- Personvern-siden har fått et avsnitt om dette. Teksten bør leses av noen som kjenner personvern for barn før merkingen «Ikke godkjent» fjernes.

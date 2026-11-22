@@ -55,7 +55,7 @@ var QA=[{"g":"Om appen","q":"Hvordan sletter jeg det som er lagret?","k":["slett
 {"g":"Mat","q":"Hva om det ikke står karbohydrater på pakken?","k":["ikke står","står ikke","mangler","ingrediens","ingen tabell"],"a":"Da vet du ikke tallet. Ikke gjett. Søk opp varen, og spør en voksen eller diabetesteamet."},
 {"g":"Mat","q":"Hvorfor gir samme mat ulik kurve?","k":["ulik","kurve","samme mat","hvorfor ulikt","varierer"],"a":"Karbohydrat påvirker mest. Fett, protein og fiber kan gjøre at blodsukkeret stiger senere og lenger. Insulin, aktivitet, stress, sykdom og søvn spiller også inn.","l":["Åpne siden","/nyttig/diabetes/mat-og-blodsukker/"]},
 {"g":"Mat","q":"Hva er en hale?","k":["hale","halen"],"a":"En hale er når blodsukkeret fortsetter å stige eller er høyt i flere timer etter måltidet. Det skjer ofte med mye fett og protein.","l":["Åpne siden","/nyttig/diabetes/mat-og-blodsukker/"]},
-{"g":"Mat","q":"Er noe mat forbudt?","k":["forbudt","lov å spise","får jeg spise","kan jeg spise"],"a":"Nei. Ingen mat er forbudt. Noe mat krever bare mer planlegging, for eksempel pizza, kaker og sjokolade. Snakk med diabetesteamet om hvordan dere gjør det.","l":["Åpne siden","/nyttig/diabetes/mat-og-blodsukker/"]},
+{"g":"Mat","q":"Er noe mat forbudt?","k":["forbudt","lov å spise","får jeg spise","kan jeg spise"],"a":"Ingen mat er forbudt. Noe mat krever bare mer planlegging, for eksempel pizza, kaker, sjokolade og godteri. Snakk med diabetesteamet om hvordan dere gjør det.","l":["Åpne siden","/nyttig/diabetes/mat-og-blodsukker/"]},
 {"g":"Tall og pumpe","q":"Hva betyr trendpilene?","k":["pil","trend","pilen","pilene","piler","trendpil"],"a":"Sensoren viser tallet nå, en pil og en kurve. Pilen viser hvilken vei tallet går, og hvor raskt. Hva du gjør ved hver pil, bestemmer diabetesteamet.","l":["Åpne siden","/nyttig/diabetes/trendpiler/"],"man":1},
 {"g":"Tall og pumpe","q":"Hva er automatikk i pumpen?","k":["automatikk","control-iq","basal-iq","smartguard","closed loop"],"a":"Noen pumper ser hva sensoren tror verdien blir om 30 minutter. Så justerer de insulinet selv. Hvordan det er på din pumpe, står i manualen og hos diabetesteamet.","l":["Åpne siden","/nyttig/diabetes/trendpiler/"],"man":1},
 {"g":"Tall og pumpe","q":"Hva er karbohydratforhold?","k":["karbohydratforhold","1 10","insulin til karbohydrat"],"a":"Et tall fra diabetesteamet. Eksempel: 1 til 10 betyr at én enhet insulin dekker 10 gram karbohydrater. Eksempelet er ikke noens egne tall.","l":["Åpne siden","/nyttig/diabetes/tallene/"]},
@@ -158,7 +158,7 @@ var AV=BASE+"cat.webp",AVT=BASE+"cat-tenker.webp";
 function av(t,c){return '<img class="'+(c||"sb-av")+'" src="'+(t?AVT:AV)+'" alt="" width="32" height="32" decoding="async">'}
 function add(cls,html){var d=document.createElement("div");d.className="sb-m "+cls;d.innerHTML=html;
  if(/^sb-bot/.test(cls)){var r=document.createElement("div");r.className="sb-row";r.innerHTML=av(0);r.appendChild(d);log.appendChild(r)}else log.appendChild(d);
- log.scrollTop=log.scrollHeight;return d;}
+ rec(cls,d);log.scrollTop=log.scrollHeight;return d;}
 /* «Cat tenker …» et lite øyeblikk før svaret kommer */
 var busy=0;function think(fn,ms){var r=document.createElement("div");r.className="sb-row sb-think";r.setAttribute("aria-hidden","true");r.innerHTML=av(1)+'<span>Cat tenker …</span>';log.appendChild(r);log.scrollTop=log.scrollHeight;busy=1;
  setTimeout(function(){r.remove();busy=0;fn()},matchMedia("(prefers-reduced-motion: reduce)").matches?150:(ms||650));}
@@ -211,6 +211,16 @@ function tall(raw){var t=norm(raw),n=num(raw),d=dir(t);
    Småpraten kommer etter de vanlige spørsmålene, så diabetessvarene er de samme som før.
    Unntak: noen få faste fraser som ikke er diabetesspørsmål (vits, terning, kalkulator, hva heter du). */
 var SP=null,SPI=null,BAG={};
+/* ===== Cat husker (bare på denne enheten) =====
+   Samtalen og kallenavnet ligger i nettleserens lokale lagring, aldri på en server.
+   Nøklene starter med mn_, så «Slett min profil» fjerner dem også. Barnet kan også skrive «slett samtalen» til Cat.
+   Samtalen slettes av seg selv 7 dager etter siste bruk. Alvorlige meldinger og navn/adresse/telefon lagres aldri. */
+var K_H="mn_cat_samtale",K_N="mn_cat_kallenavn",DAGER=7,NS=false,REST=false,HIST=[],NICK=null;
+(function(){try{var o=JSON.parse(localStorage.getItem(K_H)||"null");if(o&&o.m&&o.m.length&&Date.now()-o.t<DAGER*864e5)HIST=o.m.slice(-60);else if(o)localStorage.removeItem(K_H);NICK=localStorage.getItem(K_N)||null}catch(e){}})();
+function lagre(){try{if(HIST.length)localStorage.setItem(K_H,JSON.stringify({t:Date.now(),m:HIST}));else localStorage.removeItem(K_H)}catch(e){}}
+function lagreN(){try{if(NICK)localStorage.setItem(K_N,NICK);else localStorage.removeItem(K_N)}catch(e){}}
+function rec(cls,d){if(NS||REST)return;HIST.push([/^sb-me/.test(cls)?"u":"b",d.textContent.slice(0,400)]);if(HIST.length>60)HIST.shift();lagre();}
+
 var SER="Det høres veldig tungt ut. Snakk med en voksen du stoler på nå, med en gang. Har du ingen å snakke med? Barn og unge kan ringe 116 111. Alle kan ringe 116 123. Begge er gratis og åpne hele døgnet. Er det akutt, ring 113.";
 var SERS=["vil ikke leve","vil dø","ta livet","skade meg selv","orker ikke mer","slår meg"];
 var SERW=["redd","mobbet","mobber","ensom"];
@@ -230,6 +240,9 @@ var IDEER=["Tegn en tegning av pumpa og sensoren som er venner. Gi dem hver sin 
 var IDE_SLUTT="Nå er jeg tom for ideer! Du har prøvd alle ti. Du er en ekte ideknuser! Skriv «nye ideer» hvis du vil begynne på nytt.";
 var IDE_NEI="Greit! Ha det gøy med den du valgte.";
 var PRIV="Ikke skriv navn, adresse eller telefonnummer her. Det er privat.";
+var PRIVW=["jeg heter","mitt navn er","adressen min er","jeg bor på","jeg bor i","mitt telefonnummer er","mitt nummer er"];
+var LATTER=["Hehe, glad du likte den! Vil du høre en til?","Haha! Det var en god en. Skal jeg fortelle en til?","Det gjør meg glad! Vil du høre en til?"];
+var EMO=null;try{EMO=new RegExp("\\p{Extended_Pictographic}","u")}catch(e){}
 var HEMM="Det er en hemmelighet! Vil du høre en vits?";
 var REGN_NEI="Jeg er bare en vanlig kalkulator. Jeg regner ikke ut insulin eller doser. Spør diabetesteamet.";
 var GUARD=["insulin","enhet","enheter","dose","doser","bolus","basal","korrigere","korreksjon","ie"];
@@ -243,6 +256,12 @@ function nxt(id,src){var b=BAG[id];if(!b||!b.length){b=shuf(src);BAG[id]=b}retur
 function sag(txt,s){add("sb-bot",esc(txt));SP=s!==undefined?s:(/(vits|den)\?$/.test(txt)?"vits":/\?$/.test(txt)?"fritt":null);}
 function vits(){sag(nxt("vits",JOKES)+" Vil du høre en til?","vits");}
 function ide(){if(SPI===null)SPI=shuf(IDEER);if(!SPI.length){sag(IDE_SLUTT,"slutt");return}var x=SPI.pop();sag(x+(SPI.length?" Vil du ha en annen idé?":""),SPI.length?"ide":"slutt");}
+function priv(raw,t){return /(\d[ -]?){8,}/.test(raw)||hw(t,PRIVW);}
+function risk(raw){return serious(raw)||priv(raw,norm(raw));}
+function okNick(x){return /^[A-Za-zÆØÅæøå][A-Za-zÆØÅæøå\- ]{0,19}$/.test(x)&&x.trim().split(" ").length<=2;}
+function setNick(x){x=x.charAt(0).toUpperCase()+x.slice(1);NICK=x;lagreN();sag("Det blir gøy! Hei, "+x+"! Skriv «glem kallenavnet» hvis du vil bytte.",null);}
+function hei(){return NICK?"Hei, "+NICK+"! Kul at du kom innom.":"Hei! Kul at du kom innom.";}
+function velkommen(){return(NICK?"Hei igjen, "+NICK+"! ":"Hei igjen! ")+"Jeg husker samtalen vår. Skriv «slett samtalen» hvis du vil at jeg skal glemme den.";}
 function serious(raw){var t=norm(raw);return hw(t,SERS)||(nw(t)<=10&&hw(t,SERW));}
 /* Vanlig kalkulator: + − × ÷ og parenteser. Ingen enheter, ingen doser. */
 function calc(raw){
@@ -265,7 +284,11 @@ function calc(raw){
 }
 /* Faste fraser som kommer før diabetessvarene (finnes ikke som diabetesspørsmål) */
 function tidlig(raw,t,sp){var n=nw(t);
- if(/(\d[ -]?){8,}/.test(raw)||hw(t,["jeg heter","mitt navn er","adressen min er","jeg bor på","jeg bor i","mitt telefonnummer er","mitt nummer er"])){sag(PRIV,null);return true}
+ if(priv(raw,t)){sag(PRIV,null);return true}
+ var km=/(?:^|\s)(?:kall|kalle) meg ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim());
+ if(km){if(okNick(km[1]))setNick(km[1]);else sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: kall meg Superstjerne.",null);return true}
+ if(hw(t,["kallenavn","hva kan du kalle meg"])){sag("Hva skal jeg kalle deg? Bruk et kallenavn, ikke ekte navn.","nick");return true}
+ if(hw(t,["hva heter jeg"])){sag(NICK?"Jeg kaller deg "+NICK+".":"Jeg vet ikke hva jeg skal kalle deg. Skriv: kall meg, og så et kallenavn.",null);return true}
  if(hw(t,["hva heter du","hvor gammel er du","hva er navnet ditt","hva heter cat","hvor gammel er cat"])){sag(HEMM,"vits");return true}
  if(hw(t,["nye ideer","begynne på nytt"])){SPI=null;ide();return true}
  if((sp==="ide"||sp==="slutt")&&hw(t,["kjedelig","noe nytt","ny idé","annen idé","en til","nytt","annet"])){ide();return true}
@@ -287,7 +310,8 @@ function sent(raw,t,fritt){var n=nw(t);
  if(!spm&&hw(t,["vær","regn","regner","vind","temperatur","kaldt","varmt"])){add("sb-bot",esc(VAER0));SP=null;think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
  if(hw(t,["ha det","ha det bra","hade","vi snakkes","god natt"])){sag("Ha det! Kom gjerne tilbake.",null);return true}
  if(hw(t,["takk","tusen takk","takk skal du ha"])){sag("Bare hyggelig!",null);return true}
- if(hw(t,["hei","hallo","heisann","hei hei","god morgen","god kveld","god dag","hey"])){sag("Hei! Kul at du kom innom.",null);return true}
+ if(hw(t,["hei","hallo","heisann","hei hei","god morgen","god kveld","god dag","hey"])){sag(hei(),null);return true}
+ if(!spm&&(/(^| )(ha|he|hi){2,}h?( |$)/.test(t)||hw(t,["morsomt","morsom","den var god","god en","kult","wow","tøft","genialt","nice","lol","god vits","bra vits"]))){sag(nxt("latter",LATTER),"vits");return true}
  if(!spm&&hw(t,["dårlig","dårlige","kjip","kjipt","trist","leit","sur","sint","alene","bekymret","ikke bra","ikke så bra","ikke fin","ikke så fin","ikke glad","ikke topp"])){sag(BAD,null);return true}
  if(!spm&&hw(t,["bra","fin","fint","topp","supert","glad","kjempe","kjempebra","fantastisk","herlig","gøy"])){sag(nxt("god",GOOD));return true}
  if(!spm&&hw(t,["kjedelig","noe nytt","ny idé","annen idé"])){ide();return true}
@@ -296,11 +320,16 @@ function sent(raw,t,fritt){var n=nw(t);
  if(hw(t,["vil du være vennen min","vil du være min venn","bli vennen min","bli min venn"])){sag("Så snilt sagt! Jeg er en svarbot, så husk å snakke med vennene dine også.",null);return true}
  if(fritt){sag(nxt("fri",FREE));return true}
  return false;}
-function ask(raw){var t=norm(raw);
+function ask0(raw){var t=norm(raw);
  if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=soft=SP=null;menu();return}
  var d=danger(raw);if(d){pend=soft=SP=null;show(d);return}
  if(serious(raw)){pend=soft=SP=null;add("sb-bot sb-red",esc(SER));return}
+ if(hw(t,["slett samtalen","fjern samtalen","glem samtalen","slett chatten","fjern chatten"])){HIST=[];lagre();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen."+(NICK?" Kallenavnet ditt husker jeg fortsatt.":"")));return}
+ if(hw(t,["glem alt","slett alt","fjern alt"])){HIST=[];NICK=null;lagre();lagreN();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen og kallenavnet. Vil du slette pumpe, sensor og numre? Gå til Min profil."));return}
+ if(hw(t,["glem kallenavnet","slett kallenavnet","fjern kallenavnet"])){NICK=null;lagreN();pend=soft=SP=null;sag("Ferdig! Jeg har glemt kallenavnet ditt.",null);return}
  var sp=SP;SP=null;
+ if(sp==="nick"){var nn=raw.trim();if(okNick(nn)){setNick(nn);return}if(nw(t)<=2){sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: Superstjerne.","nick");return}}
+ if(EMO&&EMO.test(raw)&&!/[A-Za-zÆØÅæøå0-9]/.test(raw)){pend=soft=null;sag(nxt("latter",LATTER),"vits");return}
  if((sp==="vits"||sp==="ide")&&nw(t)<=3){
   if(hw(t,YES)){pend=soft=null;if(sp==="vits")vits();else ide();return}
   if(hw(t,NO)){pend=soft=null;sag(sp==="vits"?NOR:IDE_NEI,null);return}}
@@ -310,6 +339,7 @@ function ask(raw){var t=norm(raw);
  var r=rank(raw);if(!r.length){if(sent(raw,t,sp==="fritt"))return;add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>');return}
  var alt=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return'<button type="button" class="sb-b" data-i="'+x.i+'">Mente du: '+esc(QA[x.i].q)+'</button>'}).join("");
  show(QA[r[0].i],alt?'<div class="sb-g">Mente du noe annet?</div>'+alt:"");}
+function ask(raw){NS=risk(raw);try{ask0(raw)}finally{NS=false}}
 function open(){panel.classList.add("sb-open");bub.style.display="none";inp.focus()}
 function close(){panel.classList.remove("sb-open");bub.style.display="";bub.focus()}
 function build(){
@@ -330,10 +360,11 @@ function build(){
    if(y>ly+6&&y>60)bb.classList.add("sb-hide");else if(y<ly-6||y<=60)bb.classList.remove("sb-hide");ly=y;},{passive:true});}
  log=root.querySelector("#sb-log");panel=root.querySelector("#sb-panel");bub=document.getElementById("sb-bubble");inp=root.querySelector("#sb-q");
  log.addEventListener("click",function(ev){var b=ev.target.closest(".sb-b");if(b&&!busy){var e=QA[+b.getAttribute("data-i")];SP=null;add("sb-me",esc(e.q));think(function(){show(e)})}});
- root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){add("sb-bot","Skriv et spørsmål først");return}if(busy)return;add("sb-me",esc(v));inp.value="";if(danger(v)||lavNaa(v)||serious(v))ask(v);else think(function(){ask(v)})});
+ root.querySelector("#sb-f").addEventListener("submit",function(ev){ev.preventDefault();var v=inp.value.trim();if(!v){NS=true;add("sb-bot","Skriv et spørsmål først");NS=false;return}if(busy)return;NS=risk(v);add("sb-me",esc(v));NS=false;inp.value="";if(danger(v)||lavNaa(v)||serious(v))ask(v);else think(function(){ask(v)})});
  bub.addEventListener("click",open);root.querySelector("#sb-min").addEventListener("click",close);
  panel.addEventListener("keydown",function(ev){if(ev.key==="Escape")close()});
- add("sb-bot",esc(HELLO));
+ if(HIST.length){REST=true;HIST.forEach(function(x){add(x[0]==="u"?"sb-me":"sb-bot",esc(x[1]));log.lastChild.style.opacity=".65"});REST=false;NS=true;add("sb-bot",esc(velkommen()));NS=false}
+ else{NS=true;add("sb-bot",esc(HELLO));NS=false}
  if(/\/sporsmal\/?$/.test(location.pathname)&&window.innerWidth>=700)open();
 }
 window.SVARBOT={QA:QA,MAN:MAN,body:function(e){return body(e,false)},match:match,open:function(){if(root)open()}};
