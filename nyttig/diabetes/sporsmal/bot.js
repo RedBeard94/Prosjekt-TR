@@ -346,7 +346,7 @@ function tidlig(raw,t,sp){var n=nw(t);
  var km=/(?:^|\s)(?:kall|kalle) meg ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim())||/(?:^|\s)(?:bytt|endre|skift|sett)\s+kallenavn(?:et)?(?:\s+mitt)?\s+til\s+([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim())||/(?:^|\s)kallenavnet mitt er ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim());
  if(km){if(hasBad(km[1]))sag(BADNICK,"nick");else if(okNick(km[1]))setNick(km[1]);else sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: kall meg Superstjerne.",null);return true}
  if(hw(t,["kallenavn","hva kan du kalle meg"])){sag("Hva skal jeg kalle deg? Bruk et kallenavn, ikke ekte navn.","nick");return true}
- if(hw(t,["hva heter jeg"])){sag(NICK?"Jeg kaller deg "+NICK+".":"Jeg vet ikke hva jeg skal kalle deg. Skriv: kall meg, og så et kallenavn.",null);return true}
+ if(hw(t,["hva heter jeg","hva er kallenavnet mitt","hva var kallenavnet mitt","hva er kallenavnet mitt igjen","hva kaller du meg","hva kalte jeg meg","husker du kallenavnet mitt","husker du hva jeg heter","husker du hva du kaller meg","hvem er jeg","hva er navnet mitt","hva er mitt kallenavn"])){sag(NICK?"Jeg kaller deg "+NICK+".":"Du har ikke gitt meg et kallenavn ennå. Skriv: kall meg, og så et kallenavn.",null);return true}
  if(n<=5&&hw(t,["hvem er du","hvem er cat","hvem er du egentlig","hvem er det jeg snakker med"])){sag("Jeg er Cat, en veldig snill tegneseriefigur som prøver å hjelpe deg så mye som mulig 🥰",null);return true}
  if(hw(t,["hva heter du","hvor gammel er du","hva er navnet ditt","hva heter cat","hvor gammel er cat"])){sag(HEMM,"vits");return true}
  if(hw(t,["nye ideer","begynne på nytt"])){SPI=null;ide();return true}
