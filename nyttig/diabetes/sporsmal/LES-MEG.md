@@ -67,3 +67,15 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - «Er du sikker?», «Sikker?» og «Sikker på at du ikke vet det?» svarer ut fra det Cat sa sist. Etter et diabetessvar sier Cat at hun ikke er lege. Hun skal aldri bekrefte et diabetessvar med «Helt sikker!».
 - «Ja», «nei», «ok», «greit» og «vet ikke» uten sammenheng gir et vennlig svar (i `sent()`).
 - Svaret på «Er noe mat forbudt?» starter ikke lenger med «Nei» (kunne leses som «du får ikke spise godteri»).
+
+## Nye svar: insulinets historie og superkraft
+- «Når ble insulin funnet?» (gruppe Om diabetes): årstall og navn er sjekket mot Nobelprisen, University of Toronto og Canadian Encyclopedia. Teksten nevner bevisst ikke dyreforsøk eller dødsfall.
+- «Har jeg en superkraft?» (gruppe Støtte): bare en snill, kort tekst uten råd.
+- Begge tekstene bør leses av diabetessykepleier før merkingen «Ikke godkjent av helsepersonell ennå» fjernes.
+- Lista over spørsmål på `sporsmal/index.html` bygges fra `bot.js`, så den siden trenger ingen endring.
+
+## Vitser (30 stk, nye 22. november)
+- Lista `JOKES` i `bot.js` har 30 vitser. 23 er fra «40 barnevennlige diabetesvitser» (med «diabetikere» byttet til «folk med diabetes», og uten «søt»), og 7 er nye i en mer frekk stil for barn og ungdom.
+- Bevisst tatt ut: vitser om godteri og snacks, «det ligger i genene», «gode tall» og «sukkerklump».
+- Vits nr 11 (insulinpennen «stiller alltid opp når du trenger meg») kan leses som at insulin tas når som helst. Be diabetessykepleier vurdere den.
+- Alle vitsene bør leses av diabetessykepleier før merkingen «Ikke godkjent av helsepersonell ennå» fjernes.
