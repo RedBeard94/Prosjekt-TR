@@ -50,7 +50,7 @@ var QA=[{"g":"Om appen","q":"Hvordan sletter jeg det som er lagret?","k":["slett
 {"g":"Hverdag","q":"Hvor ofte skal jeg til kontroll?","k":["kontroll","oppfølging","hvor ofte skal jeg til","time hos legen"],"a":"Vanlig oppfølging er legekontroll hver tredje til fjerde måned, og en årskontroll. Diabetesteamet sier hva som gjelder for deg."},
 {"g":"Hverdag","q":"Hva gjør stress med blodsukkeret?","k":["stress","stresset","nervøs","eksamen"],"a":"Stress kan påvirke blodsukkeret. Oftest går det opp, men hos noen går det ned. Det er ulikt fra person til person. Følg med på sensoren, og snakk med diabetesteamet."},
 {"g":"Hverdag","q":"Hva gjør trening med blodsukkeret?","k":["trening","trene","idrett","gymmen","løpe","aktivitet"],"a":"Trening får oftest blodsukkeret til å gå ned. Hvor mye, er ulikt fra person til person. Er blodsukkeret høyt, kommer det an på hvorfor. Mangler kroppen insulin, kan trening være farlig. Snakk med diabetesteamet om hva du gjør før, under og etter trening."},
-{"g":"Mat","q":"Hvor kommer tallene i Tallerken fra?","k":["matvaretabell","hvor kommer tallene","mattilsyn","hvor har dere tallene"],"a":"Tallene kommer fra Matvaretabellen til Mattilsynet. Tallene er gjennomsnitt. For mat fra pakke er tallet på pakken mer riktig. Det er best å veie maten."},
+{"g":"Mat","q":"Hvor kommer tallene i Tallerken fra?","k":["matvaretabell","hvor kommer tallene","mattilsyn","hvor har dere tallene"],"a":"Tallene kommer fra Matvaretabellen til Mattilsynet. En kopi ligger på vår egen side. Du kan også velge Reinertsengruppen sin mattabell, eller begge, under «Hvor skal jeg lete?» i Søk mat og Tallerken. Tallene er gjennomsnitt. For mat fra pakke er tallet på pakken mer riktig. Det er best å veie maten."},
 {"g":"Mat","q":"Skal jeg legge sammen karbohydrater og sukkerarter?","k":["sukkerart","legge sammen","sukker i tallet"],"a":"Nei. Sukkerarter er en del av tallet for karbohydrat. Bruk bare tallet for karbohydrat."},
 {"g":"Mat","q":"Kan jeg stole på tallene på nett?","k":["stole på tallene","matinfo","feil tall"],"a":"Matinfo har tall fra produsenten. Tall på nett kan være feil. Sjekk alltid mot pakken du har i hånden.","l":["Åpne Søk mat","/nyttig/diabetes/vare/"]},
 {"g":"Mat","q":"Hva om det ikke står karbohydrater på pakken?","k":["ikke står","står ikke","mangler","ingrediens","ingen tabell"],"a":"Da vet du ikke tallet. Ikke gjett. Søk opp varen, og spør en voksen eller diabetesteamet."},
@@ -344,6 +344,28 @@ var T4A="Det er lov å ikke like alt. Kanskje de sa noe som var kjipt, eller kan
 var T5=["jeg er dum","jeg er teit","jeg er dust","jeg er håpløs","jeg kan ingenting","jeg er ikke flink","jeg er ikke god nok","jeg er verst"];
 var T5A="Du er flink, og du gjør så godt du kan. Det er nok. Snakk gjerne med en du stoler på om hvordan du har det. 🥰";
 function tung(raw){var t=norm(raw);if(nw(t)<=12&&hw(t,T3))return T3A;if(nw(t)<=14&&hw(t,T4W)&&hw(t,T4V))return T4A;if(nw(t)<=8&&hw(t,T5))return T5A;return null;}
+/* Karbo i mat: Cat slår opp i Matvaretabellen (kopi på vår side) og Reinertsengruppen sin mattabell, etter valget «Hvor skal jeg lete?» (mn_kilde). */
+function karboQ(t){var m=/^ *(?:hvor (?:mange|mye)(?: gram)? |hva er |mengde )?(?:karbo|karbohydrat|karbohydrater|karbs|carbs|gram karbo)(?: er det| finnes| er| har)?(?: det)? (?:i|på) (?:en |et |ei |ett |1 |100 g |100 gram )?(.+?) *$/.exec(t);
+ if(!m)return null;var w=m[1].trim();if(!w||w.split(" ").length>4||/^(maten|mat|den|det|dette|denne|pakken|pakka|tallerkenen|tallerken|blodet|kroppen|insulin)$/.test(w))return null;return w}
+var MVTD=null;function mvtRows(){if(MVTD)return MVTD;if(typeof fetch!=="function")return Promise.reject(new Error("ingen fetch"));MVTD=fetch("/nyttig/diabetes/matvaretabellen.json").then(function(r){if(!r.ok)throw new Error("http");return r.json()}).then(function(j){return(j&&Array.isArray(j.f)?j.f:[]).filter(function(x){return x&&typeof x[1]==="string"&&typeof x[3]==="number"&&x[3]>=0&&x[3]<=100}).map(function(x){return{n:x[1],c:x[3],s:mnorm(x[1]+" "+(x[5]||"")),k:"mvt"}})}).catch(function(e){MVTD=null;throw e});return MVTD}
+function rgRows(){function ta(){return window.RGMAT.load().then(function(){return RGMAT.rows().map(function(x){return{n:x.name,c:x.carbs,s:mnorm(x.name),k:"rg"}})})}
+ if(window.RGMAT)return Promise.race([ta().catch(function(){return[]}),new Promise(function(ok){setTimeout(function(){ok([])},4000)})]);
+ return new Promise(function(ok){setTimeout(function(){ok([])},4000);var sc=document.createElement("script");sc.src="/nyttig/diabetes/mattabell.js";sc.onload=function(){window.RGMAT?ta().then(ok,function(){ok([])}):ok([])};sc.onerror=function(){ok([])};document.head.appendChild(sc)})}
+function mnorm(x){return String(x).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
+function mfinn(rows,q,max){var ws=mnorm(q).split(/\s+/),res=[];rows.forEach(function(f){var ok=true,sc=0;for(var i=0;i<ws.length;i++){var ix=f.s.indexOf(ws[i]);if(ix<0){ok=false;break}sc+=(ix===0?0:(/[ ,(]/.test(f.s.charAt(ix-1))?1:3))+(/[a-z0-9æøå]/.test(f.s.charAt(ix+ws[i].length))?1:0)}if(ok)res.push([sc+f.n.length/100+(/(^|, )ra( |,|$)/.test(f.s)?-0.6:0)+(/t[oø]rket|hermetisk|syltet|kake|pai|chips|juice|gr[oø]t/.test(f.s)?0.4:0),f])});res.sort(function(a,b){return a[0]-b[0]});return res.slice(0,max).map(function(x){return x[1]})}
+function mkilde(){var v=null;try{v=localStorage.getItem("mn_kilde")}catch(e){}return v==="mvt"||v==="rg"?v:"begge"}
+function karboSvar(w){if(typeof Promise!=="function"){sag("Se i Søk mat for tallene.",null);return}var k=mkilde(),SM=["Åpne Søk mat","/nyttig/diabetes/vare/"];pend=soft=SP=null;LAST="sag";
+ var pa=k==="rg"?Promise.resolve([]):mvtRows().catch(function(){return null}),pb=k==="mvt"?Promise.resolve([]):rgRows();
+ Promise.all([pa,pb]).then(function(r){
+  if(r[0]===null&&!r[1].length){add("sb-bot",esc("Jeg fikk ikke hentet tabellen akkurat nå. Prøv Søk mat.")+body({q:"",a:"",l:SM},false));return}
+  var a=mfinn(r[0]||[],w,3),b=mfinn(r[1],w,2),nbf=function(v){return String(v).replace(".",",")};
+  if(!a.length&&!b.length){add("sb-bot",esc("Jeg fant ikke «"+w+"» i "+(k==="mvt"?"Matvaretabellen":k==="rg"?"Reinertsengruppen sin mattabell":"tabellene")+". Prøv et annet ord, eller se på pakken.")+body({q:"",a:"",l:SM},false));return}
+  var L=["Dette fant jeg for «"+w+"»:"];
+  a.forEach(function(f){L.push("• "+f.n+": ca. "+nbf(f.c)+" g karbohydrater per 100 g. (Matvaretabellen 2026, Mattilsynet)")});
+  b.forEach(function(f){L.push("• "+f.n+": ca. "+nbf(f.c)+" g karbohydrater per 100 g. (Reinertsengruppen sin mattabell, ikke den offisielle Matvaretabellen)")});
+  if(a.concat(b).some(function(f){return/(^|, )(ra|kokt|stekt)( |,|$)/.test(f.s)}))L.push("Rå og kokt mat har ulike tall. Velg den som passer.");
+  L.push("Tallene er per 100 g, ikke per porsjon. Sjekk alltid pakken. 🍎");
+  add("sb-bot",L.map(esc).join("<br>")+body({q:"",a:"",l:SM},false))})}
 function tryg(raw){var t=norm(raw),n=nw(t),spm=/^ *(hva|hvordan|hvorfor|hvem|hvor|når|hvilken|hvilke|kan|skal|må|er det|finnes)/.test(t),AK=["Åpne Akutt","/nyttig/diabetes/akutt/"];
  if(/^ *(hjelp|hjelp meg|jeg trenger hjelp|trenger hjelp)( nå| med en gang)? *$/.test(t))return{a:HJELPA,l:AK};
  if(n<=25&&hw(t,["lagt inn","la inn","tastet inn","slått inn"])&&hw(t,["orket ikke","orket bare","spiste ikke","spiste bare","spist mindre","spiste mindre","rakk ikke","ikke spist","ikke spise","bare spist","ville ikke spise","orker ikke","fikk ikke i meg","men spiste"]))return{a:LAGTM,l:AK};
@@ -351,9 +373,17 @@ function tryg(raw){var t=norm(raw),n=nw(t),spm=/^ *(hva|hvordan|hvorfor|hvem|hvo
  if(n<=25&&/(^| )\d{1,2}([.,]\d)?( |$)/.test(t)&&hw(t,["legge meg","legger meg","legge seg","legger seg","sove","sover","natta","senga","leggetid","før jeg sover"]))return{a:LEGGM,l:AK};
  if(/^ *(er (det|diabetes) (så )?farlig|hvorfor er diabetes (så )?farlig|er det farlig å ha diabetes|kan man dø av diabetes|kan jeg dø av diabetes|dør man av diabetes|kan en dø av diabetes) *$/.test(t))return{a:FARLIG};
  if(n<=8&&!spm&&hw(t,["fått diabetes","fikk diabetes","diagnostisert","nydiagnostisert","fått diagnosen"])&&hw(t,["jeg","akkurat","akuratt","nettopp","nylig","ble"]))return{a:NYDIAG};
+ if(n<=8&&!/^ *(hva|hvorfor|hvordan) /.test(t)&&hw(t,["skjelven","skjelver","rister","dirrer"]))return{a:"Skjelven kan bety lavt blodsukker. Si fra til en voksen nå, og mål blodsukkeret. Følg planen fra diabetesteamet. 💛",l:AK};
+ if(n<=10&&/okklusjon|okklusion|blokkering|tett slange|slangen er tett/.test(t)){var oc=chosen();return oc.length?{a:"Si fra til en voksen nå. Se i manualen hva meldingen betyr.",m:oc}:{a:"Si fra til en voksen nå. Se i manualen hva meldingen betyr.",l:["Åpne Manualer","/nyttig/diabetes/manualer/"]}}
+ if(n<=8&&hw(t,["sulten","tørst","trøtt"])&&hw(t,["høy","høyt","lav","lavt"]))return{a:"Si fra til en voksen, og følg planen din. Du kan skrive tallet her hvis du vil."};
  if(!spm&&n<=5&&/^ *(jeg )?(er |føler meg |føler )?(veldig |kjempe |så )?(sulten|tørst|trøtt|sliten|småsulten)( nå| i dag| litt)? *$/.test(t))return{a:SULT};
  if(!spm&&n<=7&&hw(t,["vondt i magen","vondt i hodet","kvalm","uvel","kvalme"]))return{a:MAGE,l:AK};
  if(n<=6&&hw(t,["ingen forstår meg","ingen forstår","ingen skjønner meg","ingen skjønner"]))return{a:FORSTAR};
+ if(n<=6&&hw(t,["jeg er lei meg","er lei meg","jeg er trist","er trist","jeg er så lei meg","jeg gråter"]))return{a:"Det er leit at du er lei deg. 💛 Vil du fortelle hva som skjedde? Snakk gjerne med en du stoler på."};
+ if(n<=8&&hw(t,["erter meg","ertet meg","mobber meg","jeg blir mobbet","blir mobbet","blir ertet","jeg blir ertet","de ler av meg","ler av meg"]))return{a:"Det er ikke greit at noen erter deg. 💛 Du har ikke gjort noe galt. Si fra til en du stoler på, for eksempel læreren eller foreldrene dine."};
+ if(n<=8&&hw(t,["gruer meg","gruer meg til skolen","gruer meg til å gå på skolen"]))return{a:"Det er lov å grue seg. 💛 Snakk med en du stoler på om hva du gruer deg til. Læreren og diabetesteamet kan hjelpe.",l:["Åpne Skole","/nyttig/diabetes/rettigheter/#skole"]};
+ if(n<=6&&hw(t,["savner pappa","savner mamma","savner mor","savner far","savner bestemor","savner bestefar","savner noen"]))return{a:"Det er vondt å savne noen. 💛 Kanskje du kan ringe eller sende en melding? Snakk gjerne med en du stoler på."};
+ if(n<=8&&hw(t,["blir jeg frisk","går diabetes over","går det over","blir jeg kvitt diabetes","kan diabetes forsvinne","forsvinner diabetes","kan man bli frisk av diabetes","blir man frisk"]))return{a:"Type 1-diabetes går ikke over. Men du kan leve et godt liv og gjøre det du liker. 💛 Forskere jobber hele tiden med nye ting. Spør diabetesteamet hvis du lurer."};
  if(n<=6&&hw(t,["jeg skammer meg","skammer meg"]))return{a:SKAM};
  if(n<=9&&hw(t,["alle ser på meg","alle stirrer på meg","de stirrer på meg","alle glor på meg"]))return{a:SEER};
  if(n<=8&&hw(t,["vondt å stikke","vondt når jeg stikker","vondt når jeg måler","hater å stikke","hater å stikke meg","gjør vondt å stikke","vondt å måle"]))return{a:STIKK};
@@ -440,6 +470,18 @@ function tidlig(raw,t,sp){var n=nw(t);
   if(!pn&&!sn){sag("Jeg har ikke registrert noe utstyr ennå. Velg pumpe og sensor under Min profil, så husker jeg det.",null);return true}
   sag("Jeg har registrert at du bruker "+(pn?pn+" som pumpe":"")+(pn&&sn?" og ":"")+(sn?sn+" som sensor":"")+". Stemmer det? Hvis ikke, bytt under Min profil.",null);return true}
  if(/^ *(hva er |hva er det |hva betyr )?insulin *$/.test(t)){sag("Insulin er noe kroppen trenger for å bruke sukker som energi. Ved type 1-diabetes lager ikke kroppen det selv. Derfor får du insulin med pumpe eller sprøyte. Diabetesteamet kan forklare mer.",null);return true}
+ var kq=karboQ(t);if(kq){karboSvar(kq);return true}
+ if(n<=8&&hw(t,["hvor lenge varer sensoren","hvor lenge varer en sensor","hvor lenge holder sensoren","hvor lenge kan jeg ha sensoren","hvor mange dager varer sensoren"])){var si=[];try{var sv=localStorage.getItem("mn_sen");if(sv&&MAN[sv])si=[sv]}catch(e){}add("sb-bot",body(si.length?{q:"",a:"Det er ulikt fra sensor til sensor. Se i manualen din.",m:si}:{q:"",a:"Det er ulikt fra sensor til sensor. Se i manualen din.",l:["Åpne Manualer","/nyttig/diabetes/manualer/"]},false));LAST="sag";SP=null;return true}
+ if(n<=8&&(/hovedstad|mount everest|hvor høy er|hvor stor er|hvem var den første|hvem oppfant|hvor mange land|hva heter kongen|hvem er kongen|hvem er statsministeren|hvor langt er det til/.test(t))){sag("Jeg kan mest om diabetes. 📚 Spør en voksen, eller slå opp i et leksikon!",null);return true}
+ if(n<=5&&hw(t,["hva skal vi gjøre","hva kan vi gjøre","hva skal vi finne på","jeg kjeder meg","kjeder meg"])&&!/^ *(jeg )?kjeder meg/.test(t)){sag("Vi kan ta en vits, en gåte eller et faktum! Hva vil du? 😄",null);return true}
+ if(n<=8&&hw(t,["fotball","håndball","turn","svømmetrening","trening i dag","på trening"])&&(/^ *(kan jeg|får jeg|må jeg)/.test(t)||/^ *(jeg )?skal /.test(t))){sag("Så gøy! ⚽ Mange med diabetes spiller fotball og trener. Snakk med en voksen om planen din før trening.",null);return true}
+ if(n<=4&&hw(t,["hva liker du","hva liker du å gjøre","hva er hobbyen din"])){sag("Jeg liker gode spørsmål, vitser og gåter! 😄 Hva liker du?",null);return true}
+ if(n<=5&&hw(t,["har du kjæledyr","har du et kjæledyr","har du en katt","har du hund","har du en hund"])){sag("Nei, men jeg skulle gjerne hatt en tegnet katt! 🐱 Har du et kjæledyr?",null);return true}
+ if(n<=4&&hw(t,["liker du katter","liker du katt","liker du dyr"])){sag("Ja! Jeg heter jo Cat. 🐱",null);return true}
+ if(n<=5&&hw(t,["vits om katter","vits om katt","kattevits","en kattevits"])){sag("Hva sier katten når den har vondt? Mjau-au! 🐱 Vil du høre en til?","vits");return true}
+ if(n<=5&&/stein[ ,]+saks|saks[ ,]+papir/.test(t)){var rps=["stein! 🪨","saks! ✂️","papir! 📄"];sag("Jeg velger … "+rps[Math.floor(Math.random()*3)]+" Hva valgte du?",null);return true}
+ if(n<=4&&hw(t,["kan vi leke","skal vi leke","kan du spille","vil du leke","skal vi spille","kan vi spille"])){sag("Ja! Vil du ha en gåte eller en vits?",null);return true}
+ if(n<=4&&hw(t,["du er rar","du er teit","du er sær"])){sag("Takk! Rar er bra. 😄",null);return true}
  if(n<=5&&hw(t,["jeg hater deg","hater deg","jeg liker deg ikke","liker deg ikke"])){sag(HATER,"hat");return true}
  if(n<=6&&hw(t,["hvorfor er du usikker","hvorfor vet du ikke","hvorfor svarer du ikke","hvorfor kan du ikke svare","hvorfor vet du ikke det"])){sag(HVORFORU,null);return true}
  if(n<=8&&hw(t,["hva kan de hjelpe med","hva kan diabetesteamet hjelpe med","hva gjør diabetesteamet","hvem er diabetesteamet","hva er diabetesteamet","hva hjelper diabetesteamet med","hva kan teamet hjelpe med"])){sag(TEAMM,null);return true}
@@ -494,13 +536,14 @@ function sent(raw,t,fritt){var n=nw(t);
  if(fritt){sag(nxt("fri",FREE));return true}
  return false;}
 function ask0(raw){var t=norm(raw);var kn=KN;KN=false;
+ if(!/[A-Za-zÆØÅæøå0-9]/.test(raw)&&/^[\s?!.]+$/.test(raw)){pend=soft=SP=null;sag("Hmm? Skriv spørsmålet med ord, så prøver jeg. Eller skriv: Hva kan jeg spørre om?",null);return}
  if(nw(t)<=10&&/^ *(hvem kan jeg (spørre|spør|ringe|snakke med|få hjelp av)|er det noen jeg kan (ringe|spørre|snakke med)|noen jeg kan (ringe|spørre|snakke med)|hvem kan hjelpe( meg)?)/.test(t)){pend=soft=null;LAST="sag";add("sb-bot",esc(HVEM)+HVEM_B);SP="lenker";return}
  if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=soft=SP=null;menu();return}
  if(/^ *(nei )?(det )?(var|er) ikke akutt *$|^ *ikke akutt *$/.test(t)){pend=soft=null;sag("Så bra at det ikke er akutt! Hva lurer du på? Eller skriv «Hva kan jeg spørre om?».",null);return}
  var d=danger(raw);if(d){pend=soft=SP=null;show(d);return}
  if(serious(raw)){pend=soft=SP=null;add("sb-bot sb-red",esc(SER));return}
  var tg=tung(raw);if(tg){pend=soft=SP=null;LAST="sag";add("sb-bot",esc(tg));return}
- var ty=tryg(raw);if(ty){pend=soft=SP=null;LAST="sag";add("sb-bot",body({q:"",a:ty.a,l:ty.l},false));return}
+ var ty=tryg(raw);if(ty){pend=soft=SP=null;LAST="sag";add("sb-bot",body({q:"",a:ty.a,l:ty.l,m:ty.m},false));return}
  if(hw(t,["slett samtalen","fjern samtalen","glem samtalen","slett chatten","fjern chatten","slett denne samtalen","fjern denne samtalen","slett denne chatten","fjern denne chatten","tøm chatten","tøm samtalen","start på nytt","slett alt vi har skrevet","slett alt jeg har skrevet","glem det vi har sagt","glem det jeg har skrevet","glem alt vi har sagt","glem alt jeg har sagt"])){HIST=[];lagre();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen."+(NICK?" Kallenavnet ditt husker jeg fortsatt.":"")));KN=!!NICK;return}
  if(hw(t,["glem alt","slett alt","fjern alt"])){HIST=[];NICK=null;lagre();lagreN();pend=soft=SP=null;log.innerHTML="";NS=true;add("sb-bot",esc("Ferdig! Jeg har glemt samtalen og kallenavnet. Vil du slette pumpe, sensor og numre? Gå til Min profil."));return}
  if(hw(t,["glem kallenavnet","slett kallenavnet","fjern kallenavnet"])){NICK=null;lagreN();pend=soft=SP=null;sag("Ferdig! Jeg har glemt kallenavnet ditt.",null);return}

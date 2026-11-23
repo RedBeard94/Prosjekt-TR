@@ -1,7 +1,7 @@
 /* © 2026 Reinertsengruppen · Thomas Reinertsen · reinertsengruppen.no · Alle rettigheter forbeholdt. */
 /* Enkel service worker for Diabetes-sidene: lagrer siden og filene på telefonen, så den åpner uten nett. */
-var CACHE = 'diabetes-enkel-v39';
-var FILES = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-192.png", "icon-maskable-512.png", "apple-touch-icon.png", "enkel.js", "/nyttig/diabetes/utstyr.js", "tallerken/index.html", "innstillinger/index.html", "trendpiler/index.html", "tallene/index.html", "akutt/index.html", "vis-til-voksen/index.html", "quiz/index.html", "vare/index.html", "mat-og-blodsukker/index.html", "../../fonts/manrope-latin-200-normal.woff2", "../../fonts/manrope-latin-400-normal.woff2", "../../fonts/manrope-latin-600-normal.woff2", "../../fonts/manrope-latin-800-normal.woff2", "profil/index.html", "/nyttig/diabetes/profil.js", "/nyttig/diabetes/qrcode.min.js", "/nyttig/diabetes/mattabell.js", "/nyttig/diabetes/skann.js"];
+var CACHE = 'diabetes-enkel-v40';
+var FILES = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable-192.png", "icon-maskable-512.png", "apple-touch-icon.png", "enkel.js", "/nyttig/diabetes/utstyr.js", "tallerken/index.html", "innstillinger/index.html", "trendpiler/index.html", "tallene/index.html", "akutt/index.html", "vis-til-voksen/index.html", "quiz/index.html", "vare/index.html", "mat-og-blodsukker/index.html", "../../fonts/manrope-latin-200-normal.woff2", "../../fonts/manrope-latin-400-normal.woff2", "../../fonts/manrope-latin-600-normal.woff2", "../../fonts/manrope-latin-800-normal.woff2", "profil/index.html", "/nyttig/diabetes/profil.js", "/nyttig/diabetes/qrcode.min.js", "/nyttig/diabetes/mattabell.js", "/nyttig/diabetes/matvaretabellen.js", "/nyttig/diabetes/matvaretabellen.json", "/nyttig/diabetes/skann.js"];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
 });
@@ -14,7 +14,7 @@ self.addEventListener('fetch', function (e) {
   var r = e.request;
   if (r.method !== 'GET' || new URL(r.url).origin !== location.origin) return;
   if (/\.mp4(\?|$)/.test(r.url)) return; /* video: la nettleseren hente selv */
-  if (r.mode === 'navigate' || /\.js(\?|$)/.test(r.url)) {
+  if (r.mode === 'navigate' || /\.js(\?|$)|matvaretabellen\.json/.test(r.url)) {
     /* Sider og skriptfiler (.js): prøv nettet først, så du får siste versjon. Uten nett brukes den lagrede. */
     e.respondWith(fetch(r).then(function (res) {
       if (res.ok) { var copy = res.clone(); caches.open(CACHE).then(function (c) { c.put(r, copy); }); } return res;
