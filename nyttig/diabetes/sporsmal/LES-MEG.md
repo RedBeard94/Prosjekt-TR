@@ -126,3 +126,8 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - Matvaretabellen: kopien ligger i `/nyttig/diabetes/matvaretabellen.json` (navn, engelsk navn, karbo per 100 g, porsjoner, søkeord). Kilde: «Matvaretabellen 2026. Mattilsynet. www.matvaretabellen.no» (NLOD 2.0). Laget fra Mattilsynet sine åpne data på GitHub (mattilsynet/matvaretabellen-deux, mappe data/). Bør oppdateres hver 2. måned.
 - Valget «Hvor skal jeg lete?» (begge / bare Matvaretabellen / bare Reinertsengruppen) ligger i `/nyttig/diabetes/matvaretabellen.js` og lagres som `mn_kilde`. Brukes av Søk mat, Tallerken og Cat.
 - Tallerken henter ikke lenger fra matvaretabellen.no. Personvern er oppdatert.
+
+## Flere måter å spørre om karbo (23. november, ettermiddag)
+- Cat forstår nå blant annet: «Hvor mange karbohydrater i sjokolade?», «Hvor mange KH i et eple?», «KH i banan», «banan kh», «karbo pizza», «Hvor mye er det i melkesjokolade?», «Hva inneholder pizza?».
+- Skriver barnet bare et matord (for eksempel «melkesjokolade»), og ingen andre svar passer, leter Cat i tabellene. Finnes ikke ordet, kommer «Jeg er usikker» som før.
+- Søket i Tallerken, Søk mat og Cat sorterer nå «Eple, …» foran «Eplemos» og «Ris, …» foran «Rismel». Tørket, hermetisk, kake og lignende kommer lenger ned. Navnene fra Matvaretabellen er ikke endret.

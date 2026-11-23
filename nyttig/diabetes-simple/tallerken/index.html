@@ -485,7 +485,7 @@ h1{font-size:clamp(2.1rem,9vw,2.6rem)}
   }
   function rank(list,ws,bonus){
     var res=[];
-    list.forEach(function(x){var ok=true,sc=0;for(var i=0;i<ws.length;i++){var ix=x.s.indexOf(ws[i]);if(ix<0){ok=false;break;}sc+=(ix===0?0:(x.s.charAt(ix-1)===' '?1:3));}if(ok)res.push([sc+x.name.length/100-(bonus&&x.mine?.5:0),x]);});
+    list.forEach(function(x){var ok=true,sc=0;for(var i=0;i<ws.length;i++){var ix=x.s.indexOf(ws[i]);if(ix<0){ok=false;break;}sc+=(ix===0?0:(x.s.charAt(ix-1)===' '?1:3))+(/[a-z0-9æøå]/.test(x.s.charAt(ix+ws[i].length))?1:0)-(ix===0&&ws.length===1&&/^(,|$)/.test(x.s.charAt(ix+ws[i].length))?0.3:0);}if(ok)res.push([sc+x.name.length/100+(/t[oø]rket|hermetisk|syltet|kake|pai|chips|juice|gr[oø]t|dried|canned|jam|jelly|pie|cake/.test(x.s)?0.4:0)-(bonus&&x.mine?.5:0),x]);});
     res.sort(function(a,b){return a[0]-b[0];}); return res.map(function(r){return r[1];});
   }
   function matches(q){

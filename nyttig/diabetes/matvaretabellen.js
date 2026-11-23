@@ -60,7 +60,7 @@
         var ix = f.s.indexOf(ws[i]);
         if (ix < 0) { ok = false; break; }
         var after = f.s.charAt(ix + ws[i].length);
-        score += (ix === 0 ? 0 : (/[ ,(]/.test(f.s.charAt(ix - 1)) ? 1 : 3)) + (/[a-z0-9æøå]/.test(after) ? 1 : 0);
+        score += (ix === 0 ? 0 : (/[ ,(]/.test(f.s.charAt(ix - 1)) ? 1 : 3)) + (/[a-z0-9æøå]/.test(after) ? 1 : 0) - (ix === 0 && ws.length === 1 && (after === ',' || after === '') ? 0.3 : 0);
       }
       if (ok) res.push([score + f.name.length / 100 + (/t[oø]rket|hermetisk|syltet|kake|pai|chips|juice|gr[oø]t|dried|canned|jam|jelly|juice|pie|cake/.test(f.s) ? 0.4 : 0), f]);
     }

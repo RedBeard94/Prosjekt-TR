@@ -345,20 +345,30 @@ var T5=["jeg er dum","jeg er teit","jeg er dust","jeg er håpløs","jeg kan inge
 var T5A="Du er flink, og du gjør så godt du kan. Det er nok. Snakk gjerne med en du stoler på om hvordan du har det. 🥰";
 function tung(raw){var t=norm(raw);if(nw(t)<=12&&hw(t,T3))return T3A;if(nw(t)<=14&&hw(t,T4W)&&hw(t,T4V))return T4A;if(nw(t)<=8&&hw(t,T5))return T5A;return null;}
 /* Karbo i mat: Cat slår opp i Matvaretabellen (kopi på vår side) og Reinertsengruppen sin mattabell, etter valget «Hvor skal jeg lete?» (mn_kilde). */
-function karboQ(t){var m=/^ *(?:hvor (?:mange|mye)(?: gram)? |hva er |mengde )?(?:karbo|karbohydrat|karbohydrater|karbs|carbs|gram karbo)(?: er det| finnes| er| har)?(?: det)? (?:i|på) (?:en |et |ei |ett |1 |100 g |100 gram )?(.+?) *$/.exec(t);
- if(!m)return null;var w=m[1].trim();if(!w||w.split(" ").length>4||/^(maten|mat|den|det|dette|denne|pakken|pakka|tallerkenen|tallerken|blodet|kroppen|insulin)$/.test(w))return null;return w}
+function karboQ(t){t=t.replace(/\s+/g," ").trim();
+ var K="(?:karbo|karbohydrat|karbohydrater|karbs|carbs|kh|gram karbo|gram karbohydrater|gram kh)",A="(?:en |et |ei |ett |1 |100 g |100 gram |ei skive |en skive |en bit |en pakke )?",X="(.+?)",P=[
+ "^(?:hvor (?:mange|mye)(?: gram)? |hva er |mengde )?"+K+"(?: er det| finnes| er| har det| har)?(?: det)? (?:i|på) "+A+X+"$",
+ "^hvor (?:mange|mye)(?: gram)? "+K+" (?:har|inneholder|er det i) "+A+X+"$",
+ "^hvor mye (?:er det i|er det på|inneholder) "+A+X+"$",
+ "^hva inneholder "+A+X+"$",
+ "^"+K+" "+A+X+"$",
+ "^"+A+X+" (?:har hvor (?:mange|mye) |hvor (?:mange|mye) )?"+K+"$"];
+ for(var i=0;i<P.length;i++){var m=new RegExp(P[i]).exec(t);if(m){var w=m[1].trim();
+  if(!w||w.split(" ").length>4||/^(maten|mat|den|det|dette|denne|pakke|pakken|pakka|porsjon|porsjonen|boks|glass|skive|skiva|bit|tallerkenen|tallerken|blodet|kroppen|insulin|pumpa|pumpen|sensoren|meg|deg)$/.test(w)||/(^| )(per|porsjon|stykk)( |$)/.test(w))return null;return w}}
+ return null}
 var MVTD=null;function mvtRows(){if(MVTD)return MVTD;if(typeof fetch!=="function")return Promise.reject(new Error("ingen fetch"));MVTD=fetch("/nyttig/diabetes/matvaretabellen.json").then(function(r){if(!r.ok)throw new Error("http");return r.json()}).then(function(j){return(j&&Array.isArray(j.f)?j.f:[]).filter(function(x){return x&&typeof x[1]==="string"&&typeof x[3]==="number"&&x[3]>=0&&x[3]<=100}).map(function(x){return{n:x[1],c:x[3],s:mnorm(x[1]+" "+(x[5]||"")),k:"mvt"}})}).catch(function(e){MVTD=null;throw e});return MVTD}
 function rgRows(){function ta(){return window.RGMAT.load().then(function(){return RGMAT.rows().map(function(x){return{n:x.name,c:x.carbs,s:mnorm(x.name),k:"rg"}})})}
  if(window.RGMAT)return Promise.race([ta().catch(function(){return[]}),new Promise(function(ok){setTimeout(function(){ok([])},4000)})]);
  return new Promise(function(ok){setTimeout(function(){ok([])},4000);var sc=document.createElement("script");sc.src="/nyttig/diabetes/mattabell.js";sc.onload=function(){window.RGMAT?ta().then(ok,function(){ok([])}):ok([])};sc.onerror=function(){ok([])};document.head.appendChild(sc)})}
 function mnorm(x){return String(x).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
-function mfinn(rows,q,max){var ws=mnorm(q).split(/\s+/),res=[];rows.forEach(function(f){var ok=true,sc=0;for(var i=0;i<ws.length;i++){var ix=f.s.indexOf(ws[i]);if(ix<0){ok=false;break}sc+=(ix===0?0:(/[ ,(]/.test(f.s.charAt(ix-1))?1:3))+(/[a-z0-9æøå]/.test(f.s.charAt(ix+ws[i].length))?1:0)}if(ok)res.push([sc+f.n.length/100+(/(^|, )ra( |,|$)/.test(f.s)?-0.6:0)+(/t[oø]rket|hermetisk|syltet|kake|pai|chips|juice|gr[oø]t/.test(f.s)?0.4:0),f])});res.sort(function(a,b){return a[0]-b[0]});return res.slice(0,max).map(function(x){return x[1]})}
+function mfinn(rows,q,max){var ws=mnorm(q).split(/\s+/),res=[];rows.forEach(function(f){var ok=true,sc=0;for(var i=0;i<ws.length;i++){var ix=f.s.indexOf(ws[i]);if(ix<0){ok=false;break}sc+=(ix===0?0:(/[ ,(]/.test(f.s.charAt(ix-1))?1:3))+(/[a-z0-9æøå]/.test(f.s.charAt(ix+ws[i].length))?1:0)-(ix===0&&ws.length===1&&/^(,|$)/.test(f.s.charAt(ix+ws[i].length))?0.3:0)}if(ok)res.push([sc+f.n.length/100+(/(^|, )ra( |,|$)/.test(f.s)?-0.6:0)+(/t[oø]rket|hermetisk|syltet|kake|pai|chips|juice|gr[oø]t/.test(f.s)?0.4:0),f])});res.sort(function(a,b){return a[0]-b[0]});return res.slice(0,max).map(function(x){return x[1]})}
 function mkilde(){var v=null;try{v=localStorage.getItem("mn_kilde")}catch(e){}return v==="mvt"||v==="rg"?v:"begge"}
-function karboSvar(w){if(typeof Promise!=="function"){sag("Se i Søk mat for tallene.",null);return}var k=mkilde(),SM=["Åpne Søk mat","/nyttig/diabetes/vare/"];pend=soft=SP=null;LAST="sag";
+function karboSvar(w,none){if(typeof Promise!=="function"){if(none){none();return}sag("Se i Søk mat for tallene.",null);return}var k=mkilde(),SM=["Åpne Søk mat","/nyttig/diabetes/vare/"];pend=soft=SP=null;LAST="sag";
  var pa=k==="rg"?Promise.resolve([]):mvtRows().catch(function(){return null}),pb=k==="mvt"?Promise.resolve([]):rgRows();
  Promise.all([pa,pb]).then(function(r){
   if(r[0]===null&&!r[1].length){add("sb-bot",esc("Jeg fikk ikke hentet tabellen akkurat nå. Prøv Søk mat.")+body({q:"",a:"",l:SM},false));return}
   var a=mfinn(r[0]||[],w,3),b=mfinn(r[1],w,2),nbf=function(v){return String(v).replace(".",",")};
+  if(none&&!a.length&&!b.length){none();return}
   if(!a.length&&!b.length){add("sb-bot",esc("Jeg fant ikke «"+w+"» i "+(k==="mvt"?"Matvaretabellen":k==="rg"?"Reinertsengruppen sin mattabell":"tabellene")+". Prøv et annet ord, eller se på pakken.")+body({q:"",a:"",l:SM},false));return}
   var L=["Dette fant jeg for «"+w+"»:"];
   a.forEach(function(f){L.push("• "+f.n+": ca. "+nbf(f.c)+" g karbohydrater per 100 g. (Matvaretabellen 2026, Mattilsynet)")});
@@ -493,7 +503,7 @@ function tidlig(raw,t,sp){var n=nw(t);
   else if(LK==="sag")sag("Så sikker en svarbot kan bli! Spør en voksen hvis du er i tvil.",null);
   else sag("Sikker på hva? Spør meg om noe først. Så sier jeg om jeg er sikker!",null);
   return true}
- var km=/(?:^|\s)(?:kall|kalle) meg ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim())||/(?:^|\s)(?:bytt|endre|skift|sett)\s+kallenavn(?:et)?(?:\s+mitt)?\s+til\s+([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim())||/(?:^|\s)kallenavnet mitt er ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim());
+ var km=/(?:^|\s)(?:kall|kalle|kal) (?:meg|med|mæ) ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim())||/(?:^|\s)(?:bytt|endre|skift|sett)\s+kallenavn(?:et)?(?:\s+mitt)?\s+til\s+([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim())||/(?:^|\s)kallenavnet mitt er ([^\s?!.,]+(?: [^\s?!.,]+)?)\s*[?!.]*$/i.exec(raw.trim());
  if(km){if(hasBad(km[1]))sag(BADNICK,"nick");else if(okNick(km[1]))setNick(km[1]);else sag("Prøv et kortere kallenavn, uten tall. Skriv for eksempel: kall meg Superstjerne.",null);return true}
  if(hw(t,["kallenavn","hva kan du kalle meg"])){sag("Hva skal jeg kalle deg? Bruk et kallenavn, ikke ekte navn.","nick");return true}
  if(hw(t,["hva heter jeg","hva er kallenavnet mitt","hva var kallenavnet mitt","hva er kallenavnet mitt igjen","hva kaller du meg","hva kalte jeg meg","husker du kallenavnet mitt","husker du hva jeg heter","husker du hva du kaller meg","hvem er jeg","hva er navnet mitt","hva er mitt kallenavn"])){sag(NICK?"Jeg kaller deg "+NICK+".":"Du har ikke gitt meg et kallenavn ennå. Skriv: kall meg, og så et kallenavn.",null);return true}
@@ -579,7 +589,7 @@ function ask0(raw){var t=norm(raw);var kn=KN;KN=false;
  var c=calc(raw);if(c){pend=soft=null;LAST="calc";add("sb-bot",esc(c));return}
  if(tidlig(raw,t,sp)){pend=soft=null;return}
  if(tall(raw)){LAST="qa";return}soft=null;
- var r=rank(raw);if(!r.length){if(sent(raw,t,sp==="fritt"))return;add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>');return}
+ var r=rank(raw);if(!r.length){if(sent(raw,t,sp==="fritt"))return;var nf=function(){add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>')};var mw=t.trim();if(nw(t)<=3&&mw.length>=3&&!/\d/.test(mw)&&!/^(hva|hvordan|hvorfor|hvem|hvor|når|kan|skal|er|jeg|du|vi)( |$)/.test(mw)){karboSvar(mw,nf);return}nf();return}
  var alt=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return'<button type="button" class="sb-b" data-i="'+x.i+'">Mente du: '+esc(QA[x.i].q)+'</button>'}).join("");
  LAST="qa";ALT=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return x.i});
  show(QA[r[0].i],alt?'<div class="sb-g">Mente du noe annet?</div>'+alt:"");}
