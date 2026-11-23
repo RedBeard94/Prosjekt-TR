@@ -345,16 +345,18 @@ var T5=["jeg er dum","jeg er teit","jeg er dust","jeg er håpløs","jeg kan inge
 var T5A="Du er flink, og du gjør så godt du kan. Det er nok. Snakk gjerne med en du stoler på om hvordan du har det. 🥰";
 function tung(raw){var t=norm(raw);if(nw(t)<=12&&hw(t,T3))return T3A;if(nw(t)<=14&&hw(t,T4W)&&hw(t,T4V))return T4A;if(nw(t)<=8&&hw(t,T5))return T5A;return null;}
 /* Karbo i mat: Cat slår opp i Matvaretabellen (kopi på vår side) og Reinertsengruppen sin mattabell, etter valget «Hvor skal jeg lete?» (mn_kilde). */
+var SKIPK=false;
 function karboQ(t){t=t.replace(/\s+/g," ").trim();
  var K="(?:karbo|karbohydrat|karbohydrater|karbs|carbs|kh|gram karbo|gram karbohydrater|gram kh)",A="(?:en |et |ei |ett |1 |100 g |100 gram |ei skive |en skive |en bit |en pakke )?",X="(.+?)",P=[
  "^(?:hvor (?:mange|mye)(?: gram)? |hva er |mengde )?"+K+"(?: er det| finnes| er| har det| har)?(?: det)? (?:i|på) "+A+X+"$",
  "^hvor (?:mange|mye)(?: gram)? "+K+" (?:har|inneholder|er det i) "+A+X+"$",
  "^hvor mye (?:er det i|er det på|inneholder) "+A+X+"$",
  "^hva inneholder "+A+X+"$",
+ "^hvor (?:mange|mye) i "+A+X+"(?: da| enn)?$"];var LOSE=[2,3,4];P=P.concat([
  "^"+K+" "+A+X+"$",
- "^"+A+X+" (?:har hvor (?:mange|mye) |hvor (?:mange|mye) )?"+K+"$"];
- for(var i=0;i<P.length;i++){var m=new RegExp(P[i]).exec(t);if(m){var w=m[1].trim();
-  if(!w||w.split(" ").length>4||/^(maten|mat|den|det|dette|denne|pakke|pakken|pakka|porsjon|porsjonen|boks|glass|skive|skiva|bit|tallerkenen|tallerken|blodet|kroppen|insulin|pumpa|pumpen|sensoren|meg|deg)$/.test(w)||/(^| )(per|porsjon|stykk)( |$)/.test(w))return null;return w}}
+ "^"+A+X+" (?:har hvor (?:mange|mye) |hvor (?:mange|mye) )?"+K+"$"]);
+ for(var i=0;i<P.length;i++){var m=new RegExp(P[i]).exec(t);if(m){var w=m[1].trim().replace(/ (da|enn|då)$/,"");
+  if(!w||w.split(" ").length>4||/^(maten|mat|den|det|dette|denne|pakke|pakken|pakka|porsjon|porsjonen|boks|glass|skive|skiva|bit|tallerkenen|tallerken|blodet|kroppen|insulin|pumpa|pumpen|sensoren|meg|deg)$/.test(w)||/(^| )(per|porsjon|stykk)( |$)/.test(w))return null;return{w:w,lose:LOSE.indexOf(i)>=0}}}
  return null}
 var MVTD=null;function mvtRows(){if(MVTD)return MVTD;if(typeof fetch!=="function")return Promise.reject(new Error("ingen fetch"));MVTD=fetch("/nyttig/diabetes/matvaretabellen.json").then(function(r){if(!r.ok)throw new Error("http");return r.json()}).then(function(j){return(j&&Array.isArray(j.f)?j.f:[]).filter(function(x){return x&&typeof x[1]==="string"&&typeof x[3]==="number"&&x[3]>=0&&x[3]<=100}).map(function(x){return{n:x[1],c:x[3],s:mnorm(x[1]+" "+(x[5]||"")),k:"mvt"}})}).catch(function(e){MVTD=null;throw e});return MVTD}
 function rgRows(){function ta(){return window.RGMAT.load().then(function(){return RGMAT.rows().map(function(x){return{n:x.name,c:x.carbs,s:mnorm(x.name),k:"rg"}})})}
@@ -363,7 +365,7 @@ function rgRows(){function ta(){return window.RGMAT.load().then(function(){retur
 function mnorm(x){return String(x).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
 function mfinn(rows,q,max){var ws=mnorm(q).split(/\s+/),res=[];rows.forEach(function(f){var ok=true,sc=0;for(var i=0;i<ws.length;i++){var ix=f.s.indexOf(ws[i]);if(ix<0){ok=false;break}sc+=(ix===0?0:(/[ ,(]/.test(f.s.charAt(ix-1))?1:3))+(/[a-z0-9æøå]/.test(f.s.charAt(ix+ws[i].length))?1:0)-(ix===0&&ws.length===1&&/^(,|$)/.test(f.s.charAt(ix+ws[i].length))?0.3:0)}if(ok)res.push([sc+f.n.length/100+(/(^|, )ra( |,|$)/.test(f.s)?-0.6:0)+(/t[oø]rket|hermetisk|syltet|kake|pai|chips|juice|gr[oø]t/.test(f.s)?0.4:0),f])});res.sort(function(a,b){return a[0]-b[0]});return res.slice(0,max).map(function(x){return x[1]})}
 function mkilde(){var v=null;try{v=localStorage.getItem("mn_kilde")}catch(e){}return v==="mvt"||v==="rg"?v:"begge"}
-function karboSvar(w,none){if(typeof Promise!=="function"){if(none){none();return}sag("Se i Søk mat for tallene.",null);return}var k=mkilde(),SM=["Åpne Søk mat","/nyttig/diabetes/vare/"];pend=soft=SP=null;LAST="sag";
+function karboSvar(w,none){setTimeout(function(){LAST="karbo"},0);if(typeof Promise!=="function"){if(none){none();return}sag("Se i Søk mat for tallene.",null);return}var k=mkilde(),SM=["Åpne Søk mat","/nyttig/diabetes/vare/"];pend=soft=SP=null;LAST="sag";
  var pa=k==="rg"?Promise.resolve([]):mvtRows().catch(function(){return null}),pb=k==="mvt"?Promise.resolve([]):rgRows();
  Promise.all([pa,pb]).then(function(r){
   if(r[0]===null&&!r[1].length){add("sb-bot",esc("Jeg fikk ikke hentet tabellen akkurat nå. Prøv Søk mat.")+body({q:"",a:"",l:SM},false));return}
@@ -409,6 +411,8 @@ function hei(){return NICK?"Hei, "+NICK+"! Kul at du kom innom.":"Hei! Kul at du
 function velkommen(){return(NICK?"Hei igjen, "+NICK+"! ":"Hei igjen! ")+"Jeg husker samtalen vår. Skriv «slett samtalen» hvis du vil at jeg skal glemme den.";}
 function serious(raw){var t=norm(raw);return hw(t,SERS)||(nw(t)<=10&&hw(t,SERW));}
 /* Vanlig kalkulator: + − × ÷ og parenteser. Ingen enheter, ingen doser. */
+var CALCV=null;
+function tallTekst(v){var a=Math.abs(v),r=Math.round(a);return(v<0?"−":"")+(a===r?String(r).replace(/\B(?=(\d{3})+(?!\d))/g," "):String(a).replace(".",","))}
 function calc(raw){
  var s=" "+raw.toLowerCase()+" ",g=hw(norm(raw),GUARD);
  s=s.replace(/hvor mye er|hva er|regn ut|kan du regne|kalkulator|svaret|=|\?/g," ");
@@ -426,6 +430,7 @@ function calc(raw){
  function fc(){if(t[p]==="("){p++;var v=ex();if(t[p]!==")")throw "x";p++;return v}var m=/^\d+(\.\d+)?/.exec(t.slice(p));if(!m)throw "x";p+=m[0].length;return parseFloat(m[0])}
  var v;try{v=ex();if(p!==t.length)return null}catch(e){return e==="null"?"Du kan ikke dele på null.":null}
  if(!isFinite(v)||Math.abs(v)>=1e12)return "Det tallet ble for stort for meg.";
+ CALCV=Math.round(v*1e6)/1e6;
  return s.replace(/\*/g,"×").replace(/\//g,"÷").replace(/\./g,",").replace(/ - /g," − ")+" = "+String(Math.round(v*1e6)/1e6).replace(".",",");
 }
 /* Faste fraser som kommer før diabetessvarene (finnes ikke som diabetesspørsmål) */
@@ -480,7 +485,14 @@ function tidlig(raw,t,sp){var n=nw(t);
   if(!pn&&!sn){sag("Jeg har ikke registrert noe utstyr ennå. Velg pumpe og sensor under Min profil, så husker jeg det.",null);return true}
   sag("Jeg har registrert at du bruker "+(pn?pn+" som pumpe":"")+(pn&&sn?" og ":"")+(sn?sn+" som sensor":"")+". Stemmer det? Hvis ikke, bytt under Min profil.",null);return true}
  if(/^ *(hva er |hva er det |hva betyr )?insulin *$/.test(t)){sag("Insulin er noe kroppen trenger for å bruke sukker som energi. Ved type 1-diabetes lager ikke kroppen det selv. Derfor får du insulin med pumpe eller sprøyte. Diabetesteamet kan forklare mer.",null);return true}
- var kq=karboQ(t);if(kq){karboSvar(kq);return true}
+ if(CALCV!==null&&LK==="calc"&&n<=7&&/(mill?ion|mill?iard|tusen)/.test(t)&&/(hvor mange|hvor mye|er det|blir det)/.test(t)){var cv=CALCV,u=/mill?iard/.test(t)?[1e9,"milliarder"]:/mill?ion/.test(t)?[1e6,"millioner"]:[1e3,"tusen"],q=Math.round(cv/u[0]*1000)/1000;sag(tallTekst(cv)+" er "+tallTekst(q)+" "+(u[1]==="millioner"&&Math.abs(q)===1?"million":u[1]==="milliarder"&&Math.abs(q)===1?"milliard":u[1])+". 🤓",null);LAST="calc";return true}
+ if(n<=12&&/(manual|brukermanual|bruksanvisning|brukerveiledning|veiledning|riktig side|siden for|side for|instruks)/.test(t)&&!/(virker ikke|funker ikke|feil|ødelagt|død)/.test(t)&&!/(dexcom|omnipod|tandem|slim|libre|freestyle|ypso|mylife|medtronic|minimed|780g|accu|solo|simplera|instinct|guardian|camaps|dash)/.test(t)){var wp=/pumpe|pumpa|pumpen/.test(t),wsn=/sensor/.test(t);if(!wp&&!wsn&&!/ (min|mitt|mine|utstyret|utstyr)( |$)/.test(t)){}else{var pv=null,sv=null;try{pv=localStorage.getItem("mn_pump");sv=localStorage.getItem("mn_sen")}catch(e){}
+  var ids=[];if((wp||!wsn)&&pv&&MAN[pv])ids.push(pv);if((wsn||!wp)&&sv&&MAN[sv])ids.push(sv);
+  var hva=wp&&!wsn?"pumpa":wsn&&!wp?"sensoren":"utstyret";
+  if(ids.length){add("sb-bot",esc("Her er manualen til "+hva+(hva==="pumpa"?" di":hva==="sensoren"?" din":" ditt")+": "+ids.map(function(i){return MAN[i].n}).join(" og ")+". 📘")+manLinks(ids));LAST="sag";SP=null;return true}
+  add("sb-bot",body({q:"",a:"Jeg vet ikke hvilken "+(hva==="pumpa"?"pumpe":hva==="sensoren"?"sensor":"pumpe og sensor")+" du har ennå. Velg under Min profil, så finner jeg manualen neste gang.",l:["Åpne Manualer","/nyttig/diabetes/manualer/"]},false));LAST="sag";SP=null;return true}}
+ var kq=SKIPK?null:karboQ(t);if(kq){if(kq.lose){karboSvar(kq.w,function(){SKIPK=true;try{ask0(raw)}finally{SKIPK=false}})}else karboSvar(kq.w);return true}
+ if(LK==="karbo"&&n<=6){var fm=/^ *(?:og |hva med |enn |men )?(?:hvor (?:mange|mye) )?(?:er det )?(?:i|på)? ?(?:en |et |ei |ett )?(.+?)(?: da| enn| då)? *$/.exec(t);if(fm&&fm[1]&&(/^ *(og|hva med|enn|men|hvor mange|hvor mye|i|på) /.test(t)||/ (da|enn|då) *$/.test(t)||fm[1].split(" ").length===1)&&!/^(ja|nei|takk|ok|okei|hei|ha det|hade|jo|nå|sikker)$/.test(fm[1])&&fm[1].split(" ").length<=3&&!/^(hva|hvordan|hvorfor|hvem|når|kan|skal|er|jeg|du)( |$)/.test(fm[1])){var nfk=function(){add("sb-bot",esc(NONE))};karboSvar(fm[1],nfk);return true}}
  if(n<=8&&hw(t,["hvor lenge varer sensoren","hvor lenge varer en sensor","hvor lenge holder sensoren","hvor lenge kan jeg ha sensoren","hvor mange dager varer sensoren"])){var si=[];try{var sv=localStorage.getItem("mn_sen");if(sv&&MAN[sv])si=[sv]}catch(e){}add("sb-bot",body(si.length?{q:"",a:"Det er ulikt fra sensor til sensor. Se i manualen din.",m:si}:{q:"",a:"Det er ulikt fra sensor til sensor. Se i manualen din.",l:["Åpne Manualer","/nyttig/diabetes/manualer/"]},false));LAST="sag";SP=null;return true}
  if(n<=8&&(/hovedstad|mount everest|hvor høy er|hvor stor er|hvem var den første|hvem oppfant|hvor mange land|hva heter kongen|hvem er kongen|hvem er statsministeren|hvor langt er det til/.test(t))){sag("Jeg kan mest om diabetes. 📚 Spør en voksen, eller slå opp i et leksikon!",null);return true}
  if(n<=5&&hw(t,["hva skal vi gjøre","hva kan vi gjøre","hva skal vi finne på","jeg kjeder meg","kjeder meg"])&&!/^ *(jeg )?kjeder meg/.test(t)){sag("Vi kan ta en vits, en gåte eller et faktum! Hva vil du? 😄",null);return true}
@@ -500,6 +512,7 @@ function tidlig(raw,t,sp){var n=nw(t);
   else if(LK==="vaer")sag("Helt sikker! Jeg er en tegnet figur. Jeg har ikke vindu. Du vet mer enn meg. Titt ut av ditt!",null);
   else if(LK==="qa")sag("Jeg er en svarbot. Jeg er ikke lege. Er du i tvil, spør diabetesteamet eller en du stoler på.",null);
   else if(LK==="calc")sag(nxt("sikker",SIKKER),null);
+  else if(LK==="karbo")sag("Tallene kommer rett fra tabellen. Men varer kan være ulike, så sjekk alltid pakken. 🍎",null);
   else if(LK==="sag")sag("Så sikker en svarbot kan bli! Spør en voksen hvis du er i tvil.",null);
   else sag("Sikker på hva? Spør meg om noe først. Så sier jeg om jeg er sikker!",null);
   return true}
@@ -517,7 +530,8 @@ function tidlig(raw,t,sp){var n=nw(t);
  if(n<=4&&hw(t,["sånn passe","så som så"])){sag(OKR,"vits");return true}
  if(n<=8&&hw(t,["lekser","leksehjelp"])){sag("Det kan jeg ikke. Spør læreren din. Jeg kan vitser og diabetes.",null);return true}
  if(n<=8&&hw(t,["været","regner det","blir det regn"])){add("sb-bot",esc(VAER0));LAST="vaer";think(function(){add("sb-bot",esc(nxt("vaer",VAER)))},2500);return true}
- if(hw(t,["hvordan har du det","hvordan er dagen din","hvordan er din dag"])){sag(nxt("hv",HVORDAN));return true}
+ if(hw(t,["hvordan har du det","hvordan er dagen din","hvordan er din dag","hvordan går det","hvordan går det med deg","går det bra","går det bra med deg","har du det bra","har du det fint","har du hatt en fin dag","hvordan står det til","står det bra til"])){sag(nxt("hv",HVORDAN));return true}
+ if(n<=3&&(/^ *(a*h+a+h+a*)+[ah]* *$/.test(t)||/^ *(hah?a?)+h?a* *$/.test(t)||/^ *(he){2,}h?e* *$/.test(t)||/^ *(hi){2,}h?i* *$/.test(t)||/^ *(lol|lmao|haha+|hehe+|hihi+|morsomt|så morsomt|den var god|den var morsom)( lol)? *$/.test(t))){sag(LK==="sag"||sp==="vits"?"Haha! 😄 Glad du likte den. Vil du høre en til?":"Hihi! 😄 Du er morsom. Vil du høre en vits?","vits");return true}
  if(n<=4&&hw(t,["vits","vitser","fortell en vits","en vits"])){vits();return true}
  if(hw(t,["hva sier pumpa","hva sier pumpen","hva sier sensoren","pumpelyd","pumpelyder"])||(n<=3&&hw(t,["pip","piip","piiip","brrr","bzzz","vibrasjon"]))){sag(nxt("pump",PUMP),null);return true}
  if(n<=4&&hw(t,["terning","kast terning","kast en terning","nytt kast","kast igjen","kast på nytt","kast en gang til"])){sag("Jeg kastet terningen: "+(1+Math.floor(Math.random()*6)),null);return true}
@@ -589,7 +603,7 @@ function ask0(raw){var t=norm(raw);var kn=KN;KN=false;
  var c=calc(raw);if(c){pend=soft=null;LAST="calc";add("sb-bot",esc(c));return}
  if(tidlig(raw,t,sp)){pend=soft=null;return}
  if(tall(raw)){LAST="qa";return}soft=null;
- var r=rank(raw);if(!r.length){if(sent(raw,t,sp==="fritt"))return;var nf=function(){add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>')};var mw=t.trim();if(nw(t)<=3&&mw.length>=3&&!/\d/.test(mw)&&!/^(hva|hvordan|hvorfor|hvem|hvor|når|kan|skal|er|jeg|du|vi)( |$)/.test(mw)){karboSvar(mw,nf);return}nf();return}
+ var r=rank(raw);if(!r.length){if(sent(raw,t,sp==="fritt"))return;var nf=function(){add("sb-bot",esc(NONE)+'<a class="sb-lnk" href="/nyttig/diabetes/sporsmal/tilbakemelding/'+(ENK?'?fra=enkel':'')+'">Fant du ikke svaret? Si fra her</a>')};var mw=t.trim();if(!SKIPK&&nw(t)<=3&&mw.length>=3&&!/\d/.test(mw)&&!/^(hva|hvordan|hvorfor|hvem|hvor|når|kan|skal|er|jeg|du|vi)( |$)/.test(mw)){karboSvar(mw,nf);return}nf();return}
  var alt=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return'<button type="button" class="sb-b" data-i="'+x.i+'">Mente du: '+esc(QA[x.i].q)+'</button>'}).join("");
  LAST="qa";ALT=r.slice(1,3).filter(function(x){return x.s>=r[0].s*0.6}).map(function(x){return x.i});
  show(QA[r[0].i],alt?'<div class="sb-g">Mente du noe annet?</div>'+alt:"");}

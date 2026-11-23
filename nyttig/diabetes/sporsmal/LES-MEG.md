@@ -131,3 +131,11 @@ Alt ligger i `bot.js`, rett før `function ask`. Alt er ferdigskrevet. Ingen net
 - Cat forstår nå blant annet: «Hvor mange karbohydrater i sjokolade?», «Hvor mange KH i et eple?», «KH i banan», «banan kh», «karbo pizza», «Hvor mye er det i melkesjokolade?», «Hva inneholder pizza?».
 - Skriver barnet bare et matord (for eksempel «melkesjokolade»), og ingen andre svar passer, leter Cat i tabellene. Finnes ikke ordet, kommer «Jeg er usikker» som før.
 - Søket i Tallerken, Søk mat og Cat sorterer nå «Eple, …» foran «Eplemos» og «Ris, …» foran «Rismel». Tørket, hermetisk, kake og lignende kommer lenger ned. Navnene fra Matvaretabellen er ikke endret.
+
+## Manualer, millioner, oppfølging og småprat (23. november, kveld)
+- «Kan du finne brukermanual for pumpen min?» / «riktig side for sensor» / «Hvor er manualen min?» viser manualen til valgt pumpe og/eller sensor fra Min profil. Uten valg: knapp til Manualer.
+- Etter et regnestykke: «Hvor mange millioner/tusen/milliarder er det?» (også «milioner»). Cat husker svaret så lenge man spør videre.
+- Etter et matsvar: «i melk da?», «I sjokolade?», «Hvor mange i eple?», «Sikker?» forstås.
+- «Hvordan går det?», «Har du det bra?», «Går det bra?» får samme svar som «Hvordan har du det?».
+- Latter («haha», «ahhhahaa», «hehe», «lol», «Den var morsom») får et lekent svar og tilbud om ny vits.
+- «Kall med …» og «Kal meg …» (skrivefeil) virker som «Kall meg …».
