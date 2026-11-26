@@ -174,20 +174,94 @@
 
 <!--hl--><link rel="canonical" href="https://reinertsengruppen.no/nyttig/diabetes/akutt/"><link rel="alternate" hreflang="no" href="https://reinertsengruppen.no/nyttig/diabetes/akutt/"><link rel="alternate" hreflang="en" href="https://reinertsengruppen.no/nyttig/diabetes/en/akutt/"><link rel="alternate" hreflang="x-default" href="https://reinertsengruppen.no/nyttig/diabetes/akutt/"><!--/hl-->
 <style>
-.ak .ring{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100%;min-height:76px;border:0;border-radius:20px;background:#b91c1c;color:#fff;font:800 1.25rem Manrope,system-ui;cursor:pointer;box-shadow:0 6px 18px rgba(185,28,28,.35);touch-action:manipulation;-webkit-user-select:none;user-select:none;margin:14px 0 0}
-.ak .ring .fl{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,255,255,.28)}.ak .ring span{position:relative;text-align:center}.ak .ring small{display:block;font-weight:600;font-size:.82rem;opacity:.95}
-.ak .tg{display:flex;gap:10px;margin:24px 0 8px}.ak .tg button{flex:1;min-height:58px;border-radius:16px;border:2px solid #cbd5e1;background:#fff;font:800 1.05rem Manrope,system-ui;color:#334155;cursor:pointer}
-.ak .tg button[aria-pressed=true].lo{background:#dc2626;border-color:#dc2626;color:#fff}.ak .tg button[aria-pressed=true].hi{background:#ea580c;border-color:#ea580c;color:#fff}
-.ak .cd{background:#fff;border-radius:22px;padding:18px 16px;margin:14px 0;box-shadow:0 6px 20px rgba(15,23,42,.10)}.ak .cd.red{border:2px solid #fca5a5;background:#fff8f8}.ak .cd.or{border:2px solid #fdba74;background:#fff9f3}
-.ak .cd h2{margin:0 0 12px;font-size:1.12rem;line-height:1.25}.ak .nn{display:block;border:2px solid #e3eaf5;border-radius:14px;padding:10px 12px;margin:0 0 8px;text-decoration:none;color:inherit;background:#f9fbff}.ak .nn b{display:block}.ak .nn span{color:#5b6b82;font-size:.92rem}
-.ak .st{display:flex;gap:12px;align-items:flex-start;margin:0 0 14px}.ak .st:last-child{margin-bottom:0}
-.ak .n{flex:none;width:44px;height:44px;border-radius:50%;background:#dc2626;color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.3rem;box-shadow:0 3px 8px rgba(220,38,38,.35)}.ak .n.or{background:#ea580c;box-shadow:0 3px 8px rgba(234,88,12,.35)}
-.ak .st b{display:block;font-size:1.05rem;line-height:1.3;margin-top:2px}.ak .st p{margin:4px 0 0;color:#334155;line-height:1.4;font-size:.95rem}.ak .st ul{margin:6px 0 0;padding-left:18px;color:#334155;line-height:1.5;font-size:.95rem}
+
+
+
+
+
+.ak .nn{display:block;border:2px solid #e3eaf5;border-radius:14px;padding:10px 12px;margin:0 0 8px;text-decoration:none;color:inherit;background:#f9fbff}.ak .nn b{display:block}.ak .nn span{color:#5b6b82;font-size:.92rem}
+
+
+
 .ak .kil{margin:18px 6px 0;font-size:.85rem;color:#475569}.ak .kil h2{font-size:.78rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;margin:0 0 6px}.ak .kil ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}.ak .kil a{color:#1d4ed8;font-weight:600}
 .ak .sm{font-size:.82rem;color:#475569;text-align:center;line-height:1.4;margin:14px 6px 0}.ak [hidden]{display:none!important}
-.ov{position:fixed;inset:0;z-index:50;background:#7f1d1d;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:14px}.ov[hidden]{display:none}.ov h2{margin:0;font-size:1.4rem;font-weight:800}.ov .cnt{font-size:6.5rem;font-weight:800;line-height:1}.ov p{margin:0;max-width:320px;font-size:1.05rem;line-height:1.4}.ov .sm{font-size:.92rem;opacity:.9}
-.ov button{font:inherit;font-weight:800;border:0;border-radius:18px;min-height:64px;width:min(320px,100%);font-size:1.2rem;cursor:pointer}.ov .av{background:#fff;color:#7f1d1d}.ov .nu{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7);min-height:52px;font-size:1rem}
-</style><style id="rg-dtopp">@media(max-width:420px){.brand span{display:none}}</style>
+
+
+</style><style id="rg-dtopp">@media(max-width:420px){.brand span{display:none}}/* ===== Akutt (ny 2026-11) ===== */
+.ak .rows{display:grid;grid-template-columns:1fr;gap:10px}
+.ak .row{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px;text-decoration:none;color:var(--fg);min-height:68px;min-width:0}
+.ak .row:hover,.ak .row:focus-visible{border-color:var(--a);outline:none}
+.ak .row .ic{flex:none;width:44px;height:44px;border-radius:13px;display:grid;place-items:center}
+.ak .row .ic svg{width:26px;height:26px}
+.ak .row .ch{flex:none;color:var(--a);font-size:1.6rem;font-weight:800;line-height:1}
+.ak .ring{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;min-height:84px;border:0;border-radius:24px;background:linear-gradient(160deg,#ef4444,#b91c1c);color:#fff;box-shadow:0 10px 26px rgba(185,28,28,.32),inset 0 1px 0 rgba(255,255,255,.25);margin:4px 0 12px;-webkit-tap-highlight-color:transparent}
+.ak .ring:active{transform:scale(.985)}
+.ak .ring:focus-visible{outline:3px solid #fca5a5;outline-offset:3px}
+.ak .ring .ri{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
+.ak .ring .ri svg{width:26px;height:26px}
+.ak .ring .rt{text-align:left;line-height:1.15}
+.ak .ring b{display:block;font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+.ak .ring small{display:block;font-size:.88rem;font-weight:600;opacity:.92;margin-top:3px}
+.ak .vip{margin:0 0 4px}
+.ak .vip .row{min-height:60px}
+.ak .vip .row.ny{border-style:dashed;background:transparent}
+.ak .vip .row.ny .tx b{color:var(--muted)}
+.ak .valg{gap:10px}
+.ak button.row{width:100%;font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ak .row .tx{flex:1;min-width:0}
+.ak .row .tx b{display:block;font-size:1.05rem;font-weight:800;letter-spacing:-.01em}
+.ak .row .tx span{display:block;color:var(--muted);font-size:.92rem;line-height:1.35}
+.ak .row.v .ch{transition:transform .2s}
+.ak .row.v[aria-expanded="true"] .ch{transform:rotate(90deg)}
+.ak .row.v.b[aria-expanded="true"]{border-color:#fca5a5;background:#fff5f5}
+.ak .row.v.l[aria-expanded="true"]{border-color:#fdba74;background:#fff8f1}
+.ak .row.v.h[aria-expanded="true"]{border-color:#c4b5fd;background:#f8f5ff}
+.ak .row.v.b .ch{color:#dc2626}.ak .row.v.l .ch{color:#ea580c}.ak .row.v.h .ch{color:#7c3aed}
+.ak .pn{margin:-2px 0 6px;padding:18px}
+.ak .pn.b{border-color:#fecaca}.ak .pn.l{border-color:#fed7aa}.ak .pn.h{border-color:#ddd6fe}
+.ak .pn .steps{margin:0}
+.ak .pn .steps+.steps,.ak .tim+.steps{margin-top:14px}
+.ak .steps li>span:last-child{min-width:0}
+.ak .steps b{display:block;font-weight:800;line-height:1.35}
+.ak .steps.r .num{background:#dc2626}.ak .steps.o .num{background:#ea580c}.ak .steps.p .num{background:#7c3aed}
+.ak .steps.s3 .num{font-size:0}.ak .steps.s3 .num::after{content:"3";font-size:.95rem}
+.ak .pi{margin:0 0 12px;color:var(--muted);font-size:.95rem}
+.ak .pi:last-child{margin:14px 0 0}
+.ak .tim{display:flex;align-items:center;gap:12px;margin:14px 0 0;padding:12px;border:1px solid #fed7aa;background:#fff8f1;border-radius:18px}
+.ak .tim .tt{flex:1;min-width:0;line-height:1.25}
+.ak .tim .tt b{display:block;font-size:1.6rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ak .tim .tt span{display:block;color:var(--muted);font-size:.85rem}
+.ak .tim.ute{border-color:#16a34a;background:#f0fdf4}.ak .tim.ute .tt b{color:#15803d}
+.ak .tbtn{flex:none;border:0;border-radius:14px;min-height:48px;padding:0 18px;font-weight:800;color:#fff;background:linear-gradient(90deg,#f97316,#ea580c);box-shadow:0 6px 16px rgba(234,88,12,.25)}
+.ak .tbtn.stopp{background:#fff;color:#9a3412;border:2px solid #fdba74;box-shadow:none}
+.ak .ket{width:100%;border-collapse:collapse;margin:16px 0 0;font-size:.95rem}
+.ak .ket caption{text-align:left;font-weight:800;margin:0 0 6px}
+.ak .ket td{padding:8px 6px;border-top:1px solid var(--line);vertical-align:top}
+.ak .ket td:first-child{font-weight:700;white-space:nowrap}
+.ak .ket i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.ak .alarm{margin:16px 0 0;padding:12px 14px;border-radius:16px;background:#fef2f2;border:1px solid #fecaca;color:#7f1d1d}
+.ak .alarm ul{margin:6px 0 0;padding-left:20px}
+.ak .barn{margin-top:10px}
+.ak .barn h2{display:flex;align-items:center;gap:10px}
+.ak .ik{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none}
+.ak .ik svg{width:22px;height:22px}
+.ak .tim .ik{width:44px;height:44px;border-radius:13px}.ak .tim .ik svg{width:26px;height:26px}
+.ak .grp{margin-top:26px}
+.ov{position:fixed;inset:0;z-index:60;background:rgba(15,23,42,.62);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:18px}
+.ov[hidden]{display:none}
+.ovb{width:min(380px,100%);background:#fff;border-radius:28px;padding:24px 20px 18px;text-align:center;box-shadow:0 24px 60px rgba(15,23,42,.35)}
+.ovi{width:64px;height:64px;border-radius:20px;margin:0 auto 10px;display:grid;place-items:center;background:linear-gradient(160deg,#ef4444,#b91c1c);box-shadow:0 8px 20px rgba(185,28,28,.35)}
+.ovi svg{width:32px;height:32px}
+.ovb h2{margin:0;font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+.ovb p{margin:4px 0 0;color:var(--muted)}
+.ovb button{display:block;width:100%;font:inherit;font-weight:800;border-radius:18px;cursor:pointer}
+.ovb .nu{margin:18px 0 8px;min-height:68px;border:0;font-size:1.35rem;color:#fff;background:linear-gradient(160deg,#ef4444,#b91c1c);box-shadow:0 10px 24px rgba(185,28,28,.3)}
+.ovb .cntt{font-size:.95rem}
+.ovb .av{margin-top:14px;min-height:52px;background:#fff;border:2px solid var(--line);color:var(--fg);font-size:1.05rem}
+@media (prefers-reduced-motion:reduce){.ak .row.v .ch{transition:none}}
+.ak .pn,.ak .row.v,.ak .apps.valg{scroll-margin-top:84px}
+
+</style>
 </head>
 <body>
 <header>
@@ -203,20 +277,19 @@
   <a class="back" href="../index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Tilbake</a>
   <div class="col">
   <h1>Akutt. <em>Hva gjør du?</em></h1>
-  <p class="lead">Følg stegene under. Er du i tvil, ring 113.</p>
-  <button class="ring" id="ring" type="button" aria-label="Ring 113. Hold inne i 2 sekunder."><i class="fl" id="fl"></i><span>📞 Ring 113<small>Hold inne i 2 sekunder</small></span></button>
-  <div class="tg" role="group"><button class="lo" id="blo" aria-pressed="true" type="button">Lavt blodsukker</button><button class="hi" id="bhi" aria-pressed="false" type="button">Høyt blodsukker</button></div>
-  <div id="lo"><section class="cd" aria-labelledby="ha"><h2 id="ha">Er personen våken og ved bevissthet?</h2><div class="st"><div class="n">1</div><div><b>Gi raske karbohydrater med en gang</b><ul><li>Druesukker, så mye som står i planen fra diabetesteamet</li><li>Et glass juice eller saft (ikke light)</li><li>Noen sukkerbiter</li></ul></div></div><div class="st"><div class="n">2</div><div><b>Vent 10–15 minutter</b><p>Se om formen stiger.</p></div></div><div class="st"><div class="n">3</div><div><b>Gi langsomme karbohydrater</b><p>Gi en skive brød, knekkebrød eller litt annen mat når blodsukkeret er på vei opp, slik at det ikke faller igjen.</p></div></div></section>
-  <section class="cd red" aria-labelledby="hb"><h2 id="hb">Er personen bevisstløs eller har kramper?</h2><div class="st"><div class="n">1</div><div><b>Ring 113 med en gang!</b></div></div><div class="st"><div class="n">2</div><div><b>Ikke gi mat eller drikke i munnen</b><p>Fare for kvelning.</p></div></div><div class="st"><div class="n">3</div><div><b>Legg personen i stabilt sideleie</b></div></div><div class="st"><div class="n">4</div><div><b>Har du glukagon?</b><p>Sprøyte eller nesespray kan gis mens du venter på ambulansen, hvis du vet hvordan det brukes.</p></div></div></section></div>
-  <div id="hi" hidden><section class="cd or" aria-labelledby="hc"><h2 id="hc">Er personen våken og klar i hodet?</h2><div class="st"><div class="n or">1</div><div><b>Mål blodsukker og ketoner</b><p>Hvis du har utstyr til det.</p></div></div><div class="st"><div class="n or">2</div><div><b>Følg planen fra diabetesteamet</b><p>Der står det hva du skal gjøre med insulin. Appen sier ikke hvor mye du skal ta.</p></div></div><div class="st"><div class="n or">3</div><div><b>Drikk vann</b><p>Ikke drikk noe med sukker.</p></div></div><div class="st"><div class="n or">4</div><div><b>Sjekk igjen etter litt tid</b><p>Blir det ikke bedre, ring legevakt 116 117.</p></div></div></section>
-  <section class="cd red" aria-labelledby="hd"><h2 id="hd">Ring 113 med en gang hvis personen:</h2><div class="st"><div class="n">!</div><div><b>er forvirret, svimmel eller besvimer</b></div></div><div class="st"><div class="n">!</div><div><b>kaster opp om og om igjen</b></div></div><div class="st"><div class="n">!</div><div><b>har sterk acetonlukt (som neglelakkfjerner) eller tung pust</b></div></div><div class="st"><div class="n">!</div><div><b>har magesmerter, er veldig tørst eller veldig sliten og blodsukkeret ikke går ned</b></div></div></section></div>
-  <section class="cd" aria-labelledby="hn"><h2 id="hn">Når det haster</h2><a class="nn" href="tel:116117"><b>Legevakt: 116 117</b><span>Ved sykdom som ikke kan vente til dagtid</span></a><div class="nn"><b>Nødnummer: 113</b><span>Ved alvorlig akutt sykdom. Bruk Ring 113-knappen øverst.</span></div><p class="sm" style="margin:8px 0 0">Snakk med diabetesteamet om hva dere skal gjøre ved lavt og høyt blodsukker. Skriv det ned i <a href="../profil/index.html">Min profil</a>, under Mine kontakter.</p></section>
-  <section class="cd" aria-labelledby="hbarn"><h2 id="hbarn">Barneavdelingen nær deg</h2><label for="bsted" class="bl">Velg sted:</label><select id="bsted" class="bsel"><option value="">– Velg sted –</option></select><div id="bres" aria-live="polite"></div><p class="sm" style="margin:10px 0 0">Ved fare: ring 113. Er du usikker: ring legevakt 116 117 først. Numrene er hentet fra sykehusenes egne nettsider i november 2026, og de kan endres.</p></section>
+  <p class="lead">Velg det som passer. Er du i tvil, ring 113.</p>
+  <button class="ring" id="ring" type="button"><span class="ri"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg></span><span class="rt"><b>Ring 113</b><small>Ambulanse. Trykk her.</small></span></button>
+  <div class="rows vip" id="vip"></div>
+  <h2 class="grp">Hva skjer nå?</h2>
+  <div class="rows valg"><button class="row v b" type="button" aria-expanded="false" aria-controls="pb"><span class="ic" style="background:#fee2e2"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/><path d="M6 12h3l1.5-3 3 6 1.5-3H18"/></svg></span><span class="tx"><b>Bevisstløs eller kramper</b><span>Svarer ikke eller våkner ikke.</span></span><span class="ch" aria-hidden="true">›</span></button><section class="panel pn b" id="pb" aria-label="Bevisstløs eller kramper" hidden><ol class="steps r"><li><span class="num">1</span><span><b>Ring 113 med en gang</b></span></li><li><span class="num">2</span><span><b>Ikke gi mat eller drikke i munnen</b><span class="d">Fare for kvelning.</span></span></li><li><span class="num">3</span><span><b>Legg personen i stabilt sideleie</b></span></li><li><span class="num">4</span><span><b>Har dere glukagon?</b><span class="d">Sprøyte eller nesespray kan gis mens dere venter, hvis dere har lært hvordan.</span></span></li><li><span class="num">5</span><span><b>Bli hos personen</b><span class="d">Til ambulansen kommer.</span></span></li></ol></section><button class="row v l" type="button" aria-expanded="true" aria-controls="pl"><span class="ic" style="background:#ffedd5"><svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"/><path d="M21 11v6h-6"/></svg></span><span class="tx"><b>Lavt blodsukker</b><span>Under 4, føling, skjelven eller rar.</span></span><span class="ch" aria-hidden="true">›</span></button><section class="panel pn l" id="pl" aria-label="Lavt blodsukker"><p class="pi">Personen er våken og kan svelge.</p><ol class="steps o"><li><span class="num">1</span><span><b>Gi raske karbohydrater med en gang</b><span class="d">Druesukker, så mye som står i planen. Eller et glass juice eller saft (ikke light).</span></span></li><li><span class="num">2</span><span><b>Vent 15 minutter og mål igjen</b><span class="d">Fortsatt lavt? Gi raske karbohydrater én gang til.</span></span></li></ol><div class="tim" id="tim"><span class="ik" style="background:#ffedd5"><svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2"/><path d="M9 2h6"/></svg></span><span class="tt"><b id="tid">15:00</b><span id="tidt">Start når sukkeret er gitt.</span></span><button class="tbtn" id="tst" type="button">Start</button></div><ol class="steps o s3"><li><span class="num">1</span><span><b>Gi litt mat når det er på vei opp</b><span class="d">En skive brød eller knekkebrød, så det ikke faller igjen.</span></span></li></ol><p class="pi">Blir personen slapp, forvirret eller svarer dårlig: ring 113.</p></section><button class="row v h" type="button" aria-expanded="false" aria-controls="ph"><span class="ic" style="background:#ede9fe"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 13V7h-6"/></svg></span><span class="tx"><b>Høyt blodsukker og ketoner</b><span>Over 14, kvalm, tørst eller acetonlukt.</span></span><span class="ch" aria-hidden="true">›</span></button><section class="panel pn h" id="ph" aria-label="Høyt blodsukker og ketoner" hidden><ol class="steps p"><li><span class="num">1</span><span><b>Mål blodsukker og ketoner</b><span class="d">Hvis dere har utstyr.</span></span></li><li><span class="num">2</span><span><b>Følg planen fra diabetesteamet</b><span class="d">Ikke ta insulin på gjetting. Siden sier ikke hvor mye du skal ta.</span></span></li><li><span class="num">3</span><span><b>Drikk vann</b><span class="d">Ikke noe med sukker.</span></span></li><li><span class="num">4</span><span><b>Sjekk igjen etter litt tid</b><span class="d">Blir det ikke bedre, ring legevakt 116 117.</span></span></li></ol><table class="ket"><caption>Ketoner i blod (mmol/L)</caption><tbody><tr><td><i style="background:#16a34a"></i>Under 0,6</td><td>Vanlig</td></tr><tr><td><i style="background:#eab308"></i>0,6–1,4</td><td>Mål igjen om 1–2 timer</td></tr><tr><td><i style="background:#f97316"></i>1,5–2,9</td><td>Ring diabetesteamet eller 116 117</td></tr><tr><td><i style="background:#dc2626"></i>3,0 eller mer</td><td><b>Ring 113</b></td></tr></tbody></table><div class="alarm"><b>Ring 113 med en gang ved:</b><ul><li>oppkast om og om igjen</li><li>tung pust eller acetonlukt (som neglelakkfjerner)</li><li>forvirring, svimmelhet eller besvimelse</li><li>sterke magesmerter</li></ul></div></section></div>
+  <h2 class="grp">Andre numre</h2>
+  <div class="rows"><a class="row" href="tel:116117"><span class="ic" style="background:#e6efff"><svg viewBox="0 0 24 24" fill="#2563eb" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg></span><span class="tx"><b>Legevakt 116 117</b><span>Sykdom som ikke kan vente til dagtid.</span></span><span class="ch" aria-hidden="true">›</span></a></div>
+  <section class="panel barn" aria-labelledby="hbarn"><h2 id="hbarn"><span class="ik" style="background:#dcfce7"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M12 7v6M9 10h6M9 21v-4h6v4"/></svg></span>Barneavdelingen nær deg</h2><label for="bsted" class="bl">Velg sted:</label><select id="bsted" class="bsel"><option value="">– Velg sted –</option></select><div id="bres" aria-live="polite"></div><p class="sm" style="margin:10px 0 0">Ved fare: ring 113. Er du usikker: ring legevakt 116 117 først. Numrene er hentet fra sykehusenes egne nettsider i november 2026, og de kan endres.</p></section>
   <section class="kil" aria-labelledby="hkil"><h2 id="hkil">Kilder</h2><ul><li><a href="https://www.diabetes.no/globalassets/om-diabetes/barn/skole-og-barnehage/hefte_min-skolehverdag-med-diabetes---brosjyre.pdf" target="_blank" rel="noopener">Diabetesforbundet: Min skoledag med diabetes (PDF)</a></li><li><a href="https://nhi.no/sykdommer/hormoner-og-naring/diabetes-type-1/lavt-blodsukker-hypoglykemi-ved-diabetes" target="_blank" rel="noopener">NHI.no: Lavt blodsukker ved diabetes</a></li><li><a href="https://kvalitet.sshf.no/docs/pub/dok34531.pdf" target="_blank" rel="noopener">Sørlandet sykehus: Lavt blodsukker (føling)</a></li><li><a href="https://nhi.no/forstehjelp/akuttmedisin/ulike-sykdommer/diabetisk-ketoacidose" target="_blank" rel="noopener">NHI.no: Diabetisk ketoacidose</a></li></ul></section>
   <p class="sm">Dette er en generell veiledning, ikke fasit. Følg planen fra diabetesteamet ditt.</p>
   </div>
 </main>
-<div class="ov" id="ov" role="alertdialog" aria-modal="true" aria-labelledby="ovh" hidden><h2 id="ovh">Ringer 113 om</h2><div class="cnt" id="cnt" aria-live="polite">5</div><p><b>Er du eller noen andre i nød?</b><br>Da skal du ringe. 113 er ambulanse.</p><p class="sm">Trykket du ved et uhell? Trykk Avbryt.</p><button class="av" id="av" type="button">AVBRYT</button><button class="nu" id="nu" type="button">Ring nå</button></div>
+<div class="ov" id="ov" role="alertdialog" aria-modal="true" aria-labelledby="ovh" hidden><div class="ovb"><span class="ovi"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11 11 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.6 3.6a1 1 0 0 1-.25 1z"/></svg></span><h2 id="ovh">Ringe 113?</h2><p>113 er ambulanse.</p><button class="nu" id="nu" type="button">Ring 113 nå</button><p class="cntt" aria-live="polite">Ringer selv om <b id="cnt">5</b> sekunder</p><button class="av" id="av" type="button">Avbryt</button></div></div>
 
 <footer class="pfoot">Laget av Thomas Reinertsen · <a href="/nyttig/diabetes/personvern/">Personvern</a> · <a href="../../../opphavsrett/index.html">Opphavsrett</a> · <a href="../tilbakemelding/index.html">Tilbakemelding</a> · <a href="../nytt/index.html">Hva er nytt</a><div style="margin-top:6px;font-size:.85em;opacity:.8">© 2026 Reinertsengruppen. Alle rettigheter forbeholdt.</div><p style="margin:14px auto 0;max-width:36em;font-size:.82em;line-height:1.45;opacity:.9">Dette er informasjon og hjelp, ikke medisinsk rådgivning. Snakk alltid med diabetesteamet ditt om behandlingen din. Innholdet er ikke gjennomgått av helsepersonell ennå. Siden er under oppbygging, og det kan ligge feil her.</p></footer>
 <script>
@@ -231,18 +304,9 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden){
 </script>
 
 <!--telle--><script src="/telle.js" defer></script><!--/telle-->
-<!--sperre--><script src="/sperre.js" defer></script><!--/sperre-->
 <script>(function(){function f(){var h;try{h=+new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Oslo",hour:"numeric",hour12:false}).format(new Date())%24}catch(e){h=new Date().getHours()}document.documentElement.classList.toggle("natt",h>=22||h<8)}f();setInterval(f,60000)})();</script>
 <script src="../enkel.js" defer></script>
-<script>(function(){var l=document.getElementById("lo"),h=document.getElementById("hi"),a=document.getElementById("blo"),c=document.getElementById("bhi");function sh(x){l.hidden=x;h.hidden=!x;a.setAttribute("aria-pressed",String(!x));c.setAttribute("aria-pressed",String(x))}a.onclick=function(){sh(false)};c.onclick=function(){sh(true)};
-var ov=document.getElementById("ov"),cnt=document.getElementById("cnt"),ci=0,left=0;function endSos(call){clearInterval(ci);ov.hidden=true;if(call)location.href="tel:113"}
-function startSos(){left=5;cnt.textContent=left;ov.hidden=false;document.getElementById("av").focus();clearInterval(ci);ci=setInterval(function(){left--;if(left<=0)endSos(true);else cnt.textContent=left},1000)}
-document.getElementById("av").onclick=function(){endSos(false)};document.getElementById("nu").onclick=function(){endSos(true)};document.addEventListener("visibilitychange",function(){if(document.hidden&&!ov.hidden){clearInterval(ci);ov.hidden=true}});
-var b=document.getElementById("ring"),f=document.getElementById("fl"),st=0,raf=0,done=0;function stop(){cancelAnimationFrame(raf);if(!done){f.style.transition="width .15s";f.style.width="0"}st=0}
-function tick(){var p=Math.min(1,(performance.now()-st)/2000);f.style.transition="none";f.style.width=p*100+"%";if(p>=1){done=1;startSos();setTimeout(function(){done=0;f.style.width="0"},1200)}else raf=requestAnimationFrame(tick)}
-function begin(){if(done||st)return;st=performance.now();raf=requestAnimationFrame(tick)}function end(){if(st&&!done)stop()}
-b.addEventListener("pointerdown",begin);b.addEventListener("pointerup",end);["pointerleave","pointercancel"].forEach(function(e){b.addEventListener(e,function(){if(st&&!done)stop()})});
-b.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&!e.repeat){e.preventDefault();begin()}});b.addEventListener("keyup",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();end()}});b.addEventListener("contextmenu",function(e){e.preventDefault()})})();</script>
+<script src="/nyttig/diabetes/akutt/akutt.js" defer></script>
 <script>(function(){var B=[
 ["Arendal","Sørlandet sykehus Arendal",[["37 01 45 91","Barne- og ungdomsavdelingen"]],"https://www.sshf.no/avdelinger/somatikk-arendal/barne-og-ungdomsavdelingen/"],
 ["Bergen","Haukeland universitetssjukehus",[["55 97 50 00","Sentralbord, døgnåpent. Be om Barne- og ungdomsklinikken."]],"https://www.helse-bergen.no/avdelinger/barne-og-ungdomsklinikken/"],

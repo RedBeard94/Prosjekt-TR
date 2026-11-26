@@ -559,11 +559,38 @@ function sent(raw,t,fritt){var n=nw(t);
  if(hw(t,["vil du være vennen min","vil du være min venn","bli vennen min","bli min venn"])){sag("Så snilt sagt! Jeg er en svarbot, så husk å snakke med vennene dine også.",null);return true}
  if(fritt){sag(nxt("fri",FREE));return true}
  return false;}
+/* ===== Akutt først (bevisstløs, ketoner, lavt, glukagon, aceton) =====
+   Disse svarene kommer før alt annet. Står ordet «keton», leses tallet alltid som ketoner, aldri som blodsukker.
+   Ketongrenser i blod (mmol/L): under 0,6 vanlig, 0,6–1,4 litt høyt, 1,5–2,9 høyt, 3,0 eller mer farlig (NHS, HSE, JDRF). */
+var BEVW=["bevisstløs","bevisstlos","bevistløs","bevisstløse","kramper","krampe","krampeanfall","besvimt","besvimte","besvimer","svarer ikke","våkner ikke","vekker ikke","får ikke kontakt","ingen kontakt","får ikke liv"];
+var BEVA='<b>Ring 113 nå.</b><br>1. Ikke gi mat eller drikke i munnen.<br>2. Legg personen i stabilt sideleie.<br>3. Har dere glukagon og har lært å bruke det: gi det.<br>4. Bli hos personen til ambulansen kommer.<a class="sb-lnk" href="tel:113">📞 Ring 113</a>';
+var RASK=' Ring 113 med en gang ved oppkast om og om igjen, tung pust, acetonlukt eller forvirring.';
+function ketTall(t){var m=/keton\S*\D{0,14}?(\d{1,2}(?:[.,]\d{1,2})?)(?![\d])/.exec(t);return m?parseFloat(m[1].replace(",",".")):null}
+function ketSvar(k){var N="<b>Ketoner "+esc(fmt(k));
+ if(k>10)return["sb-bot",esc(fmt(k))+" ser rart ut for ketoner. Ketoner i blod skrives i mmol/L, for eksempel 0,4."];
+ if(k<0.6)return["sb-bot",N+" er vanlig.</b> Følg planen din, og følg med på blodsukkeret."+PLAN];
+ if(k<1.5)return["sb-bot sb-red",N+" er litt høyt.</b> Mål blodsukker og ketoner igjen om 1–2 timer. Følg planen fra diabetesteamet. Drikk vann uten sukker. Ikke ta insulin på gjetting."+RASK+PLAN+AKL];
+ if(k<3)return["sb-bot sb-red",N+" er høyt.</b> Ring diabetesteamet eller legevakt 116 117 nå. Følg planen for sykdom. Ikke ta insulin på gjetting. Drikk vann uten sukker.<br><b>"+RASK.trim()+"</b>"+PLAN+AKL];
+ return["sb-bot sb-red",N+" er farlig høyt.</b> <b>Ring 113 nå.</b> Det kan være syreforgiftning (ketoacidose). Følg planen fra diabetesteamet mens dere venter.<a class=\"sb-lnk\" href=\"tel:113\">📞 Ring 113</a>"+AKL];}
+var LAVA='<b>Ta raske karbohydrater nå</b>, så mye som står i planen din. For eksempel druesukker eller et glass juice.<br>Vent 10–15 minutter og mål igjen.<br><b>Bevisstløs eller kramper: ring 113.</b>'+'<div class="sb-g">Vil du, kan du skrive tallet du ser.</div>';
+function lavOrd(t){if(/^ *(hva|hvorfor|hvordan) (er|betyr|kjennes|merker)/.test(t))return false;
+ return /( føling| følingen| hypo| hypoglykemi)( |$)/.test(t)||/^ *(jeg er |er |blir |ligger |føler meg )?(veldig |litt |for |så )?lav *$/.test(t)||/(blodsukkeret?|sukkeret|jeg) (er |blir |går )?(veldig |litt |for |så )?(lav|lavt) /.test(t)||/ lavt blodsukker /.test(t)||/ lav nå /.test(t);}
+var GLUA='<b>Glukagon</b> er en medisin som hever blodsukkeret. Den brukes når personen er bevisstløs, har kramper eller ikke klarer å svelge. <b>Ring 113 samtidig.</b> Diabetesteamet lærer dere hvordan og når. Ha den med deg, og sjekk utløpsdatoen.'+AKL;
+var ACEA='<b>Acetonlukt</b> (lukter som neglelakkfjerner eller søte epler) kan bety for mange ketoner. Mål blodsukker og ketoner nå hvis du har utstyr. Ring diabetesteamet eller legevakt 116 117.<br><b>'+RASK.trim()+'</b>'+AKL;
+function akuttFoerst(raw){var t=norm(raw);
+ if(hw(t,BEVW)||/ (svarer|våkner) ikke /.test(t)){pend=soft=SP=null;LAST="sag";add("sb-bot sb-red",BEVA);return true}
+ if(/keton/.test(t)){var k=ketTall(" "+raw.toLowerCase()+" ");if(k!==null){pend=soft=SP=null;LAST="sag";var r=ketSvar(k);add(r[0],r[1]);return true}pend=soft=null;return false}
+ if(/ (aceton|acetonlukt|neglelakklukt)| lukter (som )?neglelakk/.test(t)){pend=soft=SP=null;LAST="sag";add("sb-bot sb-red",ACEA);return true}
+ if(/ (glukagon|glucagon|baqsimi|ogluo)/.test(t)){pend=soft=SP=null;LAST="sag";add("sb-bot",GLUA);return true}
+ if(lavNaa(raw)&&tall(raw)){LAST="qa";return true}
+ if(num(raw)===null&&lavOrd(t)){soft=SP=null;pend={d:null};LAST="sag";add("sb-bot sb-red",LAVA);return true}
+ return false;}
 function ask0(raw){var t=norm(raw);var kn=KN;KN=false;
  if(!/[A-Za-zÆØÅæøå0-9]/.test(raw)&&/^[\s?!.]+$/.test(raw)){pend=soft=SP=null;sag("Hmm? Skriv spørsmålet med ord, så prøver jeg. Eller skriv: Hva kan jeg spørre om?",null);return}
  if(nw(t)<=10&&/^ *(hvem kan jeg (spørre|spør|ringe|snakke med|få hjelp av)|er det noen jeg kan (ringe|spørre|snakke med)|noen jeg kan (ringe|spørre|snakke med)|hvem kan hjelpe( meg)?)/.test(t)){pend=soft=null;LAST="sag";add("sb-bot",esc(HVEM)+HVEM_B);SP="lenker";return}
  if(/hva kan jeg spørre|meny|spørre om|spør om/.test(t)){pend=soft=SP=null;menu();return}
  if(/^ *(nei )?(det )?(var|er) ikke akutt *$|^ *ikke akutt *$/.test(t)){pend=soft=null;sag("Så bra at det ikke er akutt! Hva lurer du på? Eller skriv «Hva kan jeg spørre om?».",null);return}
+ if(akuttFoerst(raw))return;
  var d=danger(raw);if(d){pend=soft=SP=null;show(d);return}
  if(serious(raw)){pend=soft=SP=null;add("sb-bot sb-red",esc(SER));return}
  var tg=tung(raw);if(tg){pend=soft=SP=null;LAST="sag";add("sb-bot",esc(tg));return}
